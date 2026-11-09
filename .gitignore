@@ -1,5 +1,6 @@
 .env
 out/
 cache/
+public/cache/
 node_modules/
 __pycache__/

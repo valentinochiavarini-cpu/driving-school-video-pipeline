@@ -1,3 +1,28 @@
-{ "name": "driving-school-video-pipeline", "private": true, "version": "0.1.0",
-  "scripts": { "render": "node render/render.js", "dry": "python3 pipeline/run.py --dry-run" },
-  "dependencies": { "playwright": "^1.50.0" } }
+{
+  "name": "driving-school-video-pipeline",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dry": "tsx src/cli.ts dry",
+    "make": "tsx src/cli.ts make",
+    "audition": "tsx src/cli.ts audition",
+    "voices": "tsx src/cli.ts voices",
+    "studio": "remotion studio remotion/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.542",
+    "@remotion/cli": "4.0.542",
+    "@remotion/renderer": "4.0.542",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.542"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "@types/react": "19.2.2",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
