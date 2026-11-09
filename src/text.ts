@@ -51,7 +51,7 @@ Rules:
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 6 seconds each."
 - vo_line = spoken version of card1 + card2, max 14 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
 - outro_vo = max 16 words: ask for the score in the comments and point to the link in bio.
-- caption = max 110 chars, ends with a question asking for their score. hashtags = 5 lowercase tags including #dmvtest and #drivingtest (Spanish: #examendemanejo #dmv).
+- caption = max 110 chars, ends with a question asking for their score. hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
 - Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes.
 - If first_has_image is true, card1 may reference "this sign".`;
 
@@ -66,6 +66,8 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
     categories: [...new Set(questions.map((q) => q.category))].sort(), timing,
   });
   const h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
+  // asterisks mark the highlight word on card 1 only; never speak or post them
+  for (const k of ["vo_line", "outro_vo", "card2", "caption"] as const) h[k] = h[k].replace(/\*/g, "");
   if (h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9) throw new Error(`Hook too long: ${JSON.stringify(h)}`);
   return h;
 }
