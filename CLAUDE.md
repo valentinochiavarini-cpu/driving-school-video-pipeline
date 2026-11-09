@@ -63,6 +63,6 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 1. Length has no target; keep an eye on anything over 75 s (the CLI warns).
 2. ElevenLabs account is on the free tier (10,000 characters per month, no commercial license). A paid plan
    is required before anything is posted publicly. One video uses about 800 characters.
-3. Voice not chosen yet: set ELEVENLABS.voiceEn in src/config.ts after the audition.
+3. English voice: Liam (TX3LPaxmHKxFdv7VOQHJ), backup Laura (FGY2WhTYpPnrIDTdsKH5). Spanish voice not cast yet.
 4. Only 115 questions have images; signs7 exhausts unique sets after about 16 videos.
 5. SFX and music bed must be licensed files before the first public post.
