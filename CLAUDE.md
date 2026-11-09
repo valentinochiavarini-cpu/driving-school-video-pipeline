@@ -35,6 +35,7 @@ public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized)
     npm run audition ["line"]        # renders the line in ELEVENLABS.auditionVoices -> out/audition/
     npm run make -- --format pass5 --lang en --count 1
     npm run studio                   # Remotion Studio with the demo plan (hot reload while styling)
+    npm run still -- out/<id>/plan.json 24 900   # QA stills of a rendered plan -> out/<id>/stills/
 
 Env: copy .env.example to .env. In Claude Code cloud sessions the proxy injects the real API keys, so the
 placeholders work; locally and in GitHub Actions set OPENAI_API_KEY and ELEVENLABS_API_KEY.

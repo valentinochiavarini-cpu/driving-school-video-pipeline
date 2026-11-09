@@ -73,7 +73,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
           })}
         </div>
         {reveal && q.explanation && (
-          <p className="studio-explanation" style={{ opacity: explIn, transform: `translateY(${(1 - explIn) * 10}px)` }}>{q.explanation}</p>
+          <p className="studio-explanation" style={{ opacity: explIn, transform: `translateY(${(1 - explIn) * 10}px)` }}><span className="clamp">{q.explanation}</span></p>
         )}
       </div>
       <div className="studio-footer">

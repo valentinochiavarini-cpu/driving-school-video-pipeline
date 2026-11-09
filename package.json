@@ -9,6 +9,7 @@
     "audition": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts audition",
     "voices": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts voices",
     "studio": "remotion studio remotion/index.ts",
+    "still": "tsx src/still.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
