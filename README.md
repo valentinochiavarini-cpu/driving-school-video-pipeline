@@ -1,14 +1,12 @@
 # driving-school-video-pipeline
 
-Automated DMV quiz shorts for The Driving School. Read CLAUDE.md first (the brief), then docs/findings.md.
+Automated DMV quiz shorts for The Driving School. Start with CLAUDE.md (brief) and docs/PLAN.md (plan and decisions).
 
-Quick start
+    npm install
     cp .env.example .env            # add OPENAI_API_KEY and ELEVENLABS_API_KEY
-    make setup                      # python deps, playwright chromium (needs ffmpeg + node 20+)
-    make dry                        # renders a silent test video from docs/sample_set.json, no API calls
-    make audition                   # hear the hook line in your ElevenLabs voices, then set voice_en in config.yaml
-    make one F=pass5 L=en           # one real video -> out/<id>/video.mp4 + post.json (caption, hashtags)
-    make batch F=signs7 L=es N=10
+    npm run dry                     # silent test video from docs/sample_set.json, no API calls
+    npm run audition                # hear the hook line in candidate voices, then set voiceEn in src/config.ts
+    npm run make -- --format pass5 --lang en
 
-Outputs: out/<id>/video.mp4, plan.json (full timeline), post.json (caption + hashtags + question ids).
-cache/ holds questions, speakable rewrites, TTS audio and the used-question ledger. Safe to delete, costs money to rebuild TTS.
+Outputs: out/<id>/video.mp4, plan.json (timeline), post.json (caption, hashtags, question ids).
+public/cache holds images and voice clips; cache/ holds question and text caches and the used-question ledger.
