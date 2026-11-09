@@ -21,7 +21,10 @@ src/pick.ts       non-overlapping set per format; ledger cache/used.json
 src/text.ts       OpenAI JSON mode: speakable rewrite per question (cached), hooks + caption per video
 src/voice.ts      ElevenLabs with-timestamps; mp3 + words cached in public/cache/audio by content hash
 src/render.ts     Remotion bundle + renderMedia
-src/cli.ts        dry | make [--format --lang --count --state] | audition ["text"] | voices
+src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
+src/still.ts      QA stills
+.github/workflows/nightly.yml  cron 03:17 UTC + manual dispatch; needs secrets OPENAI_API_KEY, ELEVENLABS_API_KEY, INGEST_TOKEN
+src/cli.ts        dry | make | replan | approve <id> | list [status] | audition ["text"] | voices
 remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), QuestionScene, Captions,
                   fonts (Inter vendored in public/fonts), studio.css (tokens + CreatorStudio.css values)
 public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized). Replace with licensed files.
@@ -58,8 +61,17 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Voice reads the question only; reveal says "The answer is B." plus a phrase of at most 10 words.
 - Hooks are generated per video; card 2 uses the real timing numbers passed in.
 - Excluded categories everywhere: Alcohol & Drugs, Speed Limits & Laws, Licensing & Registration.
-- No Lovable code changes for production. No Higgsfield.
+- Lovable app UI untouched. One backend addition lives in the Lovable project (decision 2026-11-09): table
+  public.videos (anon read only), private bucket `videos` (signed 1-year URLs; workspace policy blocks public
+  buckets), and the `ingest` server function at /functions/v1/ingest with actions upsert, update, list,
+  used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
 - Posting through Postiz Cloud; no own TikTok app audit. Approve the first 3 to 4 videos by hand, then auto.
+
+## Ledger flow
+
+make -> row status draft -> mp4 + thumb uploaded -> status ready. `approve <id>` sets approved + status approved.
+Phase 3 (publish.ts) schedules approved videos through Postiz and moves them to scheduled / posted / failed.
+used_question_ids from the ledger is merged with cache/used.json so GitHub Actions runners never repeat a set.
 
 ## Open issues
 

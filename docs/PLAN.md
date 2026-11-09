@@ -161,8 +161,9 @@ with the Studio styles. Dry mode with the sample set (no API calls). First real 
 audition and casting. Check length, legibility on a phone, caption sync. Acceptance: one video you would
 post as is.
 
-Phase 2, batch (one session): batch command, ledger rows, mp4 upload to Supabase storage, GitHub Actions
-nightly workflow, manual workflow. Acceptance: 10 videos rendered by Actions overnight with no repeats.
+Phase 2, batch: DONE on the code side 2026-11-09 (ledger through the Lovable ingest function, upload after render,
+approve/list commands, nightly + manual GitHub Actions workflow). Open: owner adds INGEST_TOKEN in Lovable and the
+three secrets in GitHub, then the first Actions run. Acceptance: 10 videos rendered by Actions overnight with no repeats.
 
 Phase 3, publish (one session plus account setup on your side): Postiz account, TikTok connected,
 publish command, status and metrics sync. Acceptance: one video posted publicly at a scheduled time from
