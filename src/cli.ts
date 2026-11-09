@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -10,6 +10,8 @@ import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices } from "./voice";
 import { buildPlan, countdownSeconds } from "./plan";
 import { renderPlan } from "./render";
+import { execFileSync } from "node:child_process";
+import { ledgerEnabled, upsertVideo, updateVideo, listVideos, usedQuestionIds, uploadFile } from "./ledger";
 import type { DisplayQuestion, Lang, Question } from "./types";
 
 async function make(fmt: string, lang: Lang, state: string | undefined, dry: boolean) {
@@ -22,7 +24,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     qs = JSON.parse(fs.readFileSync(path.join(ROOT, "docs/sample_set.json"), "utf8"));
     const sample = path.join(PUBLIC, "cache/images/sample_sign.png");
     if (!fs.existsSync(sample)) fs.copyFileSync(path.join(ROOT, "docs/sample_sign.png"), sample);
-  } else qs = pickSet(await fetchAllQuestions(), fmt, lang, state);
+  } else qs = pickSet(await fetchAllQuestions(), fmt, lang, state, undefined, ledgerEnabled() ? await usedQuestionIds(fmt, lang) : []);
 
   const speak = await Promise.all(qs.map((q) => (dry ? speakableDry(q) : speakable(q, lang))));
   const display: DisplayQuestion[] = await Promise.all(qs.map(async (q, i) => ({
@@ -47,8 +49,30 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   writeJson(path.join(work, "post.json"), { caption: h.caption, hashtags: h.hashtags, hook: h, questions: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
   console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions`);
   if (plan.meta.totalSeconds > 75) console.warn(`WARNING: ${plan.meta.totalSeconds}s is over the 75 s soft ceiling`);
-  await renderPlan(plan, path.join(work, "video.mp4"));
-  console.log(`OK ${path.relative(ROOT, path.join(work, "video.mp4"))}  ${plan.meta.totalSeconds}s`);
+  const video = path.join(work, "video.mp4");
+  await renderPlan(plan, video);
+  const thumb = path.join(work, "thumb.jpg");
+  execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", "0.9", "-i", video, "-frames:v", "1", "-q:v", "3", thumb]);
+  console.log(`OK ${path.relative(ROOT, video)}  ${plan.meta.totalSeconds}s`);
+  if (ledgerEnabled() && !dry) {
+    await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
+      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
+    const videoUrl = await uploadFile(id, "video", video);
+    await uploadFile(id, "thumb", thumb);
+    await updateVideo(id, { status: "ready" });
+    console.log(`ledger: ${id} ready  ${videoUrl}`);
+  }
+}
+
+async function approve(id: string) {
+  const v = await updateVideo(id, { approved: true, status: "approved" });
+  console.log(`approved ${v.id}  ${v.video_url}`);
+}
+
+async function list(status: string | undefined) {
+  const rows = await listVideos((status as import("./ledger").VideoStatus) ?? null, 50);
+  for (const v of rows) console.log(`${v.status.padEnd(9)} ${v.id.padEnd(28)} ${String(v.seconds ?? "").padStart(5)}s  ${v.scheduled_at ?? ""} ${v.post_url ?? v.video_url ?? ""}`);
+  if (!rows.length) console.log("(no videos)");
 }
 
 /** Re-time and re-render an existing plan with the current rules. No API calls (clips are reused). */
@@ -77,6 +101,8 @@ try {
   else if (cmd === "make") for (let i = 0; i < parseInt(values.count!, 10); i++) await make(values.format!, lang, values.state, false);
   else if (cmd === "audition") await audition(positionals[1] ?? `Most people fail this one. Can you pass the ${new Date().getFullYear() + 1} DMV test? Question one. What does this sign mean?`);
   else if (cmd === "replan") await replan(positionals[1]);
+  else if (cmd === "approve") await approve(positionals[1]);
+  else if (cmd === "list") await list(positionals[1]);
   else if (cmd === "voices") for (const v of await listVoices()) console.log(v.voice_id, v.name, JSON.stringify(v.labels));
   else throw new Error(`Unknown command ${cmd}`);
 } catch (e) { console.error((e as Error).message); process.exit(1); }

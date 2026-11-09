@@ -1,0 +1,38 @@
+name: nightly
+on:
+  schedule:
+    - cron: "17 3 * * *"   # 03:17 UTC daily, about 10 pm US Eastern
+  workflow_dispatch:
+    inputs:
+      format: { description: "Format id", default: "pass5", required: true }
+      lang: { description: "en or es", default: "en", required: true }
+      count: { description: "Videos to render", default: "1", required: true }
+jobs:
+  render:
+    if: vars.PIPELINE_PAUSED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+      INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+      SUPABASE_URL: https://ksiqvvoqlzdihjubaxbm.supabase.co
+      SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - run: npx remotion browser ensure
+      - name: Render
+        run: npx tsx src/cli.ts make --format "${{ inputs.format || 'pass5' }}" --lang "${{ inputs.lang || 'en' }}" --count "${{ inputs.count || '1' }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: videos-${{ github.run_id }}
+          path: |
+            out/**/video.mp4
+            out/**/plan.json
+            out/**/post.json
+          retention-days: 14

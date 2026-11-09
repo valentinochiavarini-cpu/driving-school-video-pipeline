@@ -28,10 +28,10 @@ export function localized(q: Question, lang: Lang): Question {
   return q;
 }
 
-export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: string, stateCount?: number): Question[] {
+export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: string, stateCount?: number, remoteUsed: string[] = []): Question[] {
   const fmt = FORMATS[fmtId]; if (!fmt) throw new Error(`Unknown format ${fmtId}`);
   const ledger: Record<string, string[]> = fs.existsSync(LEDGER) ? JSON.parse(fs.readFileSync(LEDGER, "utf8")) : {};
-  const key = `${fmtId}:${lang}`; const used = new Set(ledger[key] ?? []);
+  const key = `${fmtId}:${lang}`; const used = new Set([...(ledger[key] ?? []), ...remoteUsed]);
   const base = all.filter((q) => !used.has(q.id) && !EXCLUDED_CATEGORIES.includes(q.category));
   let general = base.filter((q) => q.state === null);
   if (fmt.imageOnly) general = general.filter((q) => q.image_url);
