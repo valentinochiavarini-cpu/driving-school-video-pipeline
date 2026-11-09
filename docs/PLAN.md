@@ -1,6 +1,6 @@
 # The Driving School video pipeline: build plan
 
-Status: proposal, 2026-11-09. Owner: Valentino (Inkwise Consulting Ltd).
+Status: approved 2026-11-09, decisions in section 8. Owner: Valentino (Inkwise Consulting Ltd).
 Goal: fully automated vertical DMV quiz videos (TikTok first, Reels and Shorts second), rendered from the
 question bank behind the-driving-school.lovable.app, posted on a schedule, with no editor in the loop.
 
@@ -60,25 +60,61 @@ Formats, filters, excluded categories, hook rules, caption rules: exactly as in 
 
 ## 4. Posting to TikTok on a schedule
 
-Facts (verified 2026-11-09, see sources at the end):
-- TikTok's own Content Posting API lets an unaudited app post only privately (SELF_ONLY). Public posting
-  needs an app audit with a demo of the consent flow. Audit time is not published. Up to 5 users per app per
-  24 h before the audit. Likely: the audit takes weeks and can be rejected for a fully automated flow.
-- Scheduler products (Postiz, Ayrshare, Zernio formerly Late, Upload-Post) already hold an audited TikTok
-  app. You connect the account once, then their API takes a video URL, caption and a time. Postiz: cloud
-  from about $29 per month with API, or self-hosted for free (AGPL). Ayrshare is the most mature and the
-  most expensive.
-- The Higgsfield TikTok tools available in this session require Higgsfield-hosted media and a manual
-  publish form per video. No scheduling. Not a fit.
+Facts (verified 2026-11-09 against TikTok's developer docs, Postiz's docs and pricing, and Postiz's GitHub issues; sources at the end):
+- TikTok's own Content Posting API, unaudited: posts forced to private (SELF_ONLY), the account must be private
+  at posting time, at most 5 users per app per 24 h. Public posting needs an audit of the consent UX. Certain.
+- The audit is a UI review. Generic composers get rejected for not following TikTok's UX guidelines (Postiz
+  issue 1362 is one example). A headless poster has no UI to review. Likely: our own app would be rejected or
+  take weeks, for a saving of about $29 per month. Not worth it now.
+- Per-creator cap from the API: about 15 posts per day per account, shared across all API clients, with a
+  spam_risk_too_many_posts error above it. Certain.
+- Postiz Cloud: Standard plan $29 per month ($23 yearly), 5 channels, public API and webhooks included, 7-day
+  trial. Posts can be created with a future date. TikTok settings exposed: privacy, comments, duet, stitch,
+  AI-generated flag, branded content and own-brand flags, direct post or upload-to-inbox. Certain.
+- Postiz Cloud reliability on TikTok is medium. Open or recent GitHub issues: the shared TikTok app hit
+  TikTok's daily active-user cap (1854), failed uploads sit in the queue for about 30 minutes with a misleading
+  error (2369), upload mode drops the privacy field (1338). Certain that the issues exist, Guessing on how
+  often they bite a single-account user.
+- Ayrshare: most mature API, $149 per month for one profile. Too expensive for one account. Zernio (formerly
+  Late) and Upload-Post are cheaper API-first options, not verified.
 
-Decision: Postiz cloud for the first months (fastest route to public scheduled posts, also covers Reels
-and Shorts from the same call). In parallel, register our own TikTok app and apply for the Direct Post
-audit; switch when it passes to remove the monthly fee. Cadence: 1 post per day per account, hooks and
-formats rotated, never bursts. TikTok treats bursts and identical captions as spam.
+Decision: Postiz Cloud Standard, direct post mode, with the pipeline polling post status after the scheduled
+time and marking the ledger failed when Postiz does not confirm. A failed post triggers one retry the next
+day, never a same-day repost. If Postiz fails more than twice in the first month, switch to Upload-Post or
+Zernio: the publish module is one file and the ledger does not change. Own TikTok app audit: not pursued.
 
-Approval gate: the pipeline sets status = ready; a Lovable "Content queue" page (phase 5) lets you preview
-and approve or skip; the poster only schedules approved videos. Until that page exists, approval is a
-column you flip in Supabase, or auto-approve when you trust the output.
+### Best practices for a fully automated account
+
+1. Cadence: 1 post per day at a fixed time for the first 2 weeks on the new account, then 1 to 2 per day. Never
+   bursts, never catch-up posting of a missed day. TikTok's cap is around 15 per day per account, the spam
+   risk starts far lower. Certain on the cap, Likely on the safe cadence (vendor blogs disagree, 1 to 3 per
+   day is the common range).
+2. Timing: start at 7 pm US Eastern on weekdays, 11 am on weekends, then after 14 days read TikTok Analytics
+   follower activity for the account and move the slot. Account-specific data beats every published table.
+3. Variety: every video gets a distinct hook, caption and 3 to 5 hashtags drawn from a rotating pool. Identical
+   captions across posts are a spam signal. The hook generator already enforces this per video; the pipeline
+   also rejects a caption identical to any of the last 30.
+4. Disclosures: set the AI-generated flag on every post (synthetic voice). TikTok says the label does not reduce
+   reach for eligible content, and an undisclosed synthetic voice is a policy risk. Set the own-brand
+   commercial disclosure, since every video promotes The Driving School with a link in bio. Likely required,
+   Certain that it is harmless.
+5. Account type: Business account, link in bio to the app, pinned best video. Keep comments, duet and stitch
+   allowed: they are engagement signals.
+6. Human in the loop: approve the first 3 to 4 videos by hand, then auto-approve. Keep a pause flag in the ledger
+   as a kill switch, and a daily digest (rendered, scheduled, posted, failed) sent by email.
+7. Feedback: pull views, watch time, likes and comments per post after 24 h and 7 d into the ledger. Use them to
+   weight hook styles and formats in the generator after the first 30 posts.
+8. Comments: reply by hand in the first weeks. There is no API for replying and early replies lift reach.
+9. Music: our own licensed bed or none. Business accounts cannot use the mainstream library through the API
+   anyway. SFX must be licensed files before the first public post (the synthesized placeholders are fine for
+   tests).
+10. Languages: English only now. Spanish later on a separate account with its own voice and hooks, never the
+    same video on two accounts.
+
+Approval gate: status flow draft > ready > approved > scheduled > posted or failed. For the first videos,
+`approve <id>` on the CLI (or flipping the column in Supabase) moves ready to approved. After you flip
+auto_approve in config, ready videos are scheduled without a stop. The Lovable queue page (phase 5) is a nicer
+front end for the same table, optional.
 
 ## 5. Where it runs
 
@@ -140,19 +176,32 @@ more questions in Supabase.
 Phase 5, content queue in Lovable (one session, Lovable credits): page listing the `videos` table with
 preview, approve, skip, reschedule. Optional but recommended before going fully hands-off.
 
-## 8. Decisions needed from you
+## 8. Decisions (taken 2026-11-09)
 
-1. Headcount of Inkwise Consulting Ltd: 3 or fewer means Remotion is free. Otherwise the fallback renderer
-   or a Company License.
-2. Posting route: Postiz cloud now plus our own TikTok app audit in parallel (recommended), or wait for the
-   audit and post privately in the meantime.
-3. Approval gate: human approval per video (queue page) or auto-post from day one.
-4. Production runner: GitHub Actions (recommended) or scheduled Claude Code sessions.
-5. Accounts: one TikTok account for EN only, or EN and ES on separate accounts.
+1. Headcount: 1. Remotion free license applies.
+2. Posting route: Postiz Cloud Standard. No own TikTok app audit.
+3. Approval gate: manual approval for the first 3 to 4 videos, then auto-approve.
+4. Production runner: GitHub Actions nightly. Claude Code sessions build, QA and change the repo.
+5. Accounts: one TikTok account, English. Spanish later on a separate account.
+
+## 9. Phase 0 checklist (next session)
+
+- Create the private GitHub repo driving-school-video-pipeline and push this tree.
+- Secrets: OPENAI_API_KEY, ELEVENLABS_API_KEY, SUPABASE_SERVICE_KEY (writes to the ledger and bucket), POSTIZ_API_KEY.
+- Supabase: `videos` table and `videos` storage bucket (public read).
+- Postiz: start the 7-day trial, connect the TikTok Business account, create the API key.
+- Claude Code environment: allow ksiqvvoqlzdihjubaxbm.supabase.co, api.openai.com, api.elevenlabs.io, api.postiz.com.
 
 ## Sources
 
-- TikTok Direct Post reference (unaudited clients post privately): https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post
+- TikTok Content Sharing Guidelines (unaudited limits, per-creator caps): https://developers.tiktok.com/docs/en/content-sharing-guidelines
+- TikTok Direct Post reference: https://developers.tiktok.com/docs/en/content-posting-api-reference-direct-post
+- Postiz pricing: https://postiz.com/pricing
+- Postiz plans and limits: https://docs.postiz.com/cloud/plans
+- Postiz TikTok provider settings: https://docs.postiz.com/public-api/providers/tiktok
+- Postiz TikTok issues: https://github.com/gitroomhq/postiz-app/issues/1854 , https://github.com/gitroomhq/postiz-app/issues/2369 , https://github.com/gitroomhq/postiz-app/issues/1338 , https://github.com/gitroomhq/postiz-app/issues/1362
+- TikTok AI label rules (third party): https://www.hypelive.io/en/blog/tiktok-ai-content-rules-2026
+- Ayrshare pricing (third party): https://planvortex.com/en/resources/ayrshare-alternatives
 - TikTok posting API reality check, audit and limits: https://timetopost.co/blog/how-to-post-to-tiktok-api/
 - TikTok API guide 2026 (audit, limits): https://www.postzen.dev/blog/tiktok-api
 - Remotion license terms: https://www.remotion.dev/docs/license
