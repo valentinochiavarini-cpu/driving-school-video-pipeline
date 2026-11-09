@@ -1,0 +1,49 @@
+brand:
+  name: THE DRIVING SCHOOL
+  year: 2027
+  cta: LINK IN BIO
+
+video:
+  width: 1080
+  height: 1920
+  fps: 30
+  hook1_seconds: 1.5
+  hook2_seconds: 1.5
+  outro_seconds: 4.0
+  dim_seconds: 0.5
+  reveal_tail_seconds: 0.5
+
+formats:
+  pass5:   { size: 5, think: 4, label: "Can you pass?", image_first: true }
+  signs7:  { size: 7, think: 3, label: "Road signs rapid fire", image_only: true }
+  row5:    { size: 5, think: 4, label: "Who goes first?", categories: ["Right-of-Way Rules", "Road Rules & Right-of-Way"] }
+  tricky5: { size: 5, think: 4, label: "Most missed", categories: ["Right-of-Way Rules", "Road Rules & Right-of-Way", "Passing Rules", "Driving Conditions & Hazards"] }
+  single:  { size: 1, think: 4, label: "One question", image_first: true }
+  full:    { size: state, think: 3, label: "Full practice test", with_state: true }
+
+excluded_categories: ["Alcohol & Drugs", "Speed Limits & Laws", "Licensing & Registration"]
+
+openai:
+  model: gpt-4o-mini
+  temperature_hooks: 0.9
+  temperature_speakable: 0.2
+
+elevenlabs:
+  model_en: eleven_turbo_v2_5
+  model_es: eleven_multilingual_v2
+  voice_en: ""          # paste the chosen voice_id after the audition
+  voice_es: ""
+  speed: 1.15           # 0.7 to 1.2
+  stability: 0.35       # lower = more expressive
+  similarity_boost: 0.8
+  style: 0.6            # higher = more TikTok, costs a little clarity
+  output_format: mp3_44100_128
+  # Run: python pipeline/tts.py --audition "..." to hear these. Fill with IDs from your ElevenLabs library.
+  audition_voices: []
+
+sfx:
+  tick_gain: 0.6
+  ding_gain: 0.5
+  whoosh_gain: 0.35
+  music_path: ""        # optional mp3 bed, mixed at music_gain
+  music_gain: 0.12
