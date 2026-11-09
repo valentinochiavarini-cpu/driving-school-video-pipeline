@@ -47,7 +47,7 @@ NODE_USE_ENV_PROXY=1 behind the session proxy (the npm scripts set it).
 Per question: countdown = max(think, ceil(voice end + 0.8 s)), the voice reads the question while the ring
 runs; dim 0.5 s; reveal = reveal voice + 0.5 s with pop on the correct answer and the explanation shown.
 Word captions in the footer from ElevenLabs timestamps. Whoosh on each question, ticks on the last 3 s,
-ding on reveal. Target 40 to 50 s for 5 questions; the dry run lands at 65 s, see "Open issues".
+ding on reveal. No fixed length target: the video takes the time the voice takes (first real pass5: 58 s). Soft ceiling 75 s.
 
 ## Decisions already made (do not reopen without a reason)
 
@@ -60,8 +60,7 @@ ding on reveal. Target 40 to 50 s for 5 questions; the dry run lands at 65 s, se
 
 ## Open issues
 
-1. Length: dry run 65 s for pass5. Levers in order: think 5 -> 4, reveal phrase 10 -> 7 words, hook2 shorter,
-   or a pass3 format. Decide after the first real render.
+1. Length has no target; keep an eye on anything over 75 s (the CLI warns).
 2. ElevenLabs account is on the free tier (10,000 characters per month, no commercial license). A paid plan
    is required before anything is posted publicly. One video uses about 800 characters.
 3. Voice not chosen yet: set ELEVENLABS.voiceEn in src/config.ts after the audition.

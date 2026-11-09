@@ -46,6 +46,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   writeJson(path.join(work, "plan.json"), plan);
   writeJson(path.join(work, "post.json"), { caption: h.caption, hashtags: h.hashtags, hook: h, questions: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
   console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions`);
+  if (plan.meta.totalSeconds > 75) console.warn(`WARNING: ${plan.meta.totalSeconds}s is over the 75 s soft ceiling`);
   await renderPlan(plan, path.join(work, "video.mp4"));
   console.log(`OK ${path.relative(ROOT, path.join(work, "video.mp4"))}  ${plan.meta.totalSeconds}s`);
 }

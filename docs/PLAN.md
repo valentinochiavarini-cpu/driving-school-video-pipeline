@@ -40,7 +40,7 @@ screenshot per frame. Same motion, roughly 3 times slower renders, no license qu
 
 ## 3. Video spec (unchanged from the brief, with one timing fix)
 
-1080x1920, 30 fps, target 40 to 50 s for 5-question formats.
+1080x1920, 30 fps. No fixed length target (decision 2026-11-09): a video takes the time its voice takes. Soft ceiling 75 s, the CLI warns above it.
 Hook card 1 (1.5 s) > hook card 2 (1.5 s) > N questions > outro (3 to 4 s).
 
 Per question:
@@ -53,8 +53,7 @@ Per question:
 - Captions: question text as word-synced captions over the lower third, from ElevenLabs timestamps.
 - Audio: voice, tick on last 3 seconds, ding on reveal, whoosh on each new question, music bed at -18 dB.
 
-Estimated length for pass5 with real voice: 3 + 5 x (5.5 + 0.5 + 3) + 3 = about 51 s. Tune think to 4.5
-or trim the reveal sentence if the first renders land over 50.
+Measured: first real pass5 render is 58 s.
 
 Formats, filters, excluded categories, hook rules, caption rules: exactly as in CLAUDE.md.
 

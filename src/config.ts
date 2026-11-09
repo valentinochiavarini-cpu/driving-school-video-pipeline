@@ -43,7 +43,7 @@ export const OPENAI = { model: "gpt-4o-mini", temperatureHooks: 0.9, temperature
 export const ELEVENLABS = {
   modelEn: "eleven_turbo_v2_5",
   modelEs: "eleven_multilingual_v2",
-  voiceEn: "",           // set after the audition
+  voiceEn: "TX3LPaxmHKxFdv7VOQHJ", // Liam (chosen 2026-11-09). Backup: Laura FGY2WhTYpPnrIDTdsKH5
   voiceEs: "",
   speed: 1.12,
   stability: 0.35,
