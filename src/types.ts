@@ -35,6 +35,7 @@ export type Hook = {
   outro_vo: string;
   caption: string;
   hashtags: string[];
+  style?: string;
 };
 
 export type DisplayQuestion = {

@@ -56,7 +56,7 @@ export function buildPlan(inp: PlanInput): Plan {
     brand: BRAND,
     hook: {
       card1: hook.card1, card2: hook.card2,
-      sub: es ? `¿Pasarías el examen DMV ${BRAND.year}?` : `Can you pass the ${BRAND.year} DMV test?`,
+      sub: es ? `Examen escrito del DMV ${BRAND.year}` : `${BRAND.year} DMV written test practice`,
       pill: es ? "VAMOS" : "LET'S GO", hook1Frames, hook2Frames, vo: audio.hook,
     },
     questions: segs, outro, cues,

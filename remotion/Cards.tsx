@@ -1,11 +1,12 @@
 import React from "react";
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { BRAND } from "../src/config";
 import type { Plan } from "../src/types";
 
 const Logo: React.FC<{ name: string }> = ({ name }) => {
   const frame = useCurrentFrame();
   return <>
-    <div className="logo">{name}</div>
+    <div className="logo">{BRAND.logoWhite ? <Img src={staticFile(BRAND.logoWhite)} className="logo-img" /> : name}</div>
     <div className="road" style={{ transform: `translateX(${-(frame * 1.2) % 40}px)` }} />
   </>;
 };
@@ -59,7 +60,7 @@ export const Outro: React.FC<{ plan: Plan }> = ({ plan }) => {
           return <span key={i} style={{ transform: `scale(${s})`, opacity: s }}>{i + 1}/{n}</span>;
         })}
       </div>
-      <div className="pill" style={{ transform: `scale(${pulse})` }}>{es ? "LINK EN LA BIO" : plan.brand.cta} →</div>
+      <div className="pill" style={{ transform: `scale(${pulse})` }}>{es ? BRAND.ctaEs : plan.brand.cta} →</div>
     </div>
   );
 };

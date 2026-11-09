@@ -43,7 +43,16 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
     const local = shuffle(base.filter((q) => q.state === state));
     picked.push(...local.slice(0, Math.max(1, Math.floor(size / 3))));
   }
-  if (fmt.imageFirst && !general.slice(0, size - picked.length).some((q) => q.image_url)) {
+  if (fmt.buckets) {
+    const taken = new Set<string>();
+    for (const b of fmt.buckets) {
+      const cands = shuffle(general.filter((q) => b.cats.includes(q.category) && !taken.has(q.id)));
+      if (b === fmt.buckets[0]) cands.sort((a, c) => Number(!!c.image_url) - Number(!!a.image_url));
+      for (const q of cands.slice(0, b.n)) { picked.push(q); taken.add(q.id); }
+    }
+    general = general.filter((q) => !taken.has(q.id));
+  }
+  if (fmt.imageFirst && !picked.some((q) => q.image_url) && !general.slice(0, size - picked.length).some((q) => q.image_url)) {
     const i = general.findIndex((q) => q.image_url);
     if (i >= 0) picked.push(...general.splice(i, 1));
   }

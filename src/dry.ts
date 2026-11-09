@@ -14,11 +14,11 @@ export type Timing = { count: number; seconds_per_question: number };
 
 export function hooksDry(timing: Timing): Hook {
   return {
-    card1: "Most people *FAIL* this one",
+    card1: "Most people *FAIL* this DMV question", style: "fail",
     card2: `${timing.count} questions. ${timing.seconds_per_question} seconds each.`,
     vo_line: `Most people fail this one. Can you pass the ${BRAND.year} DMV test? Let's go.`,
-    outro_vo: "How many did you get? Drop your score in the comments and check the link in bio.",
-    caption: `Only ${timing.count} questions. How many did you get right?`,
+    outro_vo: "How many did you get? Drop your score in the comments. The full practice test is in the link in bio.",
+    caption: `${timing.count} DMV test questions. How many did you get right?`,
     hashtags: ["#dmvtest", "#drivingtest", "#permittest", "#roadsigns", "#newdriver"],
   };
 }

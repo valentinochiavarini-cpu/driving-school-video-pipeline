@@ -1,5 +1,14 @@
 /** Pure config: no Node imports, so the Remotion bundle can import it too. */
-export const BRAND = { name: "THE DRIVING SCHOOL", year: 2027, cta: "LINK IN BIO" };
+export const BRAND = {
+  name: "THE DRIVING SCHOOL", year: 2027,
+  cta: "PRACTICE MORE: LINK IN BIO", ctaEs: "PRACTICA MAS: LINK EN LA BIO",
+  /** logo files relative to public/ (white on dark cards). Falls back to the name in text when missing. */
+  logoWhite: "brand/logo-white.png", logoDark: "brand/logo-dark.png",
+};
+
+/** Hook styles, rotated per video and stored in the ledger (hook.style) so performance can be compared. */
+export const HOOK_STYLES = ["fail", "challenge", "sign", "count", "score"] as const;
+export type HookStyle = (typeof HOOK_STYLES)[number];
 
 export const VIDEO = {
   width: 1080,
@@ -22,18 +31,34 @@ export type FormatDef = {
   imageOnly?: boolean;
   categories?: string[];
   withState?: boolean;
+  /** category buckets filled in order, remainder random (mirror of createSets in the app) */
+  buckets?: { cats: string[]; n: number }[];
 };
 
+const SIGNS = ["Signs, Signals & Markings"];
+const ROW = ["Road Rules & Right-of-Way", "Right-of-Way Rules"];
+/** Classic 30 buckets from src/lib/creatorSets.ts in the app */
+export const CLASSIC_BUCKETS = [
+  { cats: SIGNS, n: 10 },
+  { cats: ROW, n: 7 },
+  { cats: ["Safe Driving & Defensive Driving", "Driving Conditions & Hazards"], n: 5 },
+  { cats: ["Sharing the Road"], n: 4 },
+  { cats: ["Passing Rules", "Turning & Lane Changes", "Lane Usage & Highway Driving", "Parking Rules", "Emergencies & Breakdowns", "Vehicle Equipment & Safety", "Vehicle Control & Maneuvers"], n: 4 },
+];
+
 export const FORMATS: Record<string, FormatDef> = {
-  pass5: { size: 5, think: 5, label: "Can you pass?", imageFirst: true },
-  signs7: { size: 7, think: 4, label: "Road signs rapid fire", imageOnly: true },
-  row5: { size: 5, think: 5, label: "Who goes first?", categories: ["Right-of-Way Rules", "Road Rules & Right-of-Way"] },
-  tricky5: {
-    size: 5, think: 5, label: "Most missed",
-    categories: ["Right-of-Way Rules", "Road Rules & Right-of-Way", "Passing Rules", "Driving Conditions & Hazards"],
-  },
+  // short
+  pass5: { size: 5, think: 5, label: "Can you pass? (5)", imageFirst: true },
+  signs7: { size: 7, think: 4, label: "Road signs rapid fire (7)", imageOnly: true },
+  row5: { size: 5, think: 5, label: "Who goes first? (5)", categories: ROW },
+  tricky5: { size: 5, think: 5, label: "Most missed (5)", categories: [...ROW, "Passing Rules", "Driving Conditions & Hazards"] },
   single: { size: 1, think: 5, label: "One question", imageFirst: true },
-  full: { size: "state", think: 4, label: "Full practice test", withState: true },
+  // long (the viral shape: many questions, the viewer keeps score)
+  pass10: { size: 10, think: 5, label: "Can you pass? (10)", imageFirst: true },
+  pass15: { size: 15, think: 5, label: "Can you pass? (15)", imageFirst: true },
+  signs15: { size: 15, think: 4, label: "Road signs test (15)", imageOnly: true },
+  classic30: { size: 30, think: 5, label: "Classic 30", imageFirst: true, buckets: CLASSIC_BUCKETS },
+  full: { size: "state", think: 5, label: "Full practice test", withState: true },
 };
 
 export const EXCLUDED_CATEGORIES = ["Alcohol & Drugs", "Speed Limits & Laws", "Licensing & Registration"];
