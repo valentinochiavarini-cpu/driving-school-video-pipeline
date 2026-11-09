@@ -36,6 +36,7 @@ public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized)
     npm run make -- --format pass5 --lang en --count 1
     npm run studio                   # Remotion Studio with the demo plan (hot reload while styling)
     npm run still -- out/<id>/plan.json 24 900   # QA stills of a rendered plan -> out/<id>/stills/
+    npm run replan -- out/<id>/plan.json         # re-time + re-render an existing plan, no API calls
 
 Env: copy .env.example to .env. In Claude Code cloud sessions the proxy injects the real API keys, so the
 placeholders work; locally and in GitHub Actions set OPENAI_API_KEY and ELEVENLABS_API_KEY.
@@ -45,8 +46,9 @@ NODE_USE_ENV_PROXY=1 behind the session proxy (the npm scripts set it).
 ## Video spec
 
 1080x1920, 30 fps. hook card 1 (1.5 s) > hook card 2 (1.5 s or voice length) > N questions > outro (3.5 s).
-Per question: countdown = max(think, ceil(voice end + 0.8 s)), the voice reads the question while the ring
-runs; dim 0.5 s; reveal = reveal voice + 0.5 s with pop on the correct answer and the explanation shown.
+Per question: countdown = max(reading time, format think, ceil(voice end + 0.8 s)), where reading time =
+clamp(words of question + answers / 3.5 + 1.5 s (+1 s with image), 5, 14) (src/config.ts READING); the voice
+reads the question while the ring runs; dim 0.5 s; reveal = reveal voice + 0.5 s with pop on the correct answer and the explanation shown.
 Word captions in the footer from ElevenLabs timestamps. Whoosh on each question, ticks on the last 3 s,
 ding on reveal. No fixed length target: the video takes the time the voice takes (first real pass5: 58 s). Soft ceiling 75 s.
 

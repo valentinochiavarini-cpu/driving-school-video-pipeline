@@ -1,5 +1,5 @@
 /** Pure timeline builder (no Node imports): frames for every scene plus audio cues. */
-import { BRAND, FORMATS, SFX, VIDEO } from "./config";
+import { BRAND, FORMATS, READING, SFX, VIDEO } from "./config";
 import type { Clip, Cue, DisplayQuestion, Hook, Lang, Plan, QuestionSegment } from "./types";
 
 const fps = VIDEO.fps;
@@ -12,10 +12,16 @@ export type PlanInput = {
   audio: { hook: Clip; outro: Clip; q: Clip[]; r: Clip[] };
 };
 
-/** Countdown length for one question: voice plus a margin, never shorter than the format's think time. */
-export function countdownSeconds(fmtId: string, voice: Clip): number {
-  const think = FORMATS[fmtId].think;
-  return Math.max(think, Math.ceil(voice.speechEnd + VIDEO.voiceMarginSeconds));
+/** Seconds a viewer needs to read the question and the four answers (plus a beat to think). */
+export function readingSeconds(q: Pick<DisplayQuestion, "question_text" | "answers" | "image">): number {
+  const words = [q.question_text, ...Object.values(q.answers)].join(" ").trim().split(/\s+/).filter(Boolean).length;
+  const s = Math.ceil(words / READING.wordsPerSecond + READING.thinkSeconds + (q.image ? READING.imageSeconds : 0));
+  return Math.min(READING.maxSeconds, Math.max(READING.minSeconds, s));
+}
+
+/** Countdown length for one question: reading time, never shorter than the format's think time or the voice. */
+export function countdownSeconds(fmtId: string, q: Pick<DisplayQuestion, "question_text" | "answers" | "image">, voice: Clip): number {
+  return Math.max(FORMATS[fmtId].think, readingSeconds(q), Math.ceil(voice.speechEnd + VIDEO.voiceMarginSeconds));
 }
 
 export function buildPlan(inp: PlanInput): Plan {
@@ -28,7 +34,7 @@ export function buildPlan(inp: PlanInput): Plan {
 
   const segs: QuestionSegment[] = questions.map((q, idx) => {
     const vo = audio.q[idx], revealVo = audio.r[idx];
-    const secs = countdownSeconds(inp.format, vo);
+    const secs = countdownSeconds(inp.format, q, vo);
     const questionAt = t, questionFrames = secs * fps;
     cues.push({ kind: "whoosh", at: questionAt });
     for (let s = Math.min(3, secs - 1); s >= 1; s--) cues.push({ kind: "tick", at: questionAt + (secs - s) * fps });

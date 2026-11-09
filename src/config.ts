@@ -64,3 +64,8 @@ export const ELEVENLABS = {
 };
 
 export const SFX = { tickGain: 0.6, dingGain: 0.5, whooshGain: 0.35, musicPath: "", musicGain: 0.12 };
+
+/** Reading rule (decision 2026-11-09): the viewer must be able to read the question and all four answers.
+ *  countdown = clamp(ceil(words / wordsPerSecond + thinkSeconds + imageSeconds), min, max), and never less
+ *  than the format's think or the voice end + margin. Mirrors the app's creatorTiming.ts, tuned for video. */
+export const READING = { wordsPerSecond: 3.5, thinkSeconds: 1.5, imageSeconds: 1.0, minSeconds: 5, maxSeconds: 14 };

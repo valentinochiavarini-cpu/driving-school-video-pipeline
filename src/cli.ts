@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -36,7 +36,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     aq.push(dry ? dryClip(s.question_vo) : await tts(s.question_vo, lang));
     ar.push(dry ? dryClip(s.reveal_vo) : await tts(s.reveal_vo, lang));
   }
-  const secs = Math.round(aq.reduce((a, c) => a + countdownSeconds(fmt, c), 0) / aq.length);
+  const secs = Math.round(aq.reduce((a, c, i) => a + countdownSeconds(fmt, display[i], c), 0) / aq.length);
   const timing = { count: qs.length, seconds_per_question: secs };
   const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state);
   const ah = dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
@@ -51,6 +51,21 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   console.log(`OK ${path.relative(ROOT, path.join(work, "video.mp4"))}  ${plan.meta.totalSeconds}s`);
 }
 
+/** Re-time and re-render an existing plan with the current rules. No API calls (clips are reused). */
+async function replan(planPath: string) {
+  const old = JSON.parse(fs.readFileSync(planPath, "utf8")) as import("./types").Plan;
+  const h = { ...old.hook, caption: old.meta.caption, hashtags: old.meta.hashtags, vo_line: old.hook.vo.text, outro_vo: old.outro.vo.text };
+  const plan = buildPlan({ id: old.id, format: old.format, lang: old.lang, questions: old.questions.map((s) => s.q), hook: h,
+    audio: { hook: old.hook.vo, outro: old.outro.vo, q: old.questions.map((s) => s.vo), r: old.questions.map((s) => s.revealVo) } });
+  const secs = Math.round(plan.questions.reduce((a, s) => a + s.countdownSeconds, 0) / plan.questions.length);
+  plan.hook.card2 = plan.hook.card2.replace(/\b\d+ seconds/, `${secs} seconds`);
+  const dir = path.dirname(planPath); const n = fs.readdirSync(dir).filter((f) => /^video.*\.mp4$/.test(f)).length + 1;
+  writeJson(path.join(dir, `plan_v${n}.json`), plan);
+  console.log(`replan ${plan.id}: ${old.meta.totalSeconds}s -> ${plan.meta.totalSeconds}s, countdowns ${plan.questions.map((s) => s.countdownSeconds).join("/")}`);
+  await renderPlan(plan, path.join(dir, `video_v${n}.mp4`));
+  console.log(`OK ${path.relative(ROOT, path.join(dir, `video_v${n}.mp4`))}`);
+}
+
 const { positionals, values } = parseArgs({
   allowPositionals: true,
   options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" } },
@@ -61,6 +76,7 @@ try {
   if (cmd === "dry") await make(values.format!, lang, values.state, true);
   else if (cmd === "make") for (let i = 0; i < parseInt(values.count!, 10); i++) await make(values.format!, lang, values.state, false);
   else if (cmd === "audition") await audition(positionals[1] ?? `Most people fail this one. Can you pass the ${new Date().getFullYear() + 1} DMV test? Question one. What does this sign mean?`);
+  else if (cmd === "replan") await replan(positionals[1]);
   else if (cmd === "voices") for (const v of await listVoices()) console.log(v.voice_id, v.name, JSON.stringify(v.labels));
   else throw new Error(`Unknown command ${cmd}`);
 } catch (e) { console.error((e as Error).message); process.exit(1); }
