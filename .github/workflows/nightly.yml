@@ -17,7 +17,7 @@ jobs:
       ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
       INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
       SUPABASE_URL: https://ksiqvvoqlzdihjubaxbm.supabase.co
-      SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+      SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzaXF2dm9xbHpkaWhqdWJheGJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MDU3NTgsImV4cCI6MjA4MTk4MTc1OH0.vC1JCaRBfwtenuR35suPzuf1DRNHWNv_KwdyVjDgGNE   # public read-only key, same as the app bundle
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
