@@ -4,10 +4,10 @@
   "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dry": "tsx src/cli.ts dry",
-    "make": "tsx src/cli.ts make",
-    "audition": "tsx src/cli.ts audition",
-    "voices": "tsx src/cli.ts voices",
+    "dry": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts dry",
+    "make": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts make",
+    "audition": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts audition",
+    "voices": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts voices",
     "studio": "remotion studio remotion/index.ts",
     "typecheck": "tsc --noEmit"
   },
