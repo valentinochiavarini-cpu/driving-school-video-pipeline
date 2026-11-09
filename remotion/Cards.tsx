@@ -13,7 +13,7 @@ const Logo: React.FC<{ name: string }> = ({ name }) => {
 export const HookCard1: React.FC<{ plan: Plan }> = ({ plan }) => {
   const frame = useCurrentFrame(); const { fps } = useVideoConfig();
   const pop = spring({ frame, fps, config: { damping: 12, stiffness: 180, mass: 0.8 } });
-  const emPop = spring({ frame: frame - 6, fps, config: { damping: 9, stiffness: 220 } });
+  const emPop = spring({ frame: frame - 6, fps, config: { damping: 13, stiffness: 220 } });
   const sub = interpolate(frame, [10, 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const parts = plan.hook.card1.split(/\*(\S+)\*/);
   return (
