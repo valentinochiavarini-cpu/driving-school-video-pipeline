@@ -16,6 +16,7 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
       INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+      POSTIZ_API_KEY: ${{ secrets.POSTIZ_API_KEY }}
       SUPABASE_URL: https://ksiqvvoqlzdihjubaxbm.supabase.co
       SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzaXF2dm9xbHpkaWhqdWJheGJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MDU3NTgsImV4cCI6MjA4MTk4MTc1OH0.vC1JCaRBfwtenuR35suPzuf1DRNHWNv_KwdyVjDgGNE   # public read-only key, same as the app bundle
     steps:
@@ -27,6 +28,12 @@ jobs:
       - run: npx remotion browser ensure
       - name: Render
         run: npx tsx src/cli.ts make --format "${{ inputs.format || 'pass5' }}" --lang "${{ inputs.lang || 'en' }}" --count "${{ inputs.count || '1' }}"
+      - name: Schedule approved videos
+        if: always()
+        run: npx tsx src/cli.ts publish --count 1
+      - name: Sync post states
+        if: always()
+        run: npx tsx src/cli.ts sync
       - uses: actions/upload-artifact@v4
         if: always()
         with:

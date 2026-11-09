@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] | sync | slots | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -12,6 +12,7 @@ import { buildPlan, countdownSeconds } from "./plan";
 import { renderPlan } from "./render";
 import { execFileSync } from "node:child_process";
 import { ledgerEnabled, upsertVideo, updateVideo, listVideos, usedQuestionIds, uploadFile } from "./ledger";
+import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publish";
 import type { DisplayQuestion, Lang, Question } from "./types";
 
 async function make(fmt: string, lang: Lang, state: string | undefined, dry: boolean) {
@@ -102,6 +103,9 @@ try {
   else if (cmd === "audition") await audition(positionals[1] ?? `Most people fail this one. Can you pass the ${new Date().getFullYear() + 1} DMV test? Question one. What does this sign mean?`);
   else if (cmd === "replan") await replan(positionals[1]);
   else if (cmd === "approve") await approve(positionals[1]);
+  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3); }
+  else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
+  else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);
   else if (cmd === "voices") for (const v of await listVoices()) console.log(v.voice_id, v.name, JSON.stringify(v.labels));
   else throw new Error(`Unknown command ${cmd}`);

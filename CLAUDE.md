@@ -22,9 +22,11 @@ src/text.ts       OpenAI JSON mode: speakable rewrite per question (cached), hoo
 src/voice.ts      ElevenLabs with-timestamps; mp3 + words cached in public/cache/audio by content hash
 src/render.ts     Remotion bundle + renderMedia
 src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
+src/publish.ts    Postiz: schedule approved videos (next free daily slot, TikTok settings from POSTING), sync states back
 src/still.ts      QA stills
-.github/workflows/nightly.yml  cron 03:17 UTC + manual dispatch; needs secrets OPENAI_API_KEY, ELEVENLABS_API_KEY, INGEST_TOKEN
-src/cli.ts        dry | make | replan | approve <id> | list [status] | audition ["text"] | voices
+.github/workflows/nightly.yml  cron 03:17 UTC + manual dispatch: make -> publish approved -> sync.
+                  Secrets: OPENAI_API_KEY, ELEVENLABS_API_KEY, INGEST_TOKEN, POSTIZ_API_KEY
+src/cli.ts        dry | make | replan | approve <id> | list [status] | publish | sync | slots | audition | voices
 remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), QuestionScene, Captions,
                   fonts (Inter vendored in public/fonts), studio.css (tokens + CreatorStudio.css values)
 public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized). Replace with licensed files.
@@ -70,7 +72,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 ## Ledger flow
 
 make -> row status draft -> mp4 + thumb uploaded -> status ready. `approve <id>` sets approved + status approved.
-Phase 3 (publish.ts) schedules approved videos through Postiz and moves them to scheduled / posted / failed.
+`publish` uploads the approved video to Postiz from its signed URL and schedules it at the next free slot (POSTING in
+src/config.ts: 7 pm ET weekdays, 11 am weekends, one per day, 90 min lead). `sync` reads Postiz post states 30 min
+after the slot: PUBLISHED -> posted (post_url), ERROR or stuck 12 h -> failed. A failed video is retried once.
 used_question_ids from the ledger is merged with cache/used.json so GitHub Actions runners never repeat a set.
 
 ## Open issues

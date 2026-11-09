@@ -69,3 +69,19 @@ export const SFX = { tickGain: 0.6, dingGain: 0.5, whooshGain: 0.35, musicPath: 
  *  countdown = clamp(ceil(words / wordsPerSecond + thinkSeconds + imageSeconds), min, max), and never less
  *  than the format's think or the voice end + margin. Mirrors the app's creatorTiming.ts, tuned for video. */
 export const READING = { wordsPerSecond: 3.5, thinkSeconds: 1.5, imageSeconds: 1.0, minSeconds: 5, maxSeconds: 14 };
+
+/** Posting schedule (decision 2026-11-09): one post per day per account at a fixed local time, never bursts.
+ *  After 14 days, move the hours to what TikTok Analytics shows for the account. */
+export const POSTING = {
+  timezone: "America/New_York",
+  weekdayHour: 19,     // 7 pm Mon to Fri
+  weekendHour: 11,     // 11 am Sat and Sun
+  perDay: 1,
+  minLeadMinutes: 90,  // never schedule closer than this to now
+  horizonDays: 30,
+  /** TikTok settings sent with every post */
+  tiktok: {
+    privacy_level: "PUBLIC_TO_EVERYONE", duet: true, stitch: true, comment: true, autoAddMusic: "no",
+    brand_content_toggle: false, brand_organic_toggle: true, video_made_with_ai: true, content_posting_method: "DIRECT_POST",
+  },
+};

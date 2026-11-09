@@ -165,8 +165,8 @@ Phase 2, batch: DONE on the code side 2026-11-09 (ledger through the Lovable ing
 approve/list commands, nightly + manual GitHub Actions workflow). Open: owner adds INGEST_TOKEN in Lovable and the
 three secrets in GitHub, then the first Actions run. Acceptance: 10 videos rendered by Actions overnight with no repeats.
 
-Phase 3, publish (one session plus account setup on your side): Postiz account, TikTok connected,
-publish command, status and metrics sync. Acceptance: one video posted publicly at a scheduled time from
+Phase 3, publish: code DONE 2026-11-09 (src/publish.ts, nightly workflow steps). Open on the owner's side: Postiz
+account, TikTok connected, API key in GitHub secrets. Metrics pull: later, once posts exist. Acceptance: one video posted publicly at a scheduled time from
 the pipeline, post id written back to the ledger.
 
 Phase 4, formats (one to two sessions): ES voice and copy, signs7, row5, tricky5, music bed, licensed SFX.

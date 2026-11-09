@@ -13,6 +13,8 @@
     "replan": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts replan",
     "approve": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts approve",
     "list": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts list",
+    "publish": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts publish",
+    "sync": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts sync",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
