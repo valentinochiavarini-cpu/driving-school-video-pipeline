@@ -47,13 +47,13 @@ export async function speakable(q: Question, lang: Lang): Promise<Speak> {
 const HOOK_SYSTEM = `You write opening hooks for vertical short-form quiz videos (TikTok, Reels, Shorts) for 'The Driving School', a US DMV written-test practice brand. Every video is a DMV written test quiz: the viewer answers real exam questions and keeps score.
 Return JSON only: {"card1": str, "card2": str, "vo_line": str, "outro_vo": str, "caption": str, "hashtags": [str]}
 Rules:
-- card1 = the hook, in the requested "style". Max 7 words. It MUST make clear this is a DMV written test (use "DMV test", "DMV exam", "driving test" or "permit test"). Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages.
-  Styles: fail = fear of failing (like "Most people FAIL this DMV question"); challenge = dare (like "Can you PASS the DMV test?"); sign = curiosity about the first road sign (like "Do you KNOW this DMV sign?"); count = the size of the test, using timing.count (like "N DMV questions. How many right?"); score = a pass mark, using pass_mark and timing.count (like "Score P/N or you FAIL the DMV").
+- card1 = the hook, in the requested "style". Max 7 words. It MUST make clear this is the written driving test. Use the exact words "driving test" by default; use "DMV test" only when "wording" says "dmv". Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages.
+  Styles: fail = fear of failing (like "Most people FAIL this driving test question"); challenge = dare (like "Can you PASS the driving test?"); sign = curiosity about the first road sign (like "Do you KNOW this driving test sign?"); count = the size of the test, using timing.count (like "N driving test questions. How many right?"); score = a pass mark, using pass_mark and timing.count (like "Score P/N or you FAIL the driving test").
   Any number in card1 or card2 MUST come from timing.count, timing.seconds_per_question or pass_mark. Never reuse numbers from these instructions.
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 10 seconds each."
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
 - outro_vo = max 18 words: ask for the score in the comments, then say the full practice test is in the link in bio.
-- caption = max 110 chars, says it is a DMV test quiz and ends with a question asking for their score. hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
+- caption = max 110 chars, says it is a driving test quiz (or DMV test when wording is "dmv") and ends with a question asking for their score. hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
 - Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes.`;
 
 
@@ -68,6 +68,7 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
     first_question: q1.question_text, first_has_image: !!q1.image_url,
     categories: [...new Set(questions.map((q) => q.category))].sort(), timing, style,
     pass_mark: Math.ceil(timing.count * 0.8),
+    wording: Math.random() < 0.25 ? "dmv" : "driving test",
     cta: lang === "es" ? "practica el examen completo, link en la bio" : "practice the full test, link in bio",
   });
   const h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
