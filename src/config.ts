@@ -28,6 +28,12 @@ export const HOOK_ANGLES: { id: string; brief: string }[] = [
 ];
 export type HookStyle = string;
 
+/** Visual themes, rotated per video so consecutive posts do not share one fixed look (TikTok treats templated
+ *  sameness as repetitive content, see docs/GROWTH.md). Tokens: light = the app's light theme, dark = the app's
+ *  .dark theme, ink = brand navy with the highlight yellow. Stored in the ledger as metrics.theme. */
+export const THEMES = ["light", "dark", "ink"] as const;
+export type Theme = (typeof THEMES)[number];
+
 /** Nightly rotation: two formats per weekday (decision 2026-11-10: two posts a day). */
 export const NIGHTLY_ROTATION: Record<string, string[]> = {
   Mon: ["pass5", "signs7"], Tue: ["row5", "pass10"], Wed: ["tricky5", "signs15"], Thu: ["pass5", "classic30"],
@@ -137,6 +143,9 @@ export const POSTING = {
   /** TikTok settings sent with every post */
   tiktok: {
     privacy_level: "PUBLIC_TO_EVERYONE", duet: true, stitch: true, comment: true, autoAddMusic: "no",
-    brand_content_toggle: false, brand_organic_toggle: true, video_made_with_ai: true, content_posting_method: "DIRECT_POST",
+    brand_content_toggle: false, brand_organic_toggle: true, video_made_with_ai: true,
+    /** DIRECT_POST publishes at the slot. UPLOAD sends a draft to the TikTok app inbox for native finishing
+     *  (own text, sound, cover) and the owner posts by hand: the hybrid TikTok's policies favour. */
+    content_posting_method: "DIRECT_POST",
   },
 };

@@ -4,6 +4,21 @@
   --background: 210 25% 98%; --foreground: 217 92% 12%; --card: 0 0% 100%; --primary: 211 68% 38%;
   --muted: 214 24% 92%; --muted-foreground: 215 22% 38%; --destructive: 0 70% 46%; --border: 214 24% 83%;
 }
+/* dark: the app's .dark tokens */
+.theme-dark {
+  --success: 155 55% 62%; --background: 217 70% 9%; --foreground: 210 25% 98%; --card: 217 57% 14%; --primary: 210 85% 68%;
+  --muted: 217 35% 23%; --muted-foreground: 214 24% 75%; --destructive: 0 80% 68%; --border: 217 30% 30%;
+}
+/* ink: brand navy with the highlight yellow as the accent */
+.theme-ink {
+  --success: 155 55% 62%; --background: 217 92% 12%; --foreground: 0 0% 100%; --card: 217 80% 17%; --primary: 47 100% 58%;
+  --muted: 217 60% 24%; --muted-foreground: 214 30% 82%; --destructive: 0 80% 68%; --border: 211 45% 40%;
+}
+.theme-ink .studio-letter { color: hsl(var(--highlight-foreground)); background: hsl(var(--highlight)); }
+.theme-ink .cap span.on { background: #fff; color: hsl(var(--brand-ink)); }
+.theme-dark .cap span.on, .theme-ink .cap span.done { color: hsl(var(--highlight)); }
+.theme-dark .cap span.done { color: hsl(var(--primary)); }
+.theme-dark .studio-image, .theme-ink .studio-image { background: #fff; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .phone { position: absolute; left: 0; top: 0; width: 360px; height: 640px; transform: scale(3); transform-origin: 0 0;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: hsl(var(--background)); color: hsl(var(--foreground)); overflow: hidden; }

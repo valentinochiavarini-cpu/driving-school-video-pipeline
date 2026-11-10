@@ -69,6 +69,7 @@ export type Plan = {
   id: string;
   format: string;
   lang: Lang;
+  theme?: string;
   fps: number;
   width: number;
   height: number;

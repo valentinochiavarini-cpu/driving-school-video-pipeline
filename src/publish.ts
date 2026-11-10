@@ -21,7 +21,7 @@ export async function tiktokIntegration(): Promise<Integration> {
   if (process.env.POSTIZ_INTEGRATION_ID) return { id: process.env.POSTIZ_INTEGRATION_ID, name: "env", identifier: "tiktok" };
   const list = await api<Integration[] | { integrations: Integration[] }>("/integrations");
   const arr = Array.isArray(list) ? list : list.integrations;
-  const tt = arr.find((i) => i.identifier === "tiktok" && !i.disabled);
+  const tt = arr.find((i) => /^tiktok/.test(i.identifier) && !i.disabled);
   if (!tt) throw new Error(`No TikTok channel connected in Postiz (channels: ${arr.map((i) => i.identifier).join(", ") || "none"})`);
   return tt;
 }

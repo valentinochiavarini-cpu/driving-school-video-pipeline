@@ -6,7 +6,7 @@ const fps = VIDEO.fps;
 const f = (sec: number) => Math.round(sec * fps);
 
 export type PlanInput = {
-  id: string; format: string; lang: Lang;
+  id: string; format: string; lang: Lang; theme?: string;
   questions: DisplayQuestion[];
   hook: Hook;
   audio: { hook: Clip; outro: Clip; q: Clip[]; r: Clip[] };
@@ -52,7 +52,7 @@ export function buildPlan(inp: PlanInput): Plan {
 
   const es = inp.lang === "es";
   return {
-    id: inp.id, format: inp.format, lang: inp.lang, fps, width: VIDEO.width, height: VIDEO.height, durationInFrames: t,
+    id: inp.id, format: inp.format, lang: inp.lang, theme: inp.theme ?? "light", fps, width: VIDEO.width, height: VIDEO.height, durationInFrames: t,
     brand: BRAND,
     hook: {
       card1: hook.card1, card2: hook.card2,

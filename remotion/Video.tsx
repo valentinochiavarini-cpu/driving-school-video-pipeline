@@ -16,8 +16,8 @@ export const Video: React.FC<{ plan: Plan }> = ({ plan }) => {
   useInter();
   const h1 = plan.hook.hook1Frames, h2 = plan.hook.hook2Frames;
   return (
-    <AbsoluteFill style={{ background: "hsl(210 25% 98%)" }}>
-      <div className="phone">
+    <AbsoluteFill className={`theme-${plan.theme ?? "light"}`} style={{ background: plan.theme === "dark" ? "hsl(217 70% 9%)" : plan.theme === "ink" ? "hsl(217 92% 12%)" : "hsl(210 25% 98%)" }}>
+      <div className={`phone theme-${plan.theme ?? "light"}`}>
         <Sequence from={0} durationInFrames={h1} layout="none"><HookCard1 plan={plan} /></Sequence>
         <Sequence from={h1} durationInFrames={h2} layout="none"><HookCard2 plan={plan} /></Sequence>
         {plan.questions.map((seg) => (

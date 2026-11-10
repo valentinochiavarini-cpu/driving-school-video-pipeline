@@ -62,7 +62,7 @@ export async function report(weekly: boolean): Promise<string> {
       const views = withViews.map((v) => num(m(v).views)!).sort((a, b) => a - b);
       const median = views[Math.floor(views.length / 2)];
       out.push(`  median views ${median}, best ${views.at(-1)}, worst ${views[0]}`);
-      for (const [label, key] of [["BY ANGLE", angleOf], ["BY FORMAT", (v: VideoRow) => v.format], ["BY LENGTH", (v: VideoRow) => (v.seconds ?? 0) < 90 ? "<90s" : (v.seconds ?? 0) < 240 ? "90-240s" : ">240s"]] as const) {
+      for (const [label, key] of [["BY ANGLE", angleOf], ["BY FORMAT", (v: VideoRow) => v.format], ["BY THEME", (v: VideoRow) => String(m(v).theme ?? "?")], ["BY LENGTH", (v: VideoRow) => (v.seconds ?? 0) < 90 ? "<90s" : (v.seconds ?? 0) < 240 ? "90-240s" : ">240s"]] as const) {
         const g = group(withViews, key as (v: VideoRow) => string);
         out.push(`  ${label}`);
         out.push(table(g.map((r) => [r.k, String(r.posts), String(r.avg ?? "-"), String(r.likes), String(r.comments), r.posts >= 4 && r.avg !== null && r.avg < median * 0.5 ? "CUT?" : r.posts >= 4 && r.avg !== null && r.avg > median * 1.5 ? "SCALE" : ""]), ["key", "posts", "avg views", "likes", "comm", "flag"]).split("\n").map((l) => "    " + l).join("\n"));

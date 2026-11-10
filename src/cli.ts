@@ -16,7 +16,7 @@ import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from 
 import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publish";
 import { report } from "./report";
 import { chooseAngle } from "./text";
-import { POSTING } from "./config";
+import { POSTING, THEMES } from "./config";
 import type { DisplayQuestion, Lang, Question } from "./types";
 
 async function make(fmt: string, lang: Lang, state: string | undefined, dry: boolean) {
@@ -59,10 +59,13 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const ah = dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
   const ao = dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
 
-  const plan = buildPlan({ id, format: fmt, lang, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar } });
+  const themeCount: Record<string, number> = Object.fromEntries(THEMES.map((x) => [x, 0]));
+  for (const v of ledgerRows) { const th = (v.metrics as { theme?: string } | null)?.theme; if (th && th in themeCount) themeCount[th]++; }
+  const theme = process.env.THEME || [...THEMES].sort((a, b) => themeCount[a] - themeCount[b] || Math.random() - 0.5)[0];
+  const plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar } });
   writeJson(path.join(work, "plan.json"), plan);
   writeJson(path.join(work, "post.json"), { caption: h.caption, hashtags: h.hashtags, hook: h, questions: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
-  console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions`);
+  console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions, theme ${theme}, angle ${h.style ?? "-"}`);
   if (plan.meta.totalSeconds > 75) console.warn(`WARNING: ${plan.meta.totalSeconds}s is over the 75 s soft ceiling`);
   const video = path.join(work, "video.mp4");
   await renderPlan(plan, video);
@@ -72,7 +75,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   if (ledgerEnabled() && !dry) {
     const chars = [ah, ao, ...aq, ...ar].reduce((a, c) => a + c.text.length, 0);
     await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
-      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null } });
+      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme } });
     const videoUrl = await uploadFile(id, "video", video);
     await uploadFile(id, "thumb", thumb);
     await updateVideo(id, { status: "ready" });
