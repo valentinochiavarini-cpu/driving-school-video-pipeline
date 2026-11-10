@@ -52,7 +52,10 @@ NODE_USE_ENV_PROXY=1 behind the session proxy (the npm scripts set it).
 
 ## Video spec
 
-1080x1920, 30 fps. hook card 1 (1.5 s) > hook card 2 (1.5 s or voice length) > N questions > outro (3.5 s).
+1080x1920, 30 fps. Safe zone (decision 2026-11-10): the quiz layout is a 360x548 phone box scaled 2.5x into
+x 90..990, y 220..1590, because TikTok and Instagram overlay the top ~220 px, bottom ~330 px and right ~120 px.
+Brand cards are full-bleed navy with their content inside the same box. Frame 0 of hook card 1 is fully composed:
+both platforms use it as the cover. hook card 1 (1.5 s) > hook card 2 (1.5 s or voice length) > N questions > outro (3.5 s).
 Per question: countdown = max(reading time, format think, ceil(voice end + 0.8 s)), where reading time =
 clamp(words of question + answers / 3.5 + 1.5 s (+1 s with image), 5, 14) (src/config.ts READING); the voice
 reads the question while the ring runs; dim 0.5 s; reveal = reveal voice + 0.5 s with pop on the correct answer and the explanation shown.

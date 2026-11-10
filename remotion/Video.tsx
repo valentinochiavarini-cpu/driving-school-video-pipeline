@@ -17,6 +17,9 @@ export const Video: React.FC<{ plan: Plan }> = ({ plan }) => {
   const h1 = plan.hook.hook1Frames, h2 = plan.hook.hook2Frames;
   return (
     <AbsoluteFill className={`theme-${plan.theme ?? "light"}`} style={{ background: plan.theme === "dark" ? "hsl(217 70% 9%)" : plan.theme === "ink" ? "hsl(217 92% 12%)" : "hsl(210 25% 98%)" }}>
+      {/* brand cards are full-bleed: the navy covers the whole frame, the content stays inside the safe box */}
+      <Sequence from={0} durationInFrames={h1 + h2} layout="none"><AbsoluteFill style={{ background: "hsl(217 92% 12%)" }} /></Sequence>
+      <Sequence from={plan.outro.at} durationInFrames={plan.outro.frames} layout="none"><AbsoluteFill style={{ background: "hsl(217 92% 12%)" }} /></Sequence>
       <div className={`phone theme-${plan.theme ?? "light"}`}>
         <Sequence from={0} durationInFrames={h1} layout="none"><HookCard1 plan={plan} /></Sequence>
         <Sequence from={h1} durationInFrames={h2} layout="none"><HookCard2 plan={plan} /></Sequence>

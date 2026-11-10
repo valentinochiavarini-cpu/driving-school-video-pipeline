@@ -20,12 +20,12 @@ export const HookCard1: React.FC<{ plan: Plan }> = ({ plan }) => {
   return (
     <div className="card">
       <Logo name={plan.brand.name} />
-      <h1 style={{ transform: `scale(${0.8 + 0.2 * pop})`, opacity: pop }}>
+      <h1 style={{ transform: `scale(${0.94 + 0.06 * pop})` }}>
         {parts.map((p, i) => i % 2 === 1
-          ? <em key={i} style={{ transform: `scale(${0.9 + 0.2 * emPop}) rotate(${-2 + 2 * emPop}deg)` }}>{p}</em>
+          ? <em key={i} style={{ transform: `scale(${1 + 0.08 * Math.sin(Math.PI * Math.min(1, emPop))}) rotate(${-2 + 2 * emPop}deg)` }}>{p}</em>
           : <span key={i}>{p}</span>)}
       </h1>
-      <h2 style={{ opacity: sub, transform: `translateY(${(1 - sub) * 10}px)` }}>{plan.hook.sub}</h2>
+      <h2 style={{ opacity: sub, transform: `translateY(${(1 - sub) * 20}px)` }}>{plan.hook.sub}</h2>
     </div>
   );
 };
