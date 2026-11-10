@@ -1,6 +1,7 @@
 /** Pure config: no Node imports, so the Remotion bundle can import it too. */
 export const BRAND = {
-  name: "THE DRIVING SCHOOL", year: 2027,
+  name: "THE DRIVING SCHOOL",
+  /** no year anywhere in visible text (decision 2026-11-10): posts must not look expired months later */
   cta: "PRACTICE MORE: LINK IN BIO", ctaEs: "PRACTICA MAS: LINK EN LA BIO",
   /** logo files relative to public/ (white on dark cards). Falls back to the name in text when missing. */
   logoWhite: "brand/logo-white.png", logoDark: "brand/logo-dark.png",
@@ -23,7 +24,7 @@ export const HOOK_ANGLES: { id: string; brief: string }[] = [
   { id: "silent", brief: "a quiet, confident statement: this is the real driving test. No hype words." },
   { id: "bet", brief: "a bet or wager with the viewer: get them all right and comment, miss one and share" },
   { id: "duo", brief: "play it with someone: take the driving test with a friend, partner or parent and compare scores" },
-  { id: "year", brief: "the updated test: the 2027 driving test questions people are not ready for (no invented changes)" },
+  { id: "update", brief: "the current test: driving test questions people are not ready for (no year, no invented changes)" },
   { id: "honest", brief: "honest framing: no tricks, real written driving test questions, keep score" },
 ];
 export type HookStyle = string;

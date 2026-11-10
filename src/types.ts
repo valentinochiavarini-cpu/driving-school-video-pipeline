@@ -74,7 +74,7 @@ export type Plan = {
   width: number;
   height: number;
   durationInFrames: number;
-  brand: { name: string; year: number; cta: string };
+  brand: { name: string; cta: string };
   hook: { card1: string; card2: string; sub: string; pill: string; hook1Frames: number; hook2Frames: number; vo: Clip };
   questions: QuestionSegment[];
   outro: { at: number; frames: number; vo: Clip };

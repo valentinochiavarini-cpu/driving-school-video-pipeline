@@ -79,6 +79,7 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Two posts a day (decision 2026-11-10): 11:00 and 19:00 ET weekdays, 11:00 and 17:00 weekends. Questions may be
   reused in a new set after 60 days (POSTING.reuseAfterDays), since 634 general questions run out in weeks at this rate.
 - Hooks: 16 angles (HOOK_ANGLES), chosen by past views with exploration; growth rules in docs/GROWTH.md.
+- No year or date in any visible text or caption (decision 2026-11-10): posts must not look expired later.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

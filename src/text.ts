@@ -53,7 +53,7 @@ Rules:
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
 - outro_vo = max 18 words: ask for the score in the comments, then say the full practice test is in the link in bio.
 - caption = max 110 chars. Start with the series title from "series" (for example "Road signs test #4" or "Driving test quiz #12"), then a score ask using timing.count ("Can you get 7/7?", "How many did you get right?"). For tests of 20+ questions also state the pass mark ("pass mark is 24/30"). Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
-- Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes.`;
+- Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes. Never mention a year or a date: posts must not look expired later.`;
 
 
 
@@ -71,7 +71,7 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   const q1 = questions[0];
   const user = JSON.stringify({
     format: fmtId, format_label: FORMATS[fmtId].label, state: state ?? null,
-    language: lang === "es" ? "Spanish (US)" : "English (US)", year: BRAND.year,
+    language: lang === "es" ? "Spanish (US)" : "English (US)",
     first_question: q1.question_text, first_has_image: !!q1.image_url,
     categories: [...new Set(questions.map((q) => q.category))].sort(), timing, angle: angle.id, angle_brief: angle.brief,
     pass_mark: Math.ceil(timing.count * 0.8),
