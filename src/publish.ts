@@ -162,7 +162,8 @@ export async function syncScheduled(): Promise<void> {
   const pulled = await pullMetrics(); if (pulled) console.log(`metrics refreshed for ${pulled} posts`);
   if (!scheduled.length) { console.log("sync: nothing scheduled"); return; }
   const now = Date.now();
-  const due = scheduled.filter((v) => v.scheduled_at && new Date(v.scheduled_at).getTime() < now - 30 * 60e3);
+  const minAge = Number(process.env.SYNC_MIN_AGE_MINUTES ?? 30) * 60e3;
+  const due = scheduled.filter((v) => v.scheduled_at && new Date(v.scheduled_at).getTime() < now - minAge);
   if (!due.length) { console.log(`sync: ${scheduled.length} scheduled, none due yet`); return; }
   const dates = due.map((v) => new Date(v.scheduled_at!).getTime());
   const start = new Date(Math.min(...dates) - 86400e3).toISOString(), end = new Date(Math.max(...dates) + 86400e3).toISOString();
