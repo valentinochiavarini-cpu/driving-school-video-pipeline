@@ -120,7 +120,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -132,7 +132,7 @@ try {
   else if (cmd === "approve") await approve(positionals[1]);
   else if (cmd === "report") console.log(await report(positionals[1] === "weekly" || values.weekly === true));
   else if (cmd === "metrics") await setMetrics(positionals[1], positionals.slice(2));
-  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3); }
+  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { firstNow: values.now === true }); }
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);

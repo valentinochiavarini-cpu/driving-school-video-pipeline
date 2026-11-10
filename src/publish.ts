@@ -94,7 +94,8 @@ export function postText(v: VideoRow): { content: string; title: string } {
   return { content, title };
 }
 
-export async function publishApproved(limit = 3): Promise<void> {
+/** opts.firstNow: schedule the first video about 3 minutes from now (manual test), the rest on normal slots. */
+export async function publishApproved(limit = 3, opts: { firstNow?: boolean } = {}): Promise<void> {
   const approved = (await listVideos("approved", 50)).filter((v) => v.video_url);
   const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && !(v.metrics as { retried?: boolean } | null)?.retried);
   const queue = [...approved, ...failedRetry].slice(0, limit);
@@ -102,6 +103,7 @@ export async function publishApproved(limit = 3): Promise<void> {
   const taken = [...(await listVideos("scheduled", 200)), ...(await listVideos("posted", 200))]
     .map((v) => v.scheduled_at).filter(Boolean).map((s) => new Date(s!));
   const slots = nextSlots(taken, queue.length);
+  if (opts.firstNow) slots.unshift(new Date(Date.now() + 3 * 60e3));
   for (let i = 0; i < queue.length; i++) {
     const v = queue[i]; const when = slots[i];
     if (!when) { console.log(`publish: no free slot for ${v.id} within ${POSTING.horizonDays} days`); break; }
@@ -113,7 +115,11 @@ export async function publishApproved(limit = 3): Promise<void> {
       const { posts, used } = await channelPosts(content, title, media);
       const body = { type: "schedule", date: when.toISOString(), shortLink: false, tags: [], posts };
       const res = await api<unknown>("/posts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      const ids = extractPostIds(res);
+      let ids = extractPostIds(res);
+      if (!ids.length) {
+        console.log(`publish: create response without ids (${JSON.stringify(res).slice(0, 200)}), looking the posts up`);
+        ids = await findPostIds(when, content);
+      }
       await updateVideo(v.id, { status: "scheduled", scheduled_at: when.toISOString(), post_id: ids[0] ?? null, error: null,
         metrics: { ...((v.metrics as object) ?? {}), retried: v.status === "failed" ? true : (v.metrics as { retried?: boolean } | null)?.retried ?? false,
           postiz_media: media.path, postiz_post_ids: ids, channels: used.map((u) => u.platform) } });
@@ -123,6 +129,15 @@ export async function publishApproved(limit = 3): Promise<void> {
       console.error(`publish failed ${v.id}: ${(e as Error).message}`);
     }
   }
+}
+
+/** Post ids for a video found by publish date and caption (fallback when the create response carries no ids). */
+async function findPostIds(when: Date, content: string): Promise<string[]> {
+  const s = new Date(when.getTime() - 60e3).toISOString(), e = new Date(when.getTime() + 60e3).toISOString();
+  const res = await api<PostizPost[] | { posts: PostizPost[] }>(`/posts?startDate=${encodeURIComponent(s)}&endDate=${encodeURIComponent(e)}`);
+  const posts = Array.isArray(res) ? res : res.posts ?? [];
+  const head = content.slice(0, 40);
+  return posts.filter((p) => (p.content ?? "").startsWith(head)).map((p) => p.id);
 }
 
 /** All post ids in a create response, whatever its shape (object, array, or {posts: [...]}) */
@@ -140,7 +155,7 @@ function extractPostIds(res: unknown): string[] {
 
 /* ---------- sync ---------- */
 
-type PostizPost = { id: string; publishDate?: string; date?: string; state?: string; releaseURL?: string; releaseUrl?: string; error?: string; group?: string };
+type PostizPost = { id: string; publishDate?: string; date?: string; state?: string; releaseURL?: string | null; releaseUrl?: string; error?: string | null; group?: string; content?: string; integration?: { providerIdentifier?: string; id?: string } };
 
 export async function syncScheduled(): Promise<void> {
   const scheduled = await listVideos("scheduled", 200);
