@@ -33,6 +33,11 @@ under what one paying learner is worth. Every video is an experiment with three 
   week means pause the theme or format that produced them and change its structure, rather than appeal and repeat.
 - No engagement bait with fake incentives. "Drop your score in the comments" is fine.
 
+## Evidence from the viral dataset (docs/research-viral-dataset.md)
+- Quiz lengths that win: 30 to 90 s (views) and 5 min+ (saves). 90 s to 5 min loses on both. Rotation follows this.
+- Road-sign quizzes lead 2026 quiz views; written-question quizzes lead saves. Captions: series number + score ask.
+- The best funnel videos are human: UGC "this app had me passing" and pass/fail stories. Owner records those.
+
 ## Cadence
 - 2 posts a day, 11:00 and 19:00 Eastern on weekdays, 11:00 and 17:00 on weekends. Never bursts.
 - After 14 days move the slots to the hours TikTok Analytics shows for the account.

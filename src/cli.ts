@@ -55,7 +55,8 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const timing = { count: qs.length, seconds_per_question: secs };
   const stats: Record<string, { posts: number; views: number }> = {};
   for (const v of ledgerRows) { const a = (v.hook as { style?: string } | null)?.style; if (!a) continue; stats[a] ??= { posts: 0, views: 0 }; stats[a].posts++; stats[a].views += Number((v.metrics as { views?: number } | null)?.views ?? 0); }
-  const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, chooseAngle(stats));
+  const seriesNumber = ledgerRows.filter((v) => v.format === fmt && v.lang === lang).length + 1;
+  const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, chooseAngle(stats), seriesNumber);
   const ah = dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
   const ao = dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
 

@@ -36,8 +36,9 @@ export type Theme = (typeof THEMES)[number];
 
 /** Nightly rotation: two formats per weekday (decision 2026-11-10: two posts a day). */
 export const NIGHTLY_ROTATION: Record<string, string[]> = {
-  Mon: ["pass5", "signs7"], Tue: ["row5", "pass10"], Wed: ["tricky5", "signs15"], Thu: ["pass5", "classic30"],
-  Fri: ["signs7", "pass15"], Sat: ["classic30", "pass5"], Sun: ["row5", "signs7"],
+  // dataset 2026-10 (docs/research-viral-dataset.md): 30 to 90 s quizzes and 5 min+ full tests win; 90 s to 5 min loses
+  Mon: ["pass5", "signs7"], Tue: ["row5", "signs7"], Wed: ["tricky5", "pass5"], Thu: ["signs7", "classic30"],
+  Fri: ["pass5", "row5"], Sat: ["classic30", "signs7"], Sun: ["tricky5", "pass5"],
 };
 
 /** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
@@ -137,7 +138,7 @@ export const POSTING = {
   weekendHours: [11, 17],   // Sat and Sun: 11 am and 5 pm
   perDay: 2,
   /** questions may be reused in a new set after this many days */
-  reuseAfterDays: 60,
+  reuseAfterDays: 45,
   minLeadMinutes: 90,  // never schedule closer than this to now
   horizonDays: 30,
   /** channels that receive every approved video (Postiz identifiers matched by prefix) */
