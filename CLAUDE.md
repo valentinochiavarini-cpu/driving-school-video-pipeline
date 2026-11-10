@@ -89,6 +89,23 @@ Runs as a scheduled task in the owner's Claude Code cloud environment (Default),
 and ingest credentials as network secrets. A fresh session clones this repo, runs `npm ci` and `npm run nightly`,
 and reports the NIGHTLY SUMMARY line. No GitHub secrets needed. Override with NIGHTLY_FORMAT / NIGHTLY_LANG.
 
+## Question bank expansion (tools/, assets/qbank/; plan in docs/QUESTION-BANK-PLAN.md)
+
+    npx tsx tools/diagrams/build.ts          # right-of-way diagrams: rule-derived answers, 3 orientations, frame check
+    npx tsx tools/signs/fetch.ts [CODE ...]  # real MUTCD signs from Wikimedia Commons (direct file URLs; ~1 in 3
+                                             # requests gets 429 from the shared IP: fixed 8 s retries)
+    npx tsx tools/signs/rasterise.ts         # sign SVG -> PNG + captioned contact sheet for visual checking
+    npx tsx tools/qbank/draft.ts             # thin-topic questions + all-of-the-above rewrites (gpt-5.4)
+    npx tsx tools/qbank/draft-signs.ts       # sign questions (short answers for the large-picture layout)
+    python3 -I tools/qbank/sheet.py "$PWD"   # owner review workbook assets/qbank/review.xlsx (thumbnails, flags)
+    npx tsx tools/qbank/preview.ts <json> [id ...]   # how questions look in the video, before import
+    python3 -I tools/qbank/import.py "$PWD"  # approved rows only: uploads images via ingest
+                                             # upload_question_image, writes assets/qbank/import.sql (run via Lovable)
+
+Rules: never invent a sign (Commons only); every generated image is looked at before commit; nothing is imported
+without the owner's Y in review.xlsx; the importer refuses rows that do not match their draft (stale sheet).
+Video: questions with an image use a flexible image height; when every answer is <= 22 chars they use a 2x2 grid.
+
 ## Ledger flow
 
 make -> row status draft -> mp4 + thumb uploaded -> status ready. `approve <id>` sets approved + status approved.

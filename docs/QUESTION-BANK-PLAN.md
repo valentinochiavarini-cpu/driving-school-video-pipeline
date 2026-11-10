@@ -34,3 +34,10 @@ Excluded categories stay excluded (Alcohol & Drugs, Speed Limits & Laws, Licensi
    before writing an importer, and go through the ingest function or Lovable with the approved rows only. Upload
    images to the existing public `images` bucket.
 5. After import, lower nothing in the pipeline: the formats pick up new rows automatically (24 h question cache).
+
+## Status 2026-11-10
+- Diagrams: 39 built and reviewed (13 scenes x 3 orientations), committed.
+- Signs: fetching from Commons (rate-limited); then rasterise, contact-sheet check, draft questions.
+- Text drafts: 68 thin-topic questions, 18 all-of-the-above rewrites (2 drift into DUI and are flagged to drop).
+- Import path: Lovable ingest route upload_question_image (public images bucket, Questions/Generated/ only) plus
+  SQL run through the Lovable database tool. Review sheet goes to the owner once the sign questions are in.

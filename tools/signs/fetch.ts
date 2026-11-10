@@ -41,9 +41,10 @@ const fileUrl = (name: string) => { const h = crypto.createHash("md5").update(na
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function get(url: string): Promise<{ status: number; body?: Buffer }> {
-  for (let attempt = 0; attempt < 6; attempt++) {
+  // the shared egress IP gets ~1 in 3 requests through regardless of spacing, so retry quickly at a fixed interval
+  for (let attempt = 0; attempt < 15; attempt++) {
     const r = await fetch(url, { headers: UA });
-    if (r.status === 429) { await sleep(15000 * 2 ** attempt); continue; }
+    if (r.status === 429) { await sleep(8000); continue; }
     return { status: r.status, body: r.ok ? Buffer.from(await r.arrayBuffer()) : undefined };
   }
   return { status: 429 };
@@ -81,7 +82,7 @@ for (const code of codes) {
   let done = false;
   for (const name of variants(code)) {
     const url = fileUrl(name);
-    const r = await get(url); await sleep(Number(process.env.PACE_MS ?? 12000));
+    const r = await get(url); await sleep(Number(process.env.PACE_MS ?? 4000));
     if (r.status === 404) continue;
     if (r.status !== 200 || !r.body) { console.log(`FAIL ${code} ${name} ${r.status}`); done = true; break; }
     const svg = r.body.toString("utf8");
