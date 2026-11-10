@@ -70,6 +70,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   buckets), and the `ingest` server function at /functions/v1/ingest with actions upsert, update, list,
   used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
 - Posting through Postiz Cloud; no own TikTok app audit. Approve the first 3 to 4 videos by hand, then auto.
+- Every approved video goes to TikTok and Instagram Reels in one Postiz request (POSTING.platforms). The Postiz key
+  lives in Lovable as the secret POSTIZ_API_KEY; the pipeline reaches Postiz through the ingest function's `postiz`
+  action (POSTIZ_API_KEY=via-ingest in .env), because the session proxy cannot send a bare Authorization header.
 - Two posts a day (decision 2026-11-10): 11:00 and 19:00 ET weekdays, 11:00 and 17:00 weekends. Questions may be
   reused in a new set after 60 days (POSTING.reuseAfterDays), since 634 general questions run out in weeks at this rate.
 - Hooks: 16 angles (HOOK_ANGLES), chosen by past views with exploration; growth rules in docs/GROWTH.md.

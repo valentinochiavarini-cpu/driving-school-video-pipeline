@@ -140,6 +140,10 @@ export const POSTING = {
   reuseAfterDays: 60,
   minLeadMinutes: 90,  // never schedule closer than this to now
   horizonDays: 30,
+  /** channels that receive every approved video (Postiz identifiers matched by prefix) */
+  platforms: ["tiktok", "instagram"] as const,
+  /** Instagram: a single video with post_type "post" publishes as a Reel */
+  instagram: { post_type: "post", is_trial_reel: false, collaborators: [] as { label: string }[] },
   /** TikTok settings sent with every post */
   tiktok: {
     privacy_level: "PUBLIC_TO_EVERYONE", duet: true, stitch: true, comment: true, autoAddMusic: "no",

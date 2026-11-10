@@ -24,13 +24,29 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 type Integration = { id: string; name: string; identifier: string; disabled?: boolean };
+async function integrations(): Promise<Integration[]> {
+  const list = await api<Integration[] | { integrations: Integration[] }>("/integrations");
+  return (Array.isArray(list) ? list : list.integrations).filter((i) => !i.disabled);
+}
 export async function tiktokIntegration(): Promise<Integration> {
   if (process.env.POSTIZ_INTEGRATION_ID) return { id: process.env.POSTIZ_INTEGRATION_ID, name: "env", identifier: "tiktok" };
-  const list = await api<Integration[] | { integrations: Integration[] }>("/integrations");
-  const arr = Array.isArray(list) ? list : list.integrations;
-  const tt = arr.find((i) => /^tiktok/.test(i.identifier) && !i.disabled);
+  const arr = await integrations();
+  const tt = arr.find((i) => /^tiktok/.test(i.identifier));
   if (!tt) throw new Error(`No TikTok channel connected in Postiz (channels: ${arr.map((i) => i.identifier).join(", ") || "none"})`);
   return tt;
+}
+/** One Postiz post entry per configured platform. TikTok is required; others are skipped with a warning if absent. */
+async function channelPosts(content: string, title: string, media: { id: string; path: string }) {
+  const arr = await integrations();
+  const out: unknown[] = []; const used: { platform: string; id: string }[] = [];
+  for (const platform of POSTING.platforms) {
+    const ch = platform === "tiktok" && process.env.POSTIZ_INTEGRATION_ID ? { id: process.env.POSTIZ_INTEGRATION_ID, identifier: "tiktok" } : arr.find((i) => i.identifier.startsWith(platform));
+    if (!ch) { if (platform === "tiktok") throw new Error("No TikTok channel connected in Postiz"); console.warn(`publish: no ${platform} channel connected, skipping`); continue; }
+    const settings = platform === "tiktok" ? { __type: "tiktok", title, ...POSTING.tiktok } : { __type: ch.identifier.startsWith("instagram-standalone") ? "instagram-standalone" : "instagram", ...POSTING.instagram };
+    out.push({ integration: { id: ch.id }, value: [{ content, image: [{ id: media.id, path: media.path }] }], settings });
+    used.push({ platform, id: ch.id });
+  }
+  return { posts: out, used };
 }
 
 /* ---------- slots ---------- */
@@ -83,7 +99,6 @@ export async function publishApproved(limit = 3): Promise<void> {
   const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && !(v.metrics as { retried?: boolean } | null)?.retried);
   const queue = [...approved, ...failedRetry].slice(0, limit);
   if (!queue.length) { console.log("publish: nothing approved"); return; }
-  const tt = await tiktokIntegration();
   const taken = [...(await listVideos("scheduled", 200)), ...(await listVideos("posted", 200))]
     .map((v) => v.scheduled_at).filter(Boolean).map((s) => new Date(s!));
   const slots = nextSlots(taken, queue.length);
@@ -95,16 +110,14 @@ export async function publishApproved(limit = 3): Promise<void> {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: v.video_url }),
       });
       const { content, title } = postText(v);
-      const body = {
-        type: "schedule", date: when.toISOString(), shortLink: false, tags: [],
-        posts: [{ integration: { id: tt.id }, value: [{ content, image: [{ id: media.id, path: media.path }] }],
-          settings: { __type: "tiktok", title, ...POSTING.tiktok } }],
-      };
+      const { posts, used } = await channelPosts(content, title, media);
+      const body = { type: "schedule", date: when.toISOString(), shortLink: false, tags: [], posts };
       const res = await api<unknown>("/posts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      const postId = extractPostId(res);
-      await updateVideo(v.id, { status: "scheduled", scheduled_at: when.toISOString(), post_id: postId, error: null,
-        metrics: { ...((v.metrics as object) ?? {}), retried: v.status === "failed" ? true : (v.metrics as { retried?: boolean } | null)?.retried ?? false, postiz_media: media.path } });
-      console.log(`scheduled ${v.id} -> ${when.toISOString()} (post ${postId ?? "?"})`);
+      const ids = extractPostIds(res);
+      await updateVideo(v.id, { status: "scheduled", scheduled_at: when.toISOString(), post_id: ids[0] ?? null, error: null,
+        metrics: { ...((v.metrics as object) ?? {}), retried: v.status === "failed" ? true : (v.metrics as { retried?: boolean } | null)?.retried ?? false,
+          postiz_media: media.path, postiz_post_ids: ids, channels: used.map((u) => u.platform) } });
+      console.log(`scheduled ${v.id} -> ${when.toISOString()} on ${used.map((u) => u.platform).join("+")} (posts ${ids.join(",") || "?"})`);
     } catch (e) {
       await updateVideo(v.id, { status: "failed", error: `publish: ${(e as Error).message}`.slice(0, 500), metrics: { ...((v.metrics as object) ?? {}), retried: true } });
       console.error(`publish failed ${v.id}: ${(e as Error).message}`);
@@ -112,15 +125,17 @@ export async function publishApproved(limit = 3): Promise<void> {
   }
 }
 
-function extractPostId(res: unknown): string | null {
-  if (!res || typeof res !== "object") return null;
-  const r = res as Record<string, unknown>;
-  if (typeof r.id === "string") return r.id;
-  if (Array.isArray(res) && res[0] && typeof (res[0] as { id?: unknown }).id === "string") return (res[0] as { id: string }).id;
-  const posts = (r.posts ?? r.post) as unknown;
-  if (Array.isArray(posts) && posts[0] && typeof (posts[0] as { id?: unknown }).id === "string") return (posts[0] as { id: string }).id;
-  if (posts && typeof posts === "object" && typeof (posts as { id?: unknown }).id === "string") return (posts as { id: string }).id;
-  return null;
+/** All post ids in a create response, whatever its shape (object, array, or {posts: [...]}) */
+function extractPostIds(res: unknown): string[] {
+  const ids: string[] = [];
+  const take = (x: unknown) => { if (x && typeof x === "object" && typeof (x as { id?: unknown }).id === "string") ids.push((x as { id: string }).id); };
+  if (Array.isArray(res)) res.forEach(take);
+  else if (res && typeof res === "object") {
+    take(res);
+    const inner = (res as { posts?: unknown; post?: unknown }).posts ?? (res as { post?: unknown }).post;
+    if (Array.isArray(inner)) inner.forEach(take); else take(inner);
+  }
+  return [...new Set(ids)];
 }
 
 /* ---------- sync ---------- */
@@ -139,7 +154,10 @@ export async function syncScheduled(): Promise<void> {
   const res = await api<PostizPost[] | { posts: PostizPost[] }>(`/posts?startDate=${encodeURIComponent(start)}&endDate=${encodeURIComponent(end)}`);
   const posts = Array.isArray(res) ? res : res.posts ?? [];
   for (const v of due) {
-    const p = posts.find((x) => x.id === v.post_id || x.group === v.post_id);
+    const ids = new Set<string>([v.post_id, ...(((v.metrics as { postiz_post_ids?: string[] } | null)?.postiz_post_ids) ?? [])].filter(Boolean) as string[]);
+    const mine = posts.filter((x) => ids.has(x.id) || (x.group && ids.has(x.group)));
+    if (mine.length) await updateVideo(v.id, { metrics: { ...((v.metrics as object) ?? {}), post_states: Object.fromEntries(mine.map((x) => [x.id, x.state ?? "?"])) } });
+    const p = mine.find((x) => (x.state ?? "").toUpperCase() === "PUBLISHED") ?? mine.find((x) => (x.state ?? "").toUpperCase() === "ERROR") ?? mine[0];
     if (!p) {
       if (new Date(v.scheduled_at!).getTime() < now - 24 * 3600e3)
         await updateVideo(v.id, { status: "failed", error: "sync: post not found in Postiz 24 h after its slot" });
