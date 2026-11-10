@@ -29,6 +29,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -61,12 +66,17 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What does this sign mean?",
   "answers": {
-   "A": "One-way to right",
+   "A": "One-way traffic",
    "B": "Keep right",
    "C": "Turn right only",
    "D": "No right turn"
@@ -75,10 +85,10 @@
   "explanation": "This is a ONE WAY sign showing that traffic on this street moves only to the right. You may not travel left against that direction.",
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
-   "A": "Una vía a la der.",
-   "B": "Manténgase der.",
-   "C": "Solo vuelta der.",
-   "D": "No vuelta der."
+   "A": "Tránsito en un sentido",
+   "B": "Manténgase a la der.",
+   "C": "Solo vuelta a la der.",
+   "D": "No vuelta a la der."
   },
   "explanation_es": "Esta es una señal de UNA VÍA que indica que el tráfico en esta calle va solo hacia la derecha. No puede avanzar hacia la izquierda contra esa dirección.",
   "category": "Signs, Signals & Markings",
@@ -93,6 +103,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -125,6 +140,11 @@
    "verdict": "problem",
    "issue": "Marked answer is imprecise/awkward: ONE WAY sign means traffic moves only in the indicated direction on that road, not 'travel only right'; Spanish also mistranslates as 'Siga solo a der.'.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "awkward duplicate of the meaning question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -157,6 +177,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -189,6 +214,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -221,6 +251,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -253,6 +288,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -285,6 +325,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -317,6 +362,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -349,6 +399,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -381,6 +436,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -413,6 +473,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -445,6 +510,11 @@
    "verdict": "problem",
    "issue": "Marked answer is incomplete/ambiguous: the sign prohibits both left turns and U-turns, but question asks what you must do; 'Do not turn left' omits the U-turn prohibition while no option fully matches the sign.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "answer omits U-turn: incomplete",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -477,12 +547,17 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What must you do when you see this sign?",
   "answers": {
-   "A": "Wait for green turn",
+   "A": "Wait for green",
    "B": "Turn after stopping",
    "C": "Yield, then turn",
    "D": "Make a U-turn"
@@ -491,10 +566,10 @@
   "explanation": "With this sign, turning on a red light is prohibited. Remain stopped and do not turn until the signal turns green.",
   "question_text_es": "¿Qué debe hacer al ver esta señal?",
   "answers_es": {
-   "A": "Espere luz verde",
-   "B": "Doble tras parar",
-   "C": "Ceda y luego doble",
-   "D": "Dé vuelta en U"
+   "A": "Esperar la luz verde",
+   "B": "Girar tras detenerse",
+   "C": "Ceder y luego girar",
+   "D": "Hacer vuelta en U"
   },
   "explanation_es": "Con esta señal, está prohibido doblar con la luz roja. Permanezca detenido y no doble hasta que la señal cambie a verde.",
   "category": "Signs, Signals & Markings",
@@ -509,23 +584,28 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What does this sign mean?",
   "answers": {
-   "A": "Do not block",
+   "A": "Keep intersection open",
    "B": "No U-turn",
-   "C": "Keep intersection",
+   "C": "Stop here on red",
    "D": "Yield ahead"
   },
   "correct_answer": "A",
   "explanation": "This sign means do not enter an intersection unless you can clear it completely. Blocking the intersection is prohibited.",
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
-   "A": "No bloquee",
-   "B": "No dar vuelta en U",
-   "C": "Mantenga cruce",
+   "A": "No bloquear el cruce",
+   "B": "No vuelta en U",
+   "C": "Pare aquí en rojo",
    "D": "Ceda el paso adelante"
   },
   "explanation_es": "Esta señal significa que no debe entrar a una intersección a menos que pueda salir por completo. Está prohibido bloquear la intersección.",
@@ -538,9 +618,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Answer choices are poorly worded/ambiguous; MUTCD meaning is 'Do not block intersection,' but marked choice 'Do not block' is incomplete and 'Keep intersection' is arguably pointing at the same concept. Spanish also does not clearly match the standard sign meaning.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -573,6 +658,11 @@
    "verdict": "problem",
    "issue": "Spanish answer A does not match the English; 'Espere si se para' is ungrammatical/incomplete and does not clearly convey 'Wait if traffic stops'.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "Spanish unclear; meaning question kept",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -605,6 +695,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -637,12 +732,17 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of the meaning question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What does this sign mean?",
   "answers": {
-   "A": "Right lane turns only",
+   "A": "Right lane: turn right",
    "B": "Keep right",
    "C": "No right turn",
    "D": "Right shoulder ends"
@@ -651,10 +751,10 @@
   "explanation": "This sign means traffic in the right lane must turn right. You cannot continue straight from that lane.",
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
-   "A": "Carril der. gira",
-   "B": "Manténgase der.",
-   "C": "No girar derecha",
-   "D": "Termina acot. der."
+   "A": "Carril der.: gire a la der.",
+   "B": "Manténgase a la der.",
+   "C": "No vuelta a la der.",
+   "D": "Termina el acotamiento"
   },
   "explanation_es": "Esta señal significa que el tráfico en el carril derecho debe girar a la derecha. No puede seguir recto desde ese carril.",
   "category": "Signs, Signals & Markings",
@@ -666,9 +766,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Ambiguous wording: 'Right lane turns only' is not as precise as the MUTCD meaning 'Right lane must turn right,' and could be read as excluding other lanes from turning right.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -701,6 +806,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of the meaning question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -733,6 +843,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -765,6 +880,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "weak action question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -773,16 +893,16 @@
    "A": "Pass with care",
    "B": "Do not pass",
    "C": "Keep right",
-   "D": "Slower traffic keep"
+   "D": "Road narrows"
   },
   "correct_answer": "A",
   "explanation": "This sign means passing is allowed, but only when it can be done safely. Use extra caution and pass only if the way is clear.",
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
-   "A": "Pase con cuidado",
-   "B": "No rebase",
-   "C": "Manténgase der.",
-   "D": "Lento manténgase"
+   "A": "Rebase con cuidado",
+   "B": "No rebasar",
+   "C": "Manténgase a la der.",
+   "D": "Se estrecha la vía"
   },
   "explanation_es": "Esta señal significa que se permite rebasar, pero solo cuando se pueda hacer con seguridad. Tenga mucha precaución y rebase solo si el camino está despejado.",
   "category": "Signs, Signals & Markings",
@@ -794,9 +914,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Another option is also arguably correct: for the MUTCD R4-2 sign, 'Slower traffic keep right' is a plausible reading of D ('Slower traffic keep'), making the item ambiguous. Spanish D also does not match the English well.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -829,6 +954,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -861,6 +991,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -893,13 +1028,18 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What does this sign mean?",
   "answers": {
    "A": "Dead end ahead",
-   "B": "No outlet route",
+   "B": "Road narrows",
    "C": "Do not enter",
    "D": "Road work ahead"
   },
@@ -908,8 +1048,8 @@
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
    "A": "Calle sin salida",
-   "B": "Ruta sin salida",
-   "C": "No entrar",
+   "B": "Se estrecha la vía",
+   "C": "No entre",
    "D": "Obras adelante"
   },
   "explanation_es": "Esta señal advierte que la vía termina más adelante y no continúa. Prepárese para dar la vuelta o elegir otra ruta.",
@@ -922,9 +1062,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Another option is also arguably correct: 'No outlet route' is essentially the same meaning as 'Dead end ahead' for this warning sign, so the item is ambiguous.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -957,13 +1102,18 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "What does this sign mean?",
   "answers": {
    "A": "No outlet",
-   "B": "Dead end ahead",
+   "B": "Narrow bridge",
    "C": "Do not enter",
    "D": "Road work ahead"
   },
@@ -972,8 +1122,8 @@
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
    "A": "Sin salida",
-   "B": "Calle sin salida",
-   "C": "No entrar",
+   "B": "Puente angosto",
+   "C": "No entre",
    "D": "Obras adelante"
   },
   "explanation_es": "Esta señal de advertencia indica que la calle o carretera no tiene salida a otra vía. No es lo mismo que una señal de calle sin salida, que indica que la vía termina por completo.",
@@ -989,6 +1139,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1021,6 +1176,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "weak action question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1053,6 +1213,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1067,9 +1232,9 @@
   "explanation": "This sign warns that the right lane ends ahead. If you are in the right lane, merge left safely when possible.",
   "question_text_es": "¿Qué debe hacer al ver esta señal?",
   "answers_es": {
-   "A": "Únase a la izq. ya",
-   "B": "Doble a la derecha",
-   "C": "Pare por el tren",
+   "A": "Incorpórese a la izq.",
+   "B": "Gire a la der. adelante",
+   "C": "Pare por un tren",
    "D": "Siga en carril der."
   },
   "explanation_es": "Esta señal advierte que el carril derecho termina más adelante. Si usted va en el carril derecho, incorpórese a la izquierda con seguridad cuando sea posible.",
@@ -1085,6 +1250,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1117,6 +1287,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1149,6 +1324,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1163,10 +1343,10 @@
   "explanation": "This warning sign means the shoulder is soft and may not support your vehicle. Avoid driving onto the shoulder unless necessary.",
   "question_text_es": "¿Qué significa esta señal?",
   "answers_es": {
-   "A": "Hombro blando",
-   "B": "Resbala mojado",
-   "C": "Hombro bajo",
-   "D": "Caída de borde"
+   "A": "Acotamiento blando",
+   "B": "Resbaloso si mojado",
+   "C": "Acotamiento bajo",
+   "D": "Desnivel lateral"
   },
   "explanation_es": "Esta señal advierte que el hombro es blando y puede no sostener su vehículo. Evite conducir sobre el hombro salvo que sea necesario.",
   "category": "Signs, Signals & Markings",
@@ -1178,9 +1358,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Spanish answer A is unnatural/mistranslated ('Hombro blando'); standard meaning is 'arcén/blanqueta suave/inestable'. Other options are distinct, but the Spanish does not say the same thing naturally.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1213,6 +1398,11 @@
    "verdict": "problem",
    "issue": "Question asks what to do; marked answer is acceptable, but Spanish is poor/ambiguous ('Cuidado en hombro', 'Deténgase allí') and does not clearly match the English guidance.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "Spanish weak; meaning question kept",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1245,6 +1435,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1277,6 +1472,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1309,6 +1509,11 @@
    "verdict": "problem",
    "issue": "This is not a rule common to every US state/driver context; R9-7 is a shared-use path regulatory sign for path users, not a standard nationwide driver-permit meaning. Also the Spanish is abbreviated/unnatural though roughly equivalent.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "shared-use path sign: not driver test material",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1341,6 +1546,11 @@
    "verdict": "problem",
    "issue": "Same issue: relies on a shared-use path sign meaning not common to every state driver test context; Spanish is abbreviated/unnatural though roughly equivalent.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "shared-use path sign: not driver test material",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1373,6 +1583,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1405,6 +1620,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1437,6 +1657,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1469,6 +1694,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1501,6 +1731,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1533,12 +1768,17 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "When you see this sign, what should you do?",
   "answers": {
-   "A": "Stay to right lane",
+   "A": "Keep right of median",
    "B": "Prepare for signal",
    "C": "Yield to oncoming",
    "D": "Merge left now"
@@ -1547,10 +1787,10 @@
   "explanation": "This sign warns that a divided highway begins ahead. Be prepared to stay to the right of the median or barrier.",
   "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
   "answers_es": {
-   "A": "Siga por la derecha",
-   "B": "Prepárese parar",
-   "C": "Ceda al tráfico",
-   "D": "Mézclese a izq."
+   "A": "Quédese a la derecha",
+   "B": "Prepárese al semáforo",
+   "C": "Ceda al tráfico opuesto",
+   "D": "Incorpórese a la izq."
   },
   "explanation_es": "Esta señal advierte que comienza una carretera dividida más adelante. Prepárese para mantenerse a la derecha del separador o barrera.",
   "category": "Signs, Signals & Markings",
@@ -1562,9 +1802,14 @@
   "batch": "signs",
   "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
   "qa": {
-   "verdict": "problem",
-   "issue": "Marked answer is not reliably correct as written; W6-1 means divided highway begins, so the universal action is keep right of the divider/median, not specifically 'stay to right lane.' Spanish B is also mistranslated ('Prepárese parar' missing 'para').",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1597,6 +1842,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1629,6 +1879,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1661,6 +1916,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1693,6 +1953,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1725,6 +1990,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1757,6 +2027,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1789,6 +2064,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1821,6 +2101,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1853,6 +2138,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1885,6 +2175,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1917,6 +2212,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1949,6 +2249,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of the meaning question",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  }
 ]

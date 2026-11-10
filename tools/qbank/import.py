@@ -38,6 +38,7 @@ sg = load("drafts/signs.json"); tp = load("drafts/topics.json"); rw = load("draf
 by_text = {q["question_text"]: q for q in sg + tp + rw}
 
 sql, skipped, n_ins, n_upd = ["begin;"], [], 0, 0
+payload = {"inserts": [], "updates": []}
 def emit_insert(q, xrow, image_url):
     global n_ins
     # the sheet shows the reshuffled answer order: take answers and the correct letter from the sheet row
@@ -49,6 +50,9 @@ def emit_insert(q, xrow, image_url):
     if not all(en[k] in pos for k in "ABCD") or xrow["correct"] not in "ABCD" or q["answers"][q["correct_answer"]] != en[xrow["correct"]]:
         raise SystemExit(f"sheet row does not match its draft (stale sheet? rebuild with tools/qbank/sheet.py): {xrow['question'][:70]}")
     es_sheet = {k: es[pos[en[k]]] for k in "ABCD"}
+    payload["inserts"].append({"question_text": xrow["question"], "answers": en, "correct_answer": xrow["correct"], "explanation": xrow["explanation"],
+        "category": xrow["category"] or q.get("category"), "state": None, "image_url": image_url, "question_text_es": xrow["question (ES)"],
+        "answers_es": es_sheet, "explanation_es": xrow["explanation (ES)"]})
     sql.append("insert into public.questions (question_text, answers, correct_answer, explanation, category, state, image_url, question_text_es, answers_es, explanation_es) values ("
                + ", ".join([lit(xrow["question"]), lit(json.dumps(en)) + "::jsonb", lit(xrow["correct"]), lit(xrow["explanation"]), lit(xrow["category"] or q.get("category")),
                             "null", lit(image_url) if image_url else "null", lit(xrow["question (ES)"]), lit(json.dumps(es_sheet, ensure_ascii=False)) + "::jsonb", lit(xrow["explanation (ES)"])]) + ");")
@@ -76,8 +80,11 @@ for sheet in [s for s in wb.sheetnames if s != "How to review"]:
             sql.append(f"update public.questions set question_text = {lit(x['question'])}, answers = {lit(json.dumps(en))}::jsonb, correct_answer = {lit(x['correct'])}, "
                        f"explanation = {lit(x['explanation'])}, question_text_es = {lit(x['question (ES)'])}, answers_es = {lit(json.dumps(es_sheet, ensure_ascii=False))}::jsonb, "
                        f"explanation_es = {lit(x['explanation (ES)'])} where id = {lit(q['replaces_id'])}::uuid;")
+            payload["updates"].append({"id": q["replaces_id"], "fields": {"question_text": x["question"], "answers": en, "correct_answer": x["correct"],
+                "explanation": x["explanation"], "question_text_es": x["question (ES)"], "answers_es": es_sheet, "explanation_es": x["explanation (ES)"]}})
             n_upd += 1
 sql.append("commit;")
 open(os.environ.get("SQL_OUT", os.path.join(Q, "import.sql")), "w").write("\n".join(sql) + "\n")
+json.dump(payload, open(os.path.join(Q, "import.json"), "w"), indent=1, ensure_ascii=False)
 print(f"import.sql: {n_ins} inserts, {n_upd} updates; skipped (notes to apply first): {len(skipped)}")
 for s in skipped: print("  ", s[0], "|", s[1][:60], "|", s[2][:80])

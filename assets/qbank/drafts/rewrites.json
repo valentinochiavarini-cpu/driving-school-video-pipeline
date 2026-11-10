@@ -28,6 +28,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -59,6 +64,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "DUI: excluded topic",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -90,26 +100,31 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "You approach a STOP sign with a stop line. Where must you stop?",
   "answers": {
-   "A": "Before entering the intersection",
-   "B": "In front of the stop line",
-   "C": "Prior to the crosswalk",
-   "D": "Past the stop line"
+   "A": "At the stop line",
+   "B": "Past the stop line",
+   "C": "In the crosswalk",
+   "D": "Inside the intersection"
   },
-  "correct_answer": "B",
-  "explanation": "At a STOP sign, you must stop before the stop line. If there is no stop line, stop before the crosswalk.",
-  "question_text_es": "Se acerca a una señal de STOP con una línea de alto. ¿Dónde debe detenerse?",
+  "correct_answer": "A",
+  "explanation": "When there is a stop line, stop at the line. If there is no line, stop before the crosswalk; if there is neither, stop before entering the intersection.",
+  "question_text_es": "Se acerca a una señal de ALTO con línea de alto. ¿Dónde debe detenerse?",
   "answers_es": {
-   "A": "Antes de entrar en la intersección",
-   "B": "Antes de la línea de alto",
-   "C": "Antes del cruce peatonal",
-   "D": "Después de la línea de alto"
+   "A": "En la línea de alto",
+   "B": "Después de la línea",
+   "C": "Sobre el cruce peatonal",
+   "D": "Dentro de la intersección"
   },
-  "explanation_es": "En una señal de STOP, debe detenerse antes de la línea de alto. Si no hay línea de alto, debe detenerse antes del cruce peatonal.",
+  "explanation_es": "Si hay línea de alto, deténgase en la línea. Si no la hay, deténgase antes del cruce peatonal; si no hay ninguno, antes de entrar a la intersección.",
   "category": "Signs, Signals & Markings",
   "topic": "Stopping at a STOP sign",
   "image_url": null,
@@ -118,9 +133,14 @@
   "original_question": "You approach an intersection with a STOP sign. Where are you required to stop?",
   "source": "drafted by gpt-5.4-2026-03-05",
   "qa": {
-   "verdict": "problem",
-   "issue": "Marked answer wording is imprecise/arguably wrong: with a stop line you must stop at the line, not merely 'in front of' it; Spanish B says 'before the stop line,' which does not match the English exactly.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -152,6 +172,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "alcohol: excluded topic",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -183,6 +208,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "'steer right first' oversimplifies",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -214,26 +244,31 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "When are roads usually most slippery during rain?",
   "answers": {
-   "A": "During the first 30 minutes",
-   "B": "After several hours of rain",
-   "C": "Only during heavy storms",
+   "A": "Right after rain begins",
+   "B": "After hours of rain",
+   "C": "Only in heavy storms",
    "D": "Only at night"
   },
   "correct_answer": "A",
-  "explanation": "Roads are typically at their slipperiest during the first 30 minutes of rain because oil and dirt mix with water before being washed away.",
+  "explanation": "Roads are most slippery just after rain begins, when water mixes with oil and dirt on the surface. Slow down and leave extra space.",
   "question_text_es": "¿Cuándo suelen estar las carreteras más resbaladizas durante la lluvia?",
   "answers_es": {
-   "A": "Durante los primeros 30 minutos",
-   "B": "Después de varias horas de lluvia",
-   "C": "Solo durante tormentas fuertes",
-   "D": "Solo por la noche"
+   "A": "Justo al empezar a llover",
+   "B": "Tras horas de lluvia",
+   "C": "Solo en tormentas fuertes",
+   "D": "Solo de noche"
   },
-  "explanation_es": "Las carreteras suelen estar más resbaladizas durante los primeros 30 minutos de lluvia porque el aceite y la suciedad se mezclan con el agua antes de ser arrastrados.",
+  "explanation_es": "El camino está más resbaloso justo cuando empieza a llover, porque el agua se mezcla con aceite y polvo. Reduzca la velocidad y deje más espacio.",
   "category": "Signs, Signals & Markings",
   "topic": "Driving in rainy conditions",
   "image_url": null,
@@ -242,9 +277,14 @@
   "original_question": "Which of the following is correct about driving in rainy conditions?",
   "source": "drafted by gpt-5.4-2026-03-05",
   "qa": {
-   "verdict": "problem",
-   "issue": "Uses a state-specific/approximate number ('first 30 minutes'); not common to every state.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -276,6 +316,11 @@
    "verdict": "problem",
    "issue": "Ambiguous/incomplete: pedestrians also have right-of-way in unmarked crosswalks in all states, but only 'a marked crosswalk' is offered.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of R00 and ambiguous",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -307,26 +352,31 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
   "question_text": "On the roadway, emergency vehicles have the right-of-way when using:",
   "answers": {
-   "A": "siren, horn, and red/blue lights",
-   "B": "a loudspeaker only",
-   "C": "hazard lights only",
-   "D": "headlights only"
+   "A": "Siren and flashing lights",
+   "B": "A loudspeaker only",
+   "C": "Hazard lights only",
+   "D": "Headlights only"
   },
   "correct_answer": "A",
-  "explanation": "Emergency vehicles using their siren, horn, and red or blue lights have the right-of-way. Drivers should pull over to the right and stop until they pass, and watch for others following behind.",
-  "question_text_es": "En la carretera, los vehículos de emergencia tienen el derecho de paso cuando usan:",
+  "explanation": "Yield to emergency vehicles using a siren and flashing lights: pull over to the right edge and stop until they pass.",
+  "question_text_es": "En la vía, los vehículos de emergencia tienen el derecho de paso cuando usan:",
   "answers_es": {
-   "A": "sirena, bocina y luces rojas/azules",
-   "B": "solo un altavoz",
-   "C": "solo luces intermitentes",
-   "D": "solo los faros"
+   "A": "Sirena y luces intermitentes",
+   "B": "Solo un altavoz",
+   "C": "Solo luces de emergencia",
+   "D": "Solo los faros"
   },
-  "explanation_es": "Los vehículos de emergencia que usan su sirena, bocina y luces rojas o azules tienen el derecho de paso. Los conductores deben hacerse a la derecha y detenerse hasta que pasen, y estar atentos a otros que vengan detrás.",
+  "explanation_es": "Ceda el paso a los vehículos de emergencia con sirena y luces intermitentes: oríllese a la derecha y deténgase hasta que pasen.",
   "category": "Sharing the Road",
   "topic": "Emergency vehicles",
   "image_url": null,
@@ -336,8 +386,13 @@
   "source": "drafted by gpt-5.4-2026-03-05",
   "qa": {
    "verdict": "problem",
-   "issue": "State-specific/overbroad: required signals for emergency right-of-way vary by state; 'siren, horn, and red/blue lights' is not a universal rule.",
+   "issue": "Marked answer is too state-specific/overbroad: states vary on whether both siren and flashing lights are required versus either audible or visual signals; 'siren and flashing lights' is not a rule common to every state.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "states differ on siren vs lights: keep the original",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -369,6 +424,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -400,6 +460,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -431,6 +496,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -462,6 +532,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -493,6 +568,11 @@
    "verdict": "problem",
    "issue": "Question is overly broad/vague; 'Stay alert' is true but not uniquely tied to major highways, making it a weak/ambiguous test item.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "vague",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -524,6 +604,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -555,6 +640,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  }
 ]

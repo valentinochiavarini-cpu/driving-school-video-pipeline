@@ -30,7 +30,7 @@ def reshuffle(q):
 
 def flags(q, peers, same=lambda a, b: False, skip_bank_id=None, text_checks=True):
     f = []
-    if q.get("qa", {}).get("verdict") == "problem": f.append("QA: " + q["qa"]["issue"])
+    if (q.get("qa") or {}).get("verdict") == "problem": f.append("QA: " + q["qa"]["issue"])
     text = q["question_text"] + " " + " ".join(q["answers"].values()) + " " + q["explanation"]
     if re.search(r"\d", text): f.append("has a number: check it is the same in every state")
     if EXCL.search(text): f.append("excluded topic (alcohol/licensing/speed limits): drop")
@@ -50,14 +50,15 @@ HEAD = ["approved (Y/N)", "notes", "ref", "image", "category", "question", "A", 
 wb = Workbook(); wb.remove(wb.active)
 
 def sheet(name, rows, img_size=None, extra=None):
-    ws = wb.create_sheet(name); ws.append(HEAD + (extra or []))
+    ws = wb.create_sheet(name); ws.append(HEAD + (extra or []) + ["reviewer reason"])
     for c in ws[1]: c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="0B1A33")
     dv = DataValidation(type="list", formula1='"Y,N"', allow_blank=True); ws.add_data_validation(dv)
     yellow = PatternFill("solid", fgColor="FFF4C2")
     for i, q in enumerate(rows, start=2):
-        ws.append(["", "", q.get("ref", ""), "", q.get("category", ""), q["question_text"], q["answers"]["A"], q["answers"]["B"], q["answers"]["C"], q["answers"]["D"],
+        rv = q.get("review") or {}
+        ws.append([rv.get("decision", ""), "", q.get("ref", ""), "", q.get("category", ""), q["question_text"], q["answers"]["A"], q["answers"]["B"], q["answers"]["C"], q["answers"]["D"],
                    q["correct_answer"], q["explanation"], q.get("question_text_es", ""), q["answers_es"][q["correct_answer"]], q.get("explanation_es", ""), q.get("flags", ""), q.get("source", "")]
-                  + [q.get(k, "") for k in (extra or [])])
+                  + [q.get(k, "") for k in (extra or [])] + [((q.get("review") or {}).get("reason") or "")])
         dv.add(ws.cell(i, 1)); ws.cell(i, 1).fill = yellow; ws.cell(i, 2).fill = yellow
         if q.get("flags"): ws.cell(i, 16).font = Font(color="B91C1C", bold=True)
         if img_size and q.get("image_path") and os.path.exists(q["image_path"]):
@@ -92,7 +93,8 @@ sheet("All-of-above rewrites", rw, None, ["original_question", "replaces_id"])
 
 how = wb.create_sheet("How to review", 0)
 for line in [
-    "Mark each row Y (import) or N (skip) in the yellow column. Use notes for corrections; I apply them before import.",
+    "Reviewed by Claude on 2026-11-10 at the owner's request: Y/N filled in, reasons in the last column. Change any cell to override.",
+    "Mark each row Y (import) or N (skip) in the yellow column. Use notes for corrections; they are applied before import.",
     "Check every correct answer against your state handbook. Rows with red flags need a closer look.",
     "Diagrams: the correct answer is derived from the right-of-way rule in code, not written by a model. Check that the picture reads clearly.",
     "Signs: images come from Wikimedia Commons (US MUTCD designs, public domain); the Commons page is in the last column.",

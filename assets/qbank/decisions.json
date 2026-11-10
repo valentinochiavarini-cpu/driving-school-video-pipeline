@@ -1,0 +1,737 @@
+{
+ "signs:0": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:1": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:2": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:3": {
+  "q": "What should you do when you see this sign?",
+  "decision": "N",
+  "reason": "awkward duplicate of the meaning question"
+ },
+ "signs:4": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:5": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:6": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:7": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:8": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:9": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:10": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:11": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:12": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:13": {
+  "q": "What must you do when you see this sign?",
+  "decision": "N",
+  "reason": "answer omits U-turn: incomplete"
+ },
+ "signs:14": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:15": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:16": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:17": {
+  "q": "What must you do when you see this sign?",
+  "decision": "N",
+  "reason": "Spanish unclear; meaning question kept"
+ },
+ "signs:18": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:19": {
+  "q": "What must you do when you see this sign at a signal?",
+  "decision": "N",
+  "reason": "duplicate of the meaning question"
+ },
+ "signs:20": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:21": {
+  "q": "What must you do when you see this sign?",
+  "decision": "N",
+  "reason": "duplicate of the meaning question"
+ },
+ "signs:22": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:23": {
+  "q": "What should you do when you see this sign?",
+  "decision": "N",
+  "reason": "weak action question"
+ },
+ "signs:24": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:25": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:26": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:27": {
+  "q": "What must you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:28": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:29": {
+  "q": "What should you expect when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:30": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:31": {
+  "q": "What should you expect when you see this sign?",
+  "decision": "N",
+  "reason": "weak action question"
+ },
+ "signs:32": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:33": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:34": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:35": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:36": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:37": {
+  "q": "What should you do when you see this sign?",
+  "decision": "N",
+  "reason": "Spanish weak; meaning question kept"
+ },
+ "signs:38": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:39": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:40": {
+  "q": "What does this sign mean?",
+  "decision": "N",
+  "reason": "shared-use path sign: not driver test material"
+ },
+ "signs:41": {
+  "q": "What should you expect when you see this sign?",
+  "decision": "N",
+  "reason": "shared-use path sign: not driver test material"
+ },
+ "signs:42": {
+  "q": "When you see this sign, what must you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:43": {
+  "q": "When you see this sign, what must you do from this lane?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:44": {
+  "q": "This sign is posted ahead. What should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:45": {
+  "q": "When you see this sign, what must you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:46": {
+  "q": "When you see this sign, what must you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:47": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:48": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:49": {
+  "q": "What should you expect and do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:50": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:51": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:52": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:53": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:54": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:55": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:56": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:57": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:58": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:59": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:60": {
+  "q": "What should you do when you see this sign?",
+  "decision": "N",
+  "reason": "duplicate of the meaning question"
+ },
+ "topics:0": {
+  "q": "What does a white diamond marking on a lane mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:1": {
+  "q": "Who may use an HOV lane?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:2": {
+  "q": "How should you enter or leave an HOV lane?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:3": {
+  "q": "What is the main purpose of HOV or carpool lanes?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:4": {
+  "q": "What do broken lines next to an HOV lane indicate?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:5": {
+  "q": "If you are driving alone, when may you use an HOV lane?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:6": {
+  "q": "Where is a U-turn not allowed because drivers cannot see you well?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:7": {
+  "q": "What should you do if a sign says No U-Turn?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:8": {
+  "q": "Why should you avoid a U-turn near a railroad crossing?",
+  "decision": "N",
+  "reason": "U-turn near railroad is not a universal rule"
+ },
+ "topics:9": {
+  "q": "How do you make a U-turn safely when it is allowed?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:10": {
+  "q": "Where should you avoid a U-turn because approaching traffic may be hidden?",
+  "decision": "N",
+  "reason": "duplicate of T06"
+ },
+ "topics:11": {
+  "q": "Before making a legal U-turn, what should you do first?",
+  "decision": "N",
+  "reason": "duplicate of T09"
+ },
+ "topics:12": {
+  "q": "When should you slow down for a curve?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:13": {
+  "q": "What does a speed plaque below a curve sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:14": {
+  "q": "In a curve, where should your vehicle stay?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:15": {
+  "q": "If you must brake in a curve, how should you do it?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:16": {
+  "q": "Why is it safest to reduce speed before entering a curve?",
+  "decision": "N",
+  "reason": "duplicate of T12"
+ },
+ "topics:17": {
+  "q": "A curve sign has a plaque showing 25. What does it tell you?",
+  "decision": "N",
+  "reason": "duplicate of T13"
+ },
+ "topics:18": {
+  "q": "Which is a warning sign of drowsy driving?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:19": {
+  "q": "If you feel sleepy while driving, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:20": {
+  "q": "What may happen when a driver is very drowsy?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:21": {
+  "q": "Repeated yawning while driving usually means you should:",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:22": {
+  "q": "Your eyes keep closing briefly while driving. What does this mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:23": {
+  "q": "You miss your exit because you were not paying attention. What should you do next?",
+  "decision": "N",
+  "reason": "missing an exit does not by itself require stopping"
+ },
+ "topics:24": {
+  "q": "What is the safest way to use a phone while driving?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:25": {
+  "q": "Why can passengers be a driving distraction?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:26": {
+  "q": "How can eating while driving affect you?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:27": {
+  "q": "What should you do if a call cannot wait?",
+  "decision": "N",
+  "reason": "duplicate of T24"
+ },
+ "topics:28": {
+  "q": "While driving, what should you do with your phone?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:29": {
+  "q": "If passengers are distracting you, what is safest?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:30": {
+  "q": "What is the safest choice before eating while driving?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:31": {
+  "q": "Before pulling over to use your phone, what should you do?",
+  "decision": "N",
+  "reason": "weak"
+ },
+ "topics:32": {
+  "q": "Before changing lanes, what should you do last?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:33": {
+  "q": "Why should you look over your shoulder before changing lanes?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:34": {
+  "q": "What should you do before moving into another lane?",
+  "decision": "N",
+  "reason": "duplicate"
+ },
+ "topics:35": {
+  "q": "What does a solid lane line next to your lane mean?",
+  "decision": "N",
+  "reason": "duplicate of T39"
+ },
+ "topics:36": {
+  "q": "When changing lanes, what should you check before steering over?",
+  "decision": "N",
+  "reason": "duplicate of T33"
+ },
+ "topics:37": {
+  "q": "What is the purpose of signaling before a lane change?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:38": {
+  "q": "A broken white lane line means you may change lanes when",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:39": {
+  "q": "What does a solid white line usually mean for lane changes?",
+  "decision": "Y",
+  "reason": "kept: 'discouraged or not allowed' covers both state practices (QA flag considered)"
+ },
+ "topics:40": {
+  "q": "At a four-way stop, who goes first?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:41": {
+  "q": "What must you do at a four-way stop sign?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:42": {
+  "q": "At a four-way stop, who must you yield to before entering?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:43": {
+  "q": "At a four-way stop, which turning driver has right-of-way?",
+  "decision": "N",
+  "reason": "ambiguous at a four-way stop"
+ },
+ "topics:44": {
+  "q": "At a four-way stop, if two vehicles arrive together, who should go first?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:45": {
+  "q": "At a four-way stop, what must you do before starting a turn?",
+  "decision": "N",
+  "reason": "duplicate of T41"
+ },
+ "topics:46": {
+  "q": "Which direction do vehicles travel in a roundabout?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:47": {
+  "q": "At a roundabout entrance, who must you yield to?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:48": {
+  "q": "Before entering a multi-lane roundabout, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:49": {
+  "q": "What should you watch for when exiting a roundabout?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:50": {
+  "q": "In a roundabout, where should you drive around the center island?",
+  "decision": "N",
+  "reason": "duplicate of T46"
+ },
+ "topics:51": {
+  "q": "When entering a roundabout, when may you go?",
+  "decision": "N",
+  "reason": "duplicate of T47"
+ },
+ "topics:52": {
+  "q": "In a multi-lane roundabout, when should you choose your lane?",
+  "decision": "N",
+  "reason": "duplicate of T48"
+ },
+ "topics:53": {
+  "q": "Why should you give large trucks extra space in roundabouts?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:54": {
+  "q": "What does the 3-second following rule help you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:55": {
+  "q": "When should you increase your following distance beyond 3 seconds?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:56": {
+  "q": "Why should you follow motorcycles and large trucks at a greater distance?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:57": {
+  "q": "If a driver is tailgating you, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:58": {
+  "q": "How can you check a safe following gap on a dry road?",
+  "decision": "N",
+  "reason": "duplicate of T54"
+ },
+ "topics:59": {
+  "q": "What should you do with following distance in rain or fog?",
+  "decision": "N",
+  "reason": "duplicate of T55"
+ },
+ "topics:60": {
+  "q": "Why leave extra space behind a motorcycle or large truck?",
+  "decision": "N",
+  "reason": "not the only correct reason"
+ },
+ "topics:61": {
+  "q": "A driver is following too closely behind you. What helps most?",
+  "decision": "N",
+  "reason": "duplicate of T57"
+ },
+ "topics:62": {
+  "q": "What do orange signs usually warn drivers about?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:63": {
+  "q": "In a work zone, who should you obey over regular signs?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:64": {
+  "q": "What should you do when lanes close in a work zone?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:65": {
+  "q": "How should you drive when entering a work zone?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:66": {
+  "q": "If a flagger signals you to stop in a work zone, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "topics:67": {
+  "q": "Why should you slow down in a work zone?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "rewrites:0": {
+  "q": "If there are no traffic signals, you should yield to pedestrians at what location?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:1": {
+  "q": "What is one possible penalty for driving under the influence?",
+  "decision": "N",
+  "reason": "DUI: excluded topic"
+ },
+ "rewrites:2": {
+  "q": "Where should you always look both ways before proceeding?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:3": {
+  "q": "You approach a STOP sign with a stop line. Where must you stop?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "rewrites:4": {
+  "q": "How does alcohol consumption impact driving ability?",
+  "decision": "N",
+  "reason": "alcohol: excluded topic"
+ },
+ "rewrites:5": {
+  "q": "What should you do first if an oncoming vehicle is in your lane?",
+  "decision": "N",
+  "reason": "'steer right first' oversimplifies"
+ },
+ "rewrites:6": {
+  "q": "At a railroad crossing with only a stop sign, when may you proceed?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:7": {
+  "q": "When are roads usually most slippery during rain?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "rewrites:8": {
+  "q": "When no traffic signals are present, you must slow down or stop for pedestrians in:",
+  "decision": "N",
+  "reason": "duplicate of R00 and ambiguous"
+ },
+ "rewrites:9": {
+  "q": "When approaching a railroad crossing, what should you do?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:10": {
+  "q": "On the roadway, emergency vehicles have the right-of-way when using:",
+  "decision": "N",
+  "reason": "states differ on siren vs lights: keep the original"
+ },
+ "rewrites:11": {
+  "q": "Where should an infant or small child ride in a vehicle with airbags?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:12": {
+  "q": "If a driver is tailgating you, what should you do if a right lane is open?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:13": {
+  "q": "When must you obey a traffic officer's order to stop?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:14": {
+  "q": "When should you slow down on a wet or slippery road?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:15": {
+  "q": "When driving on major highways, what should you do?",
+  "decision": "N",
+  "reason": "vague"
+ },
+ "rewrites:16": {
+  "q": "If a collision is unavoidable, what should you try to hit?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "rewrites:17": {
+  "q": "If your windshield wipers fail in rain or snow, what should you do first?",
+  "decision": "Y",
+  "reason": ""
+ }
+}

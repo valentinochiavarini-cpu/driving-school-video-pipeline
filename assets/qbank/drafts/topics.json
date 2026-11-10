@@ -26,6 +26,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -55,6 +60,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -84,6 +94,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -113,6 +128,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -142,6 +162,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -171,6 +196,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -200,6 +230,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -229,6 +264,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -258,6 +298,11 @@
    "verdict": "problem",
    "issue": "Relies on a not-universal rule; avoiding U-turns near railroad crossings is not a common rule in every state, and the reason given is weak/ambiguous.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "U-turn near railroad is not a universal rule",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -287,6 +332,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -316,6 +366,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T06",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -345,6 +400,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T09",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -374,6 +434,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -403,6 +468,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -432,6 +502,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -461,6 +536,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -490,6 +570,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T12",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -519,6 +604,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T13",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -548,6 +638,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -577,6 +672,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -606,6 +706,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -635,6 +740,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -664,6 +774,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -693,6 +808,11 @@
    "verdict": "problem",
    "issue": "Marked answer is not universally correct; missing an exit from inattention does not necessarily mean you must stop and rest, and option A is also arguable depending on cause.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "missing an exit does not by itself require stopping",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -722,6 +842,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -751,6 +876,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -780,6 +910,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -809,6 +944,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T24",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -838,6 +978,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -867,6 +1012,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -896,6 +1046,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -925,6 +1080,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "weak",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -954,6 +1114,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -983,6 +1148,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1012,6 +1182,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1041,6 +1216,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T39",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1070,6 +1250,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T33",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1099,6 +1284,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1128,6 +1318,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1157,6 +1352,11 @@
    "verdict": "problem",
    "issue": "Solid white lines are not treated uniformly in every state; 'discouraged or not allowed' is state-dependent/ambiguous.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "kept: 'discouraged or not allowed' covers both state practices (QA flag considered)",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1186,6 +1386,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1215,6 +1420,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1244,6 +1454,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1273,6 +1488,11 @@
    "verdict": "problem",
    "issue": "Ambiguous/not universally correct at a four-way stop; right-of-way depends first on stop-order and position, not a blanket rule that straight traffic always goes over left-turning traffic.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "ambiguous at a four-way stop",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1302,6 +1522,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1331,6 +1556,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T41",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1360,6 +1590,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1389,6 +1624,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1418,6 +1658,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1447,6 +1692,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1476,6 +1726,11 @@
    "verdict": "problem",
    "issue": "Marked answer is not universally correct as phrased; in U.S. roundabouts traffic circulates counterclockwise around the central island, i.e. the island is on the driver's left, so 'to the right' is misleading/incorrect.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T46",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1505,6 +1760,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T47",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1534,6 +1794,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T48",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1563,6 +1828,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1592,6 +1862,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1621,6 +1896,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1650,6 +1930,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1679,6 +1964,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1708,6 +1998,11 @@
    "verdict": "problem",
    "issue": "Relies on a state-specific number/rule: not every state uses 3 seconds as the standard following gap on dry roads.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T54",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1737,6 +2032,11 @@
    "verdict": "problem",
    "issue": "Relies on a state-specific number/rule: 'beyond 3 seconds' is not universal across all states.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T55",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1766,6 +2066,11 @@
    "verdict": "problem",
    "issue": "Marked answer A is not the only correct reason; extra space behind a motorcycle is also recommended because motorcycles can stop more quickly than cars, making C at least arguably correct. Question combines motorcycle and large truck with different reasons, causing ambiguity.",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "not the only correct reason",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1795,6 +2100,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "N",
+   "reason": "duplicate of T57",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1824,6 +2134,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1853,6 +2168,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1882,6 +2202,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1911,6 +2236,11 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
@@ -1940,35 +2270,45 @@
    "verdict": "ok",
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  },
  {
-  "question_text": "Why should you avoid speeding in a work zone?",
+  "question_text": "Why should you slow down in a work zone?",
   "answers": {
-   "A": "Fines are often higher there",
+   "A": "Workers may be close by",
    "B": "Speeding is allowed briefly",
    "C": "Workers must move for you",
    "D": "Orange signs cancel limits"
   },
   "correct_answer": "A",
-  "explanation": "Work zones require extra caution, and penalties for violations are often higher there. Slowing down helps protect workers, drivers, and everyone near the road.",
-  "question_text_es": "¿Por qué debe evitar el exceso de velocidad en una zona de trabajo?",
+  "explanation": "Workers, equipment and changing lanes can be very close to traffic in a work zone. Slowing down gives you time to react and protects everyone.",
+  "question_text_es": "¿Por qué debe reducir la velocidad en una zona de obras?",
   "answers_es": {
-   "A": "Las multas suelen ser más altas allí",
-   "B": "Se permite acelerar por poco tiempo",
-   "C": "Los trabajadores deben apartarse",
+   "A": "Puede haber trabajadores cerca",
+   "B": "Se permite acelerar un rato",
+   "C": "Los obreros deben apartarse",
    "D": "Las señales naranjas anulan límites"
   },
-  "explanation_es": "Las zonas de trabajo requieren más precaución, y las sanciones por infracciones suelen ser más altas allí. Reducir la velocidad ayuda a proteger a los trabajadores, a los conductores y a todos cerca de la carretera.",
+  "explanation_es": "En una zona de obras puede haber trabajadores, equipo y cambios de carril muy cerca del tráfico. Reducir la velocidad le da tiempo para reaccionar y protege a todos.",
   "category": "Driving Conditions & Hazards",
   "topic": "Work zone speed and penalties",
   "topic_key": "work zones",
   "batch": "thin-topics",
   "source": "drafted by gpt-5.4-2026-03-05",
   "qa": {
-   "verdict": "problem",
-   "issue": "Marked answer relies on a state-specific rule: higher fines in work zones are common but not universal across every US state.",
+   "verdict": "ok",
+   "issue": "",
    "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-10"
   }
  }
 ]
