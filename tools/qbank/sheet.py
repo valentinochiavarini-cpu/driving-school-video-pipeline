@@ -30,6 +30,7 @@ def reshuffle(q):
 
 def flags(q, peers, same=lambda a, b: False, skip_bank_id=None):
     f = []
+    if q.get("qa", {}).get("verdict") == "problem": f.append("QA: " + q["qa"]["issue"])
     text = q["question_text"] + " " + " ".join(q["answers"].values()) + " " + q["explanation"]
     if re.search(r"\d", text): f.append("has a number: check it is the same in every state")
     if EXCL.search(text): f.append("excluded topic (alcohol/licensing/speed limits): drop")

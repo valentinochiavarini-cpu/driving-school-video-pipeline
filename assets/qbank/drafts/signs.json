@@ -1,0 +1,1826 @@
+[
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Come to a full stop",
+   "B": "Yield to traffic",
+   "C": "Do not enter",
+   "D": "Slow for a curve"
+  },
+  "correct_answer": "A",
+  "explanation": "You must stop completely at the stop line, crosswalk, or before entering the intersection. Proceed only when it is safe and you have the right-of-way.",
+  "question_text_es": "¿Qué debe hacer cuando vea esta señal?",
+  "answers_es": {
+   "A": "Parar por completo",
+   "B": "Ceder el paso",
+   "C": "No entrar",
+   "D": "Reducir por curva"
+  },
+  "explanation_es": "Debe detenerse por completo en la línea de alto, paso de peatones o antes de entrar a la intersección. Continúe solo cuando sea seguro y tenga el derecho de paso.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R1-1",
+  "sign_meaning": "Stop",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R1-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Slow and yield",
+   "B": "Come to a full stop",
+   "C": "Keep right",
+   "D": "Do not enter"
+  },
+  "correct_answer": "A",
+  "explanation": "You must slow down and give the right-of-way to other traffic or pedestrians if needed. Be prepared to stop if necessary.",
+  "question_text_es": "¿Qué debe hacer cuando vea esta señal?",
+  "answers_es": {
+   "A": "Reducir y ceder",
+   "B": "Parar por completo",
+   "C": "Mantenerse derecha",
+   "D": "No entrar"
+  },
+  "explanation_es": "Debe reducir la velocidad y ceder el paso a otros vehículos o peatones si es necesario. Prepárese para detenerse si hace falta.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R1-2",
+  "sign_meaning": "Yield",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R1-2.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "One-way to right",
+   "B": "Keep right",
+   "C": "Turn right only",
+   "D": "No right turn"
+  },
+  "correct_answer": "A",
+  "explanation": "This is a ONE WAY sign showing that traffic on this street moves only to the right. You may not travel left against that direction.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Una vía a la der.",
+   "B": "Manténgase der.",
+   "C": "Solo vuelta der.",
+   "D": "No vuelta der."
+  },
+  "explanation_es": "Esta es una señal de UNA VÍA que indica que el tráfico en esta calle va solo hacia la derecha. No puede avanzar hacia la izquierda contra esa dirección.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R6-1R",
+  "sign_meaning": "One way (traffic flows to the right)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R6-1R.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Travel only right",
+   "B": "Turn right at once",
+   "C": "Keep right of median",
+   "D": "Do not turn right"
+  },
+  "correct_answer": "A",
+  "explanation": "You must drive only in the direction of the arrow on this one-way street. Expect traffic to flow to the right only.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Siga solo a der.",
+   "B": "Gire der. de una",
+   "C": "Manténgase der.",
+   "D": "No gire a la der."
+  },
+  "explanation_es": "Debe conducir solo en la dirección de la flecha en esta calle de una sola vía. Espere que el tráfico fluya solo hacia la derecha.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R6-1R",
+  "sign_meaning": "One way (traffic flows to the right)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R6-1R.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer is imprecise/awkward: ONE WAY sign means traffic moves only in the indicated direction on that road, not 'travel only right'; Spanish also mistranslates as 'Siga solo a der.'.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Do not enter here",
+   "B": "Yield to traffic",
+   "C": "Stop ahead",
+   "D": "Wrong-way ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means you must not enter the roadway or ramp beyond it. It marks an entrance where traffic is not allowed from your direction.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "No entre aquí",
+   "B": "Ceda el paso",
+   "C": "Pare más adelante",
+   "D": "Sentido contrario"
+  },
+  "explanation_es": "Esta señal significa que no debe entrar a la carretera o rampa más allá de ella. Marca una entrada donde no se permite el tráfico desde su dirección.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R5-1",
+  "sign_meaning": "Do not enter",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R5-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Turn around safely",
+   "B": "Proceed with care",
+   "C": "Stop for cross traffic",
+   "D": "Keep right ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means you are going the wrong way on a one-way road or ramp. Do not continue; turn around safely when you can do so.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Dé la vuelta seguro",
+   "B": "Siga con cuidado",
+   "C": "Pare por tráfico",
+   "D": "Manténgase derecha"
+  },
+  "explanation_es": "Esta señal indica que va en sentido contrario en una vía o rampa de un solo sentido. No continúe; dé la vuelta con seguridad cuando pueda hacerlo.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R5-1a",
+  "sign_meaning": "Wrong way",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R5-1a.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No right turn",
+   "B": "No U-turn",
+   "C": "Right lane ends",
+   "D": "Turn right only"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means right turns are prohibited at this location. You must continue straight or follow another permitted movement.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No dar vuelta der.",
+   "B": "No vuelta en U",
+   "C": "Termina carril der.",
+   "D": "Solo vuelta der."
+  },
+  "explanation_es": "Esta señal significa que está prohibido dar vuelta a la derecha en este lugar. Debe seguir recto o hacer otro movimiento permitido.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-1",
+  "sign_meaning": "No right turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Do not turn right",
+   "B": "Turn right only",
+   "C": "Yield to the right",
+   "D": "Merge right now"
+  },
+  "correct_answer": "A",
+  "explanation": "When you see this sign, you may not make a right turn there. Obey the restriction and use another allowed direction.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "No gire a la der.",
+   "B": "Solo gire a la der.",
+   "C": "Ceda a la derecha",
+   "D": "Métase a la der."
+  },
+  "explanation_es": "Al ver esta señal, no puede dar vuelta a la derecha allí. Obedezca la restricción y use otra dirección permitida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-1",
+  "sign_meaning": "No right turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No left turn",
+   "B": "Left lane ends",
+   "C": "Keep left",
+   "D": "No U-turn"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means left turns are prohibited at this location. You must continue straight or choose another permitted direction.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No doblar a la izq.",
+   "B": "Termina carril izq.",
+   "C": "Manténgase a izq.",
+   "D": "No dar vuelta en U"
+  },
+  "explanation_es": "Esta señal significa que está prohibido doblar a la izquierda en este lugar. Debe seguir derecho o tomar otra dirección permitida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-2",
+  "sign_meaning": "No left turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Do not turn left",
+   "B": "Turn left slowly",
+   "C": "Yield to oncoming",
+   "D": "Make a U-turn"
+  },
+  "correct_answer": "A",
+  "explanation": "When you see this sign, you may not make a left turn there. Proceed straight or follow another allowed route.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "No doblar a la izq.",
+   "B": "Doblar izq. despacio",
+   "C": "Ceder al tráfico",
+   "D": "Dar vuelta en U"
+  },
+  "explanation_es": "Al ver esta señal, no puede doblar a la izquierda allí. Siga derecho o tome otra ruta permitida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-2",
+  "sign_meaning": "No left turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Keep left",
+   "B": "Turn right ahead",
+   "C": "Divided highway",
+   "D": "Do not pass"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means you must pass to the left of an obstruction or divider. It directs traffic to keep left.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Manténgase a la izq.",
+   "B": "Gire a la derecha",
+   "C": "Vía dividida",
+   "D": "No rebasar"
+  },
+  "explanation_es": "Esta señal significa que debe pasar a la izquierda de una obstrucción o divisor. Indica al tráfico que se mantenga a la izquierda.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R4-8",
+  "sign_meaning": "Keep left (of the obstruction)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-8.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Pass left of hazard",
+   "B": "Stay in right lane",
+   "C": "Stop before island",
+   "D": "Merge from the left"
+  },
+  "correct_answer": "A",
+  "explanation": "When you see this sign, drive to the left of the obstruction or median. Do not pass on the right side of it.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Pase a la izq.",
+   "B": "Siga por derecha",
+   "C": "Pare antes isla",
+   "D": "Entren por izq."
+  },
+  "explanation_es": "Al ver esta señal, conduzca a la izquierda de la obstrucción o mediana. No pase por el lado derecho de esta.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R4-8",
+  "sign_meaning": "Keep left (of the obstruction)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-8.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No U-turn or left",
+   "B": "No right turn",
+   "C": "Left lane ends",
+   "D": "Turn left ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means both U-turns and left turns are prohibited at this location.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No vuelta en U ni izq",
+   "B": "No girar a la der",
+   "C": "Termina carril izq",
+   "D": "Gire a la izq adelante"
+  },
+  "explanation_es": "Esta señal significa que están prohibidas tanto las vueltas en U como los giros a la izquierda en este lugar.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-18",
+  "sign_meaning": "No U-turn or left turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-18.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Do not turn left",
+   "B": "Turn left carefully",
+   "C": "Make a U-turn",
+   "D": "Keep right only"
+  },
+  "correct_answer": "A",
+  "explanation": "You must not make a left turn or a U-turn where this sign is posted.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "No gire a la izq",
+   "B": "Gire a la izq",
+   "C": "Haga vuelta en U",
+   "D": "Manténgase der"
+  },
+  "explanation_es": "No debe girar a la izquierda ni hacer una vuelta en U donde esté colocada esta señal.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-18",
+  "sign_meaning": "No U-turn or left turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-18.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer is incomplete/ambiguous: the sign prohibits both left turns and U-turns, but question asks what you must do; 'Do not turn left' omits the U-turn prohibition while no option fully matches the sign.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No turn on red",
+   "B": "No U-turn",
+   "C": "Stop here on red",
+   "D": "Yield to traffic"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means you may not make a turn while the traffic signal is red. Wait for a green signal before turning.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No doblar en rojo",
+   "B": "No dar vuelta en U",
+   "C": "Pare aquí en rojo",
+   "D": "Ceda el paso"
+  },
+  "explanation_es": "Esta señal significa que no puede doblar mientras la luz esté roja. Espere la luz verde antes de doblar.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R10-11",
+  "sign_meaning": "No turn on red",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-11.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Wait for green turn",
+   "B": "Turn after stopping",
+   "C": "Yield, then turn",
+   "D": "Make a U-turn"
+  },
+  "correct_answer": "A",
+  "explanation": "With this sign, turning on a red light is prohibited. Remain stopped and do not turn until the signal turns green.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Espere luz verde",
+   "B": "Doble tras parar",
+   "C": "Ceda y luego doble",
+   "D": "Dé vuelta en U"
+  },
+  "explanation_es": "Con esta señal, está prohibido doblar con la luz roja. Permanezca detenido y no doble hasta que la señal cambie a verde.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R10-11",
+  "sign_meaning": "No turn on red",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-11.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Do not block",
+   "B": "No U-turn",
+   "C": "Keep intersection",
+   "D": "Yield ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means do not enter an intersection unless you can clear it completely. Blocking the intersection is prohibited.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No bloquee",
+   "B": "No dar vuelta en U",
+   "C": "Mantenga cruce",
+   "D": "Ceda el paso adelante"
+  },
+  "explanation_es": "Esta señal significa que no debe entrar a una intersección a menos que pueda salir por completo. Está prohibido bloquear la intersección.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R10-7",
+  "sign_meaning": "Do not block intersection",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-7.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Answer choices are poorly worded/ambiguous; MUTCD meaning is 'Do not block intersection,' but marked choice 'Do not block' is incomplete and 'Keep intersection' is arguably pointing at the same concept. Spanish also does not clearly match the standard sign meaning.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Wait if traffic stops",
+   "B": "Turn left only",
+   "C": "Merge right",
+   "D": "Speed up through"
+  },
+  "correct_answer": "A",
+  "explanation": "You must not enter the intersection if traffic ahead may prevent you from clearing it. Wait until there is enough space on the other side.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Espere si se para",
+   "B": "Solo gire a la izq.",
+   "C": "Incorpórese der.",
+   "D": "Acelere y pase"
+  },
+  "explanation_es": "No debe entrar a la intersección si el tráfico adelante podría impedirle despejarla. Espere hasta que haya suficiente espacio al otro lado.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R10-7",
+  "sign_meaning": "Do not block intersection",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-7.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Spanish answer A does not match the English; 'Espere si se para' is ungrammatical/incomplete and does not clearly convey 'Wait if traffic stops'.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No turn on red",
+   "B": "Stop here on red",
+   "C": "Stop ahead",
+   "D": "Yield here"
+  },
+  "correct_answer": "B",
+  "explanation": "This sign tells drivers where to stop when the traffic signal is red. Stop at the marked line or location shown by the sign.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "No girar en rojo",
+   "B": "Pare aquí en rojo",
+   "C": "Pare más adelante",
+   "D": "Ceda el paso aquí"
+  },
+  "explanation_es": "Esta señal indica dónde debe detenerse cuando el semáforo está en rojo. Deténgase en la línea o lugar indicado por la señal.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R10-6",
+  "sign_meaning": "Stop here on red",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-6.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign at a signal?",
+  "answers": {
+   "A": "Stop here on red",
+   "B": "Yield on green",
+   "C": "Turn right only",
+   "D": "Stop only for bikes"
+  },
+  "correct_answer": "A",
+  "explanation": "When the signal is red, you must stop at the point marked by this sign. Do not stop past the indicated location.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal en un semáforo?",
+  "answers_es": {
+   "A": "Pare aquí en rojo",
+   "B": "Ceda en verde",
+   "C": "Solo gire a la der.",
+   "D": "Pare solo bicis"
+  },
+  "explanation_es": "Cuando el semáforo está en rojo, debe detenerse en el punto indicado por esta señal. No se detenga después del lugar marcado.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R10-6",
+  "sign_meaning": "Stop here on red",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-6.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Right lane turns only",
+   "B": "Keep right",
+   "C": "No right turn",
+   "D": "Right shoulder ends"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means traffic in the right lane must turn right. You cannot continue straight from that lane.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Carril der. gira",
+   "B": "Manténgase der.",
+   "C": "No girar derecha",
+   "D": "Termina acot. der."
+  },
+  "explanation_es": "Esta señal significa que el tráfico en el carril derecho debe girar a la derecha. No puede seguir recto desde ese carril.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-7R",
+  "sign_meaning": "Right lane must turn right",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-7R.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Ambiguous wording: 'Right lane turns only' is not as precise as the MUTCD meaning 'Right lane must turn right,' and could be read as excluding other lanes from turning right.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Turn right from lane",
+   "B": "Merge right",
+   "C": "Stay to the right",
+   "D": "Yield to the right"
+  },
+  "correct_answer": "A",
+  "explanation": "If you are in the right lane, you must turn right. Do not go straight from that lane.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Gire der. en carril",
+   "B": "Incorpórese der.",
+   "C": "Permanezca der.",
+   "D": "Ceda a la derecha"
+  },
+  "explanation_es": "Si está en el carril derecho, debe girar a la derecha. No siga recto desde ese carril.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-7R",
+  "sign_meaning": "Right lane must turn right",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-7R.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Bike lane",
+   "B": "Bike route",
+   "C": "No bicycles",
+   "D": "Share the road"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign marks a bicycle lane reserved for bicycles. Drivers should recognize that cyclists may be traveling there.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Carril para bicis",
+   "B": "Ruta para bicis",
+   "C": "No bicicletas",
+   "D": "Comparta la vía"
+  },
+  "explanation_es": "Esta señal indica un carril para bicicletas reservado para bicicletas. Los conductores deben reconocer que los ciclistas pueden circular allí.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-17",
+  "sign_meaning": "Bike lane",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-17.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Expect a bike lane",
+   "B": "Stop for all bikes",
+   "C": "No turns allowed",
+   "D": "Yield to oncoming cars"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign tells you a bicycle lane is present. Be alert for cyclists using the lane and avoid driving in it unless permitted.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Espere un carril bici",
+   "B": "Pare por todas bicis",
+   "C": "No se permite girar",
+   "D": "Ceda a tráfico opuesto"
+  },
+  "explanation_es": "Esta señal le indica que hay un carril para bicicletas. Esté atento a los ciclistas que lo usan y evite conducir en él, salvo cuando esté permitido.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-17",
+  "sign_meaning": "Bike lane",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-17.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Pass with care",
+   "B": "Do not pass",
+   "C": "Keep right",
+   "D": "Slower traffic keep"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means passing is allowed, but only when it can be done safely. Use extra caution and pass only if the way is clear.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Pase con cuidado",
+   "B": "No rebase",
+   "C": "Manténgase der.",
+   "D": "Lento manténgase"
+  },
+  "explanation_es": "Esta señal significa que se permite rebasar, pero solo cuando se pueda hacer con seguridad. Tenga mucha precaución y rebase solo si el camino está despejado.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R4-2",
+  "sign_meaning": "Pass with care",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Another option is also arguably correct: for the MUTCD R4-2 sign, 'Slower traffic keep right' is a plausible reading of D ('Slower traffic keep'), making the item ambiguous. Spanish D also does not match the English well.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Pass only if safe",
+   "B": "Never pass here",
+   "C": "Stay in right lane",
+   "D": "Stop before passing"
+  },
+  "correct_answer": "A",
+  "explanation": "You may pass at this location, but only with care and when conditions make it safe. Make sure the opposing lane is clear before passing.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Rebase solo seguro",
+   "B": "Nunca rebase aquí",
+   "C": "Siga en carril der.",
+   "D": "Pare antes rebasar"
+  },
+  "explanation_es": "Puede rebasar en este lugar, pero solo con cuidado y cuando las condiciones sean seguras. Asegúrese de que el carril contrario esté despejado antes de rebasar.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R4-2",
+  "sign_meaning": "Pass with care",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "HOV lane only",
+   "B": "Bus lane only",
+   "C": "No passing zone",
+   "D": "Keep right"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign marks an HOV lane. Only vehicles with the posted minimum number of occupants may use it during the posted hours.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Solo carril HOV",
+   "B": "Solo carril bus",
+   "C": "Prohibido rebasar",
+   "D": "Manténgase derecha"
+  },
+  "explanation_es": "Esta señal marca un carril HOV. Solo los vehículos con el número mínimo de ocupantes indicado pueden usarlo durante las horas indicadas.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R3-11",
+  "sign_meaning": "HOV lane: only vehicles with the posted number of occupants (2+) during the posted hours",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-11.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What must you do when you see this sign?",
+  "answers": {
+   "A": "Use lane if qualified",
+   "B": "Stop for all traffic",
+   "C": "Merge left now",
+   "D": "Turn right only"
+  },
+  "correct_answer": "A",
+  "explanation": "You may enter or remain in the lane only if your vehicle has at least the posted number of occupants during the posted hours. Otherwise, use a different lane.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Úselo si califica",
+   "B": "Deténgase siempre",
+   "C": "Pásese a la izq.",
+   "D": "Solo vuelta derecha"
+  },
+  "explanation_es": "Puede entrar o permanecer en el carril solo si su vehículo tiene al menos el número de ocupantes indicado durante las horas publicadas. De lo contrario, use otro carril.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-11",
+  "sign_meaning": "HOV lane: only vehicles with the posted number of occupants (2+) during the posted hours",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-11.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Dead end ahead",
+   "B": "No outlet route",
+   "C": "Do not enter",
+   "D": "Road work ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that the road ends ahead and does not continue through. Be prepared to turn around or choose another route.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Calle sin salida",
+   "B": "Ruta sin salida",
+   "C": "No entrar",
+   "D": "Obras adelante"
+  },
+  "explanation_es": "Esta señal advierte que la vía termina más adelante y no continúa. Prepárese para dar la vuelta o elegir otra ruta.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W14-1",
+  "sign_meaning": "Dead end",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W14-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Another option is also arguably correct: 'No outlet route' is essentially the same meaning as 'Dead end ahead' for this warning sign, so the item is ambiguous.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you expect when you see this sign?",
+  "answers": {
+   "A": "Road ends ahead",
+   "B": "Merge to one lane",
+   "C": "Cross traffic ahead",
+   "D": "Keep right only"
+  },
+  "correct_answer": "A",
+  "explanation": "A dead end sign means the road stops ahead with no through passage. Slow down as needed and plan another way out.",
+  "question_text_es": "¿Qué debe esperar al ver esta señal?",
+  "answers_es": {
+   "A": "La vía termina",
+   "B": "Un carril menos",
+   "C": "Tráfico cruzado",
+   "D": "Manténgase der."
+  },
+  "explanation_es": "Una señal de calle sin salida significa que la vía termina más adelante y no sigue. Reduzca la velocidad si es necesario y planee otra salida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W14-1",
+  "sign_meaning": "Dead end",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W14-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "No outlet",
+   "B": "Dead end ahead",
+   "C": "Do not enter",
+   "D": "Road work ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This warning sign means the road or street has no outlet to another roadway. It is not the same as a dead end sign, which indicates the road ends entirely.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Sin salida",
+   "B": "Calle sin salida",
+   "C": "No entrar",
+   "D": "Obras adelante"
+  },
+  "explanation_es": "Esta señal de advertencia indica que la calle o carretera no tiene salida a otra vía. No es lo mismo que una señal de calle sin salida, que indica que la vía termina por completo.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W14-2",
+  "sign_meaning": "No outlet",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W14-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you expect when you see this sign?",
+  "answers": {
+   "A": "No route through",
+   "B": "Cross traffic only",
+   "C": "Keep right ahead",
+   "D": "Stop at next sign"
+  },
+  "correct_answer": "A",
+  "explanation": "You should expect that the road does not continue through to another street. If you enter, you may need to turn around or exit the way you came.",
+  "question_text_es": "¿Qué debe esperar al ver esta señal?",
+  "answers_es": {
+   "A": "No hay paso continuo",
+   "B": "Solo cruce lateral",
+   "C": "Manténgase derecha",
+   "D": "Pare en la próxima"
+  },
+  "explanation_es": "Debe esperar que la vía no continúe hacia otra calle. Si entra, puede tener que dar la vuelta o salir por donde vino.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W14-2",
+  "sign_meaning": "No outlet",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W14-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Right lane ends",
+   "B": "Keep right",
+   "C": "Road curves right",
+   "D": "No passing zone"
+  },
+  "correct_answer": "A",
+  "explanation": "This warning sign means the right lane ends ahead. Drivers should prepare to merge left if they are in that lane.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Termina carril der.",
+   "B": "Manténgase derecha",
+   "C": "Curva a la derecha",
+   "D": "Zona no rebasar"
+  },
+  "explanation_es": "Esta señal de advertencia significa que el carril derecho termina más adelante. Los conductores deben prepararse para incorporarse a la izquierda si van en ese carril.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W9-1",
+  "sign_meaning": "Lane ends (right lane ends)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W9-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Merge left soon",
+   "B": "Turn right ahead",
+   "C": "Stop for a train",
+   "D": "Stay in right lane"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that the right lane ends ahead. If you are in the right lane, merge left safely when possible.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Únase a la izq. ya",
+   "B": "Doble a la derecha",
+   "C": "Pare por el tren",
+   "D": "Siga en carril der."
+  },
+  "explanation_es": "Esta señal advierte que el carril derecho termina más adelante. Si usted va en el carril derecho, incorpórese a la izquierda con seguridad cuando sea posible.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W9-1",
+  "sign_meaning": "Lane ends (right lane ends)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W9-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Pavement ends",
+   "B": "Soft shoulder",
+   "C": "Road narrows",
+   "D": "Loose gravel"
+  },
+  "correct_answer": "A",
+  "explanation": "This warning sign means the paved surface ends ahead. The road may continue as gravel or another unpaved surface.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Termina el pavimento",
+   "B": "Acotamiento blando",
+   "C": "La vía se angosta",
+   "D": "Grava suelta"
+  },
+  "explanation_es": "Esta señal de advertencia significa que el pavimento termina más adelante. La carretera puede continuar con grava u otra superficie no pavimentada.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W8-3",
+  "sign_meaning": "Pavement ends",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-3.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Slow for rough surface",
+   "B": "Stop before tracks",
+   "C": "Merge left now",
+   "D": "Turn on headlights"
+  },
+  "correct_answer": "A",
+  "explanation": "You should slow down and be ready for a change from pavement to an unpaved or rougher surface. Keep a firm grip on the wheel and avoid sudden moves.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Reduzca por superficie",
+   "B": "Pare antes de rieles",
+   "C": "Mézclese a la izq.",
+   "D": "Encienda las luces"
+  },
+  "explanation_es": "Debe reducir la velocidad y estar preparado para un cambio de pavimento a una superficie no pavimentada o más áspera. Mantenga firme el volante y evite movimientos bruscos.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W8-3",
+  "sign_meaning": "Pavement ends",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-3.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Soft shoulder",
+   "B": "Slippery when wet",
+   "C": "Low shoulder",
+   "D": "Shoulder drop-off"
+  },
+  "correct_answer": "A",
+  "explanation": "This warning sign means the shoulder is soft and may not support your vehicle. Avoid driving onto the shoulder unless necessary.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Hombro blando",
+   "B": "Resbala mojado",
+   "C": "Hombro bajo",
+   "D": "Caída de borde"
+  },
+  "explanation_es": "Esta señal advierte que el hombro es blando y puede no sostener su vehículo. Evite conducir sobre el hombro salvo que sea necesario.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W8-4",
+  "sign_meaning": "Soft shoulder",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-4.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Spanish answer A is unnatural/mistranslated ('Hombro blando'); standard meaning is 'arcén/blanqueta suave/inestable'. Other options are distinct, but the Spanish does not say the same thing naturally.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Use caution on shoulder",
+   "B": "Speed up to pass",
+   "C": "Prepare to merge left",
+   "D": "Stop on shoulder"
+  },
+  "correct_answer": "A",
+  "explanation": "A soft shoulder may be unstable and unsafe for normal driving. Stay on the pavement when possible and use extra caution if you must pull over.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Cuidado en hombro",
+   "B": "Acelere para pasar",
+   "C": "Prepárese a unirse",
+   "D": "Deténgase allí"
+  },
+  "explanation_es": "Un hombro blando puede ser inestable y peligroso para conducir normalmente. Manténgase en el pavimento si es posible y tenga más cuidado si debe orillarse.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W8-4",
+  "sign_meaning": "Soft shoulder",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-4.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Question asks what to do; marked answer is acceptable, but Spanish is poor/ambiguous ('Cuidado en hombro', 'Deténgase allí') and does not clearly match the English guidance.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Stop ahead",
+   "B": "Yield ahead",
+   "C": "Merge ahead",
+   "D": "No passing zone"
+  },
+  "correct_answer": "B",
+  "explanation": "This warning sign tells you that a yield sign is ahead. Be prepared to slow down and give right-of-way if needed.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Pare más adelante",
+   "B": "Ceda el paso adelante",
+   "C": "Incorporación adelante",
+   "D": "Zona no rebasar"
+  },
+  "explanation_es": "Esta señal de advertencia indica que hay una señal de ceda el paso más adelante. Prepárese para reducir la velocidad y ceder el paso si es necesario.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W3-2",
+  "sign_meaning": "Yield ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W3-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Prepare to yield",
+   "B": "Come to a full stop",
+   "C": "Speed up to merge",
+   "D": "Do not pass"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a yield sign is ahead. Slow down and be ready to give right-of-way at the upcoming yield point.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Prepárese a ceder",
+   "B": "Deténgase por completo",
+   "C": "Acelere para entrar",
+   "D": "No rebase"
+  },
+  "explanation_es": "Esta señal advierte que hay una señal de ceda el paso más adelante. Reduzca la velocidad y esté listo para ceder el paso en el próximo punto.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W3-2",
+  "sign_meaning": "Yield ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W3-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Bikes left, walkers right",
+   "B": "Keep right to pass",
+   "C": "No pedestrians",
+   "D": "Bike lane ends"
+  },
+  "correct_answer": "A",
+  "explanation": "This shared-use path sign separates users by side: bicycles keep left and pedestrians keep right.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Bicis izq., peatones der.",
+   "B": "Manténgase der. al pasar",
+   "C": "No peatones",
+   "D": "Termina ciclovía"
+  },
+  "explanation_es": "Esta señal de vía compartida separa a los usuarios por lado: las bicicletas van a la izquierda y los peatones a la derecha.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "R9-7",
+  "sign_meaning": "Shared-use path: bicycles keep left, pedestrians keep right",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R9-7.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "This is not a rule common to every US state/driver context; R9-7 is a shared-use path regulatory sign for path users, not a standard nationwide driver-permit meaning. Also the Spanish is abbreviated/unnatural though roughly equivalent.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you expect when you see this sign?",
+  "answers": {
+   "A": "Bikes left, walkers right",
+   "B": "Pedestrians cross here",
+   "C": "Yield to all traffic",
+   "D": "Bikes must dismount"
+  },
+  "correct_answer": "A",
+  "explanation": "Expect a shared-use path where bicyclists travel on the left side and pedestrians use the right side.",
+  "question_text_es": "¿Qué debe esperar al ver esta señal?",
+  "answers_es": {
+   "A": "Bicis izq., peatones der.",
+   "B": "Peatones cruzan aquí",
+   "C": "Ceda a todo tráfico",
+   "D": "Bicis deben bajarse"
+  },
+  "explanation_es": "Espere una vía compartida donde los ciclistas circulan por la izquierda y los peatones usan la derecha.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R9-7",
+  "sign_meaning": "Shared-use path: bicycles keep left, pedestrians keep right",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R9-7.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Same issue: relies on a shared-use path sign meaning not common to every state driver test context; Spanish is abbreviated/unnatural though roughly equivalent.",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what must you do?",
+  "answers": {
+   "A": "Do not pass",
+   "B": "Stop ahead",
+   "C": "Keep right",
+   "D": "Yield ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign tells drivers that passing is prohibited in this area. Stay in your lane and do not overtake other vehicles.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "No rebasar",
+   "B": "Pare más adelante",
+   "C": "Manténgase der.",
+   "D": "Ceda el paso"
+  },
+  "explanation_es": "Esta señal indica que está prohibido rebasar en esta zona. Permanezca en su carril y no adelante a otros vehículos.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R4-1",
+  "sign_meaning": "Do not pass",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what must you do from this lane?",
+  "answers": {
+   "A": "Turn left only",
+   "B": "Merge left",
+   "C": "Keep left",
+   "D": "No left turn"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign means the lane is reserved for left turns only. From this lane, you must make a left turn.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer desde este carril?",
+  "answers_es": {
+   "A": "Doblar solo izq.",
+   "B": "Incorpórese izq.",
+   "C": "Manténgase izq.",
+   "D": "No doblar izq."
+  },
+  "explanation_es": "Esta señal indica que este carril es solo para dar vuelta a la izquierda. Desde este carril, debe doblar a la izquierda.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-5L",
+  "sign_meaning": "Left turn only (this lane)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-5L.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "This sign is posted ahead. What should you do?",
+  "answers": {
+   "A": "Prepare for roundabout",
+   "B": "Merge into traffic",
+   "C": "Stop at next sign",
+   "D": "Watch for bicycles"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a circular intersection (roundabout) is ahead. Slow down and be ready to yield to traffic already in the roundabout.",
+  "question_text_es": "Esta señal está más adelante. ¿Qué debe hacer?",
+  "answers_es": {
+   "A": "Prepárese para rotonda",
+   "B": "Incorpórese al tráfico",
+   "C": "Pare en próxima señal",
+   "D": "Cuidado con bicicletas"
+  },
+  "explanation_es": "Esta señal advierte que hay una intersección circular (rotonda) más adelante. Reduzca la velocidad y prepárese para ceder el paso al tráfico que ya está en la rotonda.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W2-6",
+  "sign_meaning": "Circular intersection (roundabout) ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W2-6.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what must you do?",
+  "answers": {
+   "A": "Stay at or below limit",
+   "B": "Stop if pedestrians",
+   "C": "Yield to cross traffic",
+   "D": "No passing ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This is a speed limit sign. You must not drive faster than the posted maximum speed shown on the sign.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Ir al límite o menos",
+   "B": "Pare por peatones",
+   "C": "Ceda al tráfico",
+   "D": "No rebasar pronto"
+  },
+  "explanation_es": "Esta es una señal de límite de velocidad. No debe conducir más rápido que la velocidad máxima indicada en la señal.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R2-1",
+  "sign_meaning": "Speed limit",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R2-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what must you do?",
+  "answers": {
+   "A": "Do not make a U-turn",
+   "B": "Yield to oncoming traffic",
+   "C": "Turn left only",
+   "D": "No left turn"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign tells drivers that U-turns are prohibited at that location. Continue through or turn another permitted way instead.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "No haga vuelta en U",
+   "B": "Ceda al tráfico",
+   "C": "Solo gire a izq.",
+   "D": "No gire a la izq."
+  },
+  "explanation_es": "Esta señal indica que las vueltas en U están prohibidas en ese lugar. Siga derecho o gire de otra manera permitida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-4",
+  "sign_meaning": "No U-turn",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-4.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Keep right",
+   "B": "Stop ahead",
+   "C": "Merge left",
+   "D": "No passing"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign tells drivers to pass to the right of an obstruction or divider. Stay to the right as you go by it.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Manténgase a la der.",
+   "B": "Pare más adelante",
+   "C": "Únase a la izq.",
+   "D": "No rebasar"
+  },
+  "explanation_es": "Esta señal le indica que pase a la derecha de una obstrucción o divisor. Manténgase a la derecha al pasarla.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R4-7",
+  "sign_meaning": "Keep right (of the obstruction)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-7.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Stay to right lane",
+   "B": "Prepare for signal",
+   "C": "Yield to oncoming",
+   "D": "Merge left now"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a divided highway begins ahead. Be prepared to stay to the right of the median or barrier.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Siga por la derecha",
+   "B": "Prepárese parar",
+   "C": "Ceda al tráfico",
+   "D": "Mézclese a izq."
+  },
+  "explanation_es": "Esta señal advierte que comienza una carretera dividida más adelante. Prepárese para mantenerse a la derecha del separador o barrera.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W6-1",
+  "sign_meaning": "Divided highway begins",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W6-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer is not reliably correct as written; W6-1 means divided highway begins, so the universal action is keep right of the divider/median, not specifically 'stay to right lane.' Spanish B is also mistranslated ('Prepárese parar' missing 'para').",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you expect and do when you see this sign?",
+  "answers": {
+   "A": "Watch for opposing cars",
+   "B": "Merge right now",
+   "C": "Road ends ahead",
+   "D": "Keep left of island"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that two-way traffic is ahead. Be ready for vehicles coming toward you and stay in your proper lane.",
+  "question_text_es": "¿Qué debe esperar y hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Ver tráfico opuesto",
+   "B": "Mézclese a la der.",
+   "C": "La vía termina",
+   "D": "Manténgase izq."
+  },
+  "explanation_es": "Esta señal advierte que más adelante hay tráfico en ambos sentidos. Esté atento a vehículos de frente y permanezca en su carril.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W6-3",
+  "sign_meaning": "Two-way traffic ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W6-3.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Slow and be ready",
+   "B": "Stop immediately",
+   "C": "Yield to cross traffic",
+   "D": "No passing zone"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a highway-rail grade crossing is ahead. Slow down, look and listen for trains, and be prepared to stop if needed.",
+  "question_text_es": "¿Qué debe hacer cuando vea esta señal?",
+  "answers_es": {
+   "A": "Reduzca y prepárese",
+   "B": "Pare de inmediato",
+   "C": "Ceda al tráfico",
+   "D": "No rebasar"
+  },
+  "explanation_es": "Esta señal advierte que hay un cruce de ferrocarril más adelante. Reduzca la velocidad, mire y escuche si vienen trenes, y esté listo para detenerse si es necesario.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W10-1",
+  "sign_meaning": "Highway-rail grade crossing ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W10-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Watch for people",
+   "B": "Yield to merging",
+   "C": "Road curves ahead",
+   "D": "School zone ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that pedestrians may be crossing ahead. Slow down and be ready to stop for people in or near the crosswalk.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Esté atento a peatones",
+   "B": "Ceda al incorporarse",
+   "C": "Curva adelante",
+   "D": "Zona escolar adelante"
+  },
+  "explanation_es": "Esta señal advierte que puede haber peatones cruzando más adelante. Reduzca la velocidad y prepárese para detenerse por personas en o cerca del cruce peatonal.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W11-2",
+  "sign_meaning": "Pedestrian crossing",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W11-2.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Watch for crossroad",
+   "B": "Stop ahead",
+   "C": "Yield to oncoming",
+   "D": "Road curves right"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a crossroad intersection is ahead. Slow down if needed and be ready for crossing traffic.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Vigile cruce adelante",
+   "B": "Pare adelante",
+   "C": "Ceda al tráfico",
+   "D": "Curva a la derecha"
+  },
+  "explanation_es": "Esta señal advierte que hay una intersección con una vía transversal más adelante. Reduzca la velocidad si es necesario y esté atento al tráfico que cruza.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W2-1",
+  "sign_meaning": "Cross road (intersection) ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W2-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Slow for narrow span",
+   "B": "Stop at the bridge",
+   "C": "Yield to oncoming",
+   "D": "Road ends ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that the bridge ahead is narrower than the roadway. Slow down and be prepared for reduced space as you cross.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Reduzca la velocidad",
+   "B": "Pare en el puente",
+   "C": "Ceda al tráfico",
+   "D": "La vía termina"
+  },
+  "explanation_es": "Esta señal advierte que el puente adelante es más angosto que la carretera. Reduzca la velocidad y prepárese para menos espacio al cruzar.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W5-2",
+  "sign_meaning": "Narrow bridge",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W5-2.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Slow and use low gear",
+   "B": "Stop at hill crest",
+   "C": "Yield to uphill cars",
+   "D": "No passing ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns of a steep downgrade ahead. Slow down and, if needed, shift to a lower gear to control your speed safely.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Reduzca y use baja",
+   "B": "Pare en la cima",
+   "C": "Ceda al subir",
+   "D": "No rebase adelante"
+  },
+  "explanation_es": "Esta señal advierte una bajada empinada más adelante. Reduzca la velocidad y, si hace falta, use una marcha baja para controlar su velocidad.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W7-1",
+  "sign_meaning": "Steep hill / downgrade",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W7-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Watch for signal",
+   "B": "Yield ahead",
+   "C": "No passing zone",
+   "D": "Stop immediately"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a traffic signal is ahead. Slow down if needed and be prepared to stop or obey the upcoming signal.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Esté atento al semáf.",
+   "B": "Ceda el paso adelante",
+   "C": "Zona no rebasar",
+   "D": "Pare de inmediato"
+  },
+  "explanation_es": "Esta señal advierte que hay un semáforo más adelante. Reduzca la velocidad si es necesario y prepárese para detenerse u obedecer la señal.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W3-3",
+  "sign_meaning": "Traffic signal ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W3-3.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Watch for children",
+   "B": "Stop completely",
+   "C": "Yield ahead",
+   "D": "No passing zone"
+  },
+  "correct_answer": "A",
+  "explanation": "This school advance warning sign tells you a school area is ahead. Slow down and watch carefully for children, crossings, and school-related traffic.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Cuidado con niños",
+   "B": "Deténgase total",
+   "C": "Ceda el paso",
+   "D": "No rebasar"
+  },
+  "explanation_es": "Esta señal de advertencia indica que hay una zona escolar más adelante. Reduzca la velocidad y esté atento a niños, cruces y tráfico escolar.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "S1-1",
+  "sign_meaning": "School advance warning (school zone)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_S1-1.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ }
+]

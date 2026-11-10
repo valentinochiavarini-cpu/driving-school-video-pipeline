@@ -23,7 +23,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "4fcff093-1c73-4529-8743-c405e67b9605",
   "original_question": "If there are no traffic signals, you should slow down or stop to yield to pedestrians at ________.",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What is one possible penalty for driving under the influence?",
@@ -49,7 +54,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "59fdba9c-083d-40b9-803e-ef8334828ede",
   "original_question": "What are the potential penalties for being convicted of driving under the influence of alcohol or drugs?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Where should you always look both ways before proceeding?",
@@ -75,7 +85,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "c917f1ad-e742-4a8d-bcb5-1f4a959aaf50",
   "original_question": "At which locations should you always look both ways?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "You approach a STOP sign with a stop line. Where must you stop?",
@@ -101,7 +116,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "f2f11c2a-5099-44a2-9fd9-11fb88cc2895",
   "original_question": "You approach an intersection with a STOP sign. Where are you required to stop?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer wording is imprecise/arguably wrong: with a stop line you must stop at the line, not merely 'in front of' it; Spanish B says 'before the stop line,' which does not match the English exactly.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How does alcohol consumption impact driving ability?",
@@ -127,7 +147,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "b1169e39-744a-41c4-9a98-7ed66242192d",
   "original_question": "How does alcohol consumption impact driving ability?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do first if an oncoming vehicle is in your lane?",
@@ -153,7 +178,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "766b78ab-9767-4610-a173-1f2cd069620e",
   "original_question": "What should you do if you see an oncoming vehicle in your lane?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a railroad crossing with only a stop sign, when may you proceed?",
@@ -179,7 +209,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "9aff4da1-492e-4b79-9b68-0ef0e718253d",
   "original_question": "At a railroad crossing with only a stop sign, you must stop and proceed only when:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When are roads usually most slippery during rain?",
@@ -205,7 +240,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "0f8878d5-a802-4c05-8782-9f427e78cabc",
   "original_question": "Which of the following is correct about driving in rainy conditions?",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Uses a state-specific/approximate number ('first 30 minutes'); not common to every state.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When no traffic signals are present, you must slow down or stop for pedestrians in:",
@@ -231,7 +271,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "7bc7eacb-0b65-4b67-872a-556d72e050aa",
   "original_question": "When no traffic signals are present, you must slow down or stop for pedestrians in:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Ambiguous/incomplete: pedestrians also have right-of-way in unmarked crosswalks in all states, but only 'a marked crosswalk' is offered.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When approaching a railroad crossing, what should you do?",
@@ -257,7 +302,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "b3e8147a-f8ac-43a7-b2eb-34fed8308f3b",
   "original_question": "When approaching a railroad crossing you should:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "On the roadway, emergency vehicles have the right-of-way when using:",
@@ -283,7 +333,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "04211bf3-d9de-41ec-85e2-301a9c71c1f0",
   "original_question": "On the roadway, emergency vehicles:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "State-specific/overbroad: required signals for emergency right-of-way vary by state; 'siren, horn, and red/blue lights' is not a universal rule.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Where should an infant or small child ride in a vehicle with airbags?",
@@ -309,7 +364,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "f87dc356-9a12-400b-88c0-9676d1b2c5f2",
   "original_question": "The following is true regarding seat belts and child restraints in vehicles:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If a driver is tailgating you, what should you do if a right lane is open?",
@@ -335,7 +395,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "091a7453-fb38-466b-a39c-b187578423f7",
   "original_question": "When you are being “tailgated”;",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When must you obey a traffic officer's order to stop?",
@@ -361,7 +426,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "39cce534-caa2-4877-acc3-0578cacb32e6",
   "original_question": "As you drive, you're required to stop your vehicle:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When should you slow down on a wet or slippery road?",
@@ -387,7 +457,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "845118a7-2422-417b-94ba-408620dc78cd",
   "original_question": "It is important to slow down:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When driving on major highways, what should you do?",
@@ -413,7 +488,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "777ec839-3552-40d1-95ec-2bb0689b8121",
   "original_question": "When driving on major highways:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Question is overly broad/vague; 'Stay alert' is true but not uniquely tied to major highways, making it a weak/ambiguous test item.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If a collision is unavoidable, what should you try to hit?",
@@ -439,7 +519,12 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "15ea1a56-8d53-4437-9090-2fca4d7eece8",
   "original_question": "If a collision is possible, you should:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If your windshield wipers fail in rain or snow, what should you do first?",
@@ -465,6 +550,11 @@
   "batch": "all-of-the-above-rewrite",
   "replaces_id": "ae87c154-eb18-42b1-bbe5-f425f4816685",
   "original_question": "If your windshield wipers stop suddenly during rain or snow you should:",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  }
 ]

@@ -21,7 +21,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Who may use an HOV lane?",
@@ -45,7 +50,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How should you enter or leave an HOV lane?",
@@ -69,7 +79,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What is the main purpose of HOV or carpool lanes?",
@@ -93,7 +108,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What do broken lines next to an HOV lane indicate?",
@@ -117,7 +137,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If you are driving alone, when may you use an HOV lane?",
@@ -141,7 +166,12 @@
   "topic": "HOV / carpool lanes",
   "topic_key": "HOV / carpool lanes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Where is a U-turn not allowed because drivers cannot see you well?",
@@ -165,7 +195,12 @@
   "topic": "U-turns not allowed on hills and curves",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do if a sign says No U-Turn?",
@@ -189,7 +224,12 @@
   "topic": "U-turns prohibited by signs",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why should you avoid a U-turn near a railroad crossing?",
@@ -213,7 +253,12 @@
   "topic": "U-turns near railroad crossings",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on a not-universal rule; avoiding U-turns near railroad crossings is not a common rule in every state, and the reason given is weak/ambiguous.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How do you make a U-turn safely when it is allowed?",
@@ -237,7 +282,12 @@
   "topic": "Making a safe U-turn",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Where should you avoid a U-turn because approaching traffic may be hidden?",
@@ -261,7 +311,12 @@
   "topic": "U-turns not allowed on hills and curves",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Before making a legal U-turn, what should you do first?",
@@ -285,7 +340,12 @@
   "topic": "Making a U-turn safely",
   "topic_key": "U-turns",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When should you slow down for a curve?",
@@ -309,7 +369,12 @@
   "topic": "Curves: slowing before the curve",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What does a speed plaque below a curve sign mean?",
@@ -333,7 +398,12 @@
   "topic": "Curves: advisory speed plaques",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "In a curve, where should your vehicle stay?",
@@ -357,7 +427,12 @@
   "topic": "Curves: lane position",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If you must brake in a curve, how should you do it?",
@@ -381,7 +456,12 @@
   "topic": "Curves: braking",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why is it safest to reduce speed before entering a curve?",
@@ -405,7 +485,12 @@
   "topic": "curves: slowing before the curve, braking",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "A curve sign has a plaque showing 25. What does it tell you?",
@@ -429,7 +514,12 @@
   "topic": "curves: advisory speed plaques",
   "topic_key": "curves",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Which is a warning sign of drowsy driving?",
@@ -453,7 +543,12 @@
   "topic": "Drowsy driving warning signs",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If you feel sleepy while driving, what should you do?",
@@ -477,7 +572,12 @@
   "topic": "What to do when drowsy",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What may happen when a driver is very drowsy?",
@@ -501,7 +601,12 @@
   "topic": "Effects of drowsy driving",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Repeated yawning while driving usually means you should:",
@@ -525,7 +630,12 @@
   "topic": "Drowsy driving warning signs",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Your eyes keep closing briefly while driving. What does this mean?",
@@ -549,7 +659,12 @@
   "topic": "Drowsy driving warning signs",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "You miss your exit because you were not paying attention. What should you do next?",
@@ -573,7 +688,12 @@
   "topic": "Drowsy driving what to do",
   "topic_key": "drowsy driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer is not universally correct; missing an exit from inattention does not necessarily mean you must stop and rest, and option A is also arguable depending on cause.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What is the safest way to use a phone while driving?",
@@ -597,7 +717,12 @@
   "topic": "Distracted driving and phone use",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why can passengers be a driving distraction?",
@@ -621,7 +746,12 @@
   "topic": "Passenger distractions",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How can eating while driving affect you?",
@@ -645,7 +775,12 @@
   "topic": "Eating and driving distractions",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do if a call cannot wait?",
@@ -669,7 +804,12 @@
   "topic": "What to do when you must use a phone",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "While driving, what should you do with your phone?",
@@ -693,7 +833,12 @@
   "topic": "distracted driving",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If passengers are distracting you, what is safest?",
@@ -717,7 +862,12 @@
   "topic": "distracted driving",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What is the safest choice before eating while driving?",
@@ -741,7 +891,12 @@
   "topic": "distracted driving",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Before pulling over to use your phone, what should you do?",
@@ -765,7 +920,12 @@
   "topic": "distracted driving",
   "topic_key": "distracted driving",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Before changing lanes, what should you do last?",
@@ -789,7 +949,12 @@
   "topic": "lane changes",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why should you look over your shoulder before changing lanes?",
@@ -813,7 +978,12 @@
   "topic": "blind spot head check",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do before moving into another lane?",
@@ -837,7 +1007,12 @@
   "topic": "signaling",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What does a solid lane line next to your lane mean?",
@@ -861,7 +1036,12 @@
   "topic": "solid vs broken lines",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When changing lanes, what should you check before steering over?",
@@ -885,7 +1065,12 @@
   "topic": "lane changes",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What is the purpose of signaling before a lane change?",
@@ -909,7 +1094,12 @@
   "topic": "lane changes",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "A broken white lane line means you may change lanes when",
@@ -933,7 +1123,12 @@
   "topic": "lane changes",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What does a solid white line usually mean for lane changes?",
@@ -957,7 +1152,12 @@
   "topic": "lane changes",
   "topic_key": "lane changes",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Solid white lines are not treated uniformly in every state; 'discouraged or not allowed' is state-dependent/ambiguous.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a four-way stop, who goes first?",
@@ -981,7 +1181,12 @@
   "topic": "four-way stops: order of arrival",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What must you do at a four-way stop sign?",
@@ -1005,7 +1210,12 @@
   "topic": "four-way stops: complete stops",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a four-way stop, who must you yield to before entering?",
@@ -1029,7 +1239,12 @@
   "topic": "four-way stops: pedestrians",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a four-way stop, which turning driver has right-of-way?",
@@ -1053,7 +1268,12 @@
   "topic": "four-way stops: turning traffic",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Ambiguous/not universally correct at a four-way stop; right-of-way depends first on stop-order and position, not a blanket rule that straight traffic always goes over left-turning traffic.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a four-way stop, if two vehicles arrive together, who should go first?",
@@ -1077,7 +1297,12 @@
   "topic": "four-way stops: order of arrival",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a four-way stop, what must you do before starting a turn?",
@@ -1101,7 +1326,12 @@
   "topic": "four-way stops: complete stops, pedestrians, turning traffic",
   "topic_key": "four-way stops",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Which direction do vehicles travel in a roundabout?",
@@ -1125,7 +1355,12 @@
   "topic": "roundabouts: direction of travel",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "At a roundabout entrance, who must you yield to?",
@@ -1149,7 +1384,12 @@
   "topic": "roundabouts: yielding on entry",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Before entering a multi-lane roundabout, what should you do?",
@@ -1173,7 +1413,12 @@
   "topic": "roundabouts: choosing a lane",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you watch for when exiting a roundabout?",
@@ -1197,7 +1442,12 @@
   "topic": "roundabouts: exiting, pedestrians, large trucks",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "In a roundabout, where should you drive around the center island?",
@@ -1221,7 +1471,12 @@
   "topic": "roundabouts",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer is not universally correct as phrased; in U.S. roundabouts traffic circulates counterclockwise around the central island, i.e. the island is on the driver's left, so 'to the right' is misleading/incorrect.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When entering a roundabout, when may you go?",
@@ -1245,7 +1500,12 @@
   "topic": "roundabouts",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "In a multi-lane roundabout, when should you choose your lane?",
@@ -1269,7 +1529,12 @@
   "topic": "roundabouts",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why should you give large trucks extra space in roundabouts?",
@@ -1293,7 +1558,12 @@
   "topic": "roundabouts",
   "topic_key": "roundabouts",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What does the 3-second following rule help you do?",
@@ -1317,7 +1587,12 @@
   "topic": "Following distance: 3-second rule",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "When should you increase your following distance beyond 3 seconds?",
@@ -1341,7 +1616,12 @@
   "topic": "Following distance: increasing in bad weather",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why should you follow motorcycles and large trucks at a greater distance?",
@@ -1365,7 +1645,12 @@
   "topic": "Following distance: motorcycles and large trucks",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If a driver is tailgating you, what should you do?",
@@ -1389,7 +1674,12 @@
   "topic": "Following distance: being tailgated",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How can you check a safe following gap on a dry road?",
@@ -1413,7 +1703,12 @@
   "topic": "following distance",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on a state-specific number/rule: not every state uses 3 seconds as the standard following gap on dry roads.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do with following distance in rain or fog?",
@@ -1437,7 +1732,12 @@
   "topic": "following distance",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on a state-specific number/rule: 'beyond 3 seconds' is not universal across all states.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why leave extra space behind a motorcycle or large truck?",
@@ -1461,7 +1761,12 @@
   "topic": "following distance",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer A is not the only correct reason; extra space behind a motorcycle is also recommended because motorcycles can stop more quickly than cars, making C at least arguably correct. Question combines motorcycle and large truck with different reasons, causing ambiguity.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "A driver is following too closely behind you. What helps most?",
@@ -1485,7 +1790,12 @@
   "topic": "following distance",
   "topic_key": "following distance",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What do orange signs usually warn drivers about?",
@@ -1509,7 +1819,12 @@
   "topic": "work zones orange signs",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "In a work zone, who should you obey over regular signs?",
@@ -1533,7 +1848,12 @@
   "topic": "work zones flaggers",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "What should you do when lanes close in a work zone?",
@@ -1557,7 +1877,12 @@
   "topic": "work zones lane closures",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "How should you drive when entering a work zone?",
@@ -1581,7 +1906,12 @@
   "topic": "work zones slowing down and higher fines",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "If a flagger signals you to stop in a work zone, what should you do?",
@@ -1605,7 +1935,12 @@
   "topic": "Work zones and flaggers",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "question_text": "Why should you avoid speeding in a work zone?",
@@ -1629,6 +1964,11 @@
   "topic": "Work zone speed and penalties",
   "topic_key": "work zones",
   "batch": "thin-topics",
-  "source": "drafted by gpt-5.4-2026-03-05"
+  "source": "drafted by gpt-5.4-2026-03-05",
+  "qa": {
+   "verdict": "problem",
+   "issue": "Marked answer relies on a state-specific rule: higher fines in work zones are common but not universal across every US state.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  }
 ]

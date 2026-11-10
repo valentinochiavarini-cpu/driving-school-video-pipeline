@@ -26,8 +26,8 @@ export const SIGNS: Record<string, string> = {
   "W16-7P": "Downward arrow plaque: crossing is here", "W2-1": "Cross road (intersection) ahead", "W2-2": "Side road ahead",
   "W2-6": "Circular intersection (roundabout) ahead", "W5-2": "Narrow bridge", "W7-1": "Steep hill / downgrade",
   "W11-8": "Fire station / emergency vehicles", "W12-1": "Double arrow: traffic may pass on either side",
-  "M4-8": "Detour", "R3-11": "HOV lane: preferential lane ahead", "W9-1": "Lane ends (right lane ends)",
-  "R9-7": "Bike and pedestrian lanes: separated path", "S1-1": "School advance warning (school zone)",
+  "M4-8": "Detour", "R3-11": "HOV lane: only vehicles with the posted number of occupants (2+) during the posted hours", "W9-1": "Lane ends (right lane ends)",
+  "R9-7": "Shared-use path: bicycles keep left, pedestrians keep right", "S1-1": "School advance warning (school zone)",
 };
 
 /* The Commons API rate-limits the shared egress IP of cloud sessions (HTTP 429 on the first request), so files are

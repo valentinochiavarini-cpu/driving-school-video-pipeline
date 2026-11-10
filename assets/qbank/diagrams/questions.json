@@ -16,17 +16,22 @@
   },
   "correct_answer": "A",
   "explanation": "When two cars reach a four-way stop at the same time, the driver on the left yields to the driver on the right. Car A is on Car B's right, so Car A goes first.",
-  "question_text_es": "Ambos autos llegan a este alto de cuatro vías al mismo tiempo. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos llegan a este alto de cuatro v\u00edas al mismo tiempo. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
    "A": "El auto A",
    "B": "El auto B",
    "C": "Ambos a la vez",
-   "D": "El más rápido"
+   "D": "El m\u00e1s r\u00e1pido"
   },
-  "explanation_es": "Cuando dos autos llegan a un alto de cuatro vías al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto A está a la derecha del auto B, así que el auto A pasa primero.",
+  "explanation_es": "Cuando dos autos llegan a un alto de cuatro v\u00edas al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto A est\u00e1 a la derecha del auto B, as\u00ed que el auto A pasa primero.",
   "image_file": "diagrams/rw-fourway-right-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-fourway-right-90s",
@@ -45,17 +50,22 @@
   },
   "correct_answer": "D",
   "explanation": "When two cars reach a four-way stop at the same time, the driver on the left yields to the driver on the right. Car B is on Car A's right, so Car B goes first.",
-  "question_text_es": "Ambos autos llegan a este alto de cuatro vías al mismo tiempo. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos llegan a este alto de cuatro v\u00edas al mismo tiempo. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "El auto A",
    "C": "Ambos a la vez",
    "D": "El auto B"
   },
-  "explanation_es": "Cuando dos autos llegan a un alto de cuatro vías al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto B está a la derecha del auto A, así que el auto B pasa primero.",
+  "explanation_es": "Cuando dos autos llegan a un alto de cuatro v\u00edas al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto B est\u00e1 a la derecha del auto A, as\u00ed que el auto B pasa primero.",
   "image_file": "diagrams/rw-fourway-right-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-fourway-right-270",
@@ -74,17 +84,22 @@
   },
   "correct_answer": "D",
   "explanation": "When two cars reach a four-way stop at the same time, the driver on the left yields to the driver on the right. Car A is on Car B's right, so Car A goes first.",
-  "question_text_es": "Ambos autos llegan a este alto de cuatro vías al mismo tiempo. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos llegan a este alto de cuatro v\u00edas al mismo tiempo. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "Ambos a la vez",
    "C": "El auto B",
    "D": "El auto A"
   },
-  "explanation_es": "Cuando dos autos llegan a un alto de cuatro vías al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto A está a la derecha del auto B, así que el auto A pasa primero.",
+  "explanation_es": "Cuando dos autos llegan a un alto de cuatro v\u00edas al mismo tiempo, el conductor de la izquierda cede el paso al de la derecha. El auto A est\u00e1 a la derecha del auto B, as\u00ed que el auto A pasa primero.",
   "image_file": "diagrams/rw-fourway-right-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-uncontrolled-right-0",
@@ -103,17 +118,22 @@
   },
   "correct_answer": "C",
   "explanation": "At an intersection without signs or signals, yield to the vehicle on your right when you arrive at the same time. Car A is on Car B's right, so Car B yields.",
-  "question_text_es": "No hay señales ni semáforos en esta intersección y ambos autos llegan al mismo tiempo. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales ni sem\u00e1foros en esta intersecci\u00f3n y ambos autos llegan al mismo tiempo. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "Ninguno",
    "C": "El auto B",
    "D": "El auto A"
   },
-  "explanation_es": "En una intersección sin señales ni semáforos, cede el paso al vehículo de tu derecha si llegan al mismo tiempo. El auto A está a la derecha del auto B, así que el auto B cede el paso.",
+  "explanation_es": "En una intersecci\u00f3n sin se\u00f1ales ni sem\u00e1foros, cede el paso al veh\u00edculo de tu derecha si llegan al mismo tiempo. El auto A est\u00e1 a la derecha del auto B, as\u00ed que el auto B cede el paso.",
   "image_file": "diagrams/rw-uncontrolled-right-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-uncontrolled-right-90s",
@@ -132,17 +152,22 @@
   },
   "correct_answer": "B",
   "explanation": "At an intersection without signs or signals, yield to the vehicle on your right when you arrive at the same time. Car B is on Car A's right, so Car A yields.",
-  "question_text_es": "No hay señales ni semáforos en esta intersección y ambos autos llegan al mismo tiempo. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales ni sem\u00e1foros en esta intersecci\u00f3n y ambos autos llegan al mismo tiempo. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "El auto A",
    "C": "El auto B",
    "D": "Ninguno"
   },
-  "explanation_es": "En una intersección sin señales ni semáforos, cede el paso al vehículo de tu derecha si llegan al mismo tiempo. El auto B está a la derecha del auto A, así que el auto A cede el paso.",
+  "explanation_es": "En una intersecci\u00f3n sin se\u00f1ales ni sem\u00e1foros, cede el paso al veh\u00edculo de tu derecha si llegan al mismo tiempo. El auto B est\u00e1 a la derecha del auto A, as\u00ed que el auto A cede el paso.",
   "image_file": "diagrams/rw-uncontrolled-right-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-uncontrolled-right-270",
@@ -161,17 +186,22 @@
   },
   "correct_answer": "A",
   "explanation": "At an intersection without signs or signals, yield to the vehicle on your right when you arrive at the same time. Car A is on Car B's right, so Car B yields.",
-  "question_text_es": "No hay señales ni semáforos en esta intersección y ambos autos llegan al mismo tiempo. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales ni sem\u00e1foros en esta intersecci\u00f3n y ambos autos llegan al mismo tiempo. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "El auto B",
    "B": "El auto A",
-   "C": "El más rápido",
+   "C": "El m\u00e1s r\u00e1pido",
    "D": "Ninguno"
   },
-  "explanation_es": "En una intersección sin señales ni semáforos, cede el paso al vehículo de tu derecha si llegan al mismo tiempo. El auto A está a la derecha del auto B, así que el auto B cede el paso.",
+  "explanation_es": "En una intersecci\u00f3n sin se\u00f1ales ni sem\u00e1foros, cede el paso al veh\u00edculo de tu derecha si llegan al mismo tiempo. El auto A est\u00e1 a la derecha del auto B, as\u00ed que el auto B cede el paso.",
   "image_file": "diagrams/rw-uncontrolled-right-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "note": "grader cannot see the image; answer is rule-derived and visually checked"
+  }
  },
  {
   "id": "rw-fourway-left-vs-straight-0",
@@ -190,17 +220,22 @@
   },
   "correct_answer": "C",
   "explanation": "When two drivers facing each other arrive together, the driver turning left yields to the driver going straight. Car A goes first.",
-  "question_text_es": "Ambos autos se detienen en este alto de cuatro vías al mismo tiempo. El auto A sigue derecho y el auto B gira a la izquierda. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos se detienen en este alto de cuatro v\u00edas al mismo tiempo. El auto A sigue derecho y el auto B gira a la izquierda. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
    "A": "Ambos a la vez",
    "B": "El auto B",
    "C": "El auto A",
-   "D": "El más cercano"
+   "D": "El m\u00e1s cercano"
   },
   "explanation_es": "Cuando dos conductores de frente llegan juntos, el que gira a la izquierda cede el paso al que sigue derecho. El auto A pasa primero.",
   "image_file": "diagrams/rw-fourway-left-vs-straight-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-fourway-left-vs-straight-90s",
@@ -219,17 +254,22 @@
   },
   "correct_answer": "A",
   "explanation": "When two drivers facing each other arrive together, the driver turning left yields to the driver going straight. Car B goes first.",
-  "question_text_es": "Ambos autos se detienen en este alto de cuatro vías al mismo tiempo. El auto B sigue derecho y el auto A gira a la izquierda. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos se detienen en este alto de cuatro v\u00edas al mismo tiempo. El auto B sigue derecho y el auto A gira a la izquierda. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
    "A": "El auto B",
    "B": "El auto A",
-   "C": "El más cercano",
+   "C": "El m\u00e1s cercano",
    "D": "Ambos a la vez"
   },
   "explanation_es": "Cuando dos conductores de frente llegan juntos, el que gira a la izquierda cede el paso al que sigue derecho. El auto B pasa primero.",
   "image_file": "diagrams/rw-fourway-left-vs-straight-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-fourway-left-vs-straight-270",
@@ -248,17 +288,22 @@
   },
   "correct_answer": "A",
   "explanation": "When two drivers facing each other arrive together, the driver turning left yields to the driver going straight. Car A goes first.",
-  "question_text_es": "Ambos autos se detienen en este alto de cuatro vías al mismo tiempo. El auto A sigue derecho y el auto B gira a la izquierda. ¿Qué auto pasa primero?",
+  "question_text_es": "Ambos autos se detienen en este alto de cuatro v\u00edas al mismo tiempo. El auto A sigue derecho y el auto B gira a la izquierda. \u00bfQu\u00e9 auto pasa primero?",
   "answers_es": {
    "A": "El auto A",
    "B": "El auto B",
    "C": "Ambos a la vez",
-   "D": "El más cercano"
+   "D": "El m\u00e1s cercano"
   },
   "explanation_es": "Cuando dos conductores de frente llegan juntos, el que gira a la izquierda cede el paso al que sigue derecho. El auto A pasa primero.",
   "image_file": "diagrams/rw-fourway-left-vs-straight-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-green-left-turn-0",
@@ -277,17 +322,22 @@
   },
   "correct_answer": "B",
   "explanation": "On a green light without a green arrow, a driver turning left must yield to oncoming traffic going straight. Car A has the right-of-way.",
-  "question_text_es": "Ambos autos tienen luz verde. El auto B quiere girar a la izquierda y el auto A sigue derecho. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "Ambos autos tienen luz verde. El auto B quiere girar a la izquierda y el auto A sigue derecho. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
    "A": "El auto B",
    "B": "El auto A",
    "C": "El primero en entrar",
    "D": "Ninguno"
   },
-  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tráfico de frente que sigue derecho. El auto A tiene el derecho de paso.",
+  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tr\u00e1fico de frente que sigue derecho. El auto A tiene el derecho de paso.",
   "image_file": "diagrams/rw-green-left-turn-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-green-left-turn-90s",
@@ -306,17 +356,22 @@
   },
   "correct_answer": "C",
   "explanation": "On a green light without a green arrow, a driver turning left must yield to oncoming traffic going straight. Car B has the right-of-way.",
-  "question_text_es": "Ambos autos tienen luz verde. El auto A quiere girar a la izquierda y el auto B sigue derecho. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "Ambos autos tienen luz verde. El auto A quiere girar a la izquierda y el auto B sigue derecho. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
    "A": "Ninguno",
    "B": "El auto A",
    "C": "El auto B",
    "D": "El primero en entrar"
   },
-  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tráfico de frente que sigue derecho. El auto B tiene el derecho de paso.",
+  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tr\u00e1fico de frente que sigue derecho. El auto B tiene el derecho de paso.",
   "image_file": "diagrams/rw-green-left-turn-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-green-left-turn-270",
@@ -335,17 +390,22 @@
   },
   "correct_answer": "B",
   "explanation": "On a green light without a green arrow, a driver turning left must yield to oncoming traffic going straight. Car A has the right-of-way.",
-  "question_text_es": "Ambos autos tienen luz verde. El auto B quiere girar a la izquierda y el auto A sigue derecho. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "Ambos autos tienen luz verde. El auto B quiere girar a la izquierda y el auto A sigue derecho. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
    "A": "El primero en entrar",
    "B": "El auto A",
    "C": "Ninguno",
    "D": "El auto B"
   },
-  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tráfico de frente que sigue derecho. El auto A tiene el derecho de paso.",
+  "explanation_es": "Con luz verde sin flecha verde, quien gira a la izquierda debe ceder el paso al tr\u00e1fico de frente que sigue derecho. El auto A tiene el derecho de paso.",
   "image_file": "diagrams/rw-green-left-turn-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-t-intersection-0",
@@ -364,17 +424,22 @@
   },
   "correct_answer": "D",
   "explanation": "At a T-intersection without signs or signals, the driver on the road that ends must yield to traffic on the through road. Car B is on the road that ends.",
-  "question_text_es": "No hay señales en esta intersección en T. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales en esta intersecci\u00f3n en T. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "El auto A",
    "B": "El primero en avanzar",
    "C": "Ninguno",
    "D": "El auto B"
   },
-  "explanation_es": "En una intersección en T sin señales ni semáforos, quien está en la calle que termina debe ceder el paso al tráfico de la calle que continúa. El auto B está en la calle que termina.",
+  "explanation_es": "En una intersecci\u00f3n en T sin se\u00f1ales ni sem\u00e1foros, quien est\u00e1 en la calle que termina debe ceder el paso al tr\u00e1fico de la calle que contin\u00faa. El auto B est\u00e1 en la calle que termina.",
   "image_file": "diagrams/rw-t-intersection-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-t-intersection-90s",
@@ -393,17 +458,22 @@
   },
   "correct_answer": "D",
   "explanation": "At a T-intersection without signs or signals, the driver on the road that ends must yield to traffic on the through road. Car A is on the road that ends.",
-  "question_text_es": "No hay señales en esta intersección en T. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales en esta intersecci\u00f3n en T. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "El auto B",
    "B": "Ninguno",
    "C": "El primero en avanzar",
    "D": "El auto A"
   },
-  "explanation_es": "En una intersección en T sin señales ni semáforos, quien está en la calle que termina debe ceder el paso al tráfico de la calle que continúa. El auto A está en la calle que termina.",
+  "explanation_es": "En una intersecci\u00f3n en T sin se\u00f1ales ni sem\u00e1foros, quien est\u00e1 en la calle que termina debe ceder el paso al tr\u00e1fico de la calle que contin\u00faa. El auto A est\u00e1 en la calle que termina.",
   "image_file": "diagrams/rw-t-intersection-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-t-intersection-270",
@@ -422,17 +492,22 @@
   },
   "correct_answer": "D",
   "explanation": "At a T-intersection without signs or signals, the driver on the road that ends must yield to traffic on the through road. Car B is on the road that ends.",
-  "question_text_es": "No hay señales en esta intersección en T. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "No hay se\u00f1ales en esta intersecci\u00f3n en T. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "El auto A",
    "B": "Ninguno",
    "C": "El primero en avanzar",
    "D": "El auto B"
   },
-  "explanation_es": "En una intersección en T sin señales ni semáforos, quien está en la calle que termina debe ceder el paso al tráfico de la calle que continúa. El auto B está en la calle que termina.",
+  "explanation_es": "En una intersecci\u00f3n en T sin se\u00f1ales ni sem\u00e1foros, quien est\u00e1 en la calle que termina debe ceder el paso al tr\u00e1fico de la calle que contin\u00faa. El auto B est\u00e1 en la calle que termina.",
   "image_file": "diagrams/rw-t-intersection-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-two-way-stop-0",
@@ -451,17 +526,22 @@
   },
   "correct_answer": "C",
   "explanation": "Car B faces a stop sign and the cross street has none. It must stop and wait until Car A has passed.",
-  "question_text_es": "Solo una de las calles de esta intersección tiene señales de alto. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "Solo una de las calles de esta intersecci\u00f3n tiene se\u00f1ales de alto. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "Ninguno",
    "C": "El auto B",
    "D": "El auto A"
   },
-  "explanation_es": "El auto B tiene una señal de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto A.",
+  "explanation_es": "El auto B tiene una se\u00f1al de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto A.",
   "image_file": "diagrams/rw-two-way-stop-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-two-way-stop-90s",
@@ -480,17 +560,22 @@
   },
   "correct_answer": "A",
   "explanation": "Car A faces a stop sign and the cross street has none. It must stop and wait until Car B has passed.",
-  "question_text_es": "Solo una de las calles de esta intersección tiene señales de alto. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "Solo una de las calles de esta intersecci\u00f3n tiene se\u00f1ales de alto. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "El auto A",
    "B": "Ninguno",
    "C": "El auto B",
-   "D": "El más rápido"
+   "D": "El m\u00e1s r\u00e1pido"
   },
-  "explanation_es": "El auto A tiene una señal de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto B.",
+  "explanation_es": "El auto A tiene una se\u00f1al de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto B.",
   "image_file": "diagrams/rw-two-way-stop-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-two-way-stop-270",
@@ -509,17 +594,22 @@
   },
   "correct_answer": "D",
   "explanation": "Car B faces a stop sign and the cross street has none. It must stop and wait until Car A has passed.",
-  "question_text_es": "Solo una de las calles de esta intersección tiene señales de alto. ¿Qué auto debe ceder el paso?",
+  "question_text_es": "Solo una de las calles de esta intersecci\u00f3n tiene se\u00f1ales de alto. \u00bfQu\u00e9 auto debe ceder el paso?",
   "answers_es": {
    "A": "Ninguno",
    "B": "El auto A",
-   "C": "El más rápido",
+   "C": "El m\u00e1s r\u00e1pido",
    "D": "El auto B"
   },
-  "explanation_es": "El auto B tiene una señal de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto A.",
+  "explanation_es": "El auto B tiene una se\u00f1al de alto y la calle transversal no. Debe detenerse y esperar a que pase el auto A.",
   "image_file": "diagrams/rw-two-way-stop-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-roundabout-entry-0",
@@ -538,17 +628,22 @@
   },
   "correct_answer": "B",
   "explanation": "Drivers entering a roundabout must yield to traffic already circulating. Car A is already in the roundabout.",
-  "question_text_es": "El auto B está entrando a la glorieta y el auto A ya está dentro. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "El auto B est\u00e1 entrando a la glorieta y el auto A ya est\u00e1 dentro. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
    "A": "El auto B",
    "B": "El auto A",
-   "C": "El más rápido",
+   "C": "El m\u00e1s r\u00e1pido",
    "D": "Ninguno"
   },
-  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tráfico que ya circula en ella. El auto A ya está dentro.",
+  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tr\u00e1fico que ya circula en ella. El auto A ya est\u00e1 dentro.",
   "image_file": "diagrams/rw-roundabout-entry-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-roundabout-entry-90s",
@@ -567,17 +662,22 @@
   },
   "correct_answer": "C",
   "explanation": "Drivers entering a roundabout must yield to traffic already circulating. Car B is already in the roundabout.",
-  "question_text_es": "El auto A está entrando a la glorieta y el auto B ya está dentro. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "El auto A est\u00e1 entrando a la glorieta y el auto B ya est\u00e1 dentro. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
-   "A": "El más rápido",
+   "A": "El m\u00e1s r\u00e1pido",
    "B": "El auto A",
    "C": "El auto B",
    "D": "Ninguno"
   },
-  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tráfico que ya circula en ella. El auto B ya está dentro.",
+  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tr\u00e1fico que ya circula en ella. El auto B ya est\u00e1 dentro.",
   "image_file": "diagrams/rw-roundabout-entry-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-roundabout-entry-270",
@@ -596,17 +696,22 @@
   },
   "correct_answer": "A",
   "explanation": "Drivers entering a roundabout must yield to traffic already circulating. Car A is already in the roundabout.",
-  "question_text_es": "El auto B está entrando a la glorieta y el auto A ya está dentro. ¿Quién tiene el derecho de paso?",
+  "question_text_es": "El auto B est\u00e1 entrando a la glorieta y el auto A ya est\u00e1 dentro. \u00bfQui\u00e9n tiene el derecho de paso?",
   "answers_es": {
    "A": "El auto A",
    "B": "Ninguno",
-   "C": "El más rápido",
+   "C": "El m\u00e1s r\u00e1pido",
    "D": "El auto B"
   },
-  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tráfico que ya circula en ella. El auto A ya está dentro.",
+  "explanation_es": "Quien entra a una glorieta debe ceder el paso al tr\u00e1fico que ya circula en ella. El auto A ya est\u00e1 dentro.",
   "image_file": "diagrams/rw-roundabout-entry-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-pedestrian-right-turn-0",
@@ -625,17 +730,22 @@
   },
   "correct_answer": "C",
   "explanation": "A green light does not give you the right-of-way over people in the crosswalk. When turning, yield to pedestrians crossing the street you are turning into.",
-  "question_text_es": "El auto A gira a la derecha con luz verde mientras una persona cruza la calle. ¿Quién pasa primero?",
+  "question_text_es": "El auto A gira a la derecha con luz verde mientras una persona cruza la calle. \u00bfQui\u00e9n pasa primero?",
   "answers_es": {
    "A": "Ninguno, ambos esperan",
    "B": "El auto A",
-   "C": "El peatón",
+   "C": "El peat\u00f3n",
    "D": "El primero en avanzar"
   },
   "explanation_es": "La luz verde no te da el derecho de paso sobre las personas en el cruce peatonal. Al girar, cede el paso a los peatones que cruzan la calle hacia la que giras.",
   "image_file": "diagrams/rw-pedestrian-right-turn-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-pedestrian-right-turn-90s",
@@ -654,9 +764,9 @@
   },
   "correct_answer": "A",
   "explanation": "A green light does not give you the right-of-way over people in the crosswalk. When turning, yield to pedestrians crossing the street you are turning into.",
-  "question_text_es": "El auto B gira a la derecha con luz verde mientras una persona cruza la calle. ¿Quién pasa primero?",
+  "question_text_es": "El auto B gira a la derecha con luz verde mientras una persona cruza la calle. \u00bfQui\u00e9n pasa primero?",
   "answers_es": {
-   "A": "El peatón",
+   "A": "El peat\u00f3n",
    "B": "El primero en avanzar",
    "C": "Ninguno, ambos esperan",
    "D": "El auto B"
@@ -664,7 +774,12 @@
   "explanation_es": "La luz verde no te da el derecho de paso sobre las personas en el cruce peatonal. Al girar, cede el paso a los peatones que cruzan la calle hacia la que giras.",
   "image_file": "diagrams/rw-pedestrian-right-turn-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-pedestrian-right-turn-270",
@@ -683,17 +798,22 @@
   },
   "correct_answer": "C",
   "explanation": "A green light does not give you the right-of-way over people in the crosswalk. When turning, yield to pedestrians crossing the street you are turning into.",
-  "question_text_es": "El auto A gira a la derecha con luz verde mientras una persona cruza la calle. ¿Quién pasa primero?",
+  "question_text_es": "El auto A gira a la derecha con luz verde mientras una persona cruza la calle. \u00bfQui\u00e9n pasa primero?",
   "answers_es": {
    "A": "Ninguno, ambos esperan",
    "B": "El auto A",
-   "C": "El peatón",
+   "C": "El peat\u00f3n",
    "D": "El primero en avanzar"
   },
   "explanation_es": "La luz verde no te da el derecho de paso sobre las personas en el cruce peatonal. Al girar, cede el paso a los peatones que cruzan la calle hacia la que giras.",
   "image_file": "diagrams/rw-pedestrian-right-turn-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-emergency-vehicle-0",
@@ -712,17 +832,22 @@
   },
   "correct_answer": "B",
   "explanation": "When an emergency vehicle approaches with lights and siren, pull over to the right edge of the road, stop, and stay there until it has passed.",
-  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detrás del auto A. ¿Qué debe hacer el auto A?",
+  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detr\u00e1s del auto A. \u00bfQu\u00e9 debe hacer el auto A?",
   "answers_es": {
    "A": "Acelerar",
    "B": "Orillarse y detenerse",
    "C": "Pasar al otro carril",
    "D": "Frenar en su carril"
   },
-  "explanation_es": "Cuando se acerca un vehículo de emergencia con luces y sirena, oríllate al lado derecho del camino, detente y espera a que pase.",
+  "explanation_es": "Cuando se acerca un veh\u00edculo de emergencia con luces y sirena, or\u00edllate al lado derecho del camino, detente y espera a que pase.",
   "image_file": "diagrams/rw-emergency-vehicle-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-emergency-vehicle-90s",
@@ -741,17 +866,22 @@
   },
   "correct_answer": "D",
   "explanation": "When an emergency vehicle approaches with lights and siren, pull over to the right edge of the road, stop, and stay there until it has passed.",
-  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detrás del auto B. ¿Qué debe hacer el auto B?",
+  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detr\u00e1s del auto B. \u00bfQu\u00e9 debe hacer el auto B?",
   "answers_es": {
    "A": "Pasar al otro carril",
    "B": "Frenar en su carril",
    "C": "Acelerar",
    "D": "Orillarse y detenerse"
   },
-  "explanation_es": "Cuando se acerca un vehículo de emergencia con luces y sirena, oríllate al lado derecho del camino, detente y espera a que pase.",
+  "explanation_es": "Cuando se acerca un veh\u00edculo de emergencia con luces y sirena, or\u00edllate al lado derecho del camino, detente y espera a que pase.",
   "image_file": "diagrams/rw-emergency-vehicle-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-emergency-vehicle-270",
@@ -770,17 +900,22 @@
   },
   "correct_answer": "B",
   "explanation": "When an emergency vehicle approaches with lights and siren, pull over to the right edge of the road, stop, and stay there until it has passed.",
-  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detrás del auto A. ¿Qué debe hacer el auto A?",
+  "question_text_es": "Una ambulancia con luces y sirena encendidas se acerca por detr\u00e1s del auto A. \u00bfQu\u00e9 debe hacer el auto A?",
   "answers_es": {
    "A": "Frenar en su carril",
    "B": "Orillarse y detenerse",
    "C": "Acelerar",
    "D": "Pasar al otro carril"
   },
-  "explanation_es": "Cuando se acerca un vehículo de emergencia con luces y sirena, oríllate al lado derecho del camino, detente y espera a que pase.",
+  "explanation_es": "Cuando se acerca un veh\u00edculo de emergencia con luces y sirena, or\u00edllate al lado derecho del camino, detente y espera a que pase.",
   "image_file": "diagrams/rw-emergency-vehicle-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-school-bus-two-lane-0",
@@ -799,17 +934,22 @@
   },
   "correct_answer": "B",
   "explanation": "On a two-lane road, traffic in both directions must stop for a school bus with flashing red lights and an extended stop arm, and stay stopped until the lights turn off.",
-  "question_text_es": "El autobús escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. ¿Qué autos deben detenerse?",
+  "question_text_es": "El autob\u00fas escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. \u00bfQu\u00e9 autos deben detenerse?",
   "answers_es": {
    "A": "Solo el auto A",
    "B": "Ambos autos",
    "C": "Ninguno",
    "D": "Solo el auto B"
   },
-  "explanation_es": "En un camino de dos carriles, el tráfico en ambas direcciones debe detenerse ante un autobús escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
+  "explanation_es": "En un camino de dos carriles, el tr\u00e1fico en ambas direcciones debe detenerse ante un autob\u00fas escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
   "image_file": "diagrams/rw-school-bus-two-lane-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-school-bus-two-lane-90s",
@@ -828,17 +968,22 @@
   },
   "correct_answer": "B",
   "explanation": "On a two-lane road, traffic in both directions must stop for a school bus with flashing red lights and an extended stop arm, and stay stopped until the lights turn off.",
-  "question_text_es": "El autobús escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. ¿Qué autos deben detenerse?",
+  "question_text_es": "El autob\u00fas escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. \u00bfQu\u00e9 autos deben detenerse?",
   "answers_es": {
    "A": "Solo el auto B",
    "B": "Ambos autos",
    "C": "Solo el auto A",
    "D": "Ninguno"
   },
-  "explanation_es": "En un camino de dos carriles, el tráfico en ambas direcciones debe detenerse ante un autobús escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
+  "explanation_es": "En un camino de dos carriles, el tr\u00e1fico en ambas direcciones debe detenerse ante un autob\u00fas escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
   "image_file": "diagrams/rw-school-bus-two-lane-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-school-bus-two-lane-270",
@@ -857,17 +1002,22 @@
   },
   "correct_answer": "D",
   "explanation": "On a two-lane road, traffic in both directions must stop for a school bus with flashing red lights and an extended stop arm, and stay stopped until the lights turn off.",
-  "question_text_es": "El autobús escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. ¿Qué autos deben detenerse?",
+  "question_text_es": "El autob\u00fas escolar se detuvo con luces rojas intermitentes y el brazo de alto extendido en este camino de dos carriles. \u00bfQu\u00e9 autos deben detenerse?",
   "answers_es": {
    "A": "Ninguno",
    "B": "Solo el auto A",
    "C": "Solo el auto B",
    "D": "Ambos autos"
   },
-  "explanation_es": "En un camino de dos carriles, el tráfico en ambas direcciones debe detenerse ante un autobús escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
+  "explanation_es": "En un camino de dos carriles, el tr\u00e1fico en ambas direcciones debe detenerse ante un autob\u00fas escolar con luces rojas intermitentes y el brazo de alto extendido, hasta que las luces se apaguen.",
   "image_file": "diagrams/rw-school-bus-two-lane-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-highway-merge-0",
@@ -886,17 +1036,22 @@
   },
   "correct_answer": "D",
   "explanation": "Drivers entering a highway must yield to traffic already on it and adjust speed to merge into a safe gap. Car B yields.",
-  "question_text_es": "El auto B está en la rampa de entrada y el auto A va en el carril derecho de la autopista. ¿Quién debe ceder el paso?",
+  "question_text_es": "El auto B est\u00e1 en la rampa de entrada y el auto A va en el carril derecho de la autopista. \u00bfQui\u00e9n debe ceder el paso?",
   "answers_es": {
    "A": "Ninguno",
-   "B": "El más lento",
+   "B": "El m\u00e1s lento",
    "C": "El auto A",
    "D": "El auto B"
   },
-  "explanation_es": "Quien entra a una autopista debe ceder el paso al tráfico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto B cede el paso.",
+  "explanation_es": "Quien entra a una autopista debe ceder el paso al tr\u00e1fico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto B cede el paso.",
   "image_file": "diagrams/rw-highway-merge-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-highway-merge-90s",
@@ -915,17 +1070,22 @@
   },
   "correct_answer": "C",
   "explanation": "Drivers entering a highway must yield to traffic already on it and adjust speed to merge into a safe gap. Car A yields.",
-  "question_text_es": "El auto A está en la rampa de entrada y el auto B va en el carril derecho de la autopista. ¿Quién debe ceder el paso?",
+  "question_text_es": "El auto A est\u00e1 en la rampa de entrada y el auto B va en el carril derecho de la autopista. \u00bfQui\u00e9n debe ceder el paso?",
   "answers_es": {
-   "A": "El más lento",
+   "A": "El m\u00e1s lento",
    "B": "Ninguno",
    "C": "El auto A",
    "D": "El auto B"
   },
-  "explanation_es": "Quien entra a una autopista debe ceder el paso al tráfico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto A cede el paso.",
+  "explanation_es": "Quien entra a una autopista debe ceder el paso al tr\u00e1fico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto A cede el paso.",
   "image_file": "diagrams/rw-highway-merge-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-highway-merge-270",
@@ -944,17 +1104,22 @@
   },
   "correct_answer": "B",
   "explanation": "Drivers entering a highway must yield to traffic already on it and adjust speed to merge into a safe gap. Car B yields.",
-  "question_text_es": "El auto B está en la rampa de entrada y el auto A va en el carril derecho de la autopista. ¿Quién debe ceder el paso?",
+  "question_text_es": "El auto B est\u00e1 en la rampa de entrada y el auto A va en el carril derecho de la autopista. \u00bfQui\u00e9n debe ceder el paso?",
   "answers_es": {
    "A": "Ninguno",
    "B": "El auto B",
    "C": "El auto A",
-   "D": "El más lento"
+   "D": "El m\u00e1s lento"
   },
-  "explanation_es": "Quien entra a una autopista debe ceder el paso al tráfico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto B cede el paso.",
+  "explanation_es": "Quien entra a una autopista debe ceder el paso al tr\u00e1fico que ya circula y ajustar su velocidad para incorporarse en un espacio seguro. El auto B cede el paso.",
   "image_file": "diagrams/rw-highway-merge-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-right-on-red-0",
@@ -973,17 +1138,22 @@
   },
   "correct_answer": "C",
   "explanation": "Unless a sign prohibits it, you may turn right on red only after a complete stop and after yielding to cross traffic and pedestrians. Car A has the green light, so Car B waits.",
-  "question_text_es": "El auto B tiene luz roja y quiere girar a la derecha. El auto A tiene luz verde. ¿Qué debe hacer el auto B?",
+  "question_text_es": "El auto B tiene luz roja y quiere girar a la derecha. El auto A tiene luz verde. \u00bfQu\u00e9 debe hacer el auto B?",
   "answers_es": {
    "A": "Girar primero",
    "B": "Hacer luces y avanzar",
    "C": "Parar y ceder al auto A",
    "D": "Girar sin parar"
   },
-  "explanation_es": "Salvo que una señal lo prohíba, puedes girar a la derecha con luz roja solo después de detenerte por completo y ceder el paso al tráfico transversal y a los peatones. El auto A tiene luz verde, así que el auto B espera.",
+  "explanation_es": "Salvo que una se\u00f1al lo proh\u00edba, puedes girar a la derecha con luz roja solo despu\u00e9s de detenerte por completo y ceder el paso al tr\u00e1fico transversal y a los peatones. El auto A tiene luz verde, as\u00ed que el auto B espera.",
   "image_file": "diagrams/rw-right-on-red-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on right-on-red being allowed; not common to every US state/jurisdiction, so marked answer is not universally correct.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-right-on-red-90s",
@@ -1002,17 +1172,22 @@
   },
   "correct_answer": "D",
   "explanation": "Unless a sign prohibits it, you may turn right on red only after a complete stop and after yielding to cross traffic and pedestrians. Car B has the green light, so Car A waits.",
-  "question_text_es": "El auto A tiene luz roja y quiere girar a la derecha. El auto B tiene luz verde. ¿Qué debe hacer el auto A?",
+  "question_text_es": "El auto A tiene luz roja y quiere girar a la derecha. El auto B tiene luz verde. \u00bfQu\u00e9 debe hacer el auto A?",
   "answers_es": {
    "A": "Hacer luces y avanzar",
    "B": "Girar sin parar",
    "C": "Girar primero",
    "D": "Parar y ceder al auto B"
   },
-  "explanation_es": "Salvo que una señal lo prohíba, puedes girar a la derecha con luz roja solo después de detenerte por completo y ceder el paso al tráfico transversal y a los peatones. El auto B tiene luz verde, así que el auto A espera.",
+  "explanation_es": "Salvo que una se\u00f1al lo proh\u00edba, puedes girar a la derecha con luz roja solo despu\u00e9s de detenerte por completo y ceder el paso al tr\u00e1fico transversal y a los peatones. El auto B tiene luz verde, as\u00ed que el auto A espera.",
   "image_file": "diagrams/rw-right-on-red-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on right-on-red being allowed; not common to every US state/jurisdiction, so marked answer is not universally correct.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-right-on-red-270",
@@ -1031,17 +1206,22 @@
   },
   "correct_answer": "B",
   "explanation": "Unless a sign prohibits it, you may turn right on red only after a complete stop and after yielding to cross traffic and pedestrians. Car A has the green light, so Car B waits.",
-  "question_text_es": "El auto B tiene luz roja y quiere girar a la derecha. El auto A tiene luz verde. ¿Qué debe hacer el auto B?",
+  "question_text_es": "El auto B tiene luz roja y quiere girar a la derecha. El auto A tiene luz verde. \u00bfQu\u00e9 debe hacer el auto B?",
   "answers_es": {
    "A": "Girar primero",
    "B": "Parar y ceder al auto A",
    "C": "Hacer luces y avanzar",
    "D": "Girar sin parar"
   },
-  "explanation_es": "Salvo que una señal lo prohíba, puedes girar a la derecha con luz roja solo después de detenerte por completo y ceder el paso al tráfico transversal y a los peatones. El auto A tiene luz verde, así que el auto B espera.",
+  "explanation_es": "Salvo que una se\u00f1al lo proh\u00edba, puedes girar a la derecha con luz roja solo despu\u00e9s de detenerte por completo y ceder el paso al tr\u00e1fico transversal y a los peatones. El auto A tiene luz verde, as\u00ed que el auto B espera.",
   "image_file": "diagrams/rw-right-on-red-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "problem",
+   "issue": "Relies on right-on-red being allowed; not common to every US state/jurisdiction, so marked answer is not universally correct.",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-driveway-exit-0",
@@ -1060,17 +1240,22 @@
   },
   "correct_answer": "B",
   "explanation": "When entering a road from a driveway or alley, stop before the sidewalk and yield to pedestrians, then yield to all vehicles on the road.",
-  "question_text_es": "El auto A está saliendo de una entrada de cochera. ¿A quién debe ceder el paso el auto A?",
+  "question_text_es": "El auto A est\u00e1 saliendo de una entrada de cochera. \u00bfA qui\u00e9n debe ceder el paso el auto A?",
   "answers_es": {
    "A": "A nadie",
-   "B": "Al peatón y al auto B",
+   "B": "Al peat\u00f3n y al auto B",
    "C": "Solo al auto B",
-   "D": "Solo al peatón"
+   "D": "Solo al peat\u00f3n"
   },
-  "explanation_es": "Al entrar a una calle desde una cochera o un callejón, detente antes de la acera y cede el paso a los peatones, y luego a todos los vehículos de la calle.",
+  "explanation_es": "Al entrar a una calle desde una cochera o un callej\u00f3n, detente antes de la acera y cede el paso a los peatones, y luego a todos los veh\u00edculos de la calle.",
   "image_file": "diagrams/rw-driveway-exit-0.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-driveway-exit-90s",
@@ -1089,17 +1274,22 @@
   },
   "correct_answer": "C",
   "explanation": "When entering a road from a driveway or alley, stop before the sidewalk and yield to pedestrians, then yield to all vehicles on the road.",
-  "question_text_es": "El auto B está saliendo de una entrada de cochera. ¿A quién debe ceder el paso el auto B?",
+  "question_text_es": "El auto B est\u00e1 saliendo de una entrada de cochera. \u00bfA qui\u00e9n debe ceder el paso el auto B?",
   "answers_es": {
    "A": "A nadie",
    "B": "Solo al auto A",
-   "C": "Al peatón y al auto A",
-   "D": "Solo al peatón"
+   "C": "Al peat\u00f3n y al auto A",
+   "D": "Solo al peat\u00f3n"
   },
-  "explanation_es": "Al entrar a una calle desde una cochera o un callejón, detente antes de la acera y cede el paso a los peatones, y luego a todos los vehículos de la calle.",
+  "explanation_es": "Al entrar a una calle desde una cochera o un callej\u00f3n, detente antes de la acera y cede el paso a los peatones, y luego a todos los veh\u00edculos de la calle.",
   "image_file": "diagrams/rw-driveway-exit-90s.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  },
  {
   "id": "rw-driveway-exit-270",
@@ -1118,16 +1308,21 @@
   },
   "correct_answer": "D",
   "explanation": "When entering a road from a driveway or alley, stop before the sidewalk and yield to pedestrians, then yield to all vehicles on the road.",
-  "question_text_es": "El auto A está saliendo de una entrada de cochera. ¿A quién debe ceder el paso el auto A?",
+  "question_text_es": "El auto A est\u00e1 saliendo de una entrada de cochera. \u00bfA qui\u00e9n debe ceder el paso el auto A?",
   "answers_es": {
    "A": "A nadie",
    "B": "Solo al auto B",
-   "C": "Solo al peatón",
-   "D": "Al peatón y al auto B"
+   "C": "Solo al peat\u00f3n",
+   "D": "Al peat\u00f3n y al auto B"
   },
-  "explanation_es": "Al entrar a una calle desde una cochera o un callejón, detente antes de la acera y cede el paso a los peatones, y luego a todos los vehículos de la calle.",
+  "explanation_es": "Al entrar a una calle desde una cochera o un callej\u00f3n, detente antes de la acera y cede el paso a los peatones, y luego a todos los veh\u00edculos de la calle.",
   "image_file": "diagrams/rw-driveway-exit-270.png",
   "source": "generated diagram (tools/diagrams)",
-  "approved": false
+  "approved": false,
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  }
 ]

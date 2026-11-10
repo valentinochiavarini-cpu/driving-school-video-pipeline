@@ -17,7 +17,7 @@ for (const code of Object.keys(manifest)) {
   await page.locator("img").screenshot({ path: path.join(DIR, `${code}.png`), omitBackground: true });
 }
 const cells = Object.values(manifest).filter((m: any) => fs.existsSync(path.join(DIR, `${m.code}.png`)))
-  .map((m: any) => `<div class="c"><img src="file://${path.join(DIR, m.code + ".png")}"/><p><b>${m.code}</b> ${m.meaning}</p></div>`).join("");
+  .map((m: any) => `<div class="c"><img src="data:image/png;base64,${fs.readFileSync(path.join(DIR, m.code + ".png")).toString("base64")}"/><p><b>${m.code}</b> ${m.meaning}</p></div>`).join("");
 const sheet = await browser.newPage({ viewport: { width: 1400, height: 800 } });
 await sheet.setContent(`<html><head><style>body{margin:0;font:15px Inter,Arial;background:#fff}.g{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:10px}.c{text-align:center}.c img{width:150px;height:150px;object-fit:contain;background:#f3f4f6}.c p{margin:4px 0}</style></head><body><div class="g">${cells}</div></body></html>`, { waitUntil: "load" });
 await sheet.screenshot({ path: path.join(DIR, "contact.png"), fullPage: true });
