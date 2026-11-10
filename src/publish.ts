@@ -7,7 +7,8 @@ import { listVideos, updateVideo, type VideoRow } from "./ledger";
 
 const BASE = () => process.env.POSTIZ_BASE_URL || "https://api.postiz.com/public/v1";
 export const postizEnabled = () => !!process.env.POSTIZ_API_KEY;
-const hdr = () => ({ Authorization: process.env.POSTIZ_API_KEY ?? "" });
+// Postiz reads the bare key from Authorization, and also from a plain `auth` header (used by the session proxy).
+const hdr = () => ({ Authorization: process.env.POSTIZ_API_KEY ?? "", auth: process.env.POSTIZ_API_KEY ?? "" });
 
 async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const r = await fetch(`${BASE()}${path}`, { ...init, headers: { ...hdr(), ...(init.headers ?? {}) } });
