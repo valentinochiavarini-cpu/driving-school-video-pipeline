@@ -1,11 +1,10 @@
-/** One nightly run: pick the format by weekday, render one video (ledger: ready), schedule approved videos, sync states.
- *  Deterministic so a scheduled session only has to run `npm run nightly` and report the output. */
+/** One nightly run: render the weekday's formats (two videos), schedule approved videos, sync states and metrics,
+ *  then print the daily report (weekly on Sunday). Deterministic so a scheduled session only runs `npm run nightly`. */
 import { spawnSync } from "node:child_process";
-import { POSTING } from "./config";
+import { NIGHTLY_ROTATION, POSTING } from "./config";
 
-const ROTATION: Record<string, string> = { Mon: "pass5", Tue: "signs7", Wed: "row5", Thu: "pass10", Fri: "tricky5", Sat: "classic30", Sun: "pass5" };
 const weekday = new Intl.DateTimeFormat("en-US", { timeZone: POSTING.timezone, weekday: "short" }).format(new Date());
-const format = process.env.NIGHTLY_FORMAT || ROTATION[weekday] || "pass5";
+const formats = process.env.NIGHTLY_FORMAT ? process.env.NIGHTLY_FORMAT.split(",") : NIGHTLY_ROTATION[weekday] ?? ["pass5"];
 const lang = process.env.NIGHTLY_LANG || "en";
 
 function step(name: string, args: string[]): boolean {
@@ -15,10 +14,10 @@ function step(name: string, args: string[]): boolean {
   return r.status === 0;
 }
 
-const results = {
-  render: step("render", ["make", "--format", format, "--lang", lang, "--count", "1"]),
-  publish: step("publish", ["publish", "--count", "1"]),
-  sync: step("sync", ["sync"]),
-};
-console.log(`\nNIGHTLY SUMMARY ${new Date().toISOString()} weekday=${weekday} format=${format} ${JSON.stringify(results)}`);
+const results: Record<string, boolean> = {};
+for (const f of formats) results[`render:${f}`] = step(`render ${f}`, ["make", "--format", f, "--lang", lang, "--count", "1"]);
+results.publish = step("publish", ["publish", "--count", String(POSTING.perDay)]);
+results.sync = step("sync", ["sync"]);
+results.report = step("report", ["report", ...(weekday === "Sun" ? ["weekly"] : [])]);
+console.log(`\nNIGHTLY SUMMARY ${new Date().toISOString()} weekday=${weekday} formats=${formats.join("+")} ${JSON.stringify(results)}`);
 process.exit(Object.values(results).every(Boolean) ? 0 : 1);

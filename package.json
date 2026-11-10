@@ -16,6 +16,8 @@
     "publish": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts publish",
     "sync": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts sync",
     "nightly": "tsx src/nightly.ts",
+    "report": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts report",
+    "metrics": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts metrics",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

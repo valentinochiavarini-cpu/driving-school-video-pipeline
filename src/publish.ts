@@ -49,11 +49,15 @@ export function nextSlots(taken: Date[], count: number, now = new Date()): Date[
     const probe = new Date(now.getTime() + i * 86400e3);
     const p = Object.fromEntries(ymd.formatToParts(probe).map((x) => [x.type, x.value]));
     const weekend = p.weekday === "Sat" || p.weekday === "Sun";
-    const slot = zonedInstant(+p.year, +p.month, +p.day, weekend ? POSTING.weekendHour : POSTING.weekdayHour);
-    if (slot.getTime() - now.getTime() < POSTING.minLeadMinutes * 60e3) continue;
-    const k = dayKey(slot);
-    if ((perDay.get(k) ?? 0) >= POSTING.perDay) continue;
-    perDay.set(k, (perDay.get(k) ?? 0) + 1); out.push(slot);
+    for (const hour of weekend ? POSTING.weekendHours : POSTING.weekdayHours) {
+      if (out.length >= count) break;
+      const slot = zonedInstant(+p.year, +p.month, +p.day, hour);
+      if (slot.getTime() - now.getTime() < POSTING.minLeadMinutes * 60e3) continue;
+      if (taken.some((x) => Math.abs(x.getTime() - slot.getTime()) < 60e3)) continue;
+      const k = dayKey(slot);
+      if ((perDay.get(k) ?? 0) >= POSTING.perDay) continue;
+      perDay.set(k, (perDay.get(k) ?? 0) + 1); out.push(slot);
+    }
   }
   return out;
 }
@@ -118,6 +122,7 @@ type PostizPost = { id: string; publishDate?: string; date?: string; state?: str
 
 export async function syncScheduled(): Promise<void> {
   const scheduled = await listVideos("scheduled", 200);
+  const pulled = await pullMetrics(); if (pulled) console.log(`metrics refreshed for ${pulled} posts`);
   if (!scheduled.length) { console.log("sync: nothing scheduled"); return; }
   const now = Date.now();
   const due = scheduled.filter((v) => v.scheduled_at && new Date(v.scheduled_at).getTime() < now - 30 * 60e3);
@@ -145,4 +150,35 @@ export async function syncScheduled(): Promise<void> {
       console.log(`failed (stuck) ${v.id}`);
     }
   }
+}
+
+/* ---------- analytics ---------- */
+
+type Series = { label: string; data: { total: string; date: string }[]; percentageChange?: number };
+const lastTotal = (s: Series[], label: RegExp) => { const m = s.find((x) => label.test(x.label)); const v = m?.data?.at(-1)?.total; return v === undefined ? null : Number(v); };
+
+/** Post metrics from Postiz (path per the docs' CLI `analytics:post`; verified once an account exists). */
+export async function postMetrics(postId: string, days = 30): Promise<Record<string, number | null> | null> {
+  try {
+    const s = await api<Series[]>(`/analytics/post/${encodeURIComponent(postId)}?date=${days}`);
+    if (!Array.isArray(s)) return null;
+    return { views: lastTotal(s, /view|impression|play/i), likes: lastTotal(s, /like/i), comments: lastTotal(s, /comment/i), shares: lastTotal(s, /share/i), saves: lastTotal(s, /save|favor/i) };
+  } catch (e) { console.warn(`metrics ${postId}: ${(e as Error).message.slice(0, 120)}`); return null; }
+}
+
+export async function platformMetrics(days = 7): Promise<Series[] | null> {
+  try { const tt = await tiktokIntegration(); return await api<Series[]>(`/analytics/${tt.id}?date=${days}`); }
+  catch (e) { console.warn(`platform metrics: ${(e as Error).message.slice(0, 120)}`); return null; }
+}
+
+/** Refresh metrics for videos posted in the last 30 days. */
+export async function pullMetrics(): Promise<number> {
+  const posted = (await listVideos("posted", 200)).filter((v) => v.post_id && v.posted_at && Date.now() - new Date(v.posted_at).getTime() < 30 * 86400e3);
+  let n = 0;
+  for (const v of posted) {
+    const m = await postMetrics(v.post_id!);
+    if (!m || Object.values(m).every((x) => x === null)) continue;
+    await updateVideo(v.id, { metrics: { ...((v.metrics as object) ?? {}), ...m, pulled_at: new Date().toISOString() } }); n++;
+  }
+  return n;
 }

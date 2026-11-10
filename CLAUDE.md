@@ -24,10 +24,11 @@ src/render.ts     Remotion bundle + renderMedia
 src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
 src/publish.ts    Postiz: schedule approved videos (next free daily slot, TikTok settings from POSTING), sync states back
 src/still.ts      QA stills
-src/nightly.ts    the nightly run: format by weekday (Mon pass5, Tue signs7, Wed row5, Thu pass10, Fri tricky5,
-                  Sat classic30, Sun pass5) -> make -> publish approved -> sync. `npm run nightly`.
+src/nightly.ts    the nightly run: two formats by weekday (NIGHTLY_ROTATION in config) -> make x2 -> publish approved
+                  (2 per day) -> sync + metrics -> report (weekly on Sunday). `npm run nightly`.
 .github/workflows/nightly.yml  manual fallback render on GitHub Actions (needs the four secrets); not scheduled.
-src/cli.ts        dry | make | replan | approve <id> | list [status] | publish | sync | slots | audition | voices
+src/report.ts     daily/weekly report from the ledger: pipeline, errors, next posts, posted with metrics, costs, rankings
+src/cli.ts        dry | make | replan | approve <id> | list | publish | sync | slots | report [weekly] | metrics <id> k=v | audition | voices
 remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), QuestionScene, Captions,
                   fonts (Inter vendored in public/fonts), studio.css (tokens + CreatorStudio.css values)
 public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized). Replace with licensed files.
@@ -69,6 +70,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   buckets), and the `ingest` server function at /functions/v1/ingest with actions upsert, update, list,
   used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
 - Posting through Postiz Cloud; no own TikTok app audit. Approve the first 3 to 4 videos by hand, then auto.
+- Two posts a day (decision 2026-11-10): 11:00 and 19:00 ET weekdays, 11:00 and 17:00 weekends. Questions may be
+  reused in a new set after 60 days (POSTING.reuseAfterDays), since 634 general questions run out in weeks at this rate.
+- Hooks: 16 angles (HOOK_ANGLES), chosen by past views with exploration; growth rules in docs/GROWTH.md.
 
 ## Nightly run (decision 2026-11-10)
 
@@ -87,8 +91,9 @@ used_question_ids from the ledger is merged with cache/used.json so GitHub Actio
 ## Open issues
 
 1. Length has no target; keep an eye on anything over 75 s (the CLI warns).
-2. ElevenLabs account is on the free tier (10,000 characters per month, no commercial license). A paid plan
-   is required before anything is posted publicly. One video uses about 800 characters.
+2. ElevenLabs account is on the free tier (10,000 characters per month, no commercial license). Two posts a day
+   is roughly 40,000 to 60,000 characters a month (Classic 30 alone is about 4,000): Creator plan or pay-as-you-go
+   on top of Starter, before public posting.
 3. English voice: Liam (TX3LPaxmHKxFdv7VOQHJ), backup Laura (FGY2WhTYpPnrIDTdsKH5). Spanish voice not cast yet.
 4. Only 115 questions have images; signs7 exhausts unique sets after about 16 videos.
 5. SFX and music bed must be licensed files before the first public post.

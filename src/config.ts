@@ -6,9 +6,37 @@ export const BRAND = {
   logoWhite: "brand/logo-white.png", logoDark: "brand/logo-dark.png",
 };
 
-/** Hook styles, rotated per video and stored in the ledger (hook.style) so performance can be compared. */
-export const HOOK_STYLES = ["fail", "challenge", "sign", "count", "score"] as const;
-export type HookStyle = (typeof HOOK_STYLES)[number];
+/** Hook angles. One is chosen per video (weighted by past views once metrics exist, with exploration) and stored
+ *  in the ledger as hook.style so the weekly report can rank them and cut the losers. Add freely, never invent stats. */
+export const HOOK_ANGLES: { id: string; brief: string }[] = [
+  { id: "fail", brief: "fear of failing: most people get this driving test question wrong" },
+  { id: "challenge", brief: "a direct dare: can YOU pass the driving test" },
+  { id: "sign", brief: "curiosity about the first road sign shown: do you know what it means" },
+  { id: "count", brief: "the size of the test as the hook, using timing.count" },
+  { id: "score", brief: "a pass mark to beat, using pass_mark out of timing.count" },
+  { id: "newdriver", brief: "identity: for new drivers and permit test takers this week" },
+  { id: "retake", brief: "relatable: people who failed the driving test once and are retaking it" },
+  { id: "parent", brief: "parents or experienced drivers: would you still pass the written driving test today" },
+  { id: "trick", brief: "the trick question: the one driving test question that looks easy and is not" },
+  { id: "timer", brief: "pressure: answer before the timer runs out, using timing.seconds_per_question" },
+  { id: "rightofway", brief: "who goes first: right-of-way situations that confuse most drivers (only if the set has right-of-way questions)" },
+  { id: "silent", brief: "a quiet, confident statement: this is the real driving test. No hype words." },
+  { id: "bet", brief: "a bet or wager with the viewer: get them all right and comment, miss one and share" },
+  { id: "duo", brief: "play it with someone: take the driving test with a friend, partner or parent and compare scores" },
+  { id: "year", brief: "the updated test: the 2027 driving test questions people are not ready for (no invented changes)" },
+  { id: "honest", brief: "honest framing: no tricks, real written driving test questions, keep score" },
+];
+export type HookStyle = string;
+
+/** Nightly rotation: two formats per weekday (decision 2026-11-10: two posts a day). */
+export const NIGHTLY_ROTATION: Record<string, string[]> = {
+  Mon: ["pass5", "signs7"], Tue: ["row5", "pass10"], Wed: ["tricky5", "signs15"], Thu: ["pass5", "classic30"],
+  Fri: ["signs7", "pass15"], Sat: ["classic30", "pass5"], Sun: ["row5", "signs7"],
+};
+
+/** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
+ *  per video is a rough all-in average; Postiz Standard monthly. Reconcile with the platform invoices monthly. */
+export const COSTS = { elevenlabsPer1kChars: 0.04, openaiPerVideo: 0.004, postizPerMonth: 29, remotionPerMonth: 0 };
 
 export const VIDEO = {
   width: 1080,
@@ -99,9 +127,11 @@ export const READING = { wordsPerSecond: 3.5, thinkSeconds: 1.5, imageSeconds: 1
  *  After 14 days, move the hours to what TikTok Analytics shows for the account. */
 export const POSTING = {
   timezone: "America/New_York",
-  weekdayHour: 19,     // 7 pm Mon to Fri
-  weekendHour: 11,     // 11 am Sat and Sun
-  perDay: 1,
+  weekdayHours: [11, 19],   // Mon to Fri: 11 am and 7 pm
+  weekendHours: [11, 17],   // Sat and Sun: 11 am and 5 pm
+  perDay: 2,
+  /** questions may be reused in a new set after this many days */
+  reuseAfterDays: 60,
   minLeadMinutes: 90,  // never schedule closer than this to now
   horizonDays: 30,
   /** TikTok settings sent with every post */

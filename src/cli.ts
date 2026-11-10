@@ -1,18 +1,22 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] | sync | slots | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
 import { ROOT, OUT, PUBLIC, writeJson } from "./env";
 import { FORMATS } from "./config";
 import { fetchAllQuestions, cacheImage } from "./supabase";
+import type { VideoRow } from "./ledger";
 import { pickSet } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices } from "./voice";
 import { buildPlan, countdownSeconds } from "./plan";
 import { renderPlan } from "./render";
 import { execFileSync } from "node:child_process";
-import { ledgerEnabled, upsertVideo, updateVideo, listVideos, usedQuestionIds, uploadFile } from "./ledger";
+import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from "./ledger";
 import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publish";
+import { report } from "./report";
+import { chooseAngle } from "./text";
+import { POSTING } from "./config";
 import type { DisplayQuestion, Lang, Question } from "./types";
 
 async function make(fmt: string, lang: Lang, state: string | undefined, dry: boolean) {
@@ -20,12 +24,20 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const id = `${fmt}_${lang}_${Date.now()}`;
   const work = path.join(OUT, id); fs.mkdirSync(work, { recursive: true });
 
-  let qs: Question[];
+  let qs: Question[]; let ledgerRows: VideoRow[] = [];
   if (dry) {
     qs = JSON.parse(fs.readFileSync(path.join(ROOT, "docs/sample_set.json"), "utf8"));
     const sample = path.join(PUBLIC, "cache/images/sample_sign.png");
     if (!fs.existsSync(sample)) fs.copyFileSync(path.join(ROOT, "docs/sample_sign.png"), sample);
-  } else qs = pickSet(await fetchAllQuestions(), fmt, lang, state, undefined, ledgerEnabled() ? await usedQuestionIds(fmt, lang) : []);
+  } else {
+    let remoteUsed: string[] = [];
+    if (ledgerEnabled()) {
+      const recent = (await listVideos(null, 1000)).filter((v) => v.lang === lang && v.status !== "failed" && Date.now() - new Date(v.created_at ?? 0).getTime() < POSTING.reuseAfterDays * 86400e3);
+      remoteUsed = recent.flatMap((v) => v.question_ids ?? []);
+      ledgerRows = recent;
+    }
+    qs = pickSet(await fetchAllQuestions(), fmt, lang, state, undefined, remoteUsed);
+  }
 
   const speak = await Promise.all(qs.map((q) => (dry ? speakableDry(q) : speakable(q, lang))));
   const display: DisplayQuestion[] = await Promise.all(qs.map(async (q, i) => ({
@@ -41,7 +53,9 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   }
   const secs = Math.round(aq.reduce((a, c, i) => a + countdownSeconds(fmt, display[i], c), 0) / aq.length);
   const timing = { count: qs.length, seconds_per_question: secs };
-  const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state);
+  const stats: Record<string, { posts: number; views: number }> = {};
+  for (const v of ledgerRows) { const a = (v.hook as { style?: string } | null)?.style; if (!a) continue; stats[a] ??= { posts: 0, views: 0 }; stats[a].posts++; stats[a].views += Number((v.metrics as { views?: number } | null)?.views ?? 0); }
+  const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, chooseAngle(stats));
   const ah = dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
   const ao = dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
 
@@ -56,13 +70,23 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", "0.9", "-i", video, "-frames:v", "1", "-q:v", "3", thumb]);
   console.log(`OK ${path.relative(ROOT, video)}  ${plan.meta.totalSeconds}s`);
   if (ledgerEnabled() && !dry) {
+    const chars = [ah, ao, ...aq, ...ar].reduce((a, c) => a + c.text.length, 0);
     await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
-      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
+      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null } });
     const videoUrl = await uploadFile(id, "video", video);
     await uploadFile(id, "thumb", thumb);
     await updateVideo(id, { status: "ready" });
     console.log(`ledger: ${id} ready  ${videoUrl}`);
   }
+}
+
+async function setMetrics(id: string, pairs: string[]) {
+  const rows = await listVideos(null, 1000); const v = rows.find((r) => r.id === id);
+  if (!v) throw new Error(`no video ${id}`);
+  const patch: Record<string, unknown> = { ...((v.metrics as object) ?? {}) };
+  for (const p of pairs) { const [k, val] = p.split("="); if (k && val !== undefined) patch[k] = Number(val); }
+  patch.manual_at = new Date().toISOString();
+  await updateVideo(id, { metrics: patch }); console.log(`metrics ${id}`, patch);
 }
 
 async function approve(id: string) {
@@ -93,7 +117,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -103,6 +127,8 @@ try {
   else if (cmd === "audition") await audition(positionals[1] ?? `Most people fail this one. Can you pass the ${new Date().getFullYear() + 1} DMV test? Question one. What does this sign mean?`);
   else if (cmd === "replan") await replan(positionals[1]);
   else if (cmd === "approve") await approve(positionals[1]);
+  else if (cmd === "report") console.log(await report(positionals[1] === "weekly" || values.weekly === true));
+  else if (cmd === "metrics") await setMetrics(positionals[1], positionals.slice(2));
   else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3); }
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));

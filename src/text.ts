@@ -1,5 +1,5 @@
 /** OpenAI text jobs (JSON mode): spoken rewrite per question (cached), hooks + caption per video. */
-import { OPENAI, FORMATS, BRAND, HOOK_STYLES, type HookStyle } from "./config";
+import { OPENAI, FORMATS, BRAND, HOOK_ANGLES, type HookStyle } from "./config";
 import { jsonCache, keyOrPlaceholder, writeJson } from "./env";
 import type { Hook, Lang, Question, Speak } from "./types";
 import type { Timing } from "./dry";
@@ -47,9 +47,8 @@ export async function speakable(q: Question, lang: Lang): Promise<Speak> {
 const HOOK_SYSTEM = `You write opening hooks for vertical short-form quiz videos (TikTok, Reels, Shorts) for 'The Driving School', a US DMV written-test practice brand. Every video is a DMV written test quiz: the viewer answers real exam questions and keeps score.
 Return JSON only: {"card1": str, "card2": str, "vo_line": str, "outro_vo": str, "caption": str, "hashtags": [str]}
 Rules:
-- card1 = the hook, in the requested "style". Max 7 words. It MUST make clear this is the written driving test. Use the exact words "driving test" by default; use "DMV test" only when "wording" says "dmv". Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages.
-  Styles: fail = fear of failing (like "Most people FAIL this driving test question"); challenge = dare (like "Can you PASS the driving test?"); sign = curiosity about the first road sign (like "Do you KNOW this driving test sign?"); count = the size of the test, using timing.count (like "N driving test questions. How many right?"); score = a pass mark, using pass_mark and timing.count (like "Score P/N or you FAIL the driving test").
-  Any number in card1 or card2 MUST come from timing.count, timing.seconds_per_question or pass_mark. Never reuse numbers from these instructions.
+- card1 = the hook, written from the requested angle ("angle" and "angle_brief" in the input). Max 7 words. It MUST make clear this is the written driving test. Use the exact words "driving test" by default; use "DMV test" only when "wording" says "dmv". Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages.
+  Any number in card1 or card2 MUST come from timing.count, timing.seconds_per_question or pass_mark. Vary sentence shape: questions, dares, statements, "POV:", "Be honest:", a number first, a word first. Avoid starting two hooks the same way.
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 10 seconds each."
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
 - outro_vo = max 18 words: ask for the score in the comments, then say the full practice test is in the link in bio.
@@ -58,15 +57,23 @@ Rules:
 
 
 
-export function pickHookStyle(seed = Date.now()): HookStyle { return HOOK_STYLES[seed % HOOK_STYLES.length]; }
+/** Epsilon-greedy angle choice: untried angles first, then 70 percent best-by-views, 30 percent random. */
+export function chooseAngle(stats: Record<string, { posts: number; views: number }>, rnd = Math.random()): HookStyle {
+  const untried = HOOK_ANGLES.filter((a) => !stats[a.id] || stats[a.id].posts === 0);
+  if (untried.length) return untried[Math.floor(rnd * untried.length)].id;
+  if (rnd < 0.3) return HOOK_ANGLES[Math.floor((rnd / 0.3) * HOOK_ANGLES.length)].id;
+  const ranked = HOOK_ANGLES.map((a) => ({ id: a.id, avg: stats[a.id].views / Math.max(1, stats[a.id].posts) })).sort((x, y) => y.avg - x.avg);
+  return ranked[Math.floor(((rnd - 0.3) / 0.7) * Math.min(3, ranked.length))].id;
+}
 
-export async function hooks(questions: Question[], fmtId: string, lang: Lang, timing: Timing, state?: string, style: HookStyle = pickHookStyle()): Promise<Hook> {
+export async function hooks(questions: Question[], fmtId: string, lang: Lang, timing: Timing, state?: string, style: HookStyle = chooseAngle({})): Promise<Hook> {
+  const angle = HOOK_ANGLES.find((a) => a.id === style) ?? HOOK_ANGLES[0];
   const q1 = questions[0];
   const user = JSON.stringify({
     format: fmtId, format_label: FORMATS[fmtId].label, state: state ?? null,
     language: lang === "es" ? "Spanish (US)" : "English (US)", year: BRAND.year,
     first_question: q1.question_text, first_has_image: !!q1.image_url,
-    categories: [...new Set(questions.map((q) => q.category))].sort(), timing, style,
+    categories: [...new Set(questions.map((q) => q.category))].sort(), timing, angle: angle.id, angle_brief: angle.brief,
     pass_mark: Math.ceil(timing.count * 0.8),
     wording: Math.random() < 0.25 ? "dmv" : "driving test",
     cta: lang === "es" ? "practica el examen completo, link en la bio" : "practice the full test, link in bio",
