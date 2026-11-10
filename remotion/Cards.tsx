@@ -55,9 +55,9 @@ export const Outro: React.FC<{ plan: Plan }> = ({ plan }) => {
       <h1 style={{ transform: `scale(${0.85 + 0.15 * inA})`, opacity: inA }}>{es ? <>DEJA TU <em>PUNTAJE</em></> : <>DROP YOUR <em>SCORE</em></>}</h1>
       <h2 style={{ opacity: inA }}>{es ? "en los comentarios" : "in the comments"}</h2>
       <div className="scores">
-        {Array.from({ length: Math.min(n, 7) }, (_, i) => {
+        {(n <= 7 ? Array.from({ length: n }, (_, i) => `${i + 1}/${n}`) : [`<${Math.ceil(n * 0.8)}/${n}`, `${Math.ceil(n * 0.8)}/${n} ${es ? "APROBADO" : "PASS"}`, `${n}/${n}`]).map((label, i) => {
           const s = spring({ frame: frame - 8 - i * 3, fps, config: { damping: 10, stiffness: 220 } });
-          return <span key={i} style={{ transform: `scale(${s})`, opacity: s }}>{i + 1}/{n}</span>;
+          return <span key={i} className={n > 7 ? "wide" : ""} style={{ transform: `scale(${s})`, opacity: s }}>{label}</span>;
         })}
       </div>
       <div className="pill" style={{ transform: `scale(${pulse})` }}>{es ? BRAND.ctaEs : plan.brand.cta} →</div>

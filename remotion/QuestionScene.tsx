@@ -49,7 +49,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
         </div>
         <div className="progress"><i style={{ width: `${((idx + (reveal ? 1 : 0.5)) / n) * 100}%`, transition: "none" }} /></div>
       </div>
-      <div className="studio-main">
+      <div className={`studio-main ${img ? "has-image" : ""}`}>
         <p className="studio-question" style={{ opacity: qIn, transform: `translateY(${(1 - qIn) * 12}px)` }}>{q.question_text}</p>
         {img && <div className="studio-image" style={{ opacity: enter(3), transform: `scale(${0.96 + 0.04 * enter(3)})` }}><Img src={img} /></div>}
         <div className="studio-answers">

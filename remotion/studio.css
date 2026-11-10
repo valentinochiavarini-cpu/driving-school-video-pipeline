@@ -51,6 +51,10 @@
 .card h1 { font-size: 2.1rem; line-height: 1.1; font-weight: 900; text-transform: uppercase; }
 .card h1 em { font-style: normal; color: hsl(var(--highlight)); display: inline-block; margin: 0 .08em; }
 .card h2 { margin-top: 1.1rem; font-size: 1.1rem; font-weight: 500; opacity: .85; }
-.card .pill { margin-top: 1.6rem; background: hsl(var(--highlight)); color: hsl(var(--highlight-foreground)); font-weight: 800; padding: .6rem 1.2rem; border-radius: .5rem; font-size: 1.05rem; }
+.card .pill { margin-top: 1.6rem; background: hsl(var(--highlight)); color: hsl(var(--highlight-foreground)); font-weight: 800; padding: .6rem 1rem; border-radius: .5rem; font-size: .95rem; white-space: nowrap; }
 .card .scores { display: flex; gap: .4rem; margin-top: 1.2rem; }
 .card .scores span { width: 2.6rem; padding: .5rem 0; border: 2px solid hsl(var(--highlight)); border-radius: .4rem; font-weight: 700; font-size: .85rem; display: inline-block; }
+.card .scores span.wide { width: auto; padding: .5rem .6rem; white-space: nowrap; }
+/* reveal with an image: make room for the explanation */
+.reveal .studio-image { height: 5rem; }
+.reveal .has-image .studio-explanation .clamp { -webkit-line-clamp: 2; }
