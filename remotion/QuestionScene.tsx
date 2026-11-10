@@ -31,6 +31,8 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
   const explIn = spring({ frame: revealFrame - 6, fps, config: { damping: 16, stiffness: 180 } });
 
   const img = q.image ? (q.image.startsWith("http") || q.image.startsWith("../") ? q.image : staticFile(q.image)) : null;
+  // visual layout: big picture + 2x2 answers when every answer is short (diagram and sign questions)
+  const visual = !!img && Object.values(q.answers).every((a) => a.length <= 22);
   const clip = reveal ? seg.revealVo : seg.vo;
   const capOffset = reveal ? seg.questionFrames + seg.dimFrames : 0;
 
@@ -49,7 +51,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
         </div>
         <div className="progress"><i style={{ width: `${((idx + (reveal ? 1 : 0.5)) / n) * 100}%`, transition: "none" }} /></div>
       </div>
-      <div className={`studio-main ${img ? "has-image" : ""}`}>
+      <div className={`studio-main ${img ? "has-image" : ""} ${visual ? "visual" : ""}`}>
         <p className="studio-question" style={{ opacity: qIn, transform: `translateY(${(1 - qIn) * 12}px)` }}>{q.question_text}</p>
         {img && <div className="studio-image" style={{ opacity: enter(3), transform: `scale(${0.96 + 0.04 * enter(3)})` }}><Img src={img} /></div>}
         <div className="studio-answers">

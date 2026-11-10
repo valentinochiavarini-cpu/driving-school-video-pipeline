@@ -1,0 +1,470 @@
+[
+ {
+  "question_text": "If there are no traffic signals, you should yield to pedestrians at what location?",
+  "answers": {
+   "A": "A marked or unmarked crosswalk",
+   "B": "Only a marked crosswalk",
+   "C": "Only an intersection",
+   "D": "Any sidewalk driveway"
+  },
+  "correct_answer": "A",
+  "explanation": "When there are no traffic signals, drivers must slow down or stop to yield to pedestrians in crosswalks, whether marked or unmarked.",
+  "question_text_es": "Si no hay semáforos, ¿en qué lugar debe ceder el paso a los peatones?",
+  "answers_es": {
+   "A": "En un cruce marcado o no marcado",
+   "B": "Solo en un cruce marcado",
+   "C": "Solo en una intersección",
+   "D": "En cualquier entrada de acera"
+  },
+  "explanation_es": "Cuando no hay semáforos, los conductores deben reducir la velocidad o detenerse para ceder el paso a los peatones en los cruces peatonales, estén marcados o no.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "Yielding to pedestrians",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "4fcff093-1c73-4529-8743-c405e67b9605",
+  "original_question": "If there are no traffic signals, you should slow down or stop to yield to pedestrians at ________.",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What is one possible penalty for driving under the influence?",
+  "answers": {
+   "A": "License suspension",
+   "B": "A warning letter",
+   "C": "Free parking",
+   "D": "Lower insurance rates"
+  },
+  "correct_answer": "A",
+  "explanation": "A conviction for driving under the influence can result in license suspension. The other choices are not standard penalties for this offense.",
+  "question_text_es": "¿Cuál es una posible sanción por conducir bajo la influencia?",
+  "answers_es": {
+   "A": "Suspensión de la licencia",
+   "B": "Una carta de advertencia",
+   "C": "Estacionamiento gratis",
+   "D": "Tarifas de seguro más bajas"
+  },
+  "explanation_es": "Una condena por conducir bajo la influencia puede resultar en la suspensión de la licencia. Las otras opciones no son sanciones normales por esta infracción.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Impaired driving penalties",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "59fdba9c-083d-40b9-803e-ef8334828ede",
+  "original_question": "What are the potential penalties for being convicted of driving under the influence of alcohol or drugs?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Where should you always look both ways before proceeding?",
+  "answers": {
+   "A": "At intersections",
+   "B": "Only on highways",
+   "C": "Only in parking lots",
+   "D": "Only at green lights"
+  },
+  "correct_answer": "A",
+  "explanation": "Always look both ways before proceeding through an intersection. This helps you spot traffic, pedestrians, or hazards even when you have the right-of-way.",
+  "question_text_es": "¿Dónde siempre debe mirar a ambos lados antes de seguir?",
+  "answers_es": {
+   "A": "En las intersecciones",
+   "B": "Solo en las autopistas",
+   "C": "Solo en los estacionamientos",
+   "D": "Solo con luz verde"
+  },
+  "explanation_es": "Siempre debe mirar a ambos lados antes de avanzar por una intersección. Esto le ayuda a ver tráfico, peatones o peligros, incluso cuando tiene el derecho de paso.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Looking both ways at intersections",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "c917f1ad-e742-4a8d-bcb5-1f4a959aaf50",
+  "original_question": "At which locations should you always look both ways?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "You approach a STOP sign with a stop line. Where must you stop?",
+  "answers": {
+   "A": "Before entering the intersection",
+   "B": "In front of the stop line",
+   "C": "Prior to the crosswalk",
+   "D": "Past the stop line"
+  },
+  "correct_answer": "B",
+  "explanation": "At a STOP sign, you must stop before the stop line. If there is no stop line, stop before the crosswalk.",
+  "question_text_es": "Se acerca a una señal de STOP con una línea de alto. ¿Dónde debe detenerse?",
+  "answers_es": {
+   "A": "Antes de entrar en la intersección",
+   "B": "Antes de la línea de alto",
+   "C": "Antes del cruce peatonal",
+   "D": "Después de la línea de alto"
+  },
+  "explanation_es": "En una señal de STOP, debe detenerse antes de la línea de alto. Si no hay línea de alto, debe detenerse antes del cruce peatonal.",
+  "category": "Signs, Signals & Markings",
+  "topic": "Stopping at a STOP sign",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "f2f11c2a-5099-44a2-9fd9-11fb88cc2895",
+  "original_question": "You approach an intersection with a STOP sign. Where are you required to stop?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How does alcohol consumption impact driving ability?",
+  "answers": {
+   "A": "Improves reaction time",
+   "B": "Slows down reflexes",
+   "C": "Sharpens depth perception",
+   "D": "Increases alertness"
+  },
+  "correct_answer": "B",
+  "explanation": "Alcohol impairs driving ability, including slowing reflexes. That makes \"Slows down reflexes\" the correct answer.",
+  "question_text_es": "¿Cómo afecta el consumo de alcohol la capacidad para conducir?",
+  "answers_es": {
+   "A": "Mejora el tiempo de reacción",
+   "B": "Hace más lentos los reflejos",
+   "C": "Agudiza la percepción de profundidad",
+   "D": "Aumenta el estado de alerta"
+  },
+  "explanation_es": "El alcohol perjudica la capacidad para conducir, incluso hace más lentos los reflejos. Por eso, \"Hace más lentos los reflejos\" es la respuesta correcta.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Alcohol and driving impairment",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "b1169e39-744a-41c4-9a98-7ed66242192d",
+  "original_question": "How does alcohol consumption impact driving ability?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do first if an oncoming vehicle is in your lane?",
+  "answers": {
+   "A": "Speed up to pass it.",
+   "B": "Steer left into traffic.",
+   "C": "Steer right if safe.",
+   "D": "Stop in your lane."
+  },
+  "correct_answer": "C",
+  "explanation": "If an oncoming vehicle enters your lane, steer to the right as far as safely possible. This helps you avoid a head-on crash and follows the safest immediate action.",
+  "question_text_es": "¿Qué debe hacer primero si un vehículo que viene de frente está en su carril?",
+  "answers_es": {
+   "A": "Acelerar para pasarlo.",
+   "B": "Girar a la izquierda hacia el tráfico.",
+   "C": "Girar a la derecha si es seguro.",
+   "D": "Detenerse en su carril."
+  },
+  "explanation_es": "Si un vehículo que viene de frente entra en su carril, gire a la derecha tanto como sea seguro. Esto ayuda a evitar un choque de frente y es la acción inmediata más segura.",
+  "category": "Emergencies & Breakdowns",
+  "topic": "Oncoming vehicle in your lane",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "766b78ab-9767-4610-a173-1f2cd069620e",
+  "original_question": "What should you do if you see an oncoming vehicle in your lane?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a railroad crossing with only a stop sign, when may you proceed?",
+  "answers": {
+   "A": "After stopping, when no train is approaching.",
+   "B": "When no pedestrians are nearby.",
+   "C": "When no children are present.",
+   "D": "After one full minute."
+  },
+  "correct_answer": "A",
+  "explanation": "At a railroad crossing with a stop sign, you must stop and proceed only when no train is approaching and it is safe to cross. Answer A matches that rule.",
+  "question_text_es": "En un cruce de ferrocarril con solo una señal de alto, ¿cuándo puede continuar?",
+  "answers_es": {
+   "A": "Después de parar, cuando no se acerque un tren.",
+   "B": "Cuando no haya peatones cerca.",
+   "C": "Cuando no haya niños presentes.",
+   "D": "Después de un minuto completo."
+  },
+  "explanation_es": "En un cruce de ferrocarril con una señal de alto, debe detenerse y continuar solo cuando no se acerque ningún tren y sea seguro cruzar. La respuesta A coincide con esa regla.",
+  "category": "Signs, Signals & Markings",
+  "topic": "Railroad crossings",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "9aff4da1-492e-4b79-9b68-0ef0e718253d",
+  "original_question": "At a railroad crossing with only a stop sign, you must stop and proceed only when:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When are roads usually most slippery during rain?",
+  "answers": {
+   "A": "During the first 30 minutes",
+   "B": "After several hours of rain",
+   "C": "Only during heavy storms",
+   "D": "Only at night"
+  },
+  "correct_answer": "A",
+  "explanation": "Roads are typically at their slipperiest during the first 30 minutes of rain because oil and dirt mix with water before being washed away.",
+  "question_text_es": "¿Cuándo suelen estar las carreteras más resbaladizas durante la lluvia?",
+  "answers_es": {
+   "A": "Durante los primeros 30 minutos",
+   "B": "Después de varias horas de lluvia",
+   "C": "Solo durante tormentas fuertes",
+   "D": "Solo por la noche"
+  },
+  "explanation_es": "Las carreteras suelen estar más resbaladizas durante los primeros 30 minutos de lluvia porque el aceite y la suciedad se mezclan con el agua antes de ser arrastrados.",
+  "category": "Signs, Signals & Markings",
+  "topic": "Driving in rainy conditions",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "0f8878d5-a802-4c05-8782-9f427e78cabc",
+  "original_question": "Which of the following is correct about driving in rainy conditions?",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When no traffic signals are present, you must slow down or stop for pedestrians in:",
+  "answers": {
+   "A": "A marked crosswalk",
+   "B": "A bike lane",
+   "C": "A driveway entrance",
+   "D": "A parking space"
+  },
+  "correct_answer": "A",
+  "explanation": "You must slow down or stop for pedestrians in any crosswalk when no traffic signals are present. A marked crosswalk is one clear example, so it is the correct answer.",
+  "question_text_es": "Cuando no hay señales de tráfico, debe reducir la velocidad o detenerse por peatones en:",
+  "answers_es": {
+   "A": "Un cruce peatonal marcado",
+   "B": "Un carril para bicicletas",
+   "C": "La entrada de un camino",
+   "D": "Un espacio de estacionamiento"
+  },
+  "explanation_es": "Debe reducir la velocidad o detenerse por peatones en cualquier cruce peatonal cuando no hay señales de tráfico. Un cruce peatonal marcado es un ejemplo claro, por eso es la respuesta correcta.",
+  "category": "Sharing the Road",
+  "topic": "Pedestrians at crosswalks",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "7bc7eacb-0b65-4b67-872a-556d72e050aa",
+  "original_question": "When no traffic signals are present, you must slow down or stop for pedestrians in:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When approaching a railroad crossing, what should you do?",
+  "answers": {
+   "A": "Speed up to cross quickly",
+   "B": "Slow down and prepare to stop",
+   "C": "Stop on the tracks",
+   "D": "Ignore warning signs"
+  },
+  "correct_answer": "B",
+  "explanation": "As you approach a railroad crossing, you should slow down and be ready to stop. This gives you time to look for a train and react safely if one is coming.",
+  "question_text_es": "Al acercarse a un cruce de ferrocarril, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Acelerar para cruzar rápido",
+   "B": "Reducir la velocidad y prepararse para detenerse",
+   "C": "Detenerse sobre las vías",
+   "D": "Ignorar las señales de advertencia"
+  },
+  "explanation_es": "Al acercarse a un cruce de ferrocarril, debe reducir la velocidad y estar listo para detenerse. Esto le da tiempo para buscar un tren y reaccionar con seguridad si uno se acerca.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "Railroad crossings",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "b3e8147a-f8ac-43a7-b2eb-34fed8308f3b",
+  "original_question": "When approaching a railroad crossing you should:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "On the roadway, emergency vehicles have the right-of-way when using:",
+  "answers": {
+   "A": "siren, horn, and red/blue lights",
+   "B": "a loudspeaker only",
+   "C": "hazard lights only",
+   "D": "headlights only"
+  },
+  "correct_answer": "A",
+  "explanation": "Emergency vehicles using their siren, horn, and red or blue lights have the right-of-way. Drivers should pull over to the right and stop until they pass, and watch for others following behind.",
+  "question_text_es": "En la carretera, los vehículos de emergencia tienen el derecho de paso cuando usan:",
+  "answers_es": {
+   "A": "sirena, bocina y luces rojas/azules",
+   "B": "solo un altavoz",
+   "C": "solo luces intermitentes",
+   "D": "solo los faros"
+  },
+  "explanation_es": "Los vehículos de emergencia que usan su sirena, bocina y luces rojas o azules tienen el derecho de paso. Los conductores deben hacerse a la derecha y detenerse hasta que pasen, y estar atentos a otros que vengan detrás.",
+  "category": "Sharing the Road",
+  "topic": "Emergency vehicles",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "04211bf3-d9de-41ec-85e2-301a9c71c1f0",
+  "original_question": "On the roadway, emergency vehicles:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Where should an infant or small child ride in a vehicle with airbags?",
+  "answers": {
+   "A": "In the back seat",
+   "B": "In the front seat",
+   "C": "On an adult's lap",
+   "D": "In the cargo area"
+  },
+  "correct_answer": "A",
+  "explanation": "Infants and small children should ride in the back seat, properly restrained. A front seat with an active airbag can seriously injure a child, even in a low-speed crash.",
+  "question_text_es": "¿Dónde debe viajar un bebé o niño pequeño en un vehículo con bolsas de aire?",
+  "answers_es": {
+   "A": "En el asiento trasero",
+   "B": "En el asiento delantero",
+   "C": "En el regazo de un adulto",
+   "D": "En el área de carga"
+  },
+  "explanation_es": "Los bebés y niños pequeños deben viajar en el asiento trasero, correctamente sujetos. Un asiento delantero con una bolsa de aire activa puede lesionar gravemente a un niño, incluso en un choque a baja velocidad.",
+  "category": "Vehicle Equipment & Safety",
+  "topic": "Seat belts and child restraints",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "f87dc356-9a12-400b-88c0-9676d1b2c5f2",
+  "original_question": "The following is true regarding seat belts and child restraints in vehicles:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If a driver is tailgating you, what should you do if a right lane is open?",
+  "answers": {
+   "A": "Move over to the right",
+   "B": "Brake suddenly to warn them",
+   "C": "Speed up to get away",
+   "D": "Stop in your lane"
+  },
+  "correct_answer": "A",
+  "explanation": "When another driver is tailgating you, move to the right if a lane is open. This lets the tailgater pass and helps avoid conflict or a rear-end crash.",
+  "question_text_es": "Si un conductor lo sigue muy de cerca, ¿qué debe hacer si hay un carril derecho abierto?",
+  "answers_es": {
+   "A": "Cámbiese al carril derecho",
+   "B": "Frene de repente para avisarle",
+   "C": "Acelere para alejarse",
+   "D": "Deténgase en su carril"
+  },
+  "explanation_es": "Cuando otro conductor lo sigue muy de cerca, cámbiese a la derecha si hay un carril abierto. Esto permite que pase y ayuda a evitar un conflicto o un choque por detrás.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Tailgating",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "091a7453-fb38-466b-a39c-b187578423f7",
+  "original_question": "When you are being “tailgated”;",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When must you obey a traffic officer's order to stop?",
+  "answers": {
+   "A": "Only at a stop sign",
+   "B": "Only at a red light",
+   "C": "Whenever an officer directs you",
+   "D": "Only in a school zone"
+  },
+  "correct_answer": "C",
+  "explanation": "You must stop whenever a traffic officer directs you to stop. An officer's directions override signs and signals.",
+  "question_text_es": "¿Cuándo debe obedecer la orden de un agente de tránsito de detenerse?",
+  "answers_es": {
+   "A": "Solo en una señal de alto",
+   "B": "Solo en una luz roja",
+   "C": "Siempre que un agente se lo indique",
+   "D": "Solo en una zona escolar"
+  },
+  "explanation_es": "Debe detenerse siempre que un agente de tránsito le indique que se detenga. Las instrucciones del agente tienen prioridad sobre las señales y los semáforos.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "Obeying traffic officers",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "39cce534-caa2-4877-acc3-0578cacb32e6",
+  "original_question": "As you drive, you're required to stop your vehicle:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When should you slow down on a wet or slippery road?",
+  "answers": {
+   "A": "Only when turning left",
+   "B": "Whenever traction is reduced",
+   "C": "Only near stop signs",
+   "D": "Only if other cars splash water"
+  },
+  "correct_answer": "B",
+  "explanation": "Slow down whenever the road is wet or slippery because reduced traction increases crash risk. Lower speed gives you more time to react and helps maintain control.",
+  "question_text_es": "¿Cuándo debe reducir la velocidad en una carretera mojada o resbaladiza?",
+  "answers_es": {
+   "A": "Solo al girar a la izquierda",
+   "B": "Siempre que la tracción sea menor",
+   "C": "Solo cerca de señales de alto",
+   "D": "Solo si otros autos salpican agua"
+  },
+  "explanation_es": "Reduzca la velocidad siempre que la carretera esté mojada o resbaladiza porque la menor tracción aumenta el riesgo de choque. Una velocidad más baja le da más tiempo para reaccionar y ayuda a mantener el control.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Slowing down for wet or slippery roads",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "845118a7-2422-417b-94ba-408620dc78cd",
+  "original_question": "It is important to slow down:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When driving on major highways, what should you do?",
+  "answers": {
+   "A": "Stay alert",
+   "B": "Lower your seat",
+   "C": "Use parking lights",
+   "D": "Drive on the shoulder"
+  },
+  "correct_answer": "A",
+  "explanation": "On major highways, you should stay alert, keep your eyes moving, and be ready to react to road hazards. Staying alert is correct because highway speeds leave little time to respond.",
+  "question_text_es": "Cuando conduces en autopistas principales, ¿qué debes hacer?",
+  "answers_es": {
+   "A": "Mantenerte alerta",
+   "B": "Bajar tu asiento",
+   "C": "Usar las luces de estacionamiento",
+   "D": "Conducir por el acotamiento"
+  },
+  "explanation_es": "En las autopistas principales, debes mantenerte alerta, mover la vista constantemente y estar listo para reaccionar a peligros en la vía. Mantenerte alerta es correcto porque a velocidades altas hay poco tiempo para responder.",
+  "category": "Lane Usage & Highway Driving",
+  "topic": "major highway driving",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "777ec839-3552-40d1-95ec-2bb0689b8121",
+  "original_question": "When driving on major highways:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If a collision is unavoidable, what should you try to hit?",
+  "answers": {
+   "A": "A rigid concrete barrier",
+   "B": "An oncoming moving vehicle",
+   "C": "Something that will give way",
+   "D": "The center of a parked truck"
+  },
+  "correct_answer": "C",
+  "explanation": "If a collision is unavoidable, try to hit something that will give way rather than something rigid. This can reduce the force of impact and lessen injuries.",
+  "question_text_es": "Si una colisión es inevitable, ¿qué debería tratar de golpear?",
+  "answers_es": {
+   "A": "Una barrera rígida de concreto",
+   "B": "Un vehículo que viene de frente",
+   "C": "Algo que ceda al impacto",
+   "D": "El centro de un camión estacionado"
+  },
+  "explanation_es": "Si una colisión es inevitable, trate de golpear algo que ceda al impacto en lugar de algo rígido. Esto puede reducir la fuerza del impacto y disminuir las lesiones.",
+  "category": "Emergencies & Breakdowns",
+  "topic": "Unavoidable collisions",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "15ea1a56-8d53-4437-9090-2fca4d7eece8",
+  "original_question": "If a collision is possible, you should:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If your windshield wipers fail in rain or snow, what should you do first?",
+  "answers": {
+   "A": "Speed up to clear water",
+   "B": "Pull off the road safely",
+   "C": "Open a window for visibility",
+   "D": "Keep driving slowly"
+  },
+  "correct_answer": "B",
+  "explanation": "If your wipers fail during rain or snow, reduced visibility makes continuing dangerous. Slow down and pull off the road safely until you can restore visibility.",
+  "question_text_es": "Si los limpiaparabrisas fallan con lluvia o nieve, ¿qué debe hacer primero?",
+  "answers_es": {
+   "A": "Acelerar para quitar el agua",
+   "B": "Orillarse de manera segura",
+   "C": "Abrir una ventana para ver",
+   "D": "Seguir manejando despacio"
+  },
+  "explanation_es": "Si los limpiaparabrisas fallan durante lluvia o nieve, la visibilidad reducida hace peligroso continuar. Disminuya la velocidad y oríllese de manera segura hasta que pueda recuperar la visibilidad.",
+  "category": "Emergencies & Breakdowns",
+  "topic": "Windshield wiper failure",
+  "image_url": null,
+  "batch": "all-of-the-above-rewrite",
+  "replaces_id": "ae87c154-eb18-42b1-bbe5-f425f4816685",
+  "original_question": "If your windshield wipers stop suddenly during rain or snow you should:",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ }
+]

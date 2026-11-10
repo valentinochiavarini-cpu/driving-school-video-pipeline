@@ -55,6 +55,14 @@
 .studio-footer { padding: .45rem .9rem .55rem; border-top: 1px solid hsl(var(--border)); min-height: 3.4rem; display: flex; align-items: center; justify-content: center; }
 .dim { position: absolute; inset: 0; background: hsl(var(--background) / .55); z-index: 40; }
 .studio-explanation .clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+/* visual layout (decision 2026-11-10): picture-led questions get a large image and a 2x2 answer grid */
+/* picture questions: the image takes whatever height the text leaves (flex), answers a little tighter */
+.has-image .studio-image { flex: 1 1 auto; height: auto; min-height: 4rem; max-height: 15rem; background: #fff; }
+.has-image .studio-answer { min-height: 2.5rem; padding: .4rem .7rem; }
+.visual .studio-answers { grid-template-columns: 1fr 1fr; }
+.visual .studio-answer { font-size: .92rem; min-height: 2.6rem; gap: .45rem; padding: .35rem .5rem; }
+.visual .studio-letter { width: 1.7rem; height: 1.7rem; }
+.has-image .studio-question { font-size: 1.12rem; }
 /* captions */
 .cap { display: flex; flex-wrap: wrap; justify-content: center; gap: .1rem .25rem; font-size: 1.1rem; font-weight: 800; line-height: 1.25; text-align: center; color: hsl(var(--foreground)); text-transform: uppercase; letter-spacing: .01em; }
 .cap span { padding: 0 .1rem; border-radius: .25rem; }
@@ -73,5 +81,4 @@
 .card .scores span { width: 2.6rem; padding: .5rem 0; border: 2px solid hsl(var(--highlight)); border-radius: .4rem; font-weight: 700; font-size: .85rem; display: inline-block; }
 .card .scores span.wide { width: auto; padding: .5rem .6rem; white-space: nowrap; }
 /* reveal with an image: make room for the explanation */
-.reveal .studio-image { height: 4.5rem; }
 .reveal .has-image .studio-explanation .clamp { -webkit-line-clamp: 2; }

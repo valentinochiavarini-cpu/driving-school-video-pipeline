@@ -7,7 +7,8 @@ import path from "node:path";
 const OUT = path.resolve("assets/qbank/signs");
 fs.mkdirSync(OUT, { recursive: true });
 const API = "https://commons.wikimedia.org/w/api.php";
-const UA = { "User-Agent": "driving-school-video-pipeline/0.2 (question bank tooling)" };
+// Wikimedia policy: identify the client with a contact point (the public app URL), see meta.wikimedia.org/wiki/User-Agent_policy
+const UA = { "User-Agent": "TheDrivingSchoolQuestionBank/1.0 (https://the-driving-school.lovable.app) node-fetch/22" };
 
 /** MUTCD code -> meaning (from the MUTCD sign descriptions). The question drafts use the meaning; owner reviews. */
 export const SIGNS: Record<string, string> = {
@@ -42,7 +43,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 async function get(url: string): Promise<{ status: number; body?: Buffer }> {
   for (let attempt = 0; attempt < 6; attempt++) {
     const r = await fetch(url, { headers: UA });
-    if (r.status === 429) { await sleep(5000 * 2 ** attempt); continue; }
+    if (r.status === 429) { await sleep(15000 * 2 ** attempt); continue; }
     return { status: r.status, body: r.ok ? Buffer.from(await r.arrayBuffer()) : undefined };
   }
   return { status: 429 };
@@ -80,7 +81,7 @@ for (const code of codes) {
   let done = false;
   for (const name of variants(code)) {
     const url = fileUrl(name);
-    const r = await get(url); await sleep(6000);
+    const r = await get(url); await sleep(Number(process.env.PACE_MS ?? 12000));
     if (r.status === 404) continue;
     if (r.status !== 200 || !r.body) { console.log(`FAIL ${code} ${name} ${r.status}`); done = true; break; }
     const svg = r.body.toString("utf8");

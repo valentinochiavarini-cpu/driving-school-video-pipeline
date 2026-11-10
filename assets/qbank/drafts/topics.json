@@ -1,0 +1,1634 @@
+[
+ {
+  "question_text": "What does a white diamond marking on a lane mean?",
+  "answers": {
+   "A": "Passing lane only",
+   "B": "HOV lane",
+   "C": "No trucks allowed",
+   "D": "Exit-only lane"
+  },
+  "correct_answer": "B",
+  "explanation": "A white diamond marks a lane reserved for high-occupancy vehicles or other permitted users. It tells drivers that special lane-use rules apply there.",
+  "question_text_es": "¿Qué significa un rombo blanco marcado en un carril?",
+  "answers_es": {
+   "A": "Solo carril para rebasar",
+   "B": "Carril HOV",
+   "C": "No se permiten camiones",
+   "D": "Carril solo para salida"
+  },
+  "explanation_es": "Un rombo blanco marca un carril reservado para vehículos de alta ocupación u otros usuarios permitidos. Indica que allí se aplican reglas especiales de uso del carril.",
+  "category": "Signs, Signals & Markings",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Who may use an HOV lane?",
+  "answers": {
+   "A": "Only motorcycles",
+   "B": "Any vehicle at any time",
+   "C": "Vehicles meeting posted requirements",
+   "D": "Only large trucks"
+  },
+  "correct_answer": "C",
+  "explanation": "HOV lanes are reserved for vehicles that meet the posted occupancy or use requirements. Always follow the signs showing who may use the lane and when.",
+  "question_text_es": "¿Quién puede usar un carril HOV?",
+  "answers_es": {
+   "A": "Solo motocicletas",
+   "B": "Cualquier vehículo en cualquier momento",
+   "C": "Vehículos que cumplan los requisitos",
+   "D": "Solo camiones grandes"
+  },
+  "explanation_es": "Los carriles HOV están reservados para vehículos que cumplen los requisitos publicados de ocupación o uso. Siempre siga las señales que indican quién puede usar el carril y cuándo.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How should you enter or leave an HOV lane?",
+  "answers": {
+   "A": "Cross whenever traffic is light",
+   "B": "Use designated entry and exit points",
+   "C": "Drive on the shoulder",
+   "D": "Stop before changing lanes"
+  },
+  "correct_answer": "B",
+  "explanation": "Enter and leave an HOV lane only where signs and pavement markings allow it. Crossing restricted boundary lines is not permitted.",
+  "question_text_es": "¿Cómo debe entrar o salir de un carril HOV?",
+  "answers_es": {
+   "A": "Cruce cuando haya poco tráfico",
+   "B": "Use puntos designados de entrada y salida",
+   "C": "Conduzca por el acotamiento",
+   "D": "Deténgase antes de cambiar de carril"
+  },
+  "explanation_es": "Entre y salga de un carril HOV solo donde lo permitan las señales y las marcas del pavimento. No está permitido cruzar líneas de separación restringidas.",
+  "category": "Turning & Lane Changes",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What is the main purpose of HOV or carpool lanes?",
+  "answers": {
+   "A": "Reduce congestion",
+   "B": "Increase parking space",
+   "C": "Provide scenic routes",
+   "D": "Create truck shortcuts"
+  },
+  "correct_answer": "A",
+  "explanation": "HOV or carpool lanes move more people in fewer vehicles, which helps reduce traffic congestion. They encourage ridesharing and more efficient road use.",
+  "question_text_es": "¿Cuál es el propósito principal de los carriles HOV o compartidos?",
+  "answers_es": {
+   "A": "Reducir la congestión",
+   "B": "Aumentar el espacio para estacionar",
+   "C": "Ofrecer rutas escénicas",
+   "D": "Crear atajos para camiones"
+  },
+  "explanation_es": "Los carriles HOV o compartidos mueven a más personas en menos vehículos, lo que ayuda a reducir la congestión. Fomentan compartir el viaje y un uso más eficiente de la vía.",
+  "category": "Lane Usage & Highway Driving",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What do broken lines next to an HOV lane indicate?",
+  "answers": {
+   "A": "You may enter or exit there",
+   "B": "Parking is allowed there",
+   "C": "Only trucks may cross",
+   "D": "Passing is required there"
+  },
+  "correct_answer": "A",
+  "explanation": "You should enter or leave an HOV lane only where the lane boundary is broken. Solid lines mean you should not cross into or out of the lane.",
+  "question_text_es": "¿Qué indican las líneas discontinuas junto a un carril HOV?",
+  "answers_es": {
+   "A": "Puede entrar o salir allí",
+   "B": "Se permite estacionar allí",
+   "C": "Solo camiones pueden cruzar",
+   "D": "Es obligatorio rebasar allí"
+  },
+  "explanation_es": "Debe entrar o salir de un carril HOV solo donde la línea divisoria es discontinua. Las líneas continuas significan que no debe cruzar para entrar ni salir.",
+  "category": "Lane Usage & Highway Driving",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If you are driving alone, when may you use an HOV lane?",
+  "answers": {
+   "A": "When signs allow your vehicle",
+   "B": "Any time traffic is heavy",
+   "C": "Only while passing slower cars",
+   "D": "Whenever the lane is open"
+  },
+  "correct_answer": "A",
+  "explanation": "HOV lanes are reserved for vehicles meeting posted requirements. A driver alone may use the lane only if signs specifically allow that vehicle type.",
+  "question_text_es": "Si maneja solo, ¿cuándo puede usar un carril HOV?",
+  "answers_es": {
+   "A": "Cuando las señales lo permitan",
+   "B": "Cada vez que haya mucho tráfico",
+   "C": "Solo al rebasar autos lentos",
+   "D": "Siempre que el carril esté abierto"
+  },
+  "explanation_es": "Los carriles HOV están reservados para vehículos que cumplen los requisitos indicados. Un conductor solo puede usar el carril únicamente si las señales permiten específicamente ese tipo de vehículo.",
+  "category": "Signs, Signals & Markings",
+  "topic": "HOV / carpool lanes",
+  "topic_key": "HOV / carpool lanes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Where is a U-turn not allowed because drivers cannot see you well?",
+  "answers": {
+   "A": "On a hill or curve",
+   "B": "In a wide driveway",
+   "C": "On a straight road",
+   "D": "At a green light"
+  },
+  "correct_answer": "A",
+  "explanation": "Do not make a U-turn on a hill or curve where other drivers cannot see you clearly. Limited visibility makes the turn unsafe.",
+  "question_text_es": "¿Dónde no se permite dar una vuelta en U porque otros conductores no pueden verlo bien?",
+  "answers_es": {
+   "A": "En una colina o curva",
+   "B": "En una entrada amplia",
+   "C": "En una vía recta",
+   "D": "Con luz verde"
+  },
+  "explanation_es": "No haga una vuelta en U en una colina o curva donde otros conductores no puedan verlo claramente. La visibilidad limitada hace que la maniobra sea peligrosa.",
+  "category": "Turning & Lane Changes",
+  "topic": "U-turns not allowed on hills and curves",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do if a sign says No U-Turn?",
+  "answers": {
+   "A": "Do not make the U-turn",
+   "B": "Turn only if traffic is light",
+   "C": "Wait for a green light",
+   "D": "Honk before turning"
+  },
+  "correct_answer": "A",
+  "explanation": "A posted No U-Turn sign means U-turns are prohibited at that location. You must follow the sign and continue to a place where the turn is allowed.",
+  "question_text_es": "¿Qué debe hacer si una señal dice No U-Turn?",
+  "answers_es": {
+   "A": "No haga la vuelta en U",
+   "B": "Gire solo si hay poco tráfico",
+   "C": "Espere la luz verde",
+   "D": "Toque la bocina antes de girar"
+  },
+  "explanation_es": "Una señal de No U-Turn significa que las vueltas en U están prohibidas en ese lugar. Debe obedecer la señal y seguir hasta un lugar donde sí se permita girar.",
+  "category": "Signs, Signals & Markings",
+  "topic": "U-turns prohibited by signs",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why should you avoid a U-turn near a railroad crossing?",
+  "answers": {
+   "A": "Tracks need extra clearance",
+   "B": "Cars may park there",
+   "C": "Speed limits are lower",
+   "D": "Headlights are required"
+  },
+  "correct_answer": "A",
+  "explanation": "Do not make a U-turn near a railroad crossing. Railroad tracks and the area around them require extra space and can make the maneuver unsafe.",
+  "question_text_es": "¿Por qué debe evitar una vuelta en U cerca de un cruce de ferrocarril?",
+  "answers_es": {
+   "A": "Las vías requieren espacio adicional",
+   "B": "Los autos pueden estacionarse allí",
+   "C": "Los límites de velocidad son menores",
+   "D": "Se requieren faros"
+  },
+  "explanation_es": "No haga una vuelta en U cerca de un cruce de ferrocarril. Las vías y el área alrededor requieren espacio adicional y pueden hacer peligrosa la maniobra.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "U-turns near railroad crossings",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How do you make a U-turn safely when it is allowed?",
+  "answers": {
+   "A": "Signal, check traffic, turn carefully",
+   "B": "Accelerate quickly through the turn",
+   "C": "Stop in the middle first",
+   "D": "Turn without checking mirrors"
+  },
+  "correct_answer": "A",
+  "explanation": "When a U-turn is allowed, signal first, check for approaching traffic, and complete the turn only when it is safe. This helps avoid conflicts with other road users.",
+  "question_text_es": "¿Cómo hace una vuelta en U de manera segura cuando está permitida?",
+  "answers_es": {
+   "A": "Señalice, revise tráfico, gire con cuidado",
+   "B": "Acelere rápido durante el giro",
+   "C": "Deténgase primero en medio",
+   "D": "Gire sin revisar los espejos"
+  },
+  "explanation_es": "Cuando una vuelta en U está permitida, señalice primero, revise si viene tráfico y complete el giro solo cuando sea seguro. Esto ayuda a evitar conflictos con otros usuarios de la vía.",
+  "category": "Turning & Lane Changes",
+  "topic": "Making a safe U-turn",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Where should you avoid a U-turn because approaching traffic may be hidden?",
+  "answers": {
+   "A": "On hills and curves",
+   "B": "At painted crosswalks",
+   "C": "In the right lane",
+   "D": "Near bike racks"
+  },
+  "correct_answer": "A",
+  "explanation": "Do not make a U-turn where other drivers cannot see you clearly, such as on hills or around curves. Limited sight distance makes the turn unsafe.",
+  "question_text_es": "¿Dónde debe evitar dar una vuelta en U porque el tráfico que se acerca puede estar oculto?",
+  "answers_es": {
+   "A": "En colinas y curvas",
+   "B": "En cruces peatonales pintados",
+   "C": "En el carril derecho",
+   "D": "Cerca de estacionamientos para bicicletas"
+  },
+  "explanation_es": "No debe dar una vuelta en U donde otros conductores no puedan verlo claramente, como en colinas o curvas. La distancia de visibilidad limitada hace que la maniobra sea peligrosa.",
+  "category": "Turning & Lane Changes",
+  "topic": "U-turns not allowed on hills and curves",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Before making a legal U-turn, what should you do first?",
+  "answers": {
+   "A": "Check traffic and signal",
+   "B": "Speed up quickly",
+   "C": "Stop in the travel lane",
+   "D": "Turn from the shoulder"
+  },
+  "correct_answer": "A",
+  "explanation": "Make a U-turn only when it is allowed and safe. Before turning, check for traffic in both directions and use your turn signal to warn others.",
+  "question_text_es": "Antes de dar una vuelta en U legal, ¿qué debe hacer primero?",
+  "answers_es": {
+   "A": "Revisar el tráfico y señalizar",
+   "B": "Acelerar rápidamente",
+   "C": "Detenerse en el carril de circulación",
+   "D": "Girar desde el acotamiento"
+  },
+  "explanation_es": "Dé una vuelta en U solo cuando esté permitida y sea segura. Antes de girar, revise el tráfico en ambas direcciones y use la direccional para avisar a los demás.",
+  "category": "Turning & Lane Changes",
+  "topic": "Making a U-turn safely",
+  "topic_key": "U-turns",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When should you slow down for a curve?",
+  "answers": {
+   "A": "Before entering it",
+   "B": "After the midpoint",
+   "C": "Only if tires skid",
+   "D": "While steering harder"
+  },
+  "correct_answer": "A",
+  "explanation": "Slow down before you enter a curve so your tires keep better traction for steering. Braking hard in the curve can reduce control.",
+  "question_text_es": "¿Cuándo debe reducir la velocidad para una curva?",
+  "answers_es": {
+   "A": "Antes de entrar",
+   "B": "Después del punto medio",
+   "C": "Solo si patinan llantas",
+   "D": "Mientras gira más"
+  },
+  "explanation_es": "Reduzca la velocidad antes de entrar en una curva para que las llantas mantengan mejor tracción al dirigir. Frenar fuerte dentro de la curva puede reducir el control.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "Curves: slowing before the curve",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What does a speed plaque below a curve sign mean?",
+  "answers": {
+   "A": "Safe advised curve speed",
+   "B": "Minimum legal speed",
+   "C": "Nighttime speed only",
+   "D": "Truck speed only"
+  },
+  "correct_answer": "A",
+  "explanation": "A speed plaque under a curve warning sign shows an advisory speed for the curve. It warns that the curve should be taken at a safe, slower speed.",
+  "question_text_es": "¿Qué significa una placa de velocidad debajo de una señal de curva?",
+  "answers_es": {
+   "A": "Velocidad aconsejada segura",
+   "B": "Velocidad mínima legal",
+   "C": "Solo velocidad nocturna",
+   "D": "Solo para camiones"
+  },
+  "explanation_es": "Una placa de velocidad debajo de una señal de curva muestra una velocidad recomendada para la curva. Advierte que la curva debe tomarse a una velocidad segura y más baja.",
+  "category": "Signs, Signals & Markings",
+  "topic": "Curves: advisory speed plaques",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "In a curve, where should your vehicle stay?",
+  "answers": {
+   "A": "Centered in your lane",
+   "B": "On the center line",
+   "C": "Near the shoulder",
+   "D": "Across both lanes"
+  },
+  "correct_answer": "A",
+  "explanation": "Stay centered in your lane when driving through a curve. This gives you space from oncoming traffic and the road edge.",
+  "question_text_es": "En una curva, ¿dónde debe mantenerse su vehículo?",
+  "answers_es": {
+   "A": "Centrado en su carril",
+   "B": "Sobre la línea central",
+   "C": "Cerca del hombro",
+   "D": "En ambos carriles"
+  },
+  "explanation_es": "Manténgase centrado en su carril al conducir por una curva. Esto le da espacio del tráfico que viene de frente y del borde de la carretera.",
+  "category": "Vehicle Control & Maneuvers",
+  "topic": "Curves: lane position",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If you must brake in a curve, how should you do it?",
+  "answers": {
+   "A": "Brake gently",
+   "B": "Brake hard suddenly",
+   "C": "Pump the brakes fast",
+   "D": "Brake with one wheel off-road"
+  },
+  "correct_answer": "A",
+  "explanation": "If braking is necessary in a curve, use gentle, smooth braking. Sudden hard braking can cause a skid and loss of control.",
+  "question_text_es": "Si debe frenar en una curva, ¿cómo debe hacerlo?",
+  "answers_es": {
+   "A": "Frene suavemente",
+   "B": "Frene fuerte de repente",
+   "C": "Bombee los frenos rápido",
+   "D": "Frene con una rueda fuera"
+  },
+  "explanation_es": "Si es necesario frenar en una curva, use un frenado suave y uniforme. Frenar fuerte de repente puede causar un derrape y pérdida de control.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "Curves: braking",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why is it safest to reduce speed before entering a curve?",
+  "answers": {
+   "A": "Braking hard may skid",
+   "B": "Curves always have stop signs",
+   "C": "You can steer less",
+   "D": "Engines work better"
+  },
+  "correct_answer": "A",
+  "explanation": "Slow before a curve so your tires keep better traction for steering. Hard braking in the curve can reduce control and lead to a skid.",
+  "question_text_es": "¿Por qué es más seguro reducir la velocidad antes de entrar en una curva?",
+  "answers_es": {
+   "A": "Frenar fuerte puede causar derrape",
+   "B": "Las curvas siempre tienen señales de alto",
+   "C": "Necesita girar menos",
+   "D": "Los motores funcionan mejor"
+  },
+  "explanation_es": "Reduzca la velocidad antes de una curva para que las llantas mantengan mejor tracción al dirigir. Frenar con fuerza dentro de la curva puede reducir el control y causar un derrape.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "curves: slowing before the curve, braking",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "A curve sign has a plaque showing 25. What does it tell you?",
+  "answers": {
+   "A": "Suggested safe speed for the curve",
+   "B": "Minimum legal speed there",
+   "C": "Speed for large trucks only",
+   "D": "Distance to the next curve"
+  },
+  "correct_answer": "A",
+  "explanation": "A speed plaque under a curve warning sign shows an advisory speed for that curve. It warns that the curve should be taken at about that speed under good conditions.",
+  "question_text_es": "Una señal de curva tiene una placa que muestra 25. ¿Qué le indica?",
+  "answers_es": {
+   "A": "Velocidad sugerida segura para la curva",
+   "B": "Velocidad mínima legal allí",
+   "C": "Velocidad solo para camiones grandes",
+   "D": "Distancia hasta la próxima curva"
+  },
+  "explanation_es": "Una placa de velocidad debajo de una señal de advertencia de curva muestra una velocidad aconsejada para esa curva. Advierte que la curva debe tomarse aproximadamente a esa velocidad en buenas condiciones.",
+  "category": "Signs, Signals & Markings",
+  "topic": "curves: advisory speed plaques",
+  "topic_key": "curves",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Which is a warning sign of drowsy driving?",
+  "answers": {
+   "A": "Missing traffic signs",
+   "B": "Brighter headlights",
+   "C": "Cooler air from vents",
+   "D": "Stronger steering feel"
+  },
+  "correct_answer": "A",
+  "explanation": "Missing traffic signs is a common warning sign of drowsy driving. It shows your attention is fading, so you may not notice important information ahead.",
+  "question_text_es": "¿Cuál es una señal de advertencia de conducir con sueño?",
+  "answers_es": {
+   "A": "No ver las señales de tránsito",
+   "B": "Faros más brillantes",
+   "C": "Aire más frío de las rejillas",
+   "D": "Dirección más firme"
+  },
+  "explanation_es": "No ver las señales de tránsito es una señal común de advertencia de conducir con sueño. Indica que su atención está disminuyendo y puede no notar información importante adelante.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Drowsy driving warning signs",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If you feel sleepy while driving, what should you do?",
+  "answers": {
+   "A": "Stop and rest",
+   "B": "Drive faster",
+   "C": "Open windows only",
+   "D": "Turn up the radio"
+  },
+  "correct_answer": "A",
+  "explanation": "If you feel sleepy, the safe action is to get off the road and rest. Opening windows or turning up the radio does not fix drowsiness.",
+  "question_text_es": "Si siente sueño mientras conduce, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Detenerse y descansar",
+   "B": "Conducir más rápido",
+   "C": "Solo abrir las ventanas",
+   "D": "Subir el volumen de la radio"
+  },
+  "explanation_es": "Si siente sueño, la acción segura es salir del camino y descansar. Abrir las ventanas o subir la radio no corrige la somnolencia.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "What to do when drowsy",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What may happen when a driver is very drowsy?",
+  "answers": {
+   "A": "They drift from their lane",
+   "B": "They judge distance better",
+   "C": "They react more quickly",
+   "D": "They see farther ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "A very drowsy driver may drift from their lane because alertness and control are reduced. Drowsiness slows reactions and makes steering mistakes more likely.",
+  "question_text_es": "¿Qué puede pasar cuando un conductor tiene mucho sueño?",
+  "answers_es": {
+   "A": "Se desvía de su carril",
+   "B": "Calcula mejor la distancia",
+   "C": "Reacciona más rápido",
+   "D": "Ve más lejos hacia adelante"
+  },
+  "explanation_es": "Un conductor con mucho sueño puede desviarse de su carril porque disminuyen la atención y el control. La somnolencia retrasa las reacciones y hace más probables los errores al volante.",
+  "category": "Vehicle Control & Maneuvers",
+  "topic": "Effects of drowsy driving",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Repeated yawning while driving usually means you should:",
+  "answers": {
+   "A": "Find a safe place to stop",
+   "B": "Keep driving carefully",
+   "C": "Follow another car closely",
+   "D": "Switch on high beams"
+  },
+  "correct_answer": "A",
+  "explanation": "Repeated yawning is a warning sign of drowsiness. When you notice it, you should stop driving and rest in a safe place.",
+  "question_text_es": "Bostezar repetidamente mientras conduce por lo general significa que debe:",
+  "answers_es": {
+   "A": "Buscar un lugar seguro para detenerse",
+   "B": "Seguir conduciendo con cuidado",
+   "C": "Seguir muy de cerca a otro vehículo",
+   "D": "Encender las luces altas"
+  },
+  "explanation_es": "Bostezar repetidamente es una señal de advertencia de somnolencia. Cuando lo note, debe dejar de conducir y descansar en un lugar seguro.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Drowsy driving warning signs",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Your eyes keep closing briefly while driving. What does this mean?",
+  "answers": {
+   "A": "You are too drowsy",
+   "B": "Your speed is steady",
+   "C": "You need more air",
+   "D": "Your headlights are dim"
+  },
+  "correct_answer": "A",
+  "explanation": "Brief eye closures while driving are a warning sign of dangerous drowsiness. It means you are not alert enough to drive safely.",
+  "question_text_es": "Tus ojos se cierran por momentos mientras conduces. ¿Qué significa?",
+  "answers_es": {
+   "A": "Estás demasiado somnoliento",
+   "B": "Tu velocidad es constante",
+   "C": "Necesitas más aire",
+   "D": "Tus faros están tenues"
+  },
+  "explanation_es": "Que los ojos se te cierren brevemente al conducir es una señal de advertencia de somnolencia peligrosa. Significa que no estás lo bastante alerta para conducir con seguridad.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Drowsy driving warning signs",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "You miss your exit because you were not paying attention. What should you do next?",
+  "answers": {
+   "A": "Keep driving until fully awake",
+   "B": "Stop driving and rest",
+   "C": "Turn around immediately",
+   "D": "Drink water and continue"
+  },
+  "correct_answer": "B",
+  "explanation": "Missing exits or drifting attention can be warning signs of drowsy driving. The safe response is to stop driving and rest before continuing.",
+  "question_text_es": "No tomas tu salida porque no estabas prestando atención. ¿Qué debes hacer después?",
+  "answers_es": {
+   "A": "Sigue conduciendo hasta despertarte",
+   "B": "Deja de conducir y descansa",
+   "C": "Da la vuelta de inmediato",
+   "D": "Toma agua y continúa"
+  },
+  "explanation_es": "No tomar una salida o perder la atención puede ser una señal de somnolencia al conducir. La respuesta segura es dejar de conducir y descansar antes de continuar.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Drowsy driving what to do",
+  "topic_key": "drowsy driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What is the safest way to use a phone while driving?",
+  "answers": {
+   "A": "Text at stoplights",
+   "B": "Hold it briefly",
+   "C": "Pull over safely first",
+   "D": "Use speaker in traffic"
+  },
+  "correct_answer": "C",
+  "explanation": "If you must use a phone, the safest choice is to pull over to a safe location first. Using a phone while the vehicle is moving takes your eyes and attention off driving.",
+  "question_text_es": "¿Cuál es la manera más segura de usar un teléfono mientras conduce?",
+  "answers_es": {
+   "A": "Textear en semáforos",
+   "B": "Sostenerlo un momento",
+   "C": "Orillarse con seguridad primero",
+   "D": "Usar altavoz en tráfico"
+  },
+  "explanation_es": "Si tiene que usar un teléfono, la opción más segura es orillarse primero en un lugar seguro. Usar un teléfono mientras el vehículo está en movimiento le quita la vista y la atención al manejo.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Distracted driving and phone use",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why can passengers be a driving distraction?",
+  "answers": {
+   "A": "They improve your reaction time",
+   "B": "They divide your attention",
+   "C": "They make signs easier to see",
+   "D": "They shorten stopping distance"
+  },
+  "correct_answer": "B",
+  "explanation": "Passengers can distract you by drawing your eyes, thoughts, or hands away from driving. Safe driving requires your full attention to the road.",
+  "question_text_es": "¿Por qué los pasajeros pueden ser una distracción al conducir?",
+  "answers_es": {
+   "A": "Mejoran su tiempo de reacción",
+   "B": "Dividen su atención",
+   "C": "Hacen más fáciles las señales",
+   "D": "Acortan la distancia de frenado"
+  },
+  "explanation_es": "Los pasajeros pueden distraerlo al desviar sus ojos, pensamientos o manos de la conducción. Manejar con seguridad requiere toda su atención en el camino.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Passenger distractions",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How can eating while driving affect you?",
+  "answers": {
+   "A": "It improves vehicle control",
+   "B": "It reduces distractions",
+   "C": "It can take hands off the wheel",
+   "D": "It helps you focus"
+  },
+  "correct_answer": "C",
+  "explanation": "Eating while driving is a distraction because it can take your hands off the wheel and your mind off the road. You should keep both attention and control on driving.",
+  "question_text_es": "¿Cómo puede afectarle comer mientras conduce?",
+  "answers_es": {
+   "A": "Mejora el control del vehículo",
+   "B": "Reduce las distracciones",
+   "C": "Puede quitar manos del volante",
+   "D": "Le ayuda a concentrarse"
+  },
+  "explanation_es": "Comer mientras conduce es una distracción porque puede quitar sus manos del volante y su mente del camino. Debe mantener la atención y el control en la conducción.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Eating and driving distractions",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do if a call cannot wait?",
+  "answers": {
+   "A": "Answer while steering carefully",
+   "B": "Text back quickly",
+   "C": "Wait for heavy traffic",
+   "D": "Pull over in a safe place"
+  },
+  "correct_answer": "D",
+  "explanation": "If a call cannot wait, pull over in a safe place before using the phone. This prevents manual, visual, and mental distraction while driving.",
+  "question_text_es": "¿Qué debe hacer si una llamada no puede esperar?",
+  "answers_es": {
+   "A": "Contestar mientras maneja",
+   "B": "Responder por texto rápido",
+   "C": "Esperar tráfico pesado",
+   "D": "Orillarse en un lugar seguro"
+  },
+  "explanation_es": "Si una llamada no puede esperar, oríllese en un lugar seguro antes de usar el teléfono. Esto evita distracciones manuales, visuales y mentales mientras conduce.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "What to do when you must use a phone",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "While driving, what should you do with your phone?",
+  "answers": {
+   "A": "Keep it out of reach",
+   "B": "Hold it at stoplights",
+   "C": "Check it on straight roads",
+   "D": "Use it in light traffic"
+  },
+  "correct_answer": "A",
+  "explanation": "Drivers should avoid using a phone while driving because it takes attention from the road. Keeping it out of reach helps reduce temptation and distraction.",
+  "question_text_es": "Mientras conduce, ¿qué debe hacer con su teléfono?",
+  "answers_es": {
+   "A": "Mantenerlo fuera de alcance",
+   "B": "Sostenerlo en semáforos",
+   "C": "Revisarlo en caminos rectos",
+   "D": "Usarlo con poco tráfico"
+  },
+  "explanation_es": "Los conductores deben evitar usar el teléfono mientras conducen porque les quita atención del camino. Mantenerlo fuera de alcance ayuda a reducir la tentación y la distracción.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "distracted driving",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If passengers are distracting you, what is safest?",
+  "answers": {
+   "A": "Ask them to quiet down",
+   "B": "Turn up the radio",
+   "C": "Drive faster to focus",
+   "D": "Ignore the road briefly"
+  },
+  "correct_answer": "A",
+  "explanation": "Passenger distractions can take your mind off driving. Asking passengers to lower the noise or stop distracting behavior helps you stay focused.",
+  "question_text_es": "Si los pasajeros lo distraen, ¿qué es lo más seguro?",
+  "answers_es": {
+   "A": "Pedirles que se tranquilicen",
+   "B": "Subir el volumen de la radio",
+   "C": "Conducir más rápido para enfocarse",
+   "D": "Ignorar el camino un momento"
+  },
+  "explanation_es": "Las distracciones de los pasajeros pueden apartar su mente de la conducción. Pedirles que bajen el ruido o dejen de distraerle ayuda a mantenerse enfocado.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "distracted driving",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What is the safest choice before eating while driving?",
+  "answers": {
+   "A": "Wait until you stop",
+   "B": "Eat with one hand",
+   "C": "Take small bites",
+   "D": "Eat only at red lights"
+  },
+  "correct_answer": "A",
+  "explanation": "Eating while driving can take your hands, eyes, and attention away from driving. Waiting until you stop is the safest choice.",
+  "question_text_es": "¿Cuál es la opción más segura antes de comer mientras conduce?",
+  "answers_es": {
+   "A": "Esperar hasta detenerse",
+   "B": "Comer con una mano",
+   "C": "Dar bocados pequeños",
+   "D": "Comer solo en semáforos"
+  },
+  "explanation_es": "Comer mientras conduce puede quitarle las manos, los ojos y la atención de la conducción. Esperar hasta detenerse es la opción más segura.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "distracted driving",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Before pulling over to use your phone, what should you do?",
+  "answers": {
+   "A": "Choose a safe, legal place",
+   "B": "Stop in a travel lane",
+   "C": "Park on a curve",
+   "D": "Pull over without signaling"
+  },
+  "correct_answer": "A",
+  "explanation": "If you must use your phone, pull over safely first. Choosing a safe, legal place keeps you out of traffic and reduces risk.",
+  "question_text_es": "Antes de detenerse para usar su teléfono, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Elegir un lugar seguro y legal",
+   "B": "Detenerse en un carril",
+   "C": "Estacionarse en una curva",
+   "D": "Orillarse sin señalizar"
+  },
+  "explanation_es": "Si debe usar su teléfono, primero oríllese de manera segura. Elegir un lugar seguro y legal lo mantiene fuera del tráfico y reduce el riesgo.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "distracted driving",
+  "topic_key": "distracted driving",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Before changing lanes, what should you do last?",
+  "answers": {
+   "A": "Check mirrors",
+   "B": "Signal your move",
+   "C": "Check your blind spot",
+   "D": "Brake hard"
+  },
+  "correct_answer": "C",
+  "explanation": "Before changing lanes, check mirrors, signal, and then look over your shoulder for the blind spot. The blind spot check is the final step before moving.",
+  "question_text_es": "Antes de cambiar de carril, ¿qué debe hacer al final?",
+  "answers_es": {
+   "A": "Revisar los espejos",
+   "B": "Señalar su movimiento",
+   "C": "Revisar el punto ciego",
+   "D": "Frenar bruscamente"
+  },
+  "explanation_es": "Antes de cambiar de carril, revise los espejos, use la señal y luego mire sobre el hombro para revisar el punto ciego. La revisión del punto ciego es el paso final antes de moverse.",
+  "category": "Turning & Lane Changes",
+  "topic": "lane changes",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why should you look over your shoulder before changing lanes?",
+  "answers": {
+   "A": "To check the blind spot",
+   "B": "To read road signs",
+   "C": "To see behind both lanes",
+   "D": "To judge tire pressure"
+  },
+  "correct_answer": "A",
+  "explanation": "Mirrors do not show every area beside your vehicle. Looking over your shoulder helps you see a vehicle in your blind spot before changing lanes.",
+  "question_text_es": "¿Por qué debe mirar sobre el hombro antes de cambiar de carril?",
+  "answers_es": {
+   "A": "Para revisar el punto ciego",
+   "B": "Para leer las señales",
+   "C": "Para ver detrás de ambos carriles",
+   "D": "Para medir la presión de llantas"
+  },
+  "explanation_es": "Los espejos no muestran todas las áreas al lado de su vehículo. Mirar sobre el hombro le ayuda a ver un vehículo en su punto ciego antes de cambiar de carril.",
+  "category": "Turning & Lane Changes",
+  "topic": "blind spot head check",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do before moving into another lane?",
+  "answers": {
+   "A": "Honk twice",
+   "B": "Signal first",
+   "C": "Speed up suddenly",
+   "D": "Turn off headlights"
+  },
+  "correct_answer": "B",
+  "explanation": "Use your turn signal before changing lanes to warn other road users. Signaling lets others know what you plan to do.",
+  "question_text_es": "¿Qué debe hacer antes de moverse a otro carril?",
+  "answers_es": {
+   "A": "Tocar la bocina dos veces",
+   "B": "Señalar primero",
+   "C": "Acelerar de repente",
+   "D": "Apagar las luces"
+  },
+  "explanation_es": "Use la señal direccional antes de cambiar de carril para avisar a otros usuarios de la vía. Señalar les deja saber lo que piensa hacer.",
+  "category": "Turning & Lane Changes",
+  "topic": "signaling",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What does a solid lane line next to your lane mean?",
+  "answers": {
+   "A": "Lane changes are discouraged",
+   "B": "Passing is required",
+   "C": "You must speed up",
+   "D": "Parking is allowed"
+  },
+  "correct_answer": "A",
+  "explanation": "A solid lane line means you should stay in your lane unless a special situation requires a change. Broken lines show lane changes are permitted when safe.",
+  "question_text_es": "¿Qué significa una línea sólida junto a su carril?",
+  "answers_es": {
+   "A": "Se desaconseja cambiar de carril",
+   "B": "Es obligatorio rebasar",
+   "C": "Debe acelerar",
+   "D": "Se permite estacionar"
+  },
+  "explanation_es": "Una línea sólida significa que debe permanecer en su carril, a menos que una situación especial requiera cambiar. Las líneas discontinuas indican que se permite cambiar de carril cuando sea seguro.",
+  "category": "Signs, Signals & Markings",
+  "topic": "solid vs broken lines",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When changing lanes, what should you check before steering over?",
+  "answers": {
+   "A": "Mirrors and blind spot",
+   "B": "Only the rearview mirror",
+   "C": "Only the lane markings",
+   "D": "Only your speedometer"
+  },
+  "correct_answer": "A",
+  "explanation": "Before changing lanes, check your mirrors and your blind spot to make sure the lane is clear. This helps you avoid vehicles that may not appear in your mirrors.",
+  "question_text_es": "Al cambiar de carril, ¿qué debe revisar antes de moverse?",
+  "answers_es": {
+   "A": "Espejos y punto ciego",
+   "B": "Solo el espejo retrovisor",
+   "C": "Solo las marcas del carril",
+   "D": "Solo el velocímetro"
+  },
+  "explanation_es": "Antes de cambiar de carril, revise los espejos y el punto ciego para asegurarse de que el carril esté libre. Esto ayuda a evitar vehículos que tal vez no aparezcan en los espejos.",
+  "category": "Turning & Lane Changes",
+  "topic": "lane changes",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What is the purpose of signaling before a lane change?",
+  "answers": {
+   "A": "Warn other road users",
+   "B": "Check your blind spot",
+   "C": "Increase your speed",
+   "D": "Claim the lane immediately"
+  },
+  "correct_answer": "A",
+  "explanation": "Signal before changing lanes to let other road users know what you plan to do. A signal communicates your intention, but you must still make sure the lane is clear.",
+  "question_text_es": "¿Cuál es el propósito de señalar antes de cambiar de carril?",
+  "answers_es": {
+   "A": "Avisar a otros usuarios",
+   "B": "Revisar el punto ciego",
+   "C": "Aumentar la velocidad",
+   "D": "Tomar el carril de inmediato"
+  },
+  "explanation_es": "Señale antes de cambiar de carril para informar a otros usuarios de la vía lo que piensa hacer. La señal comunica su intención, pero aún debe asegurarse de que el carril esté libre.",
+  "category": "Turning & Lane Changes",
+  "topic": "lane changes",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "A broken white lane line means you may change lanes when",
+  "answers": {
+   "A": "The way is clear",
+   "B": "You are turning left",
+   "C": "Traffic is stopped",
+   "D": "Another driver waves"
+  },
+  "correct_answer": "A",
+  "explanation": "A broken white lane line means lane changes are permitted when it is safe. You should change lanes only after checking traffic and making sure the way is clear.",
+  "question_text_es": "Una línea blanca discontinua significa que puede cambiar de carril cuando",
+  "answers_es": {
+   "A": "El camino esté libre",
+   "B": "Vaya a doblar a la izquierda",
+   "C": "El tráfico esté detenido",
+   "D": "Otro conductor le haga señas"
+  },
+  "explanation_es": "Una línea blanca discontinua significa que se permite cambiar de carril cuando sea seguro. Debe cambiar de carril solo después de revisar el tráfico y asegurarse de que el camino esté libre.",
+  "category": "Signs, Signals & Markings",
+  "topic": "lane changes",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What does a solid white line usually mean for lane changes?",
+  "answers": {
+   "A": "Discouraged or not allowed",
+   "B": "Required at all times",
+   "C": "Allowed without checking",
+   "D": "Only trucks may cross"
+  },
+  "correct_answer": "A",
+  "explanation": "A solid white line means lane changes are discouraged, and in some situations not allowed. You should stay in your lane unless a lane change is permitted and can be made safely.",
+  "question_text_es": "¿Qué suele significar una línea blanca continua para cambiar de carril?",
+  "answers_es": {
+   "A": "Desaconsejado o no permitido",
+   "B": "Obligatorio en todo momento",
+   "C": "Permitido sin revisar",
+   "D": "Solo camiones pueden cruzar"
+  },
+  "explanation_es": "Una línea blanca continua significa que cambiar de carril está desaconsejado y, en algunas situaciones, no permitido. Debe permanecer en su carril a menos que se permita el cambio y pueda hacerse con seguridad.",
+  "category": "Signs, Signals & Markings",
+  "topic": "lane changes",
+  "topic_key": "lane changes",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a four-way stop, who goes first?",
+  "answers": {
+   "A": "The first vehicle to arrive",
+   "B": "The largest vehicle",
+   "C": "The fastest vehicle",
+   "D": "The vehicle on the left"
+  },
+  "correct_answer": "A",
+  "explanation": "At a four-way stop, the first vehicle to come to a complete stop goes first. If two vehicles arrive together, other right-of-way rules apply.",
+  "question_text_es": "En una parada de cuatro vías, ¿quién va primero?",
+  "answers_es": {
+   "A": "El primer vehículo en llegar",
+   "B": "El vehículo más grande",
+   "C": "El vehículo más rápido",
+   "D": "El vehículo a la izquierda"
+  },
+  "explanation_es": "En una parada de cuatro vías, el primer vehículo que se detiene por completo va primero. Si dos vehículos llegan al mismo tiempo, se aplican otras reglas de derecho de paso.",
+  "category": "Right-of-Way Rules",
+  "topic": "four-way stops: order of arrival",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What must you do at a four-way stop sign?",
+  "answers": {
+   "A": "Slow down and roll through",
+   "B": "Stop completely before proceeding",
+   "C": "Honk before entering",
+   "D": "Yield only to trucks"
+  },
+  "correct_answer": "B",
+  "explanation": "A stop sign requires a complete stop before you proceed. Rolling through is not a legal stop and can endanger others.",
+  "question_text_es": "¿Qué debe hacer en una señal de alto de cuatro vías?",
+  "answers_es": {
+   "A": "Reducir velocidad y seguir sin parar",
+   "B": "Detenerse completamente antes de seguir",
+   "C": "Tocar la bocina antes de entrar",
+   "D": "Ceder el paso solo a camiones"
+  },
+  "explanation_es": "Una señal de alto exige una detención completa antes de seguir. Pasar sin detenerse legalmente pone en peligro a los demás.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "four-way stops: complete stops",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a four-way stop, who must you yield to before entering?",
+  "answers": {
+   "A": "Pedestrians in or entering your crosswalk",
+   "B": "Only vehicles turning left",
+   "C": "Only drivers behind you",
+   "D": "Parked cars near the corner"
+  },
+  "correct_answer": "A",
+  "explanation": "Drivers must yield to pedestrians crossing or about to cross in their crosswalk. This applies even at a four-way stop.",
+  "question_text_es": "En una parada de cuatro vías, ¿a quién debe ceder el paso antes de entrar?",
+  "answers_es": {
+   "A": "Peatones en su cruce o entrando a él",
+   "B": "Solo vehículos que giran a la izquierda",
+   "C": "Solo conductores detrás de usted",
+   "D": "Autos estacionados cerca de la esquina"
+  },
+  "explanation_es": "Los conductores deben ceder el paso a los peatones que cruzan o están por cruzar en su cruce. Esto también aplica en una parada de cuatro vías.",
+  "category": "Sharing the Road",
+  "topic": "four-way stops: pedestrians",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a four-way stop, which turning driver has right-of-way?",
+  "answers": {
+   "A": "Left-turning driver over straight traffic",
+   "B": "Right-turning driver over pedestrians",
+   "C": "Driver going straight over left-turning traffic",
+   "D": "U-turning driver over all others"
+  },
+  "correct_answer": "C",
+  "explanation": "At an intersection, a driver turning left must yield to oncoming traffic going straight. This rule still applies at a four-way stop after each driver has stopped.",
+  "question_text_es": "En una parada de cuatro vías, ¿qué conductor que gira tiene el derecho de paso?",
+  "answers_es": {
+   "A": "El que gira a la izquierda sobre el tráfico recto",
+   "B": "El que gira a la derecha sobre peatones",
+   "C": "El que sigue recto sobre quien gira a la izquierda",
+   "D": "El que hace vuelta en U sobre todos"
+  },
+  "explanation_es": "En una intersección, el conductor que gira a la izquierda debe ceder el paso al tráfico que viene de frente y sigue recto. Esta regla también aplica en una parada de cuatro vías después de que cada conductor se detiene.",
+  "category": "Turning & Lane Changes",
+  "topic": "four-way stops: turning traffic",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a four-way stop, if two vehicles arrive together, who should go first?",
+  "answers": {
+   "A": "The driver on the right",
+   "B": "The driver on the left",
+   "C": "The larger vehicle",
+   "D": "The faster vehicle"
+  },
+  "correct_answer": "A",
+  "explanation": "When two vehicles reach a four-way stop at the same time, the driver on the left must yield to the driver on the right. This helps keep traffic moving safely and predictably.",
+  "question_text_es": "En una parada de cuatro vías, si dos vehículos llegan al mismo tiempo, ¿quién debe pasar primero?",
+  "answers_es": {
+   "A": "El conductor de la derecha",
+   "B": "El conductor de la izquierda",
+   "C": "El vehículo más grande",
+   "D": "El vehículo más rápido"
+  },
+  "explanation_es": "Cuando dos vehículos llegan al mismo tiempo a una parada de cuatro vías, el conductor de la izquierda debe ceder el paso al conductor de la derecha. Esto ayuda a que el tránsito fluya de manera segura y predecible.",
+  "category": "Right-of-Way Rules",
+  "topic": "four-way stops: order of arrival",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a four-way stop, what must you do before starting a turn?",
+  "answers": {
+   "A": "Roll through if clear",
+   "B": "Stop fully and yield to pedestrians",
+   "C": "Turn quickly before others move",
+   "D": "Honk and proceed first"
+  },
+  "correct_answer": "B",
+  "explanation": "At a four-way stop, you must come to a complete stop before moving. Before turning, you must also yield to pedestrians crossing your path.",
+  "question_text_es": "En una parada de cuatro vías, ¿qué debe hacer antes de comenzar un giro?",
+  "answers_es": {
+   "A": "Seguir sin parar si está despejado",
+   "B": "Detenerse por completo y ceder a peatones",
+   "C": "Girar rápido antes que los demás",
+   "D": "Tocar la bocina y pasar primero"
+  },
+  "explanation_es": "En una parada de cuatro vías, debe detenerse por completo antes de avanzar. Antes de girar, también debe ceder el paso a los peatones que crucen su trayectoria.",
+  "category": "Right-of-Way Rules",
+  "topic": "four-way stops: complete stops, pedestrians, turning traffic",
+  "topic_key": "four-way stops",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Which direction do vehicles travel in a roundabout?",
+  "answers": {
+   "A": "Clockwise",
+   "B": "Counterclockwise",
+   "C": "Either direction",
+   "D": "Straight through"
+  },
+  "correct_answer": "B",
+  "explanation": "In the United States, vehicles in a roundabout travel counterclockwise around the center island. This keeps all traffic moving in the same direction.",
+  "question_text_es": "¿En qué dirección viajan los vehículos en una glorieta?",
+  "answers_es": {
+   "A": "En el sentido horario",
+   "B": "En sentido antihorario",
+   "C": "En cualquier dirección",
+   "D": "Directo hacia adelante"
+  },
+  "explanation_es": "En Estados Unidos, los vehículos en una glorieta circulan en sentido antihorario alrededor de la isla central. Esto mantiene a todo el tráfico moviéndose en la misma dirección.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "roundabouts: direction of travel",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "At a roundabout entrance, who must you yield to?",
+  "answers": {
+   "A": "Vehicles already in it",
+   "B": "Vehicles behind you",
+   "C": "Drivers entering after you",
+   "D": "Parked vehicles nearby"
+  },
+  "correct_answer": "A",
+  "explanation": "When entering a roundabout, yield to traffic already circulating inside it. Enter only when there is a safe gap.",
+  "question_text_es": "En la entrada de una glorieta, ¿a quién debe ceder el paso?",
+  "answers_es": {
+   "A": "A los vehículos ya dentro",
+   "B": "A los vehículos detrás de usted",
+   "C": "A los conductores que entren después",
+   "D": "A los vehículos estacionados cerca"
+  },
+  "explanation_es": "Al entrar a una glorieta, ceda el paso al tráfico que ya circula dentro de ella. Entre solo cuando haya un espacio seguro.",
+  "category": "Right-of-Way Rules",
+  "topic": "roundabouts: yielding on entry",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Before entering a multi-lane roundabout, what should you do?",
+  "answers": {
+   "A": "Choose the correct lane",
+   "B": "Stop in the circle",
+   "C": "Change lanes inside",
+   "D": "Drive over the center"
+  },
+  "correct_answer": "A",
+  "explanation": "In a multi-lane roundabout, select the proper lane before you enter based on where you plan to exit. Avoid changing lanes inside the roundabout.",
+  "question_text_es": "Antes de entrar a una glorieta de varios carriles, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Elegir el carril correcto",
+   "B": "Detenerse dentro de la glorieta",
+   "C": "Cambiar de carril adentro",
+   "D": "Pasar sobre el centro"
+  },
+  "explanation_es": "En una glorieta de varios carriles, elija el carril adecuado antes de entrar según la salida que piensa tomar. Evite cambiar de carril dentro de la glorieta.",
+  "category": "Turning & Lane Changes",
+  "topic": "roundabouts: choosing a lane",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you watch for when exiting a roundabout?",
+  "answers": {
+   "A": "Pedestrians and large trucks",
+   "B": "Oncoming traffic in your lane",
+   "C": "Passing on the left",
+   "D": "Parking spaces ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "When exiting a roundabout, watch for pedestrians in crosswalks and give large trucks extra space. Trucks may need more room to complete their turn safely.",
+  "question_text_es": "¿Qué debe observar al salir de una glorieta?",
+  "answers_es": {
+   "A": "Peatones y camiones grandes",
+   "B": "Tráfico de frente en su carril",
+   "C": "Rebasar por la izquierda",
+   "D": "Espacios para estacionar adelante"
+  },
+  "explanation_es": "Al salir de una glorieta, observe a los peatones en los cruces peatonales y dé más espacio a los camiones grandes. Los camiones pueden necesitar más espacio para completar su giro con seguridad.",
+  "category": "Sharing the Road",
+  "topic": "roundabouts: exiting, pedestrians, large trucks",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "In a roundabout, where should you drive around the center island?",
+  "answers": {
+   "A": "To the right",
+   "B": "To the left",
+   "C": "Straight through",
+   "D": "Across the island"
+  },
+  "correct_answer": "A",
+  "explanation": "In U.S. roundabouts, traffic moves counterclockwise around the center island, so drivers keep to the right of it. The other choices describe unsafe or incorrect travel paths.",
+  "question_text_es": "En una rotonda, ¿por dónde debe conducir alrededor de la isla central?",
+  "answers_es": {
+   "A": "Por la derecha",
+   "B": "Por la izquierda",
+   "C": "Directo hacia adelante",
+   "D": "A través de la isla"
+  },
+  "explanation_es": "En las rotondas de EE. UU., el tráfico circula en sentido contrario a las agujas del reloj alrededor de la isla central, por lo que los conductores deben pasar por la derecha de ella. Las otras opciones describen trayectorias inseguras o incorrectas.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "roundabouts",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When entering a roundabout, when may you go?",
+  "answers": {
+   "A": "After traffic inside clears",
+   "B": "As soon as you arrive",
+   "C": "Only after stopping fully",
+   "D": "When a pedestrian waves"
+  },
+  "correct_answer": "A",
+  "explanation": "Drivers entering a roundabout must yield to traffic already circulating inside. You may enter when there is a safe gap.",
+  "question_text_es": "Al entrar a una rotonda, ¿cuándo puede avanzar?",
+  "answers_es": {
+   "A": "Cuando se despeje el tráfico adentro",
+   "B": "Tan pronto como llegue",
+   "C": "Solo después de parar por completo",
+   "D": "Cuando un peatón le haga señas"
+  },
+  "explanation_es": "Los conductores que entran a una rotonda deben ceder el paso al tráfico que ya circula dentro. Puede entrar cuando haya un espacio seguro.",
+  "category": "Right-of-Way Rules",
+  "topic": "roundabouts",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "In a multi-lane roundabout, when should you choose your lane?",
+  "answers": {
+   "A": "Before entering",
+   "B": "After you enter",
+   "C": "While exiting",
+   "D": "In the middle"
+  },
+  "correct_answer": "A",
+  "explanation": "In a multi-lane roundabout, choose the proper lane before you enter based on where you plan to go. Changing lanes inside can be unsafe.",
+  "question_text_es": "En una rotonda de varios carriles, ¿cuándo debe elegir su carril?",
+  "answers_es": {
+   "A": "Antes de entrar",
+   "B": "Después de entrar",
+   "C": "Al salir",
+   "D": "En el medio"
+  },
+  "explanation_es": "En una rotonda de varios carriles, elija el carril correcto antes de entrar según adónde vaya. Cambiar de carril adentro puede ser peligroso.",
+  "category": "Turning & Lane Changes",
+  "topic": "roundabouts",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why should you give large trucks extra space in roundabouts?",
+  "answers": {
+   "A": "They may need more than one lane",
+   "B": "They always stop inside",
+   "C": "They travel faster than cars",
+   "D": "They must yield to everyone"
+  },
+  "correct_answer": "A",
+  "explanation": "Large trucks may need extra room to turn in a roundabout and can use more than one lane. Giving them space helps prevent conflicts and crashes.",
+  "question_text_es": "¿Por qué debe dar más espacio a los camiones grandes en las rotondas?",
+  "answers_es": {
+   "A": "Pueden necesitar más de un carril",
+   "B": "Siempre se detienen adentro",
+   "C": "Viajan más rápido que los autos",
+   "D": "Deben ceder el paso a todos"
+  },
+  "explanation_es": "Los camiones grandes pueden necesitar espacio adicional para girar en una rotonda y pueden usar más de un carril. Darles espacio ayuda a prevenir conflictos y choques.",
+  "category": "Sharing the Road",
+  "topic": "roundabouts",
+  "topic_key": "roundabouts",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What does the 3-second following rule help you do?",
+  "answers": {
+   "A": "Keep a safe space cushion",
+   "B": "Increase fuel economy",
+   "C": "Avoid using turn signals",
+   "D": "Drive closer at night"
+  },
+  "correct_answer": "A",
+  "explanation": "The 3-second rule helps you maintain enough space behind the vehicle ahead. This gives you more time to react and stop safely if traffic changes suddenly.",
+  "question_text_es": "¿Para qué le ayuda la regla de los 3 segundos?",
+  "answers_es": {
+   "A": "Mantener una distancia segura",
+   "B": "Ahorrar más combustible",
+   "C": "Evitar usar direccionales",
+   "D": "Manejar más cerca de noche"
+  },
+  "explanation_es": "La regla de los 3 segundos le ayuda a mantener suficiente espacio detrás del vehículo de adelante. Esto le da más tiempo para reaccionar y detenerse con seguridad si el tráfico cambia de repente.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Following distance: 3-second rule",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "When should you increase your following distance beyond 3 seconds?",
+  "answers": {
+   "A": "In rain or fog",
+   "B": "On dry, clear roads",
+   "C": "When traffic is light",
+   "D": "After passing an exit"
+  },
+  "correct_answer": "A",
+  "explanation": "You should increase following distance in bad weather or other hazardous conditions. Reduced traction or visibility means you need more time and space to react.",
+  "question_text_es": "¿Cuándo debe aumentar su distancia de seguimiento a más de 3 segundos?",
+  "answers_es": {
+   "A": "Con lluvia o niebla",
+   "B": "En caminos secos y despejados",
+   "C": "Cuando hay poco tráfico",
+   "D": "Después de pasar una salida"
+  },
+  "explanation_es": "Debe aumentar la distancia de seguimiento con mal tiempo u otras condiciones peligrosas. La menor tracción o visibilidad significa que necesita más tiempo y espacio para reaccionar.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "Following distance: increasing in bad weather",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why should you follow motorcycles and large trucks at a greater distance?",
+  "answers": {
+   "A": "They may stop or slow differently",
+   "B": "They always drive under the speed limit",
+   "C": "They must use the left lane",
+   "D": "They cannot brake on hills"
+  },
+  "correct_answer": "A",
+  "explanation": "Leave extra space behind motorcycles and large trucks because they can slow, stop, or block your view differently than cars. More distance gives you better visibility and more time to react.",
+  "question_text_es": "¿Por qué debe seguir a las motocicletas y camiones grandes a mayor distancia?",
+  "answers_es": {
+   "A": "Pueden frenar o reducir distinto",
+   "B": "Siempre van bajo el límite",
+   "C": "Deben usar el carril izquierdo",
+   "D": "No pueden frenar en colinas"
+  },
+  "explanation_es": "Deje más espacio detrás de motocicletas y camiones grandes porque pueden reducir, detenerse o bloquear su vista de manera distinta a los autos. Más distancia le da mejor visibilidad y más tiempo para reaccionar.",
+  "category": "Sharing the Road",
+  "topic": "Following distance: motorcycles and large trucks",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If a driver is tailgating you, what should you do?",
+  "answers": {
+   "A": "Increase space ahead of your vehicle",
+   "B": "Brake suddenly to warn them",
+   "C": "Move closer to the car ahead",
+   "D": "Speed up well above traffic flow"
+  },
+  "correct_answer": "A",
+  "explanation": "If someone is following too closely, increase your following distance ahead when possible. This gives you more room to slow gradually and reduces the chance of a rear-end crash.",
+  "question_text_es": "Si un conductor le sigue muy de cerca, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Aumentar el espacio delante",
+   "B": "Frenar de golpe para avisar",
+   "C": "Acercarse más al auto adelante",
+   "D": "Acelerar mucho más que el tráfico"
+  },
+  "explanation_es": "Si alguien le sigue demasiado cerca, aumente su distancia de seguimiento adelante cuando sea posible. Esto le da más espacio para reducir la velocidad gradualmente y disminuye el riesgo de un choque por alcance.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "Following distance: being tailgated",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How can you check a safe following gap on a dry road?",
+  "answers": {
+   "A": "Use the 3-second rule",
+   "B": "Stay one car length back",
+   "C": "Match the lead car's speed",
+   "D": "Follow until brake lights show"
+  },
+  "correct_answer": "A",
+  "explanation": "On dry roads, a minimum 3-second following distance helps give you time to react and stop. Counting seconds to a fixed point is the standard way to check the gap.",
+  "question_text_es": "¿Cómo puede comprobar una distancia segura al seguir en una carretera seca?",
+  "answers_es": {
+   "A": "Use la regla de 3 segundos",
+   "B": "Mantenga un auto de distancia",
+   "C": "Iguale la velocidad del vehículo",
+   "D": "Siga hasta ver frenos"
+  },
+  "explanation_es": "En carreteras secas, una distancia mínima de 3 segundos le ayuda a tener tiempo para reaccionar y detenerse. Contar segundos hasta un punto fijo es la manera estándar de comprobar esa distancia.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "following distance",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do with following distance in rain or fog?",
+  "answers": {
+   "A": "Increase it beyond 3 seconds",
+   "B": "Keep exactly 3 seconds",
+   "C": "Shorten it to pass sooner",
+   "D": "Use two seconds instead"
+  },
+  "correct_answer": "A",
+  "explanation": "In rain, fog, and other poor conditions, you need more space than the minimum dry-road gap. Extra following distance gives you more time to react on reduced traction or visibility.",
+  "question_text_es": "¿Qué debe hacer con la distancia de seguimiento en lluvia o niebla?",
+  "answers_es": {
+   "A": "Auméntela a más de 3 segundos",
+   "B": "Manténgala en exactamente 3 segundos",
+   "C": "Redúzcala para pasar antes",
+   "D": "Use dos segundos en su lugar"
+  },
+  "explanation_es": "En la lluvia, la niebla y otras malas condiciones, necesita más espacio que la distancia mínima para camino seco. Más distancia le da más tiempo para reaccionar con menor tracción o visibilidad.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "following distance",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why leave extra space behind a motorcycle or large truck?",
+  "answers": {
+   "A": "You can see farther ahead",
+   "B": "They must drive slower always",
+   "C": "They stop much faster",
+   "D": "They signal less often"
+  },
+  "correct_answer": "A",
+  "explanation": "Motorcycles and large trucks can block your view of traffic ahead, so extra following distance helps you see hazards sooner. More space also gives you more time to react safely.",
+  "question_text_es": "¿Por qué dejar más espacio detrás de una motocicleta o un camión grande?",
+  "answers_es": {
+   "A": "Puede ver más adelante",
+   "B": "Siempre deben ir más despacio",
+   "C": "Se detienen mucho más rápido",
+   "D": "Señalizan con menos frecuencia"
+  },
+  "explanation_es": "Las motocicletas y los camiones grandes pueden bloquear su vista del tránsito adelante, así que más distancia le ayuda a ver peligros antes. Más espacio también le da más tiempo para reaccionar con seguridad.",
+  "category": "Sharing the Road",
+  "topic": "following distance",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "A driver is following too closely behind you. What helps most?",
+  "answers": {
+   "A": "Increase your following distance ahead",
+   "B": "Brake suddenly to warn them",
+   "C": "Speed up to lose them",
+   "D": "Move closer to the car ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "If someone is tailgating you, increase the space in front of your vehicle so you can slow gradually if needed. This reduces the chance of being hit from behind.",
+  "question_text_es": "Un conductor lo sigue demasiado de cerca. ¿Qué ayuda más?",
+  "answers_es": {
+   "A": "Aumente su distancia adelante",
+   "B": "Frene bruscamente para avisar",
+   "C": "Acelere para perderlo",
+   "D": "Acérquese más al auto adelante"
+  },
+  "explanation_es": "Si alguien lo sigue muy de cerca, aumente el espacio delante de su vehículo para poder reducir la velocidad gradualmente si hace falta. Esto reduce la posibilidad de que lo choquen por detrás.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "following distance",
+  "topic_key": "following distance",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What do orange signs usually warn drivers about?",
+  "answers": {
+   "A": "School zones ahead",
+   "B": "Road work ahead",
+   "C": "Railroad crossing ahead",
+   "D": "Hospital area ahead"
+  },
+  "correct_answer": "B",
+  "explanation": "Orange signs warn of construction or maintenance areas ahead. They tell drivers to expect changing road conditions and slow down.",
+  "question_text_es": "¿Qué suelen advertir a los conductores las señales naranjas?",
+  "answers_es": {
+   "A": "Zona escolar más adelante",
+   "B": "Trabajos en la carretera",
+   "C": "Cruce de ferrocarril adelante",
+   "D": "Zona de hospital adelante"
+  },
+  "explanation_es": "Las señales naranjas advierten sobre zonas de construcción o mantenimiento más adelante. Le indican al conductor que espere cambios en la vía y reduzca la velocidad.",
+  "category": "Signs, Signals & Markings",
+  "topic": "work zones orange signs",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "In a work zone, who should you obey over regular signs?",
+  "answers": {
+   "A": "Other drivers",
+   "B": "A flagger",
+   "C": "Pedestrians nearby",
+   "D": "Construction workers"
+  },
+  "correct_answer": "B",
+  "explanation": "In a work zone, follow the directions of a flagger. A flagger is controlling traffic safely through the area.",
+  "question_text_es": "En una zona de trabajo, ¿a quién debe obedecer por encima de las señales normales?",
+  "answers_es": {
+   "A": "A otros conductores",
+   "B": "A un banderero",
+   "C": "A peatones cercanos",
+   "D": "A trabajadores de construcción"
+  },
+  "explanation_es": "En una zona de trabajo, debe seguir las instrucciones de un banderero. El banderero está controlando el tránsito de forma segura por el área.",
+  "category": "Road Rules & Right-of-Way",
+  "topic": "work zones flaggers",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "What should you do when lanes close in a work zone?",
+  "answers": {
+   "A": "Speed up to pass everyone",
+   "B": "Merge carefully when directed",
+   "C": "Stop in your lane",
+   "D": "Drive on the shoulder"
+  },
+  "correct_answer": "B",
+  "explanation": "When a lane closes in a work zone, merge safely into the open lane as directed by signs or traffic control. Sudden stopping or using the shoulder is unsafe.",
+  "question_text_es": "¿Qué debe hacer cuando se cierran carriles en una zona de trabajo?",
+  "answers_es": {
+   "A": "Acelerar para pasar a todos",
+   "B": "Incorporarse con cuidado cuando se indique",
+   "C": "Detenerse en su carril",
+   "D": "Conducir por el acotamiento"
+  },
+  "explanation_es": "Cuando un carril se cierra en una zona de trabajo, incorpórese con seguridad al carril abierto según lo indiquen las señales o el control de tránsito. Detenerse de repente o usar el acotamiento es peligroso.",
+  "category": "Turning & Lane Changes",
+  "topic": "work zones lane closures",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "How should you drive when entering a work zone?",
+  "answers": {
+   "A": "Slow down and stay alert",
+   "B": "Maintain normal highway speed",
+   "C": "Follow very closely",
+   "D": "Change lanes often"
+  },
+  "correct_answer": "A",
+  "explanation": "Drivers should slow down and stay alert in work zones. Conditions can change quickly, and penalties for violations are often higher there.",
+  "question_text_es": "¿Cómo debe conducir al entrar en una zona de trabajo?",
+  "answers_es": {
+   "A": "Reducir la velocidad y mantenerse alerta",
+   "B": "Mantener la velocidad normal de autopista",
+   "C": "Seguir muy de cerca",
+   "D": "Cambiar de carril con frecuencia"
+  },
+  "explanation_es": "Los conductores deben reducir la velocidad y mantenerse alerta en las zonas de trabajo. Las condiciones pueden cambiar rápidamente, y las sanciones por infracciones suelen ser más altas allí.",
+  "category": "Safe Driving & Defensive Driving",
+  "topic": "work zones slowing down and higher fines",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "If a flagger signals you to stop in a work zone, what should you do?",
+  "answers": {
+   "A": "Stop and wait for directions",
+   "B": "Proceed if no workers show",
+   "C": "Honk and continue slowly",
+   "D": "Follow the car ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "In a work zone, you must obey a flagger's directions. If the flagger signals stop, remain stopped until told to proceed.",
+  "question_text_es": "Si un banderillero le indica que se detenga en una zona de trabajo, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Deténgase y espere instrucciones",
+   "B": "Siga si no ve trabajadores",
+   "C": "Toque la bocina y siga despacio",
+   "D": "Siga al vehículo de adelante"
+  },
+  "explanation_es": "En una zona de trabajo, debe obedecer las instrucciones del banderillero. Si le indica que se detenga, permanezca detenido hasta que le digan que continúe.",
+  "category": "Signs, Signals & Markings",
+  "topic": "Work zones and flaggers",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ },
+ {
+  "question_text": "Why should you avoid speeding in a work zone?",
+  "answers": {
+   "A": "Fines are often higher there",
+   "B": "Speeding is allowed briefly",
+   "C": "Workers must move for you",
+   "D": "Orange signs cancel limits"
+  },
+  "correct_answer": "A",
+  "explanation": "Work zones require extra caution, and penalties for violations are often higher there. Slowing down helps protect workers, drivers, and everyone near the road.",
+  "question_text_es": "¿Por qué debe evitar el exceso de velocidad en una zona de trabajo?",
+  "answers_es": {
+   "A": "Las multas suelen ser más altas allí",
+   "B": "Se permite acelerar por poco tiempo",
+   "C": "Los trabajadores deben apartarse",
+   "D": "Las señales naranjas anulan límites"
+  },
+  "explanation_es": "Las zonas de trabajo requieren más precaución, y las sanciones por infracciones suelen ser más altas allí. Reducir la velocidad ayuda a proteger a los trabajadores, a los conductores y a todos cerca de la carretera.",
+  "category": "Driving Conditions & Hazards",
+  "topic": "Work zone speed and penalties",
+  "topic_key": "work zones",
+  "batch": "thin-topics",
+  "source": "drafted by gpt-5.4-2026-03-05"
+ }
+]
