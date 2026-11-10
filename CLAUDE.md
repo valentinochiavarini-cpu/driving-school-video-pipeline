@@ -24,8 +24,9 @@ src/render.ts     Remotion bundle + renderMedia
 src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
 src/publish.ts    Postiz: schedule approved videos (next free daily slot, TikTok settings from POSTING), sync states back
 src/still.ts      QA stills
-.github/workflows/nightly.yml  cron 03:17 UTC + manual dispatch: make -> publish approved -> sync.
-                  Secrets: OPENAI_API_KEY, ELEVENLABS_API_KEY, INGEST_TOKEN, POSTIZ_API_KEY
+src/nightly.ts    the nightly run: format by weekday (Mon pass5, Tue signs7, Wed row5, Thu pass10, Fri tricky5,
+                  Sat classic30, Sun pass5) -> make -> publish approved -> sync. `npm run nightly`.
+.github/workflows/nightly.yml  manual fallback render on GitHub Actions (needs the four secrets); not scheduled.
 src/cli.ts        dry | make | replan | approve <id> | list [status] | publish | sync | slots | audition | voices
 remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), QuestionScene, Captions,
                   fonts (Inter vendored in public/fonts), studio.css (tokens + CreatorStudio.css values)
@@ -68,6 +69,12 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   buckets), and the `ingest` server function at /functions/v1/ingest with actions upsert, update, list,
   used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
 - Posting through Postiz Cloud; no own TikTok app audit. Approve the first 3 to 4 videos by hand, then auto.
+
+## Nightly run (decision 2026-11-10)
+
+Runs as a scheduled task in the owner's Claude Code cloud environment (Default), which holds the OpenAI, ElevenLabs
+and ingest credentials as network secrets. A fresh session clones this repo, runs `npm ci` and `npm run nightly`,
+and reports the NIGHTLY SUMMARY line. No GitHub secrets needed. Override with NIGHTLY_FORMAT / NIGHTLY_LANG.
 
 ## Ledger flow
 

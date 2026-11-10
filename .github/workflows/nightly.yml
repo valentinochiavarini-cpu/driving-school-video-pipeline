@@ -1,7 +1,6 @@
-name: nightly
+name: render
+# Manual fallback only. The nightly run is a scheduled task in the owner's Claude Code environment (see CLAUDE.md).
 on:
-  schedule:
-    - cron: "17 3 * * *"   # 03:17 UTC daily, about 10 pm US Eastern
   workflow_dispatch:
     inputs:
       format: { description: "Format id", default: "pass5", required: true }
