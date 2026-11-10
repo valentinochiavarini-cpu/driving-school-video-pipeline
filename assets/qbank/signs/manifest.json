@@ -1,0 +1,123 @@
+{
+ "R1-1": {
+  "code": "R1-1",
+  "meaning": "Stop",
+  "file": "R1-1.png",
+  "svg": "R1-1.svg",
+  "commons_file": "MUTCD_R1-1.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R1-1.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/MUTCD_R1-1.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:05:56.501Z"
+ },
+ "R1-2": {
+  "code": "R1-2",
+  "meaning": "Yield",
+  "file": "R1-2.png",
+  "svg": "R1-2.svg",
+  "commons_file": "MUTCD_R1-2.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R1-2.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/MUTCD_R1-2.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:06:18.980Z"
+ },
+ "R6-1R": {
+  "code": "R6-1R",
+  "meaning": "One way (traffic flows to the right)",
+  "file": "R6-1R.png",
+  "svg": "R6-1R.svg",
+  "commons_file": "MUTCD_R6-1R.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R6-1R.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/MUTCD_R6-1R.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:06:25.495Z"
+ },
+ "R5-1": {
+  "code": "R5-1",
+  "meaning": "Do not enter",
+  "file": "R5-1.png",
+  "svg": "R5-1.svg",
+  "commons_file": "MUTCD_R5-1.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R5-1.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/MUTCD_R5-1.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:06:32.009Z"
+ },
+ "R5-1a": {
+  "code": "R5-1a",
+  "meaning": "Wrong way",
+  "file": "R5-1a.png",
+  "svg": "R5-1a.svg",
+  "commons_file": "MUTCD_R5-1a.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R5-1a.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/MUTCD_R5-1a.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:06:38.558Z"
+ },
+ "R3-1": {
+  "code": "R3-1",
+  "meaning": "No right turn",
+  "file": "R3-1.png",
+  "svg": "R3-1.svg",
+  "commons_file": "MUTCD_R3-1.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-1.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/MUTCD_R3-1.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:09:22.593Z"
+ },
+ "R3-2": {
+  "code": "R3-2",
+  "meaning": "No left turn",
+  "file": "R3-2.png",
+  "svg": "R3-2.svg",
+  "commons_file": "MUTCD_R3-2.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-2.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/MUTCD_R3-2.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:39:17.053Z"
+ },
+ "R4-8": {
+  "code": "R4-8",
+  "meaning": "Keep left (of the obstruction)",
+  "file": "R4-8.png",
+  "svg": "R4-8.svg",
+  "commons_file": "MUTCD_R4-8.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R4-8.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/MUTCD_R4-8.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:40:13.137Z"
+ },
+ "R3-18": {
+  "code": "R3-18",
+  "meaning": "No U-turn or left turn",
+  "file": "R3-18.png",
+  "svg": "R3-18.svg",
+  "commons_file": "MUTCD_R3-18.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-18.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/MUTCD_R3-18.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:40:26.105Z"
+ },
+ "R10-11": {
+  "code": "R10-11",
+  "meaning": "No turn on red",
+  "file": "R10-11.png",
+  "svg": "R10-11.svg",
+  "commons_file": "MUTCD_R10-11.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-11.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/MUTCD_R10-11.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:40:30.516Z"
+ },
+ "R10-7": {
+  "code": "R10-7",
+  "meaning": "Do not block intersection",
+  "file": "R10-7.png",
+  "svg": "R10-7.svg",
+  "commons_file": "MUTCD_R10-7.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R10-7.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/MUTCD_R10-7.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T21:41:17.268Z"
+ }
+}
