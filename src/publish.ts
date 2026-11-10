@@ -3,14 +3,20 @@
  *  sync:    scheduled -> posted | failed, from Postiz post state. A failed video is retried once on the next free slot.
  *  Needs POSTIZ_API_KEY. POSTIZ_INTEGRATION_ID is optional (defaults to the first TikTok channel). */
 import { POSTING } from "./config";
-import { listVideos, updateVideo, type VideoRow } from "./ledger";
+import { listVideos, updateVideo, ingestCall, type VideoRow } from "./ledger";
 
 const BASE = () => process.env.POSTIZ_BASE_URL || "https://api.postiz.com/public/v1";
 export const postizEnabled = () => !!process.env.POSTIZ_API_KEY;
 // Postiz reads the bare key from Authorization, and also from a plain `auth` header (used by the session proxy).
 const hdr = () => ({ Authorization: process.env.POSTIZ_API_KEY ?? "", auth: process.env.POSTIZ_API_KEY ?? "" });
 
+/** POSTIZ_API_KEY=via-ingest routes every call through the Lovable ingest function, which holds the real key
+ *  server-side (needed where the session proxy cannot send a bare Authorization header). */
 async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
+  if (process.env.POSTIZ_API_KEY === "via-ingest") {
+    const r = await ingestCall<{ status?: number } & T>({ action: "postiz", method: init.method ?? "GET", path, body: init.body ? JSON.parse(String(init.body)) : undefined });
+    return r as T;
+  }
   const r = await fetch(`${BASE()}${path}`, { ...init, headers: { ...hdr(), ...(init.headers ?? {}) } });
   const text = await r.text();
   if (!r.ok) throw new Error(`Postiz ${r.status} ${path}: ${text.slice(0, 300)}`);

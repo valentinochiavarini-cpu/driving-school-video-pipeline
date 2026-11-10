@@ -23,6 +23,9 @@ async function call<T>(body: unknown): Promise<T> {
   return j;
 }
 
+/** Raw call to the ingest function (used by the Postiz passthrough). Throws on non-2xx with the upstream error. */
+export const ingestCall = <T>(body: unknown) => call<T>(body);
+
 export const upsertVideo = (video: Partial<VideoRow> & { id: string; format: string; lang: string }) =>
   call<{ video: VideoRow }>({ action: "upsert", video }).then((r) => r.video);
 export const updateVideo = (id: string, patch: Partial<VideoRow>) =>
