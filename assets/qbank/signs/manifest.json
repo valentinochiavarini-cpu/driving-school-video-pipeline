@@ -427,5 +427,16 @@
   "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/MUTCD_W12-2.svg",
   "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
   "fetched_at": "2026-11-10T22:30:31.743Z"
+ },
+ "W12-1": {
+  "code": "W12-1",
+  "meaning": "Double arrow: traffic may pass on either side",
+  "file": "W12-1.png",
+  "svg": "W12-1.svg",
+  "commons_file": "MUTCD_W12-1.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W12-1.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/MUTCD_W12-1.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-10T22:43:37.683Z"
  }
 }

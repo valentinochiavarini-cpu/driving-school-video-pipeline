@@ -62,7 +62,9 @@ for sheet in [s for s in wb.sheetnames if s != "How to review"]:
             q = dg[x["ref"]]; name = f"rw-{x['ref'][3:]}.png".lower()
             emit_insert(q, x, upload(os.path.join(Q, q["image_file"]), name))
         elif sheet == "Signs":
-            q = by_text.get(x["question"]) or next(v for v in sg if v["question_text"] == x["question"])
+            code = x["ref"].split(" ")[0]
+            q = next((v for v in sg if v["sign_code"] == code and v["question_text"] == x["question"] and set(v["answers"].values()) == {x[k] for k in "ABCD"}), None)
+            if q is None: raise SystemExit(f"no sign draft for {code}: {x['question'][:60]} (stale sheet?)")
             emit_insert(q, x, upload(os.path.join(Q, "signs", q["sign_code"] + ".png"), f"mutcd-{q['sign_code'].lower()}.png"))
         elif sheet == "Thin topics":
             emit_insert(by_text[x["question"]], x, None)

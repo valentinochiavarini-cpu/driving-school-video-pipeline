@@ -1822,5 +1822,133 @@
    "issue": "",
    "model": "gpt-5.4-2026-03-05"
   }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Low clearance ahead",
+   "B": "Steep hill ahead",
+   "C": "Narrow bridge ahead",
+   "D": "Road work ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that a low clearance is ahead. Drivers of tall vehicles should be prepared to avoid the route if needed.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Poca altura adelante",
+   "B": "Pendiente fuerte",
+   "C": "Puente angosto",
+   "D": "Obras adelante"
+  },
+  "explanation_es": "Esta señal advierte que hay poca altura más adelante. Los conductores de vehículos altos deben estar preparados para evitar la ruta si es necesario.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W12-2",
+  "sign_meaning": "Low clearance (height limit ahead)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W12-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Check vehicle height",
+   "B": "Speed up to merge",
+   "C": "Prepare to stop",
+   "D": "Turn on high beams"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns of low clearance ahead. If your vehicle is tall, check its height and avoid proceeding if it may not fit safely.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Revise la altura",
+   "B": "Acelere para entrar",
+   "C": "Prepárese a parar",
+   "D": "Encienda luces altas"
+  },
+  "explanation_es": "Esta señal advierte de poca altura más adelante. Si su vehículo es alto, revise su altura y no siga si no pasará con seguridad.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W12-2",
+  "sign_meaning": "Low clearance (height limit ahead)",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W12-2.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Pass either side",
+   "B": "Two-way traffic",
+   "C": "Keep right",
+   "D": "Divided highway"
+  },
+  "correct_answer": "A",
+  "explanation": "This double arrow sign means traffic may pass on either side of an obstruction or island. It does not mean two-way traffic or divided highway begins.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Pase por ambos lados",
+   "B": "Tráfico en dos vías",
+   "C": "Manténgase derecha",
+   "D": "Autopista dividida"
+  },
+  "explanation_es": "Esta señal de doble flecha significa que el tráfico puede pasar por cualquiera de los dos lados de un obstáculo o isla. No significa tráfico en dos sentidos ni inicio de autopista dividida.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W12-1",
+  "sign_meaning": "Double arrow: traffic may pass on either side",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W12-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Pass on either side",
+   "B": "Turn left ahead",
+   "C": "Stay to the right",
+   "D": "Prepare to stop"
+  },
+  "correct_answer": "A",
+  "explanation": "You should expect an obstruction or island ahead and proceed on either the left or right side as appropriate. Use the side that is open and safe.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Pase por cualquier lado",
+   "B": "Gire a la izquierda",
+   "C": "Permanezca a la der.",
+   "D": "Prepárese a parar"
+  },
+  "explanation_es": "Debe esperar un obstáculo o isla adelante y pasar por la izquierda o la derecha, según corresponda. Use el lado que esté abierto y sea seguro.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W12-1",
+  "sign_meaning": "Double arrow: traffic may pass on either side",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W12-1.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  }
  }
 ]

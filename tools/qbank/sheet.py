@@ -21,19 +21,20 @@ def sim(a, b):
 EXCL = re.compile(r"alcohol|drunk|under the influence|\bdui\b|\bdwi\b|license|licence|registration|insurance|speed limit", re.I)
 
 def reshuffle(q):
-    rnd = random.Random(hashlib.md5(q["question_text"].encode()).hexdigest())
+    rnd = random.Random(hashlib.md5((q["question_text"] + json.dumps(q["answers"], sort_keys=True) + q.get("sign_code", "")).encode()).hexdigest())
     letters = ["A", "B", "C", "D"]; src = letters[:]; rnd.shuffle(src)
     en = {letters[i]: q["answers"][src[i]] for i in range(4)}
     es = {letters[i]: q["answers_es"][src[i]] for i in range(4)}
     q = dict(q, answers=en, answers_es=es, correct_answer=letters[src.index(q["correct_answer"])])
     return q
 
-def flags(q, peers, same=lambda a, b: False, skip_bank_id=None):
+def flags(q, peers, same=lambda a, b: False, skip_bank_id=None, text_checks=True):
     f = []
     if q.get("qa", {}).get("verdict") == "problem": f.append("QA: " + q["qa"]["issue"])
     text = q["question_text"] + " " + " ".join(q["answers"].values()) + " " + q["explanation"]
     if re.search(r"\d", text): f.append("has a number: check it is the same in every state")
     if EXCL.search(text): f.append("excluded topic (alcohol/licensing/speed limits): drop")
+    if not text_checks: return "; ".join(f)
     best = max(((sim(q["question_text"], b["question_text"]), b["question_text"]) for b in bank if b["state"] is None and b["id"] != skip_bank_id), default=(0, ""))
     if best[0] >= 0.5: f.append(f"similar to bank: {best[1][:70]}")
     for p in peers:
@@ -78,7 +79,7 @@ sheet("Diagrams", dg, (240, 180))
 sp = os.path.join(Q, "drafts/signs.json")
 if os.path.exists(sp):
     sg = [reshuffle(q) for q in json.load(open(sp))]
-    for q in sg: q["ref"] = f"{q['sign_code']} ({q['sign_meaning']})"; q["image_path"] = os.path.join(Q, "signs", q["sign_code"] + ".png"); q["flags"] = flags(q, sg)
+    for q in sg: q["ref"] = f"{q['sign_code']} ({q['sign_meaning']})"; q["image_path"] = os.path.join(Q, "signs", q["sign_code"] + ".png"); q["flags"] = flags(q, sg, text_checks=False)
     sheet("Signs", sg, (130, 130), ["commons_page"])
 
 tp = [reshuffle(q) for q in json.load(open(os.path.join(Q, "drafts/topics.json")))]
