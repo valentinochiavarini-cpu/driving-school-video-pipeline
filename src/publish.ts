@@ -143,7 +143,8 @@ async function findPostIds(when: Date, content: string): Promise<string[]> {
 /** All post ids in a create response, whatever its shape (object, array, or {posts: [...]}) */
 function extractPostIds(res: unknown): string[] {
   const ids: string[] = [];
-  const take = (x: unknown) => { if (x && typeof x === "object" && typeof (x as { id?: unknown }).id === "string") ids.push((x as { id: string }).id); };
+  // Postiz create responses look like [{ postId, integration }]; older shapes used id
+  const take = (x: unknown) => { if (!x || typeof x !== "object") return; const o = x as { id?: unknown; postId?: unknown }; const v = typeof o.postId === "string" ? o.postId : typeof o.id === "string" ? o.id : null; if (v) ids.push(v); };
   if (Array.isArray(res)) res.forEach(take);
   else if (res && typeof res === "object") {
     take(res);
