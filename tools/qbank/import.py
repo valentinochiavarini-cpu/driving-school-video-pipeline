@@ -4,12 +4,20 @@
   Questions/Generated/). Upload goes through curl so the session proxy can inject the ingest token.
 - Writes assets/qbank/import.sql: INSERT for new questions, UPDATE in place for all-of-the-above rewrites.
   The SQL is run separately (Lovable database tool) after a final look.
-usage: python3 -I tools/qbank/import.py <repo root> [--no-upload]"""
+- --only-new skips rows already sent in an earlier batch (any assets/qbank/import-<tag>.json), so a later batch
+  carries only the new rows.
+usage: python3 -I tools/qbank/import.py <repo root> [--no-upload] [--only-new]"""
 import sys, os, json, subprocess, re
 from openpyxl import load_workbook
 
-ROOT = sys.argv[1]; UPLOAD = "--no-upload" not in sys.argv
+ROOT = sys.argv[1]; UPLOAD = "--no-upload" not in sys.argv; ONLY_NEW = "--only-new" in sys.argv
 Q = os.path.join(ROOT, "assets/qbank")
+import glob
+key = lambda text, answers: (text, frozenset(answers.values()))
+sent = set()
+for f in glob.glob(os.path.join(Q, "import-*.json")):
+    old = json.load(open(f))
+    sent |= {key(r["question_text"], r["answers"]) for r in old["inserts"]} | {key(u["fields"]["question_text"], u["fields"]["answers"]) for u in old["updates"]}
 INGEST = "https://ksiqvvoqlzdihjubaxbm.supabase.co/functions/v1/ingest"
 wb = load_workbook(os.environ.get("REVIEW", os.path.join(Q, "review.xlsx")))
 
@@ -62,6 +70,7 @@ for sheet in [s for s in wb.sheetnames if s != "How to review"]:
     for x in rows(sheet):
         if (x.get("approved (Y/N)") or "").strip().upper() != "Y": continue
         if (x.get("notes") or "").strip(): skipped.append((sheet, x["question"], x["notes"])); continue
+        if ONLY_NEW and key(x["question"], {k: x[k] for k in "ABCD"}) in sent: continue
         if sheet == "Diagrams":
             q = dg[x["ref"]]; name = f"rw-{x['ref'][3:]}.png".lower()
             emit_insert(q, x, upload(os.path.join(Q, q["image_file"]), name))

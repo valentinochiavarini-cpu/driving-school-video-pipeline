@@ -304,6 +304,26 @@
   "decision": "N",
   "reason": "duplicate of the meaning question"
  },
+ "signs:61": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": ""
+ },
+ "signs:62": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:63": {
+  "q": "When you see this sign, what should you do in the left lane?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:64": {
+  "q": "When you see this sign, what should you do?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
  "topics:0": {
   "q": "What does a white diamond marking on a lane mean?",
   "decision": "Y",

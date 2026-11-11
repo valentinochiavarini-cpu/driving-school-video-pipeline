@@ -2255,5 +2255,153 @@
    "reason": "duplicate of the meaning question",
    "by": "Claude (delegated by owner), 2026-11-10"
   }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Emergency vehicles",
+   "B": "Railroad crossing",
+   "C": "School crossing",
+   "D": "Hospital nearby"
+  },
+  "correct_answer": "A",
+  "explanation": "This warning sign indicates a fire station or emergency vehicles may be entering or crossing the roadway ahead. Be alert for emergency vehicles.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Vehículos de emergencia",
+   "B": "Cruce de ferrocarril",
+   "C": "Cruce escolar",
+   "D": "Hospital cercano"
+  },
+  "explanation_es": "Esta señal de advertencia indica una estación de bomberos o que vehículos de emergencia pueden entrar o cruzar la vía más adelante. Manténgase alerta.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W11-8",
+  "sign_meaning": "Fire station / emergency vehicles",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W11-8.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Watch for fire trucks",
+   "B": "Stop at the sign",
+   "C": "Yield to all traffic",
+   "D": "Turn on headlights"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that emergency vehicles may be entering or crossing ahead. Slow down if needed and watch for emergency vehicles.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Cuidado con bomberos",
+   "B": "Pare en la señal",
+   "C": "Ceda a todo el tráfico",
+   "D": "Encienda los faros"
+  },
+  "explanation_es": "Esta señal advierte que vehículos de emergencia pueden entrar o cruzar más adelante. Reduzca la velocidad si es necesario y esté atento.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W11-8",
+  "sign_meaning": "Fire station / emergency vehicles",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W11-8.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do in the left lane?",
+  "answers": {
+   "A": "Turn left only",
+   "B": "Go straight only",
+   "C": "Merge right",
+   "D": "Yield to oncoming"
+  },
+  "correct_answer": "A",
+  "explanation": "This advance lane control sign tells you the left lane is for left turns only. The right lane may turn left or continue straight.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer en el carril izquierdo?",
+  "answers_es": {
+   "A": "Solo girar a la izq.",
+   "B": "Solo seguir recto",
+   "C": "Pasar a la derecha",
+   "D": "Ceder al de enfrente"
+  },
+  "explanation_es": "Esta señal de control de carriles indica que el carril izquierdo es solo para dar vuelta a la izquierda. El carril derecho puede doblar a la izquierda o seguir recto.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "R3-8",
+  "sign_meaning": "Advance lane control: left lane turns left only; right lane turns left or goes straight",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-8L.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "When you see this sign, what should you do?",
+  "answers": {
+   "A": "Slow down on wet road",
+   "B": "Use headlights now",
+   "C": "Merge into traffic",
+   "D": "Prepare to stop"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that the road may be slippery when wet. Reduce speed and use extra caution in rainy or wet conditions.",
+  "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+  "answers_es": {
+   "A": "Reducir si está mojado",
+   "B": "Encender los faros",
+   "C": "Incorporarse",
+   "D": "Prepararse a parar"
+  },
+  "explanation_es": "Esta señal advierte que la carretera puede estar resbaladiza cuando está mojada. Reduzca la velocidad y maneje con más precaución en condiciones húmedas o de lluvia.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W8-5",
+  "sign_meaning": "Slippery when wet",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-5.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
  }
 ]

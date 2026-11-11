@@ -16,7 +16,7 @@ export const SIGNS: Record<string, string> = {
   "R5-1a": "Wrong way", "R3-1": "No right turn", "R3-2": "No left turn", "R3-4": "No U-turn", "R3-18": "No U-turn or left turn",
   "R4-7": "Keep right (of the obstruction)", "R4-8": "Keep left (of the obstruction)", "R4-1": "Do not pass",
   "R3-17": "Bike lane", "R10-6": "Stop here on red", "R10-7": "Do not block intersection", "R10-11": "No turn on red",
-  "R3-7R": "Right lane must turn right", "R3-5L": "Left turn only (this lane)", "R3-8": "Lane-use: left turn or straight",
+  "R3-7R": "Right lane must turn right", "R3-5L": "Left turn only (this lane)", "R3-8": "Advance lane control: left lane turns left only; right lane turns left or goes straight",
   "R4-2": "Pass with care", "R2-1": "Speed limit",
   "W14-1": "Dead end", "W14-2": "No outlet", "W12-2": "Low clearance (height limit ahead)", "W4-2": "Lane ends (merge left)",
   "W20-7": "Flagger ahead", "W8-3": "Pavement ends", "W8-4": "Soft shoulder", "W8-5": "Slippery when wet",
@@ -42,7 +42,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function get(url: string): Promise<{ status: number; body?: Buffer }> {
   // the shared egress IP gets ~1 in 3 requests through regardless of spacing, so retry quickly at a fixed interval
-  for (let attempt = 0; attempt < 15; attempt++) {
+  for (let attempt = 0; attempt < Number(process.env.ATTEMPTS ?? 15); attempt++) {
     const r = await fetch(url, { headers: UA });
     if (r.status === 429) { await sleep(8000); continue; }
     return { status: r.status, body: r.ok ? Buffer.from(await r.arrayBuffer()) : undefined };
@@ -59,16 +59,14 @@ function variants(code: string): string[] {
 }
 
 async function rasterise(svgs: { code: string; svg: string }[]) {
+  // same method as tools/signs/rasterise.ts: the SVG as an <img> fitted into 560 px, whatever its intrinsic size
   const { chromium } = require("playwright");
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 600, height: 600 }, deviceScaleFactor: 1 });
   for (const { code, svg } of svgs) {
-    const html = `<html><body style="margin:0;background:transparent;display:flex;align-items:center;justify-content:center;width:600px;height:600px">${svg.replace(/<\?xml[^>]*>/, "").replace(/<svg /, '<svg style="max-width:560px;max-height:560px;width:auto;height:auto" ')}</body></html>`;
-    await page.setContent(html);
-    const el = await page.$("svg");
-    const box = await el.boundingBox();
-    if (!box || box.width < 50) await el.evaluate((n: SVGSVGElement) => { n.setAttribute("width", "560"); n.setAttribute("height", "560"); });
-    await el.screenshot({ path: path.join(OUT, `${code}.png`), omitBackground: true });
+    await page.setContent(`<html><body style="margin:0;width:600px;height:600px;display:flex;align-items:center;justify-content:center;background:transparent">
+      <img style="width:560px;height:560px;object-fit:contain" src="data:image/svg+xml;base64,${Buffer.from(svg.replace(/<\?xml[^>]*>/, "")).toString("base64")}"/></body></html>`);
+    await page.locator("img").screenshot({ path: path.join(OUT, `${code}.png`), omitBackground: true });
   }
   await browser.close();
 }

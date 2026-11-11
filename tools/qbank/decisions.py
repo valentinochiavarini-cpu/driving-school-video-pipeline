@@ -31,6 +31,9 @@ F = {  # fixes
    30: ans(["No outlet", "Narrow bridge", "Do not enter", "Road work ahead"], ["Sin salida", "Puente angosto", "No entre", "Obras adelante"]),
    33: ans(["Merge left soon", "Turn right ahead", "Stop for a train", "Stay in right lane"], ["Incorpórese a la izq.", "Gire a la der. adelante", "Pare por un tren", "Siga en carril der."]),
    36: ans(["Soft shoulder", "Slippery when wet", "Low shoulder", "Shoulder drop-off"], ["Acotamiento blando", "Resbaloso si mojado", "Acotamiento bajo", "Desnivel lateral"]),
+   62: ans(["Watch for fire trucks", "Stop at the sign", "Yield to all traffic", "Turn on headlights"], ["Cuidado con bomberos", "Pare en la señal", "Ceda a todo el tráfico", "Encienda los faros"]),
+   63: ans(["Turn left only", "Go straight only", "Merge right", "Yield to oncoming"], ["Solo girar a la izq.", "Solo seguir recto", "Pasar a la derecha", "Ceder al de enfrente"]),
+   64: ans(["Slow down on wet road", "Use headlights now", "Merge into traffic", "Prepare to stop"], ["Reducir si está mojado", "Encender los faros", "Incorporarse", "Prepararse a parar"]),
    48: ans(["Keep right of median", "Prepare for signal", "Yield to oncoming", "Merge left now"], ["Quédese a la derecha", "Prepárese al semáforo", "Ceda al tráfico opuesto", "Incorpórese a la izq."]),
  },
  "topics": {67: dict(question_text="Why should you slow down in a work zone?", question_text_es="¿Por qué debe reducir la velocidad en una zona de obras?",
@@ -64,7 +67,7 @@ for key, f in FILES.items():
         elif i in N[key]: d = ("N", N[key][i])
         elif key == "topics" and i == 39: d = ("Y", "kept: 'discouraged or not allowed' covers both state practices (QA flag considered)")
         else: d = ("Y", "")
-        q["review"] = {"decision": d[0], "reason": d[1], "by": "Claude (delegated by owner), 2026-11-10"}
+        q["review"] = q.get("review") if (q.get("review") or {}).get("by", "").endswith("2026-11-10") and not (key == "signs" and i >= 61) else {"decision": d[0], "reason": d[1], "by": "Claude (delegated by owner), " + ("2026-11-11" if key == "signs" and i >= 61 else "2026-11-10")}
         decisions[f"{key}:{i}"] = {"q": q["question_text"], "decision": d[0], "reason": d[1]}
     save(f, rows)
 dg = load("diagrams/questions.json")
