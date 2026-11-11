@@ -1,0 +1,203 @@
+{
+ "inserts": [
+  {
+   "question_text": "What does this sign mean?",
+   "answers": {
+    "A": "Hospital nearby",
+    "B": "Railroad crossing",
+    "C": "School crossing",
+    "D": "Emergency vehicles"
+   },
+   "correct_answer": "D",
+   "explanation": "This warning sign indicates a fire station or emergency vehicles may be entering or crossing the roadway ahead. Be alert for emergency vehicles.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w11-8.png",
+   "question_text_es": "¿Qué significa esta señal?",
+   "answers_es": {
+    "A": "Hospital cercano",
+    "B": "Cruce de ferrocarril",
+    "C": "Cruce escolar",
+    "D": "Vehículos de emergencia"
+   },
+   "explanation_es": "Esta señal de advertencia indica una estación de bomberos o que vehículos de emergencia pueden entrar o cruzar la vía más adelante. Manténgase alerta."
+  },
+  {
+   "question_text": "What should you do when you see this sign?",
+   "answers": {
+    "A": "Turn on headlights",
+    "B": "Yield to all traffic",
+    "C": "Watch for fire trucks",
+    "D": "Stop at the sign"
+   },
+   "correct_answer": "C",
+   "explanation": "This sign warns that emergency vehicles may be entering or crossing ahead. Slow down if needed and watch for emergency vehicles.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w11-8.png",
+   "question_text_es": "¿Qué debe hacer al ver esta señal?",
+   "answers_es": {
+    "A": "Encienda los faros",
+    "B": "Ceda a todo el tráfico",
+    "C": "Cuidado con bomberos",
+    "D": "Pare en la señal"
+   },
+   "explanation_es": "Esta señal advierte que vehículos de emergencia pueden entrar o cruzar más adelante. Reduzca la velocidad si es necesario y esté atento."
+  },
+  {
+   "question_text": "When you see this sign, what should you do in the left lane?",
+   "answers": {
+    "A": "Go straight only",
+    "B": "Merge right",
+    "C": "Turn left only",
+    "D": "Yield to oncoming"
+   },
+   "correct_answer": "C",
+   "explanation": "This advance lane control sign tells you the left lane is for left turns only. The right lane may turn left or continue straight.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-r3-8.png",
+   "question_text_es": "Cuando vea esta señal, ¿qué debe hacer en el carril izquierdo?",
+   "answers_es": {
+    "A": "Solo seguir recto",
+    "B": "Pasar a la derecha",
+    "C": "Solo girar a la izq.",
+    "D": "Ceder al de enfrente"
+   },
+   "explanation_es": "Esta señal de control de carriles indica que el carril izquierdo es solo para dar vuelta a la izquierda. El carril derecho puede doblar a la izquierda o seguir recto."
+  },
+  {
+   "question_text": "When you see this sign, what should you do?",
+   "answers": {
+    "A": "Use headlights now",
+    "B": "Merge into traffic",
+    "C": "Prepare to stop",
+    "D": "Slow down on wet road"
+   },
+   "correct_answer": "D",
+   "explanation": "This sign warns that the road may be slippery when wet. Reduce speed and use extra caution in rainy or wet conditions.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w8-5.png",
+   "question_text_es": "Cuando vea esta señal, ¿qué debe hacer?",
+   "answers_es": {
+    "A": "Encender los faros",
+    "B": "Incorporarse",
+    "C": "Prepararse a parar",
+    "D": "Reducir si está mojado"
+   },
+   "explanation_es": "Esta señal advierte que la carretera puede estar resbaladiza cuando está mojada. Reduzca la velocidad y maneje con más precaución en condiciones húmedas o de lluvia."
+  },
+  {
+   "question_text": "What does this sign mean?",
+   "answers": {
+    "A": "Keep right",
+    "B": "Two-way traffic",
+    "C": "Road curves left",
+    "D": "Winding road ahead"
+   },
+   "correct_answer": "C",
+   "explanation": "This chevron alignment sign marks a sharp change in road direction. Here, it shows the road curves to the left.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w1-8.png",
+   "question_text_es": "¿Qué significa esta señal?",
+   "answers_es": {
+    "A": "Manténgase a la der.",
+    "B": "Tráfico doble sentido",
+    "C": "La vía gira a la izq.",
+    "D": "Camino sinuoso"
+   },
+   "explanation_es": "Esta señal de alineación con chevrones marca un cambio fuerte en la dirección de la vía. Aquí muestra que la vía gira a la izquierda."
+  },
+  {
+   "question_text": "What should you do when you see this sign?",
+   "answers": {
+    "A": "Stop at the crossing",
+    "B": "Pass on the right",
+    "C": "Merge into traffic",
+    "D": "Follow the left curve"
+   },
+   "correct_answer": "D",
+   "explanation": "The chevrons guide drivers through the curve. Slow as needed and follow the roadway to the left.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w1-8.png",
+   "question_text_es": "¿Qué debe hacer al ver esta señal?",
+   "answers_es": {
+    "A": "Deténgase en el cruce",
+    "B": "Pase por la derecha",
+    "C": "Incorpórese al tráfico",
+    "D": "Siga curva a la izq."
+   },
+   "explanation_es": "Los chevrones guían a los conductores a través de la curva. Reduzca la velocidad si es necesario y siga la vía hacia la izquierda."
+  },
+  {
+   "question_text": "This sign is posted ahead. What should you do?",
+   "answers": {
+    "A": "Expect merge on left",
+    "B": "Yield to cross traffic",
+    "C": "Keep right only",
+    "D": "Turn left soon"
+   },
+   "correct_answer": "A",
+   "explanation": "This sign warns that traffic from the left will merge into your lane ahead. Slow if needed and be ready to adjust space for merging vehicles.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w4-1.png",
+   "question_text_es": "Esta señal está colocada más adelante. ¿Qué debe hacer?",
+   "answers_es": {
+    "A": "Prevea unión por izq.",
+    "B": "Ceda en el cruce",
+    "C": "Solo carril derecho",
+    "D": "Gire a la izq. pronto"
+   },
+   "explanation_es": "Esta señal advierte que el tráfico de la izquierda se unirá a su carril más adelante. Reduzca la velocidad si es necesario y esté listo para dejar espacio a los vehículos que entran."
+  },
+  {
+   "question_text": "What does this sign mean?",
+   "answers": {
+    "A": "Road curves right",
+    "B": "Sharp left turn",
+    "C": "One-way traffic",
+    "D": "Hidden driveway"
+   },
+   "correct_answer": "B",
+   "explanation": "This large arrow warns that the road ahead turns sharply to the left. Slow down and be ready to follow the turn.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w1-6.png",
+   "question_text_es": "¿Qué significa esta señal?",
+   "answers_es": {
+    "A": "Curva a la derecha",
+    "B": "Giro cerrado a la izq.",
+    "C": "Tránsito en un sentido",
+    "D": "Entrada oculta"
+   },
+   "explanation_es": "Esta flecha grande advierte que la carretera adelante gira bruscamente a la izquierda. Reduzca la velocidad y prepárese para seguir la curva."
+  },
+  {
+   "question_text": "What should you do when you see this sign?",
+   "answers": {
+    "A": "Pass with caution",
+    "B": "Stop at the sign",
+    "C": "Slow for sharp left",
+    "D": "Merge right now"
+   },
+   "correct_answer": "C",
+   "explanation": "This sign warns of a sharp left turn ahead. Reduce speed and prepare to steer through the turn safely.",
+   "category": "Signs, Signals & Markings",
+   "state": null,
+   "image_url": "https://ksiqvvoqlzdihjubaxbm.supabase.co/storage/v1/object/public/images/Questions/Generated/mutcd-w1-6.png",
+   "question_text_es": "¿Qué debe hacer al ver esta señal?",
+   "answers_es": {
+    "A": "Rebase con cuidado",
+    "B": "Deténgase en la señal",
+    "C": "Reduzca por el giro",
+    "D": "Incorpórese a la der."
+   },
+   "explanation_es": "Esta señal advierte de una vuelta cerrada a la izquierda más adelante. Reduzca la velocidad y prepárese para girar con seguridad."
+  }
+ ],
+ "updates": []
+}

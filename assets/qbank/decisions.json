@@ -324,6 +324,31 @@
   "decision": "Y",
   "reason": "fixed by reviewer"
  },
+ "signs:65": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:66": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:67": {
+  "q": "This sign is posted ahead. What should you do?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:68": {
+  "q": "What does this sign mean?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
+ "signs:69": {
+  "q": "What should you do when you see this sign?",
+  "decision": "Y",
+  "reason": "fixed by reviewer"
+ },
  "topics:0": {
   "q": "What does a white diamond marking on a lane mean?",
   "decision": "Y",

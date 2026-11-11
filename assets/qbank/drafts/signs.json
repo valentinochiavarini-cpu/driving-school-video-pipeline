@@ -2403,5 +2403,190 @@
    "reason": "fixed by reviewer",
    "by": "Claude (delegated by owner), 2026-11-11"
   }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Road curves left",
+   "B": "Keep right",
+   "C": "Two-way traffic",
+   "D": "Winding road ahead"
+  },
+  "correct_answer": "A",
+  "explanation": "This chevron alignment sign marks a sharp change in road direction. Here, it shows the road curves to the left.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "La vía gira a la izq.",
+   "B": "Manténgase a la der.",
+   "C": "Tráfico doble sentido",
+   "D": "Camino sinuoso"
+  },
+  "explanation_es": "Esta señal de alineación con chevrones marca un cambio fuerte en la dirección de la vía. Aquí muestra que la vía gira a la izquierda.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W1-8",
+  "sign_meaning": "Chevron alignment: the road curves to the left; follow the chevrons",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-8L.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Follow the left curve",
+   "B": "Pass on the right",
+   "C": "Stop at the crossing",
+   "D": "Merge into traffic"
+  },
+  "correct_answer": "A",
+  "explanation": "The chevrons guide drivers through the curve. Slow as needed and follow the roadway to the left.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Siga curva a la izq.",
+   "B": "Pase por la derecha",
+   "C": "Deténgase en el cruce",
+   "D": "Incorpórese al tráfico"
+  },
+  "explanation_es": "Los chevrones guían a los conductores a través de la curva. Reduzca la velocidad si es necesario y siga la vía hacia la izquierda.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W1-8",
+  "sign_meaning": "Chevron alignment: the road curves to the left; follow the chevrons",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-8L.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "This sign is posted ahead. What should you do?",
+  "answers": {
+   "A": "Expect merge on left",
+   "B": "Turn left soon",
+   "C": "Keep right only",
+   "D": "Yield to cross traffic"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns that traffic from the left will merge into your lane ahead. Slow if needed and be ready to adjust space for merging vehicles.",
+  "question_text_es": "Esta señal está colocada más adelante. ¿Qué debe hacer?",
+  "answers_es": {
+   "A": "Prevea unión por izq.",
+   "B": "Gire a la izq. pronto",
+   "C": "Solo carril derecho",
+   "D": "Ceda en el cruce"
+  },
+  "explanation_es": "Esta señal advierte que el tráfico de la izquierda se unirá a su carril más adelante. Reduzca la velocidad si es necesario y esté listo para dejar espacio a los vehículos que entran.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W4-1",
+  "sign_meaning": "Merge: traffic from the left joins your lane ahead",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W4-1L.svg",
+  "in_bank": true,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "What does this sign mean?",
+  "answers": {
+   "A": "Sharp left turn",
+   "B": "Road curves right",
+   "C": "Hidden driveway",
+   "D": "One-way traffic"
+  },
+  "correct_answer": "A",
+  "explanation": "This large arrow warns that the road ahead turns sharply to the left. Slow down and be ready to follow the turn.",
+  "question_text_es": "¿Qué significa esta señal?",
+  "answers_es": {
+   "A": "Giro cerrado a la izq.",
+   "B": "Curva a la derecha",
+   "C": "Entrada oculta",
+   "D": "Tránsito en un sentido"
+  },
+  "explanation_es": "Esta flecha grande advierte que la carretera adelante gira bruscamente a la izquierda. Reduzca la velocidad y prepárese para seguir la curva.",
+  "category": "Signs, Signals & Markings",
+  "kind": "meaning",
+  "sign_code": "W1-6",
+  "sign_meaning": "Large arrow: the road turns sharply to the left",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-6L.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
+ },
+ {
+  "question_text": "What should you do when you see this sign?",
+  "answers": {
+   "A": "Slow for sharp left",
+   "B": "Merge right now",
+   "C": "Stop at the sign",
+   "D": "Pass with caution"
+  },
+  "correct_answer": "A",
+  "explanation": "This sign warns of a sharp left turn ahead. Reduce speed and prepare to steer through the turn safely.",
+  "question_text_es": "¿Qué debe hacer al ver esta señal?",
+  "answers_es": {
+   "A": "Reduzca por el giro",
+   "B": "Incorpórese a la der.",
+   "C": "Deténgase en la señal",
+   "D": "Rebase con cuidado"
+  },
+  "explanation_es": "Esta señal advierte de una vuelta cerrada a la izquierda más adelante. Reduzca la velocidad y prepárese para girar con seguridad.",
+  "category": "Signs, Signals & Markings",
+  "kind": "action",
+  "sign_code": "W1-6",
+  "sign_meaning": "Large arrow: the road turns sharply to the left",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-6L.svg",
+  "in_bank": false,
+  "batch": "signs",
+  "source": "drafted by gpt-5.4-2026-03-05; image from Wikimedia Commons",
+  "qa": {
+   "verdict": "ok",
+   "issue": "",
+   "model": "gpt-5.4-2026-03-05"
+  },
+  "review": {
+   "decision": "Y",
+   "reason": "fixed by reviewer",
+   "by": "Claude (delegated by owner), 2026-11-11"
+  }
  }
 ]

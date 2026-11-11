@@ -471,5 +471,38 @@
   "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/MUTCD_W8-5.svg",
   "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
   "fetched_at": "2026-11-11T01:10:36.923Z"
+ },
+ "W1-8": {
+  "code": "W1-8",
+  "meaning": "Chevron alignment: the road curves to the left; follow the chevrons",
+  "file": "W1-8.png",
+  "svg": "W1-8.svg",
+  "commons_file": "MUTCD_W1-8L.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-8L.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/MUTCD_W1-8L.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T01:45:01.325Z"
+ },
+ "W4-1": {
+  "code": "W4-1",
+  "meaning": "Merge: traffic from the left joins your lane ahead",
+  "file": "W4-1.png",
+  "svg": "W4-1.svg",
+  "commons_file": "MUTCD_W4-1L.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W4-1L.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/MUTCD_W4-1L.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T02:01:13.568Z"
+ },
+ "W1-6": {
+  "code": "W1-6",
+  "meaning": "Large arrow: the road turns sharply to the left",
+  "file": "W1-6.png",
+  "svg": "W1-6.svg",
+  "commons_file": "MUTCD_W1-6L.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W1-6L.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/MUTCD_W1-6L.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T02:26:32.379Z"
  }
 }
