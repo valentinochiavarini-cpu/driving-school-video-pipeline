@@ -438,5 +438,38 @@
   "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/MUTCD_W12-1.svg",
   "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
   "fetched_at": "2026-11-10T22:43:37.683Z"
+ },
+ "W11-8": {
+  "code": "W11-8",
+  "meaning": "Fire station / emergency vehicles",
+  "file": "W11-8.png",
+  "svg": "W11-8.svg",
+  "commons_file": "MUTCD_W11-8.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W11-8.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/MUTCD_W11-8.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T00:58:25.147Z"
+ },
+ "R3-8": {
+  "code": "R3-8",
+  "meaning": "Advance lane control: left lane turns left only; right lane turns left or goes straight",
+  "file": "R3-8.png",
+  "svg": "R3-8.svg",
+  "commons_file": "MUTCD_R3-8L.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_R3-8L.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/MUTCD_R3-8L.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T01:06:04.227Z"
+ },
+ "W8-5": {
+  "code": "W8-5",
+  "meaning": "Slippery when wet",
+  "file": "W8-5.png",
+  "svg": "W8-5.svg",
+  "commons_file": "MUTCD_W8-5.svg",
+  "commons_page": "https://commons.wikimedia.org/wiki/File:MUTCD_W8-5.svg",
+  "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/MUTCD_W8-5.svg",
+  "license": "Public domain: MUTCD sign design (US federal work). Verify the tag on the Commons page.",
+  "fetched_at": "2026-11-11T01:10:36.923Z"
  }
 }
