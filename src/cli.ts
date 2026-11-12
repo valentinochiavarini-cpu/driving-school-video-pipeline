@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -121,7 +121,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -133,7 +133,7 @@ try {
   else if (cmd === "approve") await approve(positionals[1]);
   else if (cmd === "report") console.log(await report(positionals[1] === "weekly" || values.weekly === true));
   else if (cmd === "metrics") await setMetrics(positionals[1], positionals.slice(2));
-  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { firstNow: values.now === true }); }
+  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { firstNow: values.now === true, at: values.at ? String(values.at).split(",").map((t) => { const d = new Date(t); if (isNaN(+d) || +d < Date.now() + 30 * 60e3) throw new Error(`--at ${t}: not a time at least 30 min ahead`); return d; }) : undefined }); }
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);

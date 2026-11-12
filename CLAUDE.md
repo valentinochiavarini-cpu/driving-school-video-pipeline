@@ -28,7 +28,8 @@ src/nightly.ts    the nightly run: two formats by weekday (NIGHTLY_ROTATION in c
                   (2 per day) -> sync + metrics -> report (weekly on Sunday). `npm run nightly`.
 .github/workflows/nightly.yml  manual fallback render on GitHub Actions (needs the four secrets); not scheduled.
 src/report.ts     daily/weekly report from the ledger: pipeline, errors, next posts, posted with metrics, costs, rankings
-src/cli.ts        dry | make | replan | approve <id> | list | publish | sync | slots | report [weekly] | metrics <id> k=v | audition | voices
+src/cli.ts        dry | make | replan | approve <id> | list | publish [--at ISO,..] | sync | slots | report [weekly] | metrics <id> k=v | audition | voices
+tools/fix/recover.ts  re-render only hook card 1 (the cover) of a rendered mp4 and splice it on; audio untouched
 remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), QuestionScene, Captions,
                   fonts (Inter vendored in public/fonts), studio.css (tokens + CreatorStudio.css values)
 public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized). Replace with licensed files.

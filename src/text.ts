@@ -81,8 +81,12 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   });
   const h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
   h.style = style;
-  // exactly one highlighted word on card 1: fall back to the first all-caps word, then "DMV"
-  if (!/\*\S+\*/.test(h.card1)) {
+  // exactly one highlighted span on card 1 (a word or a short phrase such as *driving test*): keep the first span,
+  // drop any other asterisks; with no span, fall back to the first all-caps word, then "DMV"
+  const span = h.card1.match(/\*([^*]+)\*/);
+  if (span) h.card1 = h.card1.slice(0, span.index).replace(/\*/g, "") + span[0] + h.card1.slice(span.index! + span[0].length).replace(/\*/g, "");
+  else {
+    h.card1 = h.card1.replace(/\*/g, "");
     const caps = h.card1.split(/\s+/).find((w) => /^[A-Z]{3,}[!?.]?$/.test(w));
     const target = caps ?? h.card1.split(/\s+/).find((w) => /DMV/i.test(w)) ?? h.card1.split(/\s+/)[0];
     h.card1 = h.card1.replace(target, `*${target.replace(/[!?.]$/, "")}*${/[!?.]$/.test(target) ? target.slice(-1) : ""}`);

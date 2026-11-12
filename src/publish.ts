@@ -88,21 +88,22 @@ export function nextSlots(taken: Date[], count: number, now = new Date()): Date[
 /* ---------- publish ---------- */
 
 export function postText(v: VideoRow): { content: string; title: string } {
-  const tags = (v.hashtags ?? []).join(" ");
+  const tags = (v.hashtags ?? []).map((t) => "#" + String(t).replace(/^#+/, "").replace(/\s+/g, "")).filter((t) => t.length > 1).join(" ");
   const content = `${v.caption ?? ""}\n\n${tags}`.trim();
   const title = (v.caption ?? v.id).replace(/[#\n]/g, " ").trim().slice(0, 90);
   return { content, title };
 }
 
-/** opts.firstNow: schedule the first video about 3 minutes from now (manual test), the rest on normal slots. */
-export async function publishApproved(limit = 3, opts: { firstNow?: boolean } = {}): Promise<void> {
+/** opts.firstNow: schedule the first video about 3 minutes from now (manual test), the rest on normal slots.
+ *  opts.at: explicit times (one-off catch-up days); used in order before any normal slot. */
+export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?: Date[] } = {}): Promise<void> {
   const approved = (await listVideos("approved", 50)).filter((v) => v.video_url);
   const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && !(v.metrics as { retried?: boolean } | null)?.retried);
   const queue = [...approved, ...failedRetry].slice(0, limit);
   if (!queue.length) { console.log("publish: nothing approved"); return; }
   const taken = [...(await listVideos("scheduled", 200)), ...(await listVideos("posted", 200))]
     .map((v) => v.scheduled_at).filter(Boolean).map((s) => new Date(s!));
-  const slots = nextSlots(taken, queue.length);
+  const slots = opts.at?.length ? [...opts.at, ...nextSlots([...taken, ...opts.at], Math.max(0, queue.length - opts.at.length))] : nextSlots(taken, queue.length);
   if (opts.firstNow) slots.unshift(new Date(Date.now() + 3 * 60e3));
   for (let i = 0; i < queue.length; i++) {
     const v = queue[i]; const when = slots[i];

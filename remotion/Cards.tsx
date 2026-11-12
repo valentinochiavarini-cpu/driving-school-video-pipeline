@@ -16,13 +16,15 @@ export const HookCard1: React.FC<{ plan: Plan }> = ({ plan }) => {
   const pop = spring({ frame, fps, config: { damping: 12, stiffness: 180, mass: 0.8 } });
   const emPop = spring({ frame: frame - 6, fps, config: { damping: 13, stiffness: 220 } });
   const sub = interpolate(frame, [0, 14], [0.75, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const parts = plan.hook.card1.split(/\*(\S+)\*/);
+  // highlight: the first *span* (one or more words); any other asterisks are dropped, never drawn
+  const m = plan.hook.card1.match(/\*([^*]+)\*/);
+  const parts = m ? [plan.hook.card1.slice(0, m.index).replace(/\*/g, ""), m[1], plan.hook.card1.slice(m.index! + m[0].length).replace(/\*/g, "")] : [plan.hook.card1.replace(/\*/g, "")];
   return (
     <div className="card">
       <Logo name={plan.brand.name} />
       <h1 style={{ transform: `scale(${0.94 + 0.06 * pop})` }}>
         {parts.map((p, i) => i % 2 === 1
-          ? <em key={i} style={{ transform: `scale(${1 + 0.08 * Math.sin(Math.PI * Math.min(1, emPop))}) rotate(${-2 + 2 * emPop}deg)` }}>{p}</em>
+          ? <em key={i} style={{ ...(/^[?!.,:;]/.test(parts[i + 1] ?? "") ? { marginRight: 0 } : {}), transform: `scale(${1 + 0.08 * Math.sin(Math.PI * Math.min(1, emPop))}) rotate(${-2 + 2 * emPop}deg)` }}>{p}</em>
           : <span key={i}>{p}</span>)}
       </h1>
       <h2 style={{ opacity: sub, transform: `translateY(${(1 - sub) * 20}px)` }}>{plan.hook.sub}</h2>
