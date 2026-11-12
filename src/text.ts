@@ -83,7 +83,8 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   h.style = style;
   // exactly one highlighted span on card 1 (a word or a short phrase such as *driving test*): keep the first span,
   // drop any other asterisks; with no span, fall back to the first all-caps word, then "DMV"
-  const span = h.card1.match(/\*([^*]+)\*/);
+  const spans = [...h.card1.matchAll(/\*([^*]+)\*/g)];
+  const span = spans.find((m) => /driving test|dmv/i.test(m[0])) ?? spans[0];
   if (span) h.card1 = h.card1.slice(0, span.index).replace(/\*/g, "") + span[0] + h.card1.slice(span.index! + span[0].length).replace(/\*/g, "");
   else {
     h.card1 = h.card1.replace(/\*/g, "");

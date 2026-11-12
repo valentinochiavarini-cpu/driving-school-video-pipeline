@@ -24,7 +24,9 @@ src/render.ts     Remotion bundle + renderMedia
 src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
 src/publish.ts    Postiz: schedule approved videos (next free daily slot, TikTok settings from POSTING), sync states back
 src/still.ts      QA stills
-src/nightly.ts    the nightly run: two formats by weekday (NIGHTLY_ROTATION in config) -> make x2 -> publish approved
+src/qa.ts         the publishing QA checklist (file, audio, frames, vision check of cover and layout, text, content)
+src/gate.ts       qa step with one automatic fix (text, cover re-render), auto-approve, retract (docs/QA-CHECKLIST.md)
+src/nightly.ts    the nightly run: two formats by weekday (NIGHTLY_ROTATION in config) -> make x2 -> qa -> auto-approve -> publish approved
                   (2 per day) -> sync + metrics -> report (weekly on Sunday). `npm run nightly`.
 .github/workflows/nightly.yml  manual fallback render on GitHub Actions (needs the four secrets); not scheduled.
 src/report.ts     daily/weekly report from the ledger: pipeline, errors, next posts, posted with metrics, costs, rankings
@@ -73,7 +75,8 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   public.videos (anon read only), private bucket `videos` (signed 1-year URLs; workspace policy blocks public
   buckets), and the `ingest` server function at /functions/v1/ingest with actions upsert, update, list,
   used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
-- Posting through Postiz Cloud; no own TikTok app audit. Approve the first 3 to 4 videos by hand, then auto.
+- Posting through Postiz Cloud; no own TikTok app audit. From 2026-11-13 the nightly run approves videos itself, but
+  only through the QA gate (docs/QA-CHECKLIST.md): nothing is approved or published without a passing QA on its current file.
 - Every approved video goes to TikTok and Instagram Reels in one Postiz request (POSTING.platforms). The Postiz key
   lives in Lovable as the secret POSTIZ_API_KEY; the pipeline reaches Postiz through the ingest function's `postiz`
   action (POSTIZ_API_KEY=via-ingest in .env), because the session proxy cannot send a bare Authorization header.
@@ -109,7 +112,8 @@ Video: questions with an image use a flexible image height; when every answer is
 
 ## Ledger flow
 
-make -> row status draft -> mp4 + thumb uploaded -> status ready. `approve <id>` sets approved + status approved.
+make -> row status draft -> mp4 + thumb uploaded -> status ready -> `qa` (pass, or held with reasons) -> auto-approve or
+`approve <id>` (both need a pass) -> approved. A mistake that got out: `retract <id>`, fix, `qa <id>`, `approve <id>`.
 `publish` uploads the approved video to Postiz from its signed URL and schedules it at the next free slot (POSTING in
 src/config.ts: 7 pm ET weekdays, 11 am weekends, one per day, 90 min lead). `sync` reads Postiz post states 30 min
 after the slot: PUBLISHED -> posted (post_url), ERROR or stuck 12 h -> failed. A failed video is retried once.

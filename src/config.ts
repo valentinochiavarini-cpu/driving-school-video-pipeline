@@ -138,6 +138,8 @@ export const POSTING = {
   weekdayHours: [11, 19],   // Mon to Fri: 11 am and 7 pm
   weekendHours: [11, 17],   // Sat and Sun: 11 am and 5 pm
   perDay: 2,
+  // decision 2026-11-12: from 2026-11-13 the nightly run approves videos itself, but only those that pass the QA gate (src/qa.ts)
+  autoApprove: true,
   /** questions may be reused in a new set after this many days */
   reuseAfterDays: 45,
   minLeadMinutes: 90,  // never schedule closer than this to now

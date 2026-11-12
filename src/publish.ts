@@ -4,6 +4,7 @@
  *  Needs POSTIZ_API_KEY. POSTIZ_INTEGRATION_ID is optional (defaults to the first TikTok channel). */
 import { POSTING } from "./config";
 import { listVideos, updateVideo, ingestCall, type VideoRow } from "./ledger";
+import { qaPassed } from "./qa";
 
 const BASE = () => process.env.POSTIZ_BASE_URL || "https://api.postiz.com/public/v1";
 export const postizEnabled = () => !!process.env.POSTIZ_API_KEY;
@@ -97,8 +98,10 @@ export function postText(v: VideoRow): { content: string; title: string } {
 /** opts.firstNow: schedule the first video about 3 minutes from now (manual test), the rest on normal slots.
  *  opts.at: explicit times (one-off catch-up days); used in order before any normal slot. */
 export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?: Date[] } = {}): Promise<void> {
-  const approved = (await listVideos("approved", 50)).filter((v) => v.video_url);
-  const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && !(v.metrics as { retried?: boolean } | null)?.retried);
+  const approvedAll = (await listVideos("approved", 50)).filter((v) => v.video_url);
+  const approved = approvedAll.filter(qaPassed);
+  for (const v of approvedAll.filter((x) => !qaPassed(x))) console.log(`publish: holding ${v.id}, no passing QA for its current file (run qa)`);
+  const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && qaPassed(v) && !(v.metrics as { retried?: boolean } | null)?.retried);
   const queue = [...approved, ...failedRetry].slice(0, limit);
   if (!queue.length) { console.log("publish: nothing approved"); return; }
   const taken = [...(await listVideos("scheduled", 200)), ...(await listVideos("posted", 200))]

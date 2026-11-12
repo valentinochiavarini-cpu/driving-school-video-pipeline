@@ -16,6 +16,8 @@ function step(name: string, args: string[]): boolean {
 
 const results: Record<string, boolean> = {};
 for (const f of formats) results[`render:${f}`] = step(`render ${f}`, ["make", "--format", f, "--lang", lang, "--count", "1"]);
+results.qa = step("qa", ["qa"]);
+results.approve = step("auto-approve", ["auto-approve"]);
 results.publish = step("publish", ["publish", "--count", String(POSTING.perDay)]);
 results.sync = step("sync", ["sync"]);
 results.report = step("report", ["report", ...(weekday === "Sun" ? ["weekly"] : [])]);

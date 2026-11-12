@@ -41,7 +41,10 @@ export async function report(weekly: boolean): Promise<string> {
     .sort((a, b) => a.scheduled_at!.localeCompare(b.scheduled_at!)).slice(0, 6);
   out.push(`NEXT POSTS  ${upcoming.length ? upcoming.map((v) => `${fmtDate(v.scheduled_at)} ${v.format}/${angleOf(v)}`).join("; ") : "none scheduled"}`);
   const ready = all.filter((v) => v.status === "ready");
-  if (ready.length) out.push(`WAITING FOR APPROVAL  ${ready.map((v) => v.id).join(", ")}`);
+  const held = ready.filter((v) => (m(v).qa as { pass?: boolean } | undefined)?.pass === false || String(v.error ?? "").startsWith("retracted"));
+  const waiting = ready.filter((v) => !held.includes(v));
+  if (held.length) { out.push("HELD BY QA (not published until fixed and re-checked)"); for (const v of held) out.push(`  ${v.id}  ${(v.error ?? "").slice(0, 220)}`); }
+  if (waiting.length) out.push(`WAITING FOR APPROVAL  ${waiting.map((v) => v.id).join(", ")}`);
 
   const posted7 = all.filter((v) => v.status === "posted" && v.posted_at && new Date(v.posted_at).getTime() > since7);
   out.push(`POSTED (7d)  ${posted7.length}`);

@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | approve <id> | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
+/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -14,6 +14,8 @@ import { renderPlan } from "./render";
 import { execFileSync } from "node:child_process";
 import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from "./ledger";
 import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publish";
+import { qaPassed } from "./qa";
+import { qaStep, autoApprove, retract } from "./gate";
 import { report } from "./report";
 import { chooseAngle } from "./text";
 import { POSTING, THEMES } from "./config";
@@ -93,7 +95,10 @@ async function setMetrics(id: string, pairs: string[]) {
   await updateVideo(id, { metrics: patch }); console.log(`metrics ${id}`, patch);
 }
 
-async function approve(id: string) {
+async function approve(id: string, force: boolean) {
+  const row = (await listVideos(null, 200)).find((x) => x.id === id);
+  if (!row) throw new Error(`no video ${id}`);
+  if (!qaPassed(row) && !force) throw new Error(`${id} has no passing QA for its current file: run \`qa ${id}\` first (or --force)`);
   const v = await updateVideo(id, { approved: true, status: "approved" });
   console.log(`approved ${v.id}  ${v.video_url}`);
 }
@@ -121,7 +126,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -130,7 +135,10 @@ try {
   else if (cmd === "make") for (let i = 0; i < parseInt(values.count!, 10); i++) await make(values.format!, lang, values.state, false);
   else if (cmd === "audition") await audition(positionals[1] ?? `Most people fail this one. Can you pass the ${new Date().getFullYear() + 1} DMV test? Question one. What does this sign mean?`);
   else if (cmd === "replan") await replan(positionals[1]);
-  else if (cmd === "approve") await approve(positionals[1]);
+  else if (cmd === "approve") await approve(positionals[1], values.force === true);
+  else if (cmd === "qa") { const r = await qaStep(positionals.slice(1), { fix: values["no-fix"] !== true }); console.log(`qa: ${r.pass} pass, ${r.held} held`); }
+  else if (cmd === "auto-approve") await autoApprove();
+  else if (cmd === "retract") await retract(positionals[1], positionals.slice(2).join(" ") || "manual");
   else if (cmd === "report") console.log(await report(positionals[1] === "weekly" || values.weekly === true));
   else if (cmd === "metrics") await setMetrics(positionals[1], positionals.slice(2));
   else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { firstNow: values.now === true, at: values.at ? String(values.at).split(",").map((t) => { const d = new Date(t); if (isNaN(+d) || +d < Date.now() + 30 * 60e3) throw new Error(`--at ${t}: not a time at least 30 min ahead`); return d; }) : undefined }); }
