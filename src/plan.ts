@@ -47,8 +47,11 @@ export function buildPlan(inp: PlanInput): Plan {
   const { questions, hook, audio } = inp;
   const cues: Cue[] = [];
   let t = 0;
-  const hook1Frames = f(VIDEO.hook1Seconds);
-  const hook2Frames = Math.max(f(VIDEO.hook2Seconds), f(audio.hook.duration - VIDEO.hook1Seconds + 0.3));
+  // question-first opening (test 2026-11-18): no title cards, the hook rides on question 1 as a banner
+  const questionFirst = FORMATS[inp.format].opening === "question";
+  const hook1Frames = questionFirst ? 0 : f(VIDEO.hook1Seconds);
+  const hook2Frames = questionFirst ? 0 : Math.max(f(VIDEO.hook2Seconds), f(audio.hook.duration - VIDEO.hook1Seconds + 0.3));
+  const bannerFrames = questionFirst ? f(VIDEO.bannerSeconds) : 0;
   t += hook1Frames + hook2Frames;
 
   const segs: QuestionSegment[] = questions.map((q0, idx) => {
@@ -56,7 +59,8 @@ export function buildPlan(inp: PlanInput): Plan {
     // the picture + 2x2 layout (same rule as QuestionScene) has room for a 4th line
     const visual = !!q0.image && Object.values(q0.answers).every((a) => a.length <= 22);
     const q = { ...q0, explanation: fitExplanation(q0.explanation ?? "", revealVo.text, visual ? EXPLANATION_MAX_CHARS_VISUAL : EXPLANATION_MAX_CHARS) };
-    const secs = countdownSeconds(inp.format, q, vo);
+    // question 1 under the banner gets the banner time on top, so the viewer still has the full reading time
+    const secs = countdownSeconds(inp.format, q, vo) + (idx === 0 && questionFirst ? Math.ceil(VIDEO.bannerSeconds) : 0);
     const questionAt = t, questionFrames = secs * fps;
     cues.push({ kind: "whoosh", at: questionAt });
     for (let s = Math.min(3, secs - 1); s >= 1; s--) cues.push({ kind: "tick", at: questionAt + (secs - s) * fps });
@@ -79,7 +83,7 @@ export function buildPlan(inp: PlanInput): Plan {
     hook: {
       card1: hook.card1, card2: hook.card2,
       sub: es ? "Practica para el examen de manejo" : "Driving test practice",
-      pill: es ? "VAMOS" : "LET'S GO", hook1Frames, hook2Frames, vo: audio.hook,
+      pill: es ? "VAMOS" : "LET'S GO", hook1Frames, hook2Frames, vo: audio.hook, bannerFrames,
     },
     questions: segs, outro, cues,
     music: { src: SFX.musicPath || null, gain: SFX.musicGain },

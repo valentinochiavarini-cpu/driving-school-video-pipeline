@@ -91,6 +91,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   questions hide the picture on the reveal. The spoken caption word is navy on yellow in every theme.
 - Captions (decision 2026-11-18): the model writes one short line; src/post.ts adds the score ask (pass mark for 20+ questions)
   and language-correct hashtags. No series numbers in posts. QA check text:caption-clean enforces it; the gate auto-fixes it.
+- Format tests (decision 2026-11-18, docs/TESTS.md): question-first opening (FormatDef.opening, hook banner on question 1,
+  frame 0 is the cover) in pass5q and signs7q, quick3 (3 questions) and debate1 (one diagram, comment A to D); one test
+  and one control a day in NIGHTLY_ROTATION. Classic 30 posts to TikTok only (FormatDef.platforms). Read on 2026-11-25.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

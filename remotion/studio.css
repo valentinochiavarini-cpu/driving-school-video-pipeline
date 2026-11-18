@@ -86,3 +86,8 @@
 .reveal .visual .studio-explanation .clamp { -webkit-line-clamp: 4; }
 /* long-answer picture questions: on the reveal the picture steps aside for the explanation (it is not needed once the answer shows) */
 .reveal .has-image:not(.visual) .studio-image { display: none; }
+/* question-first opening (test 2026-11-18): hook banner over question 1, navy with the yellow highlight in every theme */
+.hook-banner { overflow: hidden; background: hsl(217 92% 12%); color: #fff; text-align: center; padding: .55rem .8rem .5rem; border-bottom: 3px solid hsl(47 100% 58%); }
+.hook-banner .hb1 { font-size: 1.32rem; font-weight: 800; line-height: 1.15; text-transform: uppercase; letter-spacing: -.01em; }
+.hook-banner .hb1 em { font-style: normal; color: hsl(47 100% 58%); display: inline-block; margin: 0 .12em; }
+.hook-banner .hb2 { margin-top: .2rem; font-size: .8rem; font-weight: 600; opacity: .85; }

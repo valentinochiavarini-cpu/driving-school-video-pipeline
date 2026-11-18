@@ -38,8 +38,9 @@ export type Theme = (typeof THEMES)[number];
 /** Nightly rotation: two formats per weekday (decision 2026-11-10: two posts a day). */
 export const NIGHTLY_ROTATION: Record<string, string[]> = {
   // dataset 2026-10 (docs/research-viral-dataset.md): 30 to 90 s quizzes and 5 min+ full tests win; 90 s to 5 min loses
-  Mon: ["pass5", "signs7"], Tue: ["row5", "signs7"], Wed: ["tricky5", "pass5"], Thu: ["signs7", "classic30"],
-  Fri: ["pass5", "row5"], Sat: ["classic30", "signs7"], Sun: ["tricky5", "pass5"],
+  // test weeks from 2026-11-18 (docs/TESTS.md): one control and one test a day, each test twice a week
+  Mon: ["pass5", "signs7q"], Tue: ["row5", "quick3"], Wed: ["tricky5", "pass5q"], Thu: ["signs7", "debate1"],
+  Fri: ["pass5q", "quick3"], Sat: ["classic30", "signs7q"], Sun: ["debate1", "pass5"],
 };
 
 /** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
@@ -51,6 +52,8 @@ export const VIDEO = {
   height: 1920,
   fps: 30,
   hook1Seconds: 1.5,
+  /** question-first opening: the hook banner sits over question 1 this long; question 1 gets this much extra time */
+  bannerSeconds: 2.5,
   hook2Seconds: 1.5,
   outroSeconds: 3.5,
   dimSeconds: 0.5,
@@ -64,6 +67,11 @@ export type FormatDef = {
   think: number;
   /** cap on the reading-time part of the countdown (the voice end still wins); keeps short formats under ~75 s */
   maxCountdown?: number;
+  /** "cards" (default): hook card 1 + card 2 before question 1. "question": question 1 from frame 0 with the hook as a
+   *  banner over it (test 2026-11-18: 74 to 89 percent of Instagram viewers skipped during the two title cards) */
+  opening?: "cards" | "question";
+  /** channels this format posts to (default POSTING.platforms). Instagram does not recommend reels over 3 minutes. */
+  platforms?: readonly ("tiktok" | "instagram")[];
   label: string;
   imageFirst?: boolean;
   imageOnly?: boolean;
@@ -95,7 +103,14 @@ export const FORMATS: Record<string, FormatDef> = {
   pass10: { size: 10, think: 5, label: "Can you pass? (10)", imageFirst: true },
   pass15: { size: 15, think: 5, label: "Can you pass? (15)", imageFirst: true },
   signs15: { size: 15, think: 4, label: "Road signs test (15)", imageOnly: true },
-  classic30: { size: 30, think: 5, label: "Classic 30", imageFirst: true, buckets: CLASSIC_BUCKETS },
+  classic30: { size: 30, think: 5, label: "Classic 30", imageFirst: true, buckets: CLASSIC_BUCKETS, platforms: ["tiktok"] },
+  // tests (decision 2026-11-18, docs/TESTS.md): question-first twins of the controls, a 3-question short and a one-question debate
+  pass5q: { size: 5, think: 5, maxCountdown: 8, label: "Can you pass? (5)", imageFirst: true, opening: "question" },
+  signs7q: { size: 7, think: 4, maxCountdown: 5, label: "Road signs rapid fire (7)", imageOnly: true, opening: "question" },
+  quick3: { size: 3, think: 4, maxCountdown: 6, label: "Hardest questions (3)", imageFirst: true, opening: "question",
+    categories: [...ROW, "Passing Rules", "Driving Conditions & Hazards", "Sharing the Road", "Signs, Signals & Markings"] },
+  debate1: { size: 1, think: 6, label: "Who goes first? (1)", imageOnly: true, opening: "question",
+    categories: [...ROW, "Sharing the Road", "Lane Usage & Highway Driving"] },
   full: { size: "state", think: 5, label: "Full practice test", withState: true },
 };
 

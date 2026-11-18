@@ -95,6 +95,7 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   // asterisks mark the highlight word on card 1 only; never speak or post them
   for (const k of ["vo_line", "outro_vo", "card2", "caption"] as const) h[k] = h[k].replace(/\*/g, "");
   // caption and hashtags are finished in code (src/post.ts): score ask, pass mark, language-correct tags
+  if (timing.count === 1) h.card2 = h.card2.replace(/\b(1|one) questions\b/i, (m) => m.replace(/questions/i, "question")).replace(/\b1 preguntas\b/i, "1 pregunta");
   h.caption = buildCaption(h.caption, timing.count, lang);
   h.hashtags = cleanHashtags(h.hashtags ?? [], lang);
   if (h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9) throw new Error(`Hook too long: ${JSON.stringify(h)}`);

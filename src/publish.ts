@@ -2,7 +2,7 @@
  *  publish: approved -> scheduled (one per day at the configured local hour, next free slot)
  *  sync:    scheduled -> posted | failed, from Postiz post state. A failed video is retried once on the next free slot.
  *  Needs POSTIZ_API_KEY. POSTIZ_INTEGRATION_ID is optional (defaults to the first TikTok channel). */
-import { POSTING } from "./config";
+import { FORMATS, POSTING } from "./config";
 import { listVideos, updateVideo, ingestCall, type VideoRow } from "./ledger";
 import { qaPassed } from "./qa";
 
@@ -37,10 +37,10 @@ export async function tiktokIntegration(): Promise<Integration> {
   return tt;
 }
 /** One Postiz post entry per configured platform. TikTok is required; others are skipped with a warning if absent. */
-async function channelPosts(content: string, title: string, media: { id: string; path: string }) {
+async function channelPosts(content: string, title: string, media: { id: string; path: string }, platforms: readonly string[] = POSTING.platforms) {
   const arr = await integrations();
   const out: unknown[] = []; const used: { platform: string; id: string }[] = [];
-  for (const platform of POSTING.platforms) {
+  for (const platform of platforms) {
     const ch = platform === "tiktok" && process.env.POSTIZ_INTEGRATION_ID ? { id: process.env.POSTIZ_INTEGRATION_ID, identifier: "tiktok" } : arr.find((i) => i.identifier.startsWith(platform));
     if (!ch) { if (platform === "tiktok") throw new Error("No TikTok channel connected in Postiz"); console.warn(`publish: no ${platform} channel connected, skipping`); continue; }
     const settings = platform === "tiktok" ? { __type: "tiktok", title, ...POSTING.tiktok } : { __type: ch.identifier.startsWith("instagram-standalone") ? "instagram-standalone" : "instagram", ...POSTING.instagram };
@@ -116,7 +116,7 @@ export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: v.video_url }),
       });
       const { content, title } = postText(v);
-      const { posts, used } = await channelPosts(content, title, media);
+      const { posts, used } = await channelPosts(content, title, media, FORMATS[v.format]?.platforms ?? POSTING.platforms);
       const body = { type: "schedule", date: when.toISOString(), shortLink: false, tags: [], posts };
       const res = await api<unknown>("/posts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       let ids = extractPostIds(res);

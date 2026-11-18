@@ -6,7 +6,26 @@ import { Captions } from "./Captions";
 const R = 26, C = 2 * Math.PI * R;
 const LETTERS = ["A", "B", "C", "D"];
 
-export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ seg, lang }) => {
+type Banner = { card1: string; card2: string; frames: number };
+
+/** Question-first opening: the hook sits in a banner above question 1 and folds away after `frames`.
+ *  Frame 0 is fully composed (it is the cover on both platforms). */
+const HookBanner: React.FC<{ b: Banner }> = ({ b }) => {
+  const frame = useCurrentFrame(); const { fps } = useVideoConfig();
+  const out = interpolate(frame, [b.frames - 8, b.frames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  if (out <= 0) return null;
+  const m = b.card1.match(/\*([^*]+)\*/);
+  const parts = m ? [b.card1.slice(0, m.index).replace(/\*/g, ""), m[1], b.card1.slice(m.index! + m[0].length).replace(/\*/g, "")] : [b.card1.replace(/\*/g, "")];
+  const wob = 1 + 0.05 * Math.sin((frame / fps) * Math.PI * 2);
+  return (
+    <div className="hook-banner" style={{ maxHeight: `${out * 8}rem`, opacity: out, marginBottom: `${out * 0.1}rem` }}>
+      <div className="hb1">{parts.map((p, i) => i % 2 === 1 ? <em key={i} style={{ transform: `scale(${wob})` }}>{p}</em> : <span key={i}>{p}</span>)}</div>
+      <div className="hb2">{b.card2}</div>
+    </div>
+  );
+};
+
+export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?: Banner }> = ({ seg, lang, banner }) => {
   const frame = useCurrentFrame(); const { fps } = useVideoConfig();
   const es = lang === "es";
   const { q, idx, n } = seg;
@@ -24,7 +43,8 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
   const ringScale = urgent ? 1 + 0.08 * Math.abs(Math.sin((frame / fps) * Math.PI)) : 1;
 
   // entrance
-  const enter = (delay: number) => spring({ frame: frame - delay, fps, config: { damping: 16, stiffness: 190 } });
+  // under a banner (question-first cover) everything is in place from frame 0
+  const enter = (delay: number) => banner ? 1 : spring({ frame: frame - delay, fps, config: { damping: 16, stiffness: 190 } });
   const qIn = enter(0);
   const dimOpacity = phase === "dim" ? interpolate(frame - seg.questionFrames, [0, seg.dimFrames], [0, 1], { extrapolateRight: "clamp" }) : 0;
   const pop = spring({ frame: revealFrame, fps, config: { damping: 9, stiffness: 240, mass: 0.7 } });
@@ -38,6 +58,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang }> = ({ 
 
   return (
     <div className={`studio ${reveal ? "reveal" : ""}`}>
+      {banner && <HookBanner b={banner} />}
       <div className="studio-header">
         <div className="hdr">
           <div className="l"><span className="back">←</span><span className="title">{es ? "Pregunta" : "Question"} {idx + 1} {es ? "de" : "of"} {n}</span><span className="back">❚❚</span></div>

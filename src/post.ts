@@ -15,6 +15,7 @@ export const passMark = (count: number) => Math.ceil(count * 0.8);
 
 /** The score ask added after the model's line. Short tests dare a perfect score; 20+ question tests give the pass mark. */
 export function scoreAsk(count: number, lang: Lang): string {
+  if (count === 1) return lang === "es" ? "¿Cuál elegiste? Comenta A, B, C o D." : "Which one did you pick? Comment A, B, C or D.";
   if (lang === "es") return count >= 20
     ? `${count} preguntas, para aprobar necesitas ${passMark(count)}/${count}. ¿Cuántas acertaste?`
     : `¿Puedes sacar ${count}/${count}? Comenta tu puntaje.`;
