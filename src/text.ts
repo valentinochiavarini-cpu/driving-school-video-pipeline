@@ -1,4 +1,5 @@
 /** OpenAI text jobs (JSON mode): spoken rewrite per question (cached), hooks + caption per video. */
+import { buildCaption, cleanHashtags } from "./post";
 import { OPENAI, FORMATS, BRAND, HOOK_ANGLES, type HookStyle } from "./config";
 import { jsonCache, keyOrPlaceholder, writeJson } from "./env";
 import type { Hook, Lang, Question, Speak } from "./types";
@@ -52,7 +53,7 @@ Rules:
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 10 seconds each."
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
 - outro_vo = max 18 words: ask for the score in the comments, then say the full practice test is in the link in bio.
-- caption = max 110 chars. Start with the series title from "series" (for example "Road signs test #4" or "Driving test quiz #12"), then a score ask using timing.count ("Can you get 7/7?", "How many did you get right?"). For tests of 20+ questions also state the pass mark ("pass mark is 24/30"). Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
+- caption = ONE short line, max 70 chars, written to the viewer in the angle's voice (for example "Most people miss at least one of these."). No numbers, no score, no series name, no hashtags: the code adds the score ask. Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
 - Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes. Never mention a year or a date: posts must not look expired later.`;
 
 
@@ -75,7 +76,6 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
     first_question: q1.question_text, first_has_image: !!q1.image_url,
     categories: [...new Set(questions.map((q) => q.category))].sort(), timing, angle: angle.id, angle_brief: angle.brief,
     pass_mark: Math.ceil(timing.count * 0.8),
-    series: `${FORMATS[fmtId].label.replace(/\s*\(\d+\)$/, "")} #${seriesNumber}`,
     wording: Math.random() < 0.25 ? "dmv" : "driving test",
     cta: lang === "es" ? "practica el examen completo, link en la bio" : "practice the full test, link in bio",
   });
@@ -94,6 +94,9 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   }
   // asterisks mark the highlight word on card 1 only; never speak or post them
   for (const k of ["vo_line", "outro_vo", "card2", "caption"] as const) h[k] = h[k].replace(/\*/g, "");
+  // caption and hashtags are finished in code (src/post.ts): score ask, pass mark, language-correct tags
+  h.caption = buildCaption(h.caption, timing.count, lang);
+  h.hashtags = cleanHashtags(h.hashtags ?? [], lang);
   if (h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9) throw new Error(`Hook too long: ${JSON.stringify(h)}`);
   return h;
 }

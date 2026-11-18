@@ -62,6 +62,8 @@ export const VIDEO = {
 export type FormatDef = {
   size: number | "state";
   think: number;
+  /** cap on the reading-time part of the countdown (the voice end still wins); keeps short formats under ~75 s */
+  maxCountdown?: number;
   label: string;
   imageFirst?: boolean;
   imageOnly?: boolean;
@@ -83,11 +85,11 @@ export const CLASSIC_BUCKETS = [
 ];
 
 export const FORMATS: Record<string, FormatDef> = {
-  // short
-  pass5: { size: 5, think: 5, label: "Can you pass? (5)", imageFirst: true },
-  signs7: { size: 7, think: 4, label: "Road signs rapid fire (7)", imageOnly: true },
-  row5: { size: 5, think: 5, label: "Who goes first? (5)", categories: ROW },
-  tricky5: { size: 5, think: 5, label: "Most missed (5)", categories: [...ROW, "Passing Rules", "Driving Conditions & Hazards"] },
+  // short (decision 2026-11-18: 30 to 90 s wins, 90 s to 5 min loses; aim for <= 75 s, so the countdown is capped)
+  pass5: { size: 5, think: 5, maxCountdown: 8, label: "Can you pass? (5)", imageFirst: true },
+  signs7: { size: 7, think: 4, maxCountdown: 5, label: "Road signs rapid fire (7)", imageOnly: true },
+  row5: { size: 5, think: 5, maxCountdown: 8, label: "Who goes first? (5)", categories: ROW },
+  tricky5: { size: 5, think: 5, maxCountdown: 8, label: "Most missed (5)", categories: [...ROW, "Passing Rules", "Driving Conditions & Hazards"] },
   single: { size: 1, think: 5, label: "One question", imageFirst: true },
   // long (the viral shape: many questions, the viewer keeps score)
   pass10: { size: 10, think: 5, label: "Can you pass? (10)", imageFirst: true },

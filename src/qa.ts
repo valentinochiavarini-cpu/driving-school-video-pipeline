@@ -16,6 +16,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { captionProblems } from "./post";
 import { EXCLUDED_CATEGORIES, FORMATS } from "./config";
 import { keyOrPlaceholder, OUT } from "./env";
 import { fetchAllQuestions } from "./supabase";
@@ -36,7 +37,7 @@ const YEAR = /\b(19|20)\d{2}\b/;
 const visible = (s: string) => s.replace(/\*/g, "");
 
 /** Pure text checks on the hook, caption and hashtags (also used before rendering). */
-export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags">): QaCheck[] {
+export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags"> & { lang?: string }): QaCheck[] {
   const h = (v.hook ?? {}) as Record<string, string>;
   const card1 = h.card1 ?? "";
   const spans = card1.match(/\*[^*]+\*/g) ?? [];
@@ -50,6 +51,7 @@ export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags">): 
     { name: "text:no-asterisks", ok: ![v.caption ?? "", ...others, ...tags].some((s) => s.includes("*")), detail: "asterisks in caption, card 2, voice lines or hashtags" },
     { name: "text:no-year", ok: ![card1, v.caption ?? "", ...others, ...tags].some((s) => YEAR.test(s)), detail: "a year appears in visible or posted text" },
     { name: "text:caption", ok: (v.caption ?? "").trim().length >= 10, detail: "caption missing or too short" },
+    (() => { const p = captionProblems(v.caption ?? "", tags, v.lang === "es" ? "es" : "en"); return { name: "text:caption-clean", ok: p.length === 0, detail: p.join("; ") }; })(),
     { name: "text:hashtags", ok: tags.length >= 3 && tags.length <= 8 && tags.every((t) => /^#?[A-Za-z0-9_]+$/.test(t)), detail: `need 3 to 8 single-word hashtags: ${tags.join(" ")}` },
     { name: "text:length", ok: post.length <= 2000, detail: `post text ${post.length} chars (limit 2000)` },
   ].map((c) => (c.ok ? { ...c, detail: "" } : c));

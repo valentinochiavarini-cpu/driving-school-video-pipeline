@@ -5,10 +5,11 @@
  *   autoApprove  approve ready videos that passed QA on their current file (POSTING.autoApprove).
  *   retract      take a video back for fixing: cancel its scheduled Postiz posts, clear approval and QA,
  *                so it must be fixed, pass QA and be approved again before it can be published. */
+import { buildCaption, cleanHashtags } from "./post";
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { POSTING } from "./config";
+import { FORMATS, POSTING } from "./config";
 import { ROOT, OUT } from "./env";
 import { listVideos, updateVideo, upsertVideo, uploadFile, ingestCall, type VideoRow } from "./ledger";
 import { qaVideo, qaPassed, qaSummary, textChecks, QA, type QaResult } from "./qa";
@@ -31,8 +32,11 @@ function repairText(v: VideoRow): Partial<VideoRow> | null {
   }
   if (fixed !== card1) { h.card1 = fixed; changed = true; }
   for (const k of ["card2", "vo_line", "outro_vo"]) if (h[k]?.includes("*")) { h[k] = h[k].replace(/\*/g, ""); changed = true; }
-  const caption = (v.caption ?? "").replace(/\*/g, "");
-  const tags = [...new Set((v.hashtags ?? []).map((t) => "#" + String(t).replace(/^#+/, "").replace(/[^A-Za-z0-9_]/g, "")).filter((t) => t.length > 2))].slice(0, 8);
+  // caption and tags are rebuilt by the same rules as a new video (src/post.ts)
+  const lang = v.lang === "es" ? "es" : "en";
+  const count = (v.question_ids ?? []).length || (typeof FORMATS[v.format]?.size === "number" ? (FORMATS[v.format].size as number) : 0);
+  const caption = buildCaption((v.caption ?? "").replace(/\*/g, ""), count, lang);
+  const tags = cleanHashtags((v.hashtags ?? []).map(String), lang);
   const patch: Partial<VideoRow> = {};
   if (changed) patch.hook = h as VideoRow["hook"];
   if (caption !== (v.caption ?? "")) patch.caption = caption;

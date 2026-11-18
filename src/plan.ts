@@ -19,10 +19,29 @@ export function readingSeconds(q: Pick<DisplayQuestion, "question_text" | "answe
   return Math.min(READING.maxSeconds, Math.max(READING.minSeconds, s));
 }
 
-/** Countdown length for one question: reading time, never shorter than the format's think time or the voice. */
+/** Countdown length for one question: reading time capped by the format's maxCountdown (short formats stay in the
+ *  30 to 90 s band, decision 2026-11-18), never shorter than the format's think time or the voice. */
 export function countdownSeconds(fmtId: string, q: Pick<DisplayQuestion, "question_text" | "answers" | "image">, voice: Clip): number {
-  return Math.max(FORMATS[fmtId].think, readingSeconds(q), Math.ceil(voice.speechEnd + VIDEO.voiceMarginSeconds));
+  const fmt = FORMATS[fmtId];
+  const reading = Math.min(readingSeconds(q), fmt.maxCountdown ?? Infinity);
+  return Math.max(fmt.think, reading, Math.ceil(voice.speechEnd + VIDEO.voiceMarginSeconds));
 }
+
+/** Explanation shown on the reveal screen (decision 2026-11-18): never a sentence cut off with an ellipsis.
+ *  Full text if it fits, else its first sentence, else the reveal voice phrase (one complete phrase, max 10 words). */
+export function fitExplanation(explanation: string, revealVoText: string, maxChars = EXPLANATION_MAX_CHARS): string {
+  const full = explanation.trim();
+  if (full.length <= maxChars) return full;
+  const first = full.split(/(?<=[.!?])\s+/)[0].trim();
+  if (first.length <= maxChars) return first;
+  const phrase = revealVoText.replace(/^\s*(The answer is|La respuesta es)( la)? [A-D]\.\s*/i, "").trim();
+  if (!phrase) return "";
+  const p = phrase.charAt(0).toUpperCase() + phrase.slice(1);
+  return /[.!?]$/.test(p) ? p : `${p}.`;
+}
+/** about 3 lines of the explanation box at .92rem in the 360 px layout */
+export const EXPLANATION_MAX_CHARS = 125;
+export const EXPLANATION_MAX_CHARS_VISUAL = 165;
 
 export function buildPlan(inp: PlanInput): Plan {
   const { questions, hook, audio } = inp;
@@ -32,8 +51,11 @@ export function buildPlan(inp: PlanInput): Plan {
   const hook2Frames = Math.max(f(VIDEO.hook2Seconds), f(audio.hook.duration - VIDEO.hook1Seconds + 0.3));
   t += hook1Frames + hook2Frames;
 
-  const segs: QuestionSegment[] = questions.map((q, idx) => {
+  const segs: QuestionSegment[] = questions.map((q0, idx) => {
     const vo = audio.q[idx], revealVo = audio.r[idx];
+    // the picture + 2x2 layout (same rule as QuestionScene) has room for a 4th line
+    const visual = !!q0.image && Object.values(q0.answers).every((a) => a.length <= 22);
+    const q = { ...q0, explanation: fitExplanation(q0.explanation ?? "", revealVo.text, visual ? EXPLANATION_MAX_CHARS_VISUAL : EXPLANATION_MAX_CHARS) };
     const secs = countdownSeconds(inp.format, q, vo);
     const questionAt = t, questionFrames = secs * fps;
     cues.push({ kind: "whoosh", at: questionAt });

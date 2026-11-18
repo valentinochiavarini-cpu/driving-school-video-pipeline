@@ -16,7 +16,8 @@
 }
 .theme-ink .studio-letter { color: hsl(var(--highlight-foreground)); background: hsl(var(--highlight)); }
 .theme-ink .cap span.on { background: #fff; color: hsl(var(--brand-ink)); }
-.theme-dark .cap span.on, .theme-ink .cap span.done { color: hsl(var(--highlight)); }
+/* the spoken word is navy on the yellow box in every theme (2026-11-18: yellow-on-yellow made it invisible on dark) */
+.theme-ink .cap span.done { color: hsl(var(--highlight)); }
 .theme-dark .cap span.done { color: hsl(var(--primary)); }
 .theme-dark .studio-image, .theme-ink .studio-image { background: #fff; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,5 +81,8 @@
 .card .scores { display: flex; gap: .4rem; margin-top: 1.2rem; }
 .card .scores span { width: 2.6rem; padding: .5rem 0; border: 2px solid hsl(var(--highlight)); border-radius: .4rem; font-weight: 700; font-size: .85rem; display: inline-block; }
 .card .scores span.wide { width: auto; padding: .5rem .6rem; white-space: nowrap; }
-/* reveal with an image: make room for the explanation */
-.reveal .has-image .studio-explanation .clamp { -webkit-line-clamp: 2; }
+/* reveal with an image: the picture gives up height so the explanation (fitted to ~3 lines in plan.ts) shows whole */
+.reveal .has-image .studio-image { max-height: 9rem; }
+.reveal .visual .studio-explanation .clamp { -webkit-line-clamp: 4; }
+/* long-answer picture questions: on the reveal the picture steps aside for the explanation (it is not needed once the answer shows) */
+.reveal .has-image:not(.visual) .studio-image { display: none; }

@@ -84,6 +84,13 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   reused in a new set after 60 days (POSTING.reuseAfterDays), since 634 general questions run out in weeks at this rate.
 - Hooks: 16 angles (HOOK_ANGLES), chosen by past views with exploration; growth rules in docs/GROWTH.md.
 - No year or date in any visible text or caption (decision 2026-11-10): posts must not look expired later.
+- Length (decision 2026-11-18): short formats carry maxCountdown in FORMATS (8 s for 5-question, 5 s for signs7) so they
+  land at about 60 to 85 s, inside the 30 to 90 s band that wins in docs/research-viral-dataset.md; the voice end still wins.
+- Reveal screen (decision 2026-11-18): the explanation is never cut off with an ellipsis. plan.ts fitExplanation shows the full
+  text, else its first sentence, else the reveal voice phrase (125 chars, 165 in the picture + 2x2 layout); long-answer picture
+  questions hide the picture on the reveal. The spoken caption word is navy on yellow in every theme.
+- Captions (decision 2026-11-18): the model writes one short line; src/post.ts adds the score ask (pass mark for 20+ questions)
+  and language-correct hashtags. No series numbers in posts. QA check text:caption-clean enforces it; the gate auto-fixes it.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 
@@ -122,9 +129,8 @@ used_question_ids from the ledger is merged with cache/used.json so GitHub Actio
 ## Open issues
 
 1. Length has no target; keep an eye on anything over 75 s (the CLI warns).
-2. ElevenLabs account is on the free tier (10,000 characters per month, no commercial license). Two posts a day
-   is roughly 40,000 to 60,000 characters a month (Classic 30 alone is about 4,000): Creator plan or pay-as-you-go
-   on top of Starter, before public posting.
+2. ElevenLabs upgraded from the free tier on 2026-11-17 (the free 10,000 character cap emptied the 2026-11-17 nightly run).
+   Two posts a day is roughly 40,000 to 60,000 characters a month; watch the plan's quota.
 3. English voice: Liam (TX3LPaxmHKxFdv7VOQHJ), backup Laura (FGY2WhTYpPnrIDTdsKH5). Spanish voice not cast yet.
 4. Only 115 questions have images; signs7 exhausts unique sets after about 16 videos.
 5. SFX and music bed must be licensed files before the first public post.
