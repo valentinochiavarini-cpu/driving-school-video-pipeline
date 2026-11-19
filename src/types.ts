@@ -46,6 +46,8 @@ export type DisplayQuestion = {
   explanation: string;
   /** relative to public/ or absolute URL; null = no image */
   image: string | null;
+  /** pick-the-sign questions: the answers are pictures (letter -> image path); answers text holds their meanings */
+  answerImages?: Record<string, string>;
 };
 
 export type QuestionSegment = {
@@ -53,6 +55,8 @@ export type QuestionSegment = {
   n: number;
   q: DisplayQuestion;
   countdownSeconds: number;
+  /** link-in-bio call to action rides on this question's reveal (voice line + on-screen pill) */
+  cta?: boolean;
   questionAt: number;
   questionFrames: number;
   dimAt: number;

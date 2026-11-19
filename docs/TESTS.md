@@ -14,8 +14,27 @@ questions are the easiest to answer in comments.
 | B | signs7q | same as A on sign questions | signs7 | same as A |
 | C | quick3 | 3 questions, about 30 to 45 s, question-first | pass5 | short bucket: more completions and rewatches |
 | D | debate1 | one right-of-way diagram, about 20 to 25 s, "Which one did you pick? Comment A, B, C or D" | row5 | comments (all controls: 0) |
+| E | pick6 | "Which sign means X?" with 3 sign pictures as answers, question-first, about 7 s a question, no outro (loops) | signs7 | comments and completion (drivercheck24 format: 6.7M views, 1,136 comments) |
+
+quick3 also ends without an outro (loops). New hook angles realtest, missed and know (promise framing, no stats)
+enter the angle rotation as untried angles.
+
+## Link in bio (decision 2026-11-18): the bio link is where the books sell, so it is the goal metric
+- Every video speaks one CTA about a third of the way in ("the full practice tests are free at the link in bio") with
+  a yellow pill over the header, and every caption ends with "Free full practice tests: link in bio."
+- Baseline 10 to 18 Nov: 0 bio link clicks, 11 profile views, 0 profile views attributed to any video. The bio held the
+  URL as plain text (not clickable) until the owner adds it in the Website field.
+- Read per test: video_profile_views per 1,000 views (Windsor tiktok_organic) and daily bio_link_clicks.
 
 Classic 30 now posts to TikTok only: Instagram does not recommend reels over 3 minutes (2 views on Instagram).
+
+## Competitor review 2026-11-18 (7 videos watched frame by frame with TikTok's own transcripts)
+- drivercheck24 6.7M: question 1 at frame 0 on a road photo, picture answers, 7.5 s a question, no outro, music bed.
+- safedriver.com 5.1M (15 s): sign collage with a red "DMV Released Answers" label (insider promise).
+- caitlyn.studies 4.5M: person on camera reads the questions, plugs an app mid-video.
+- quizup244 1.9M, wazirdiy 3.0M, roadsigntrivia (Zutobi) 0.93M: a printed worksheet filmed with a pen or pointer,
+  every question visible at once. Zutobi's bio: "Download Zutobi for 600+ questions and practice tests".
+- None opens with a title card. Not yet replicated: the filmed worksheet (owner, later) and on-camera people.
 
 ## What decides it
 - Instagram (Windsor connector, per reel): media_reel_skip_rate, media_reel_avg_watch_time, media_views, comments.

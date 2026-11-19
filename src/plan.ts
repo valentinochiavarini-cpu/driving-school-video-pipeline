@@ -27,6 +27,16 @@ export function countdownSeconds(fmtId: string, q: Pick<DisplayQuestion, "questi
   return Math.max(fmt.think, reading, Math.ceil(voice.speechEnd + VIDEO.voiceMarginSeconds));
 }
 
+/** Link-in-bio call to action (decision 2026-11-18): spoken on one reveal about halfway through, with an on-screen pill.
+ *  Viewers rarely reach the outro (TikTok full-watch rate 0 to 2 percent), so the CTA cannot live only there. */
+export const CTA_LINE: Record<Lang, string> = {
+  en: "By the way, the full practice tests are free at the link in bio.",
+  es: "Por cierto, los exámenes de práctica completos son gratis en el link de la bio.",
+};
+export const CTA_PILL: Record<Lang, string> = { en: "FREE PRACTICE TESTS: LINK IN BIO", es: "EXÁMENES GRATIS: LINK EN LA BIO" };
+/** Which question's reveal carries the CTA: after about a third of the set; none for a single question. */
+export function ctaIndex(n: number): number { return n < 3 ? -1 : Math.max(0, Math.floor(n / 3) - 1 + (n >= 5 ? 1 : 0)); }
+
 /** Explanation shown on the reveal screen (decision 2026-11-18): never a sentence cut off with an ellipsis.
  *  Full text if it fits, else its first sentence, else the reveal voice phrase (one complete phrase, max 10 words). */
 export function fitExplanation(explanation: string, revealVoText: string, maxChars = EXPLANATION_MAX_CHARS): string {
@@ -34,7 +44,7 @@ export function fitExplanation(explanation: string, revealVoText: string, maxCha
   if (full.length <= maxChars) return full;
   const first = full.split(/(?<=[.!?])\s+/)[0].trim();
   if (first.length <= maxChars) return first;
-  const phrase = revealVoText.replace(/^\s*(The answer is|La respuesta es)( la)? [A-D]\.\s*/i, "").trim();
+  const phrase = revealVoText.replace(/^\s*(The answer is|La respuesta es)( la)? [A-D]\.\s*/i, "").replace(/\s*(By the way|Por cierto),.*$/i, "").trim();
   if (!phrase) return "";
   const p = phrase.charAt(0).toUpperCase() + phrase.slice(1);
   return /[.!?]$/.test(p) ? p : `${p}.`;
@@ -69,10 +79,11 @@ export function buildPlan(inp: PlanInput): Plan {
     const revealFrames = Math.max(f(2), f(revealVo.speechEnd + VIDEO.revealTailSeconds));
     cues.push({ kind: "ding", at: revealAt });
     t = revealAt + revealFrames;
-    return { idx, n: questions.length, q, countdownSeconds: secs, questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
+    return { idx, n: questions.length, q, countdownSeconds: secs, cta: idx === ctaIndex(questions.length), questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
   });
 
-  const outroFrames = Math.max(f(VIDEO.outroSeconds), f(audio.outro.duration + 0.5));
+  // outro: false (loop formats) ends on the last reveal; the CTA lives mid-video and in the caption
+  const outroFrames = FORMATS[inp.format].outro === false ? 0 : Math.max(f(VIDEO.outroSeconds), f(audio.outro.duration + 0.5));
   const outro = { at: t, frames: outroFrames, vo: audio.outro };
   t += outroFrames;
 

@@ -68,7 +68,8 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 ## Decisions already made (do not reopen without a reason)
 
 - Render from data with Remotion, never record the live Creator Studio page (timer drift, no voice sync).
-- Voice reads the question only; reveal says "The answer is B." plus a phrase of at most 10 words.
+- Voice reads the question only; reveal says "The answer is B." plus a phrase of at most 10 words (one reveal per video
+  also carries the link-in-bio CTA line).
 - Hooks are generated per video; card 2 uses the real timing numbers passed in.
 - Excluded categories everywhere: Alcohol & Drugs, Speed Limits & Laws, Licensing & Registration.
 - Lovable app UI untouched. One backend addition lives in the Lovable project (decision 2026-11-09): table
@@ -94,6 +95,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Format tests (decision 2026-11-18, docs/TESTS.md): question-first opening (FormatDef.opening, hook banner on question 1,
   frame 0 is the cover) in pass5q and signs7q, quick3 (3 questions) and debate1 (one diagram, comment A to D); one test
   and one control a day in NIGHTLY_ROTATION. Classic 30 posts to TikTok only (FormatDef.platforms). Read on 2026-11-25.
+- pick6 and link-in-bio CTA (decision 2026-11-18): pick-the-sign (FormatDef.pickSign, src/pick.ts buildPicks, picture
+  answers in QuestionScene), outro: false loops (pick6, quick3), a spoken mid-video CTA plus header pill (plan.ts CTA_LINE,
+  ctaIndex) and a caption CTA (post.ts BIO_CTA). The bio link is the goal metric (docs/TESTS.md).
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

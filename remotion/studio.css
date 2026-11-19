@@ -91,3 +91,15 @@
 .hook-banner .hb1 { font-size: 1.32rem; font-weight: 800; line-height: 1.15; text-transform: uppercase; letter-spacing: -.01em; }
 .hook-banner .hb1 em { font-style: normal; color: hsl(47 100% 58%); display: inline-block; margin: 0 .12em; }
 .hook-banner .hb2 { margin-top: .2rem; font-size: .8rem; font-weight: 600; opacity: .85; }
+/* pick-the-sign (2026-11-18): three sign pictures as the answers, two on top and one centred below; tiles take the
+   height that is left (the banner on question 1 and the explanation on the reveal shrink them, never overlap them) */
+.pick .studio-question { font-size: 1.3rem; text-align: center; flex: 0 0 auto; }
+.pick-grid { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: .55rem; }
+.pick-tile { position: relative; min-height: 0; height: 100%; background: #fff; border: 2px solid hsl(var(--border)); border-radius: .7rem; display: flex; align-items: center; justify-content: center; padding: .5rem; }
+.pick-tile:nth-child(3) { grid-column: 1 / span 2; width: calc(50% - .28rem); justify-self: center; }
+.pick-tile img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.pick-tile .studio-letter { position: absolute; top: .3rem; left: .3rem; width: 1.6rem; height: 1.6rem; font-size: .85rem; }
+.pick-tile.correct { border-color: hsl(var(--success)); box-shadow: 0 0 0 3px hsl(var(--success) / .55), 0 0 24px hsl(var(--success) / .45); }
+.pick .studio-explanation { flex: 0 0 auto; }
+/* link-in-bio pill on the CTA reveal: covers the header row (not needed during a reveal), never the question */
+.cta-pill { position: absolute; z-index: 30; top: .3rem; left: .7rem; right: .7rem; height: 2.6rem; display: flex; align-items: center; justify-content: center; text-align: center; background: hsl(47 100% 58%); color: hsl(217 92% 12%); font-weight: 800; font-size: .92rem; border-radius: .55rem; box-shadow: 0 4px 14px rgba(0,0,0,.2); }

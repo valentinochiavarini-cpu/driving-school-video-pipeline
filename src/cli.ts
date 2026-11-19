@@ -6,10 +6,10 @@ import { ROOT, OUT, PUBLIC, writeJson } from "./env";
 import { FORMATS } from "./config";
 import { fetchAllQuestions, cacheImage } from "./supabase";
 import type { VideoRow } from "./ledger";
-import { pickSet } from "./pick";
+import { pickSet, pickable, buildPicks } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices } from "./voice";
-import { buildPlan, countdownSeconds } from "./plan";
+import { buildPlan, countdownSeconds, ctaIndex, CTA_LINE } from "./plan";
 import { renderPlan } from "./render";
 import { execFileSync } from "node:child_process";
 import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from "./ledger";
@@ -26,7 +26,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const id = `${fmt}_${lang}_${Date.now()}`;
   const work = path.join(OUT, id); fs.mkdirSync(work, { recursive: true });
 
-  let qs: Question[]; let ledgerRows: VideoRow[] = [];
+  let qs: Question[]; let ledgerRows: VideoRow[] = []; let bank: Question[] = [];
   if (dry) {
     qs = JSON.parse(fs.readFileSync(path.join(ROOT, "docs/sample_set.json"), "utf8"));
     const sample = path.join(PUBLIC, "cache/images/sample_sign.png");
@@ -38,14 +38,30 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
       remoteUsed = recent.flatMap((v) => v.question_ids ?? []);
       ledgerRows = recent;
     }
-    qs = pickSet(await fetchAllQuestions(), fmt, lang, state, undefined, remoteUsed);
+    bank = await fetchAllQuestions();
+    qs = pickSet(bank, fmt, lang, state, undefined, remoteUsed);
   }
 
-  const speak = await Promise.all(qs.map((q) => (dry ? speakableDry(q) : speakable(q, lang))));
+  // pick-the-sign: each target becomes "Which sign means X?" with its sign and two other signs as picture answers.
+  // The synthetic question keeps the target id (QA content check) and a cache id that includes the options.
+  let pickImages: Record<string, string>[] | null = null;
+  if (FORMATS[fmt].pickSign && !dry) {
+    const es = lang === "es";
+    const picks = buildPicks(qs, bank.filter(pickable).map((q) => ({ ...q, ...(es && q.answers_es ? { answers: q.answers_es } : {}) })));
+    pickImages = await Promise.all(picks.map(async (p) => Object.fromEntries(await Promise.all(Object.entries(p.options).map(async ([L, o]) => [L, await cacheImage(o.image_url!, o.id)] as const)))));
+    qs = picks.map((p) => ({ ...p.target, question_text: es ? `¿Qué señal significa "${p.meaning}"?` : `Which sign means "${p.meaning}"?`,
+      answers: Object.fromEntries(Object.entries(p.options).map(([L, o]) => [L, o.answers[o.correct_answer]])), correct_answer: p.correct, image_url: null }));
+  }
+  const speakId = (q: Question, i: number) => pickImages ? { ...q, id: `pick_${q.id.slice(0, 8)}_${Object.values(pickImages[i]).map((p) => path.basename(p).slice(0, 8)).join("-")}_${q.correct_answer}` } : q;
+  const speak = await Promise.all(qs.map((q, i) => (dry ? speakableDry(q) : speakable(speakId(q, i), lang))));
+  // link-in-bio call to action on one reveal in the middle (decision 2026-11-18: the bio link is where the books sell)
+  const ci = ctaIndex(qs.length);
+  if (ci >= 0) speak[ci] = { ...speak[ci], reveal_vo: `${speak[ci].reveal_vo} ${CTA_LINE[lang]}` };
   const display: DisplayQuestion[] = await Promise.all(qs.map(async (q, i) => ({
-    id: q.id, question_text: q.question_text, answers: speak[i].answers_display, correct_answer: q.correct_answer,
-    explanation: q.explanation ?? "",
+    id: q.id, question_text: q.question_text, answers: pickImages ? Object.fromEntries(Object.keys(pickImages[i]).map((L) => [L, ""])) : speak[i].answers_display,
+    correct_answer: q.correct_answer, explanation: q.explanation ?? "",
     image: q.image_url ? (dry ? "cache/images/sample_sign.png" : await cacheImage(q.image_url, q.id)) : null,
+    ...(pickImages ? { answerImages: pickImages[i] } : {}),
   })));
 
   const aq = [], ar = [];
@@ -59,8 +75,9 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   for (const v of ledgerRows) { const a = (v.hook as { style?: string } | null)?.style; if (!a) continue; stats[a] ??= { posts: 0, views: 0 }; stats[a].posts++; stats[a].views += Number((v.metrics as { views?: number } | null)?.views ?? 0); }
   const seriesNumber = ledgerRows.filter((v) => v.format === fmt && v.lang === lang).length + 1;
   const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, chooseAngle(stats), seriesNumber);
-  const ah = dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
-  const ao = dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
+  // question-first formats show the hook as a banner and never play the hook voice line
+  const ah = FORMATS[fmt].opening === "question" || dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
+  const ao = FORMATS[fmt].outro === false ? dryClip("") : dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
 
   const themeCount: Record<string, number> = Object.fromEntries(THEMES.map((x) => [x, 0]));
   for (const v of ledgerRows) { const th = (v.metrics as { theme?: string } | null)?.theme; if (th && th in themeCount) themeCount[th]++; }

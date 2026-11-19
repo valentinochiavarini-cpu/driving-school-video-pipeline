@@ -35,6 +35,7 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   const base = all.filter((q) => !used.has(q.id) && !EXCLUDED_CATEGORIES.includes(q.category));
   let general = base.filter((q) => q.state === null);
   if (fmt.imageOnly) general = general.filter((q) => q.image_url);
+  if (fmt.pickSign) general = general.filter(pickable);
   if (fmt.categories) general = general.filter((q) => fmt.categories!.includes(q.category));
   const size = fmt.size === "state" ? stateCount ?? 30 : fmt.size;
   shuffle(general);
@@ -63,4 +64,30 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   ledger[key] = [...(ledger[key] ?? []), ...ordered.map((q) => q.id)];
   writeJson(LEDGER, ledger);
   return ordered.map((q) => localized(q, lang));
+}
+
+/* ---------- pick-the-sign (decision 2026-11-18) ---------- */
+
+/** Sign questions that can become "Which sign means X?": one sign picture, a meaning question, a short correct answer. */
+export const PICK_QUESTION = /^(what does this (road |traffic |warning )?sign (mean|indicate|tell you)|this sign (means|indicates))/i;
+export function pickable(q: Question): boolean {
+  const m = q.answers?.[q.correct_answer] ?? "";
+  return !!q.image_url && q.state === null && PICK_QUESTION.test(q.question_text) && m.length > 0 && m.length <= 32;
+}
+
+export type Pick = { target: Question; meaning: string; options: Record<string, Question>; correct: string };
+
+/** For each target sign, two distractor signs with a different meaning; the correct letter is random. */
+export function buildPicks(targets: Question[], pool: Question[]): Pick[] {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z]/g, "");
+  return targets.map((t) => {
+    const meaning = t.answers[t.correct_answer];
+    const others = shuffle(pool.filter((q) => q.id !== t.id && q.image_url !== t.image_url && norm(q.answers[q.correct_answer]) !== norm(meaning)));
+    const opts = [t, others[0], others[1]];
+    if (opts.some((o) => !o)) throw new Error("pick: not enough distractor signs");
+    const order = shuffle([0, 1, 2]);
+    const options: Record<string, Question> = {}; let correct = "A";
+    ["A", "B", "C"].forEach((L, i) => { options[L] = opts[order[i]]; if (order[i] === 0) correct = L; });
+    return { target: t, meaning, options, correct };
+  });
 }

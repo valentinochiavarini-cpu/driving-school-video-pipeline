@@ -37,9 +37,12 @@ export function cleanLine(line: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/** Caption line that points at the bio link, where the books sell (decision 2026-11-18). */
+export const BIO_CTA: Record<Lang, string> = { en: "Free full practice tests: link in bio.", es: "Exámenes de práctica gratis: link en la bio." };
+
 export function buildCaption(line: string, count: number, lang: Lang): string {
-  const l = cleanLine(line);
-  return `${l ? l + " " : ""}${scoreAsk(count, lang)}`.trim();
+  const l = cleanLine(line).replace(/[^.!?]*link in (the )?bio[^.!?]*[.!?]?/gi, "").replace(/[^.!?¡¿]*link en la bio[^.!?]*[.!?]?/gi, "").trim();
+  return `${l ? l + " " : ""}${scoreAsk(count, lang)} ${BIO_CTA[lang]}`.trim();
 }
 
 /** 5 lowercase single-word tags in the post's language, the required ones first, no duplicates. */

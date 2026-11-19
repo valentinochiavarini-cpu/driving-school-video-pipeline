@@ -1,6 +1,7 @@
 import React from "react";
 import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Lang, QuestionSegment } from "../src/types";
+import { CTA_PILL } from "../src/plan";
 import { Captions } from "./Captions";
 
 const R = 26, C = 2 * Math.PI * R;
@@ -50,7 +51,9 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?
   const pop = spring({ frame: revealFrame, fps, config: { damping: 9, stiffness: 240, mass: 0.7 } });
   const explIn = spring({ frame: revealFrame - 6, fps, config: { damping: 16, stiffness: 180 } });
 
-  const img = q.image ? (q.image.startsWith("http") || q.image.startsWith("../") ? q.image : staticFile(q.image)) : null;
+  const src = (p: string) => (p.startsWith("http") || p.startsWith("../") ? p : staticFile(p));
+  const img = q.image ? src(q.image) : null;
+  const pick = q.answerImages ? Object.entries(q.answerImages) : null;
   // visual layout: big picture + 2x2 answers when every answer is short (diagram and sign questions)
   const visual = !!img && Object.values(q.answers).every((a) => a.length <= 22);
   const clip = reveal ? seg.revealVo : seg.vo;
@@ -59,6 +62,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?
   return (
     <div className={`studio ${reveal ? "reveal" : ""}`}>
       {banner && <HookBanner b={banner} />}
+      {seg.cta && reveal && <div className="cta-pill" style={{ transform: `scale(${0.9 + 0.1 * explIn})`, opacity: explIn }}>{CTA_PILL[lang]} ↗</div>}
       <div className="studio-header">
         <div className="hdr">
           <div className="l"><span className="back">←</span><span className="title">{es ? "Pregunta" : "Question"} {idx + 1} {es ? "de" : "of"} {n}</span><span className="back">❚❚</span></div>
@@ -72,10 +76,21 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?
         </div>
         <div className="progress"><i style={{ width: `${((idx + (reveal ? 1 : 0.5)) / n) * 100}%`, transition: "none" }} /></div>
       </div>
-      <div className={`studio-main ${img ? "has-image" : ""} ${visual ? "visual" : ""}`}>
+      <div className={`studio-main ${img ? "has-image" : ""} ${visual ? "visual" : ""} ${pick ? "pick" : ""}`}>
         <p className="studio-question" style={{ opacity: qIn, transform: `translateY(${(1 - qIn) * 12}px)` }}>{q.question_text}</p>
         {img && <div className="studio-image" style={{ opacity: enter(3), transform: `scale(${0.96 + 0.04 * enter(3)})` }}><Img src={img} /></div>}
-        <div className="studio-answers">
+        {pick && <div className="pick-grid">
+          {pick.map(([k, p], i) => {
+            const ok = q.correct_answer === k; const e = enter(3 + i * 3);
+            const scale = reveal && ok ? 0.92 + 0.08 * pop + (pop > 0.6 ? 0.04 * (1 - pop) : 0) : 1;
+            return (
+              <div key={k} className={`pick-tile ${reveal && ok ? "correct" : ""}`} style={{ opacity: reveal && !ok ? 0.35 : e, transform: `translateY(${(1 - e) * 14}px) scale(${scale})` }}>
+                <span className="studio-letter">{k}</span><Img src={src(p)} />
+              </div>
+            );
+          })}
+        </div>}
+        {!pick && <div className="studio-answers">
           {LETTERS.map((k, i) => {
             const ok = q.correct_answer === k;
             const e = enter(5 + i * 3);
@@ -94,7 +109,7 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?
               </div>
             );
           })}
-        </div>
+        </div>}
         {reveal && q.explanation && (
           <p className="studio-explanation" style={{ opacity: explIn, transform: `translateY(${(1 - explIn) * 10}px)` }}><span className="clamp">{q.explanation}</span></p>
         )}

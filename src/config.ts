@@ -26,6 +26,10 @@ export const HOOK_ANGLES: { id: string; brief: string }[] = [
   { id: "duo", brief: "play it with someone: take the driving test with a friend, partner or parent and compare scores" },
   { id: "update", brief: "the current test: driving test questions people are not ready for (no year, no invented changes)" },
   { id: "honest", brief: "honest framing: no tricks, real written driving test questions, keep score" },
+  // promise angles (competitor review 2026-11-18): framed as real exam content; never claim leaked or official answers, no stats
+  { id: "realtest", brief: "real exam content: these are the kind of questions you get on the actual DMV written test" },
+  { id: "missed", brief: "the questions people miss on the written test and why, without any percentage or statistic" },
+  { id: "know", brief: "what the written test checks: if you know these, you are ready for the permit test" },
 ];
 export type HookStyle = string;
 
@@ -39,8 +43,9 @@ export type Theme = (typeof THEMES)[number];
 export const NIGHTLY_ROTATION: Record<string, string[]> = {
   // dataset 2026-10 (docs/research-viral-dataset.md): 30 to 90 s quizzes and 5 min+ full tests win; 90 s to 5 min loses
   // test weeks from 2026-11-18 (docs/TESTS.md): one control and one test a day, each test twice a week
-  Mon: ["pass5", "signs7q"], Tue: ["row5", "quick3"], Wed: ["tricky5", "pass5q"], Thu: ["signs7", "debate1"],
-  Fri: ["pass5q", "quick3"], Sat: ["classic30", "signs7q"], Sun: ["debate1", "pass5"],
+  // 2026-11-18 (later): pick6 added from the competitor review (docs/TESTS.md); debate1 once a week
+  Mon: ["pass5", "pick6"], Tue: ["row5", "quick3"], Wed: ["tricky5", "pass5q"], Thu: ["signs7", "debate1"],
+  Fri: ["pass5q", "quick3"], Sat: ["classic30", "signs7q"], Sun: ["signs7q", "pick6"],
 };
 
 /** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
@@ -72,6 +77,10 @@ export type FormatDef = {
   opening?: "cards" | "question";
   /** channels this format posts to (default POSTING.platforms). Instagram does not recommend reels over 3 minutes. */
   platforms?: readonly ("tiktok" | "instagram")[];
+  /** false: no outro card, the video ends on the last reveal and loops (CTA lives in the caption and mid-video) */
+  outro?: boolean;
+  /** pick-the-sign: "Which sign means X?" with three sign pictures as the answers (drivercheck24 format) */
+  pickSign?: boolean;
   label: string;
   imageFirst?: boolean;
   imageOnly?: boolean;
@@ -107,7 +116,9 @@ export const FORMATS: Record<string, FormatDef> = {
   // tests (decision 2026-11-18, docs/TESTS.md): question-first twins of the controls, a 3-question short and a one-question debate
   pass5q: { size: 5, think: 5, maxCountdown: 8, label: "Can you pass? (5)", imageFirst: true, opening: "question" },
   signs7q: { size: 7, think: 4, maxCountdown: 5, label: "Road signs rapid fire (7)", imageOnly: true, opening: "question" },
-  quick3: { size: 3, think: 4, maxCountdown: 6, label: "Hardest questions (3)", imageFirst: true, opening: "question",
+  pick6: { size: 6, think: 5, maxCountdown: 5, label: "Pick the sign (6)", imageOnly: true, opening: "question", outro: false, pickSign: true,
+    categories: SIGNS },
+  quick3: { size: 3, think: 4, maxCountdown: 6, label: "Hardest questions (3)", imageFirst: true, opening: "question", outro: false,
     categories: [...ROW, "Passing Rules", "Driving Conditions & Hazards", "Sharing the Road", "Signs, Signals & Markings"] },
   debate1: { size: 1, think: 6, label: "Who goes first? (1)", imageOnly: true, opening: "question",
     categories: [...ROW, "Sharing the Road", "Lane Usage & Highway Driving"] },

@@ -19,7 +19,7 @@ export const Video: React.FC<{ plan: Plan }> = ({ plan }) => {
     <AbsoluteFill className={`theme-${plan.theme ?? "light"}`} style={{ background: plan.theme === "dark" ? "hsl(217 70% 9%)" : plan.theme === "ink" ? "hsl(217 92% 12%)" : "hsl(210 25% 98%)" }}>
       {/* brand cards are full-bleed: the navy covers the whole frame, the content stays inside the safe box */}
       {h1 + h2 > 0 && <Sequence from={0} durationInFrames={h1 + h2} layout="none"><AbsoluteFill style={{ background: "hsl(217 92% 12%)" }} /></Sequence>}
-      <Sequence from={plan.outro.at} durationInFrames={plan.outro.frames} layout="none"><AbsoluteFill style={{ background: "hsl(217 92% 12%)" }} /></Sequence>
+      {plan.outro.frames > 0 && <Sequence from={plan.outro.at} durationInFrames={plan.outro.frames} layout="none"><AbsoluteFill style={{ background: "hsl(217 92% 12%)" }} /></Sequence>}
       <div className={`phone theme-${plan.theme ?? "light"}`}>
         {h1 > 0 && <Sequence from={0} durationInFrames={h1} layout="none"><HookCard1 plan={plan} /></Sequence>}
         {h2 > 0 && <Sequence from={h1} durationInFrames={h2} layout="none"><HookCard2 plan={plan} /></Sequence>}
@@ -28,7 +28,7 @@ export const Video: React.FC<{ plan: Plan }> = ({ plan }) => {
             <QuestionScene seg={seg} lang={plan.lang} banner={seg.idx === 0 && plan.hook.bannerFrames ? { card1: plan.hook.card1, card2: plan.hook.card2, frames: plan.hook.bannerFrames } : undefined} />
           </Sequence>
         ))}
-        <Sequence from={plan.outro.at} durationInFrames={plan.outro.frames} layout="none"><Outro plan={plan} /></Sequence>
+        {plan.outro.frames > 0 && <Sequence from={plan.outro.at} durationInFrames={plan.outro.frames} layout="none"><Outro plan={plan} /></Sequence>}
       </div>
       {h1 > 0 && <Voice clip={plan.hook.vo} from={0} />}
       {plan.questions.map((seg) => (
@@ -37,7 +37,7 @@ export const Video: React.FC<{ plan: Plan }> = ({ plan }) => {
           <Voice clip={seg.revealVo} from={seg.revealAt} />
         </React.Fragment>
       ))}
-      <Voice clip={plan.outro.vo} from={plan.outro.at} />
+      {plan.outro.frames > 0 && <Voice clip={plan.outro.vo} from={plan.outro.at} />}
       {plan.cues.map((c, i) => (
         <Sequence key={i} from={c.at} durationInFrames={30}><Audio src={staticFile(`sfx/${c.kind}.wav`)} volume={GAIN[c.kind]} /></Sequence>
       ))}
