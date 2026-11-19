@@ -47,7 +47,7 @@ export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags"> & 
   const others = ["card2", "vo_line", "outro_vo"].map((k) => h[k] ?? "");
   return [
     { name: "text:cover-highlight", ok: spans.length === 1 && !stray, detail: spans.length === 1 && !stray ? "" : `card 1 needs exactly one *highlight* and no other asterisks: "${card1}"` },
-    { name: "text:cover-words", ok: /driving test|dmv/i.test(card1) && visible(card1).split(/\s+/).length <= 8, detail: `card 1 must say driving test or DMV in at most 8 words: "${visible(card1)}"` },
+    { name: "text:cover-words", ok: /driving test|dmv/i.test(visible(card1)) && visible(card1).split(/\s+/).length <= 8, detail: `card 1 must say driving test or DMV in at most 8 words: "${visible(card1)}"` },
     { name: "text:no-asterisks", ok: ![v.caption ?? "", ...others, ...tags].some((s) => s.includes("*")), detail: "asterisks in caption, card 2, voice lines or hashtags" },
     { name: "text:no-year", ok: ![card1, v.caption ?? "", ...others, ...tags].some((s) => YEAR.test(s)), detail: "a year appears in visible or posted text" },
     { name: "text:caption", ok: (v.caption ?? "").trim().length >= 10, detail: "caption missing or too short" },
@@ -69,7 +69,7 @@ function frame(file: string, at: number, out: string) {
 async function vision(images: string[], card1: string): Promise<{ cover_ok: boolean; layout_ok: boolean; issues: string[] }> {
   const content = [
     { type: "text", text: `Frames from a vertical driving-test quiz video, in order: 1) the cover (frame 0), 2) a question screen, 3) the outro.
-The cover headline must read exactly (case-insensitive, one part highlighted in yellow): "${visible(card1)}".
+The cover headline must read exactly (case-insensitive, one part highlighted in yellow): "${visible(card1)}". It may be a full card or a banner above the first question; line breaks, wrapping across lines and uppercase styling are fine: compare the words only.
 Check: is the cover headline exactly that, fully visible, with no asterisks, markup or garbled characters? On every frame: is any text cut off at an edge, overlapping other text, unreadable or broken; is any image broken or missing; does anything look like a rendering error?
 Ignore animation in progress (slight tilt or scale) and do not judge design taste.
 Return JSON {"cover_ok": boolean, "layout_ok": boolean, "issues": [short strings]}.` },
