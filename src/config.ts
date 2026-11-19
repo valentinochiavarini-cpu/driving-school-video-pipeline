@@ -48,8 +48,10 @@ export const NIGHTLY_ROTATION: Record<string, string[]> = {
   // dataset 2026-10 (docs/research-viral-dataset.md): 30 to 90 s quizzes and 5 min+ full tests win; 90 s to 5 min loses
   // test weeks from 2026-11-18 (docs/TESTS.md): one control and one test a day, each test twice a week
   // 2026-11-18 (later): pick6 added from the competitor review (docs/TESTS.md); debate1 once a week
-  Mon: ["pass5", "pick6"], Tue: ["row5", "quick3"], Wed: ["tricky5", "pass5q"], Thu: ["signs7", "debate1"],
-  Fri: ["pass5q", "quick3"], Sat: ["classic30", "signs7q"], Sun: ["signs7q", "pick6"],
+  // three a day from 2026-11-18: one control and two tests (pick6 4, signs7q 4, pass5q 3, quick3 3, debate1 2 a week)
+  Mon: ["pass5", "pick6", "signs7q"], Tue: ["row5", "quick3", "pass5q"], Wed: ["tricky5", "pass5q", "pick6"],
+  Thu: ["signs7", "debate1", "quick3"], Fri: ["pass5q", "quick3", "signs7q"], Sat: ["classic30", "signs7q", "pick6"],
+  Sun: ["signs7q", "pick6", "debate1"],
 };
 
 /** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
@@ -167,9 +169,10 @@ export const READING = { wordsPerSecond: 3.5, thinkSeconds: 1.5, imageSeconds: 1
  *  After 14 days, move the hours to what TikTok Analytics shows for the account. */
 export const POSTING = {
   timezone: "America/New_York",
-  weekdayHours: [11, 19],   // Mon to Fri: 11 am and 7 pm
-  weekendHours: [11, 17],   // Sat and Sun: 11 am and 5 pm
-  perDay: 2,
+  // decision 2026-11-18: three posts a day (more test samples per week; every view so far comes from For You)
+  weekdayHours: [11, 15, 19],   // Mon to Fri: 11 am, 3 pm, 7 pm
+  weekendHours: [11, 14, 17],   // Sat and Sun: 11 am, 2 pm, 5 pm
+  perDay: 3,
   // decision 2026-11-12: from 2026-11-13 the nightly run approves videos itself, but only those that pass the QA gate (src/qa.ts)
   autoApprove: true,
   /** questions may be reused in a new set after this many days */

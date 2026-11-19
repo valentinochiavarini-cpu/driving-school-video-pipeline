@@ -6,7 +6,7 @@ average watch time 7 to 18 s, zero comments. The first 3 seconds of every video 
 dataset (docs/research-viral-dataset.md) says quiz videos under 30 s and 30 to 90 s both win, and that road sign
 questions are the easiest to answer in comments.
 
-## Tests (each runs twice a week next to a control, NIGHTLY_ROTATION in src/config.ts)
+## Tests (three posts a day from 2026-11-18: one control and two tests daily, NIGHTLY_ROTATION in src/config.ts)
 
 | Test | Format | Changes vs control | Control | Hypothesis |
 |---|---|---|---|---|

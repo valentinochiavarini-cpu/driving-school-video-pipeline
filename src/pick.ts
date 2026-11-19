@@ -58,6 +58,18 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
     if (i >= 0) picked.push(...general.splice(i, 1));
   }
   picked.push(...general.slice(0, size - picked.length));
+  // decision 2026-11-18: at three posts a day the sign pool runs dry inside the reuse window; rather than fail the
+  // render (an empty slot), top up with questions used before, preferring ones not used by this format recently
+  if (picked.length < size) {
+    const own = new Set(ledger[key] ?? []);
+    let reuse = all.filter((q) => used.has(q.id) && !picked.some((p) => p.id === q.id) && !EXCLUDED_CATEGORIES.includes(q.category) && q.state === null);
+    if (fmt.imageOnly) reuse = reuse.filter((q) => q.image_url);
+    if (fmt.pickSign) reuse = reuse.filter(pickable);
+    if (fmt.categories) reuse = reuse.filter((q) => fmt.categories!.includes(q.category));
+    shuffle(reuse).sort((a, b) => Number(own.has(a.id)) - Number(own.has(b.id)));
+    if (reuse.length) console.warn(`pick: ${fmtId} reuses ${Math.min(reuse.length, size - picked.length)} question(s), unused pool ran out`);
+    picked.push(...reuse.slice(0, size - picked.length));
+  }
   if (picked.length < size)
     throw new Error(`Not enough unused questions for ${fmtId} (${picked.length}/${size}). Reset cache/used.json or widen the filter.`);
   const ordered = order(picked);
