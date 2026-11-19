@@ -120,7 +120,14 @@ export async function qaVideo(v: VideoRow): Promise<QaResult> {
     });
     add("frames", blank.length === 0, `blank frame(s): ${blank.map((f) => path.basename(f)).join(", ")}`);
     try {
-      const vr = await vision(frames, (v.hook as any)?.card1 ?? "");
+      let vr = await vision(frames, (v.hook as any)?.card1 ?? "");
+      // second opinion (decision 2026-11-19): the vision model is the flaky check, so a flag only holds the video when
+      // a second look, at a different question frame, flags the same thing
+      if (!vr.cover_ok || !vr.layout_ok) {
+        const alt = [frames[0], frame(file, Math.max(4, p.seconds * 0.6), path.join(dir, "question2.png")), frames[2]];
+        const v2 = await vision(alt, (v.hook as any)?.card1 ?? "");
+        vr = { cover_ok: vr.cover_ok || v2.cover_ok, layout_ok: vr.layout_ok || v2.layout_ok, issues: [...vr.issues, ...v2.issues.map((i) => `2nd look: ${i}`)] };
+      }
       add("cover", !!vr.cover_ok, `cover: ${vr.issues.join("; ")}`);
       add("layout", !!vr.layout_ok, `layout: ${vr.issues.join("; ")}`);
     } catch (e) { add("cover", false, `vision check unavailable: ${(e as Error).message.slice(0, 120)}`); }

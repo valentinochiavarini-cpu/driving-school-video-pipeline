@@ -1,7 +1,8 @@
 /** The publishing gate around src/qa.ts:
  *   qaStep       QA every ready video (and any approved one whose file changed); a test format is marked skipped;
  *                a failure a script can repair (card 1 text, caption, hashtags) is fixed once and QA runs again;
- *                anything else stays held (status ready) with its reasons on the row and in the report.
+ *                anything else stays held (status ready) with its reasons on the row and in the report, and the
+ *                nightly run replaces it with a fresh video of the same format (src/nightly.ts remake loop).
  *   autoApprove  approve ready videos that passed QA on their current file (POSTING.autoApprove).
  *   retract      take a video back for fixing: cancel its scheduled Postiz posts, clear approval and QA,
  *                so it must be fixed, pass QA and be approved again before it can be published. */

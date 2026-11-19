@@ -162,6 +162,11 @@ try {
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);
+  else if (cmd === "held") { // ready videos from the last 36 h whose current file has no passing QA (used by the nightly remake loop)
+    const rows = (await listVideos("ready", 100)).filter((v) => !qaPassed(v) && Date.now() - new Date(v.created_at ?? 0).getTime() < 36 * 3600e3);
+    console.log(`HELD_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format, lang: v.lang, error: v.error })))}`);
+  }
+  else if (cmd === "skip") { await updateVideo(positionals[1], { status: "skipped", approved: false, error: positionals.slice(2).join(" ") || "skipped" }); console.log(`skipped ${positionals[1]}`); }
   else if (cmd === "voices") for (const v of await listVoices()) console.log(v.voice_id, v.name, JSON.stringify(v.labels));
   else throw new Error(`Unknown command ${cmd}`);
 } catch (e) { console.error((e as Error).message); process.exit(1); }

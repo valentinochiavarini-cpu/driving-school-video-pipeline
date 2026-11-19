@@ -78,6 +78,10 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   used_question_ids and ?action=upload. Writes happen only there, with the shared secret INGEST_TOKEN. No Higgsfield.
 - Posting through Postiz Cloud; no own TikTok app audit. From 2026-11-13 the nightly run approves videos itself, but
   only through the QA gate (docs/QA-CHECKLIST.md): nothing is approved or published without a passing QA on its current file.
+- Self-healing (decision 2026-11-19): a vision flag holds a video only if a second look at another frame agrees; a video still
+  held after the text repair is retired (status skipped, reason on the row) and remade as a fresh video of the same format,
+  up to 2 rounds within 40 minutes of the nightly run (`cli held`, `cli skip`, loop in src/nightly.ts). Holds cost render
+  time, not posting slots.
 - Every approved video goes to TikTok and Instagram Reels in one Postiz request (POSTING.platforms). The Postiz key
   lives in Lovable as the secret POSTIZ_API_KEY; the pipeline reaches Postiz through the ingest function's `postiz`
   action (POSTIZ_API_KEY=via-ingest in .env), because the session proxy cannot send a bare Authorization header.
