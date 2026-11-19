@@ -17,7 +17,7 @@ export function hooksDry(timing: Timing): Hook {
     card1: "Most people *FAIL* this driving test question", style: "fail",
     card2: `${timing.count} questions. ${timing.seconds_per_question} seconds each.`,
     vo_line: "Most people fail this one. Can you pass the driving test? Let's go.",
-    outro_vo: "How many did you get? Drop your score in the comments. The full practice test is in the link in bio.",
+    outro_vo: "How many did you get? Drop your score in the comments. Take the full test for your state free at the driving school dot app.",
     caption: `${timing.count} driving test questions. How many did you get right?`,
     hashtags: ["#dmvtest", "#drivingtest", "#permittest", "#roadsigns", "#newdriver"],
   };

@@ -1,7 +1,7 @@
 /** Pure caption and hashtag rules (decision 2026-11-18). The model writes one short line; the score ask, pass mark
  *  and required hashtags are added here in code, so no post shows an internal series number ("Classic 30 #3"),
  *  repeats the score ("Can you get 4/5? pass mark is 4/5") or carries hashtags in the other language. */
-import { FORMATS } from "./config";
+import { BRAND, FORMATS } from "./config";
 import type { Lang } from "./types";
 
 const REQUIRED: Record<Lang, string[]> = { en: ["dmvtest", "drivingtest"], es: ["examendemanejo", "dmv"] };
@@ -38,10 +38,11 @@ export function cleanLine(line: string): string {
 }
 
 /** Caption line that points at the bio link, where the books sell (decision 2026-11-18). */
-export const BIO_CTA: Record<Lang, string> = { en: "Free full practice tests: link in bio.", es: "Exámenes de práctica gratis: link en la bio." };
+export const BIO_CTA: Record<Lang, string> = { en: `Take the full test for your state free: ${BRAND.url}`, es: `Haz el examen completo de tu estado gratis: ${BRAND.url}` };
 
 export function buildCaption(line: string, count: number, lang: Lang): string {
-  const l = cleanLine(line).replace(/[^.!?]*link in (the )?bio[^.!?]*[.!?]?/gi, "").replace(/[^.!?¡¿]*link en la bio[^.!?]*[.!?]?/gi, "").trim();
+  const l = cleanLine(line.split(BRAND.url).join(" ").replace(/(Take the full test for your state free|Haz el examen completo de tu estado gratis):?/gi, ""))
+    .replace(/[^.!?]*link in (the )?bio[^.!?]*[.!?]?/gi, "").replace(/[^.!?¡¿]*link en la bio[^.!?]*[.!?]?/gi, "").trim();
   return `${l ? l + " " : ""}${scoreAsk(count, lang)} ${BIO_CTA[lang]}`.trim();
 }
 

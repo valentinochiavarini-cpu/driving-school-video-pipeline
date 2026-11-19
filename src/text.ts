@@ -52,7 +52,7 @@ Rules:
   Any number in card1 or card2 MUST come from timing.count, timing.seconds_per_question or pass_mark. Vary sentence shape: questions, dares, statements, "POV:", "Be honest:", a number first, a word first. Avoid starting two hooks the same way.
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 10 seconds each."
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
-- outro_vo = max 18 words: ask for the score in the comments, then say the full practice test is in the link in bio.
+- outro_vo = max 18 words: ask for the score in the comments, then say the full test for your state is free at "the driving school dot app" (spoken exactly like that; never say "link in bio").
 - caption = ONE short line, max 70 chars, written to the viewer in the angle's voice (for example "Most people miss at least one of these."). No numbers, no score, no series name, no hashtags: the code adds the score ask. Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
 - Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes. Never mention a year or a date: posts must not look expired later.`;
 
@@ -77,7 +77,7 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
     categories: [...new Set(questions.map((q) => q.category))].sort(), timing, angle: angle.id, angle_brief: angle.brief,
     pass_mark: Math.ceil(timing.count * 0.8),
     wording: Math.random() < 0.25 ? "dmv" : "driving test",
-    cta: lang === "es" ? "practica el examen completo, link en la bio" : "practice the full test, link in bio",
+    cta: lang === "es" ? "examen completo de tu estado gratis en thedrivingschool.app" : "free full test for your state at thedrivingschool.app",
   });
   const h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
   h.style = style;

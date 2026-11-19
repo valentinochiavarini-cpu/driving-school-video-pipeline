@@ -30,10 +30,10 @@ export function countdownSeconds(fmtId: string, q: Pick<DisplayQuestion, "questi
 /** Link-in-bio call to action (decision 2026-11-18): spoken on one reveal about halfway through, with an on-screen pill.
  *  Viewers rarely reach the outro (TikTok full-watch rate 0 to 2 percent), so the CTA cannot live only there. */
 export const CTA_LINE: Record<Lang, string> = {
-  en: "By the way, the full practice tests are free at the link in bio.",
-  es: "Por cierto, los exámenes de práctica completos son gratis en el link de la bio.",
+  en: `By the way, take the full test for your state free at ${BRAND.urlSpoken}.`,
+  es: `Por cierto, haz el examen completo de tu estado gratis en ${BRAND.urlSpoken}.`,
 };
-export const CTA_PILL: Record<Lang, string> = { en: "FREE PRACTICE TESTS: LINK IN BIO", es: "EXÁMENES GRATIS: LINK EN LA BIO" };
+export const CTA_PILL: Record<Lang, string> = { en: `FULL TEST FOR YOUR STATE: ${BRAND.url.toUpperCase()}`, es: `EXAMEN DE TU ESTADO: ${BRAND.url.toUpperCase()}` };
 /** Which question's reveal carries the CTA: after about a third of the set; none for a single question. */
 export function ctaIndex(n: number): number { return n < 3 ? -1 : Math.max(0, Math.floor(n / 3) - 1 + (n >= 5 ? 1 : 0)); }
 

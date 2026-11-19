@@ -20,8 +20,12 @@ quick3 also ends without an outro (loops). New hook angles realtest, missed and 
 enter the angle rotation as untried angles.
 
 ## Link in bio (decision 2026-11-18): the bio link is where the books sell, so it is the goal metric
-- Every video speaks one CTA about a third of the way in ("the full practice tests are free at the link in bio") with
-  a yellow pill over the header, and every caption ends with "Free full practice tests: link in bio."
+- Every video speaks one CTA about a third of the way in ("take the full test for your state free at the driving
+  school dot app") with a yellow pill over the header, and every caption ends with the same offer and the domain.
+- The CTA names the domain, not "link in bio", until TikTok shows a clickable link (business verification failed
+  several times, 2026-11-18). Instagram's Website field already holds the link. Funnel behind it: free full test for
+  the viewer's state (36 questions for California), then the results page offers $9.99 app access with the ebook
+  or the $16.99 Amazon paperback.
 - Baseline 10 to 18 Nov: 0 bio link clicks, 11 profile views, 0 profile views attributed to any video. The bio held the
   URL as plain text (not clickable) until the owner adds it in the Website field.
 - Read per test: video_profile_views per 1,000 views (Windsor tiktok_organic) and daily bio_link_clicks.

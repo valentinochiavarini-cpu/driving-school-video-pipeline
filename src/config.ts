@@ -2,7 +2,11 @@
 export const BRAND = {
   name: "THE DRIVING SCHOOL",
   /** no year anywhere in visible text (decision 2026-11-10): posts must not look expired months later */
-  cta: "PRACTICE MORE: LINK IN BIO", ctaEs: "PRACTICA MAS: LINK EN LA BIO",
+  /** CTA target (decision 2026-11-18): the TikTok bio has no clickable link yet (business verification pending), so every
+   *  CTA names the site itself. The landing page offers a free full test for the viewer's state, then the $9.99 app +
+   *  ebook or the Amazon paperback on the results page. Switch the wording back to "link in bio" once TikTok has the link. */
+  url: "thedrivingschool.app", urlSpoken: "the driving school dot app",
+  cta: "FREE STATE TEST: THEDRIVINGSCHOOL.APP", ctaEs: "EXAMEN GRATIS: THEDRIVINGSCHOOL.APP",
   /** logo files relative to public/ (white on dark cards). Falls back to the name in text when missing. */
   logoWhite: "brand/logo-white.png", logoDark: "brand/logo-dark.png",
 };
