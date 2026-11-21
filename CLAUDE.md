@@ -38,6 +38,12 @@ remotion/         Root, Video (sequences + audio), Cards (hook1, hook2, outro), 
 public/sfx/       tick, ding, whoosh placeholders (synthesized, peak normalized). Replace with licensed files.
 ```
 
+## Remotion skills (added 2026-11-21)
+
+.claude/skills holds the official Remotion agent skills (remotion-dev/skills, version in skills-lock.json): best-practices
+(router), markup, captions, render, docs, upgrade, license. Load the relevant one before changing anything in remotion/ or
+src/render.ts. Update with `npx skills update -p`.
+
 ## Commands
 
     npm install
