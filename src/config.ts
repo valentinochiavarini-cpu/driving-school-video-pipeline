@@ -133,10 +133,10 @@ export const FORMATS: Record<string, FormatDef> = {
 
 export const EXCLUDED_CATEGORIES = ["Alcohol & Drugs", "Speed Limits & Laws", "Licensing & Registration"];
 
-/** Bank questions never used in videos (review 2026-11-21 of everything posted so far). Fix them in the bank, then
- *  remove the id here. c4669e7e: B and C are both correct; e727ce0d: "four-second" contradicts the two-second rule in
- *  63a0da24 and 9ad6eb8b; f7cdc8c1: answers are letters pointing at lettered pictures ("A: C", "B: A"). */
-export const EXCLUDED_QUESTIONS = ["c4669e7e", "e727ce0d", "f7cdc8c1"];
+/** Bank questions never used in videos: add an id prefix here when a broken question is found, fix it in the bank,
+ *  then remove it. Empty since 2026-11-21: c4669e7e (two correct answers), e727ce0d (four-second rule, now "at least
+ *  three seconds"), f7cdc8c1 (letter answers, now "Sign A".."Sign D") and two typos were fixed in the bank. */
+export const EXCLUDED_QUESTIONS: string[] = [];
 /** Topics excluded by keyword as well as by category: an alcohol question sat in "Safe Driving" (659b6650). */
 export const EXCLUDED_TOPIC_WORDS = /\b(alcohol|drunk|drinking|drugs?|intoxicat|dui|dwi|blood alcohol|bac)\b/i;
 
