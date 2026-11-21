@@ -4,7 +4,8 @@
  *  Needs POSTIZ_API_KEY. POSTIZ_INTEGRATION_ID is optional (defaults to the first TikTok channel). */
 import { FORMATS, POSTING } from "./config";
 import { listVideos, updateVideo, ingestCall, type VideoRow } from "./ledger";
-import { qaPassed } from "./qa";
+import { qaPassed, textChecks } from "./qa";
+import { buildCaption } from "./post";
 
 const BASE = () => process.env.POSTIZ_BASE_URL || "https://api.postiz.com/public/v1";
 export const postizEnabled = () => !!process.env.POSTIZ_API_KEY;
@@ -97,9 +98,24 @@ export function postText(v: VideoRow): { content: string; title: string } {
 
 /** opts.firstNow: schedule the first video about 3 minutes from now (manual test), the rest on normal slots.
  *  opts.at: explicit times (one-off catch-up days); used in order before any normal slot. */
+/** Text rules change after a video was approved (review 2026-11-21: caption claims, double score asks). Re-run the
+ *  text checks before scheduling: a caption problem is rebuilt in place, anything else holds the video. */
+async function recheckText(v: VideoRow): Promise<VideoRow | null> {
+  let bad = textChecks(v).filter((c) => !c.ok);
+  if (bad.some((c) => c.name === "text:caption-clean")) {
+    const n = (v.question_ids ?? []).length;
+    const caption = buildCaption(v.caption ?? "", n, v.lang === "es" ? "es" : "en");
+    if (caption !== v.caption) { v = await updateVideo(v.id, { caption }); console.log(`publish: rebuilt caption of ${v.id}`); }
+    bad = textChecks(v).filter((c) => !c.ok);
+  }
+  if (bad.length) { console.log(`publish: holding ${v.id}, text checks fail: ${bad.map((c) => `${c.name} ${c.detail}`).join("; ")}`); return null; }
+  return v;
+}
+
 export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?: Date[] } = {}): Promise<void> {
   const approvedAll = (await listVideos("approved", 50)).filter((v) => v.video_url);
-  const approved = approvedAll.filter(qaPassed);
+  const approved: VideoRow[] = [];
+  for (const v0 of approvedAll.filter(qaPassed)) { const v = await recheckText(v0); if (v) approved.push(v); }
   for (const v of approvedAll.filter((x) => !qaPassed(x))) console.log(`publish: holding ${v.id}, no passing QA for its current file (run qa)`);
   const failedRetry = (await listVideos("failed", 50)).filter((v) => v.video_url && qaPassed(v) && !(v.metrics as { retried?: boolean } | null)?.retried);
   const queue = [...approved, ...failedRetry].slice(0, limit);

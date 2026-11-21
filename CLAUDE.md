@@ -107,6 +107,14 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Spoken question guard (fix 2026-11-21): a debate1 voice read "This sign indicates that car A must yield to car B" on a
   diagram, giving the answer away. src/text.ts questionVoProblems rejects a rewrite that drops the question's facts, adds
   claims, says "sign" on a non-sign question or turns it into a statement; one retry, then the bank wording is read as is.
+- Review of everything posted (2026-11-21), fixes: (1) one countdown per video (plan.ts setCountdown, the longest any
+  question needs) so card 2's "N seconds each" matches the ring on every question; on question 1 under the hook banner
+  the ring holds full until the banner ends (segment.ringSeconds). (2) Hooks and captions never claim what other people do
+  ("most people fail"), never say "this sign" on a multi-question video, a one-question video never asks for a score
+  (text.ts hookProblems, one retry then a safe hook; QA check text:cover-claims); the caption keeps only one score ask
+  (post.ts buildCaption drops score and claim sentences from the model line). (3) Questions never used: EXCLUDED_QUESTIONS,
+  alcohol/drug words in any category, bare-letter answers, right-of-way scenes in sign formats (pick.ts usable).
+  (4) publish re-runs the text checks on approved videos before scheduling and rebuilds a failing caption.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

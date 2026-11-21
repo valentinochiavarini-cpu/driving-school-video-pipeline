@@ -14,9 +14,9 @@ export const BRAND = {
 /** Hook angles. One is chosen per video (weighted by past views once metrics exist, with exploration) and stored
  *  in the ledger as hook.style so the weekly report can rank them and cut the losers. Add freely, never invent stats. */
 export const HOOK_ANGLES: { id: string; brief: string }[] = [
-  { id: "fail", brief: "fear of failing: most people get this driving test question wrong" },
+  { id: "fail", brief: "fear of failing: would you fail the driving test on these? (never claim how many people fail)" },
   { id: "challenge", brief: "a direct dare: can YOU pass the driving test" },
-  { id: "sign", brief: "curiosity about the first road sign shown: do you know what it means" },
+  { id: "sign", brief: "curiosity about road signs: do you know what they all mean (say \"this sign\" only for a one-question video)" },
   { id: "count", brief: "the size of the test as the hook, using timing.count" },
   { id: "score", brief: "a pass mark to beat, using pass_mark out of timing.count" },
   { id: "newdriver", brief: "identity: for new drivers and permit test takers this week" },
@@ -24,7 +24,7 @@ export const HOOK_ANGLES: { id: string; brief: string }[] = [
   { id: "parent", brief: "parents or experienced drivers: would you still pass the written driving test today" },
   { id: "trick", brief: "the trick question: the one driving test question that looks easy and is not" },
   { id: "timer", brief: "pressure: answer before the timer runs out, using timing.seconds_per_question" },
-  { id: "rightofway", brief: "who goes first: right-of-way situations that confuse most drivers (only if the set has right-of-way questions)" },
+  { id: "rightofway", brief: "who goes first: right-of-way situations that are easy to get wrong (only if the set has right-of-way questions)" },
   { id: "silent", brief: "a quiet, confident statement: this is the real driving test. No hype words." },
   { id: "bet", brief: "a bet or wager with the viewer: get them all right and comment, miss one and share" },
   { id: "duo", brief: "play it with someone: take the driving test with a friend, partner or parent and compare scores" },
@@ -32,7 +32,7 @@ export const HOOK_ANGLES: { id: string; brief: string }[] = [
   { id: "honest", brief: "honest framing: no tricks, real written driving test questions, keep score" },
   // promise angles (competitor review 2026-11-18): framed as real exam content; never claim leaked or official answers, no stats
   { id: "realtest", brief: "real exam content: these are the kind of questions you get on the actual DMV written test" },
-  { id: "missed", brief: "the questions people miss on the written test and why, without any percentage or statistic" },
+  { id: "missed", brief: "easy-to-miss questions on the written test, without claiming how many people miss them" },
   { id: "know", brief: "what the written test checks: if you know these, you are ready for the permit test" },
 ];
 export type HookStyle = string;
@@ -132,6 +132,13 @@ export const FORMATS: Record<string, FormatDef> = {
 };
 
 export const EXCLUDED_CATEGORIES = ["Alcohol & Drugs", "Speed Limits & Laws", "Licensing & Registration"];
+
+/** Bank questions never used in videos (review 2026-11-21 of everything posted so far). Fix them in the bank, then
+ *  remove the id here. c4669e7e: B and C are both correct; e727ce0d: "four-second" contradicts the two-second rule in
+ *  63a0da24 and 9ad6eb8b; f7cdc8c1: answers are letters pointing at lettered pictures ("A: C", "B: A"). */
+export const EXCLUDED_QUESTIONS = ["c4669e7e", "e727ce0d", "f7cdc8c1"];
+/** Topics excluded by keyword as well as by category: an alcohol question sat in "Safe Driving" (659b6650). */
+export const EXCLUDED_TOPIC_WORDS = /\b(alcohol|drunk|drinking|drugs?|intoxicat|dui|dwi|blood alcohol|bac)\b/i;
 
 export const OPENAI = { model: "gpt-4o-mini", temperatureHooks: 0.9, temperatureSpeakable: 0.2 };
 

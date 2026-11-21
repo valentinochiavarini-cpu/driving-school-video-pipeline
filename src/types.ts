@@ -55,6 +55,8 @@ export type QuestionSegment = {
   n: number;
   q: DisplayQuestion;
   countdownSeconds: number;
+  /** seconds the ring counts down; less than countdownSeconds on question 1 under the hook banner */
+  ringSeconds?: number;
   /** link-in-bio call to action rides on this question's reveal (voice line + on-screen pill) */
   cta?: boolean;
   questionAt: number;

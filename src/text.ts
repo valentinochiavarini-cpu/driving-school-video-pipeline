@@ -95,12 +95,13 @@ export async function speakable(q: Question, lang: Lang): Promise<Speak> {
 const HOOK_SYSTEM = `You write opening hooks for vertical short-form quiz videos (TikTok, Reels, Shorts) for 'The Driving School', a US DMV written-test practice brand. Every video is a DMV written test quiz: the viewer answers real exam questions and keeps score.
 Return JSON only: {"card1": str, "card2": str, "vo_line": str, "outro_vo": str, "caption": str, "hashtags": [str]}
 Rules:
-- card1 = the hook, written from the requested angle ("angle" and "angle_brief" in the input). Max 7 words. It MUST make clear this is the written driving test. Use the exact words "driving test" by default; use "DMV test" only when "wording" says "dmv". Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages.
+- card1 = the hook, written from the requested angle ("angle" and "angle_brief" in the input). Max 7 words. It MUST make clear this is the written driving test. Use the exact words "driving test" by default; use "DMV test" only when "wording" says "dmv". Wrap exactly ONE word in *asterisks* for highlight. Uppercase-friendly. Never invent statistics or percentages, and never claim what other people do ("most people fail", "everyone misses", "nobody gets"): we have no data on that.
+  Say "this sign", "this question" or "this one" only when timing.count is 1; with several questions talk about the test or the set.
   Any number in card1 or card2 MUST come from timing.count, timing.seconds_per_question or pass_mark. Vary sentence shape: questions, dares, statements, "POV:", "Be honest:", a number first, a word first. Avoid starting two hooks the same way.
 - card2 = the promise. Max 8 words. MUST use the numbers given in \`timing\` (question count and seconds). Example: "5 questions. 10 seconds each."
 - vo_line = spoken version of card1 + card2, max 16 words, energetic, ends with "Let's go." (or "Vamos." in Spanish).
-- outro_vo = max 18 words: ask for the score in the comments, then say the full test for your state is free at "the driving school dot app" (spoken exactly like that; never say "link in bio").
-- caption = ONE short line, max 70 chars, written to the viewer in the angle's voice (for example "Most people miss at least one of these."). No numbers, no score, no series name, no hashtags: the code adds the score ask. Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
+- outro_vo = max 18 words: ask for the score in the comments (when timing.count is 1 there is no score: ask which answer they picked, A, B, C or D), then say the full test for your state is free at "the driving school dot app" (spoken exactly like that; never say "link in bio").
+- caption = ONE short line, max 70 chars, written to the viewer in the angle's voice (for example "Only the careful ones get all of these." or "Trickier than it looks."). No numbers, no score, no "perfect score", no question asking how they did, no series name, no hashtags: the code adds the score ask. Never claim what most people do. Say DMV test instead of driving test only when wording is "dmv". hashtags = 5 lowercase tags in the video's language only. English: include #dmvtest and #drivingtest. Spanish: include #examendemanejo and #dmv.
 - Banned words: studying, learn, educational, tips, tutorial. No emojis in cards. No em dashes. Never mention a year or a date: posts must not look expired later.`;
 
 
@@ -114,6 +115,20 @@ export function chooseAngle(stats: Record<string, { posts: number; views: number
   return ranked[Math.floor(((rnd - 0.3) / 0.7) * Math.min(3, ranked.length))].id;
 }
 
+/** Claims the hook must not make (review 2026-11-21: "Most people fail on *this* sign!" on a 5-question video). */
+export function hookProblems(h: Pick<Hook, "card1" | "card2" | "vo_line" | "outro_vo">, count: number, lang: Lang): string[] {
+  const p: string[] = [];
+  const all = [h.card1, h.card2, h.vo_line, h.outro_vo].join(" ").replace(/\*/g, "");
+  if (/\b(most|many|few) (people|drivers)\b|\b(everyone|everybody|nobody|no one)\b|\d+\s?%|la mayor[ií]a|todo el mundo|nadie/i.test(all)) p.push("claims what other people do");
+  if (count > 1 && /\bthis (sign|question|one)\b|\besta (señal|pregunta)\b/i.test(`${h.card1} ${h.card2}`.replace(/\*/g, ""))) p.push("says this sign / this question on a multi-question video");
+  if (count === 1 && /\b(score|how many|puntaje|cu[aá]ntas)\b/i.test(h.outro_vo)) p.push("asks for a score on a one-question video");
+  return p;
+}
+const OUTRO_SINGLE: Record<Lang, string> = {
+  en: "Which one did you pick? Comment A, B, C or D. The full test for your state is free at the driving school dot app.",
+  es: "¿Cuál elegiste? Comenta A, B, C o D. El examen completo de tu estado es gratis en the driving school punto app.",
+};
+
 export async function hooks(questions: Question[], fmtId: string, lang: Lang, timing: Timing, state?: string, style: HookStyle = chooseAngle({}), seriesNumber = 1): Promise<Hook> {
   const angle = HOOK_ANGLES.find((a) => a.id === style) ?? HOOK_ANGLES[0];
   const q1 = questions[0];
@@ -126,7 +141,10 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
     wording: Math.random() < 0.25 ? "dmv" : "driving test",
     cta: lang === "es" ? "examen completo de tu estado gratis en thedrivingschool.app" : "free full test for your state at thedrivingschool.app",
   });
-  const h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
+  let h = await chatJson<Hook>(HOOK_SYSTEM, user, OPENAI.temperatureHooks);
+  const first = hookProblems(h, timing.count, lang);
+  if (first.length) h = await chatJson<Hook>(HOOK_SYSTEM, JSON.stringify({ ...JSON.parse(user), previous_attempt_problems: first }), OPENAI.temperatureHooks);
+  if (timing.count === 1 && hookProblems(h, 1, lang).includes("asks for a score on a one-question video")) h.outro_vo = OUTRO_SINGLE[lang];
   h.style = style;
   // exactly one highlighted span on card 1 (a word or a short phrase such as *driving test*): keep the first span,
   // drop any other asterisks; with no span, fall back to the first all-caps word, then "DMV"
@@ -146,5 +164,14 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   h.caption = buildCaption(h.caption, timing.count, lang);
   h.hashtags = cleanHashtags(h.hashtags ?? [], lang);
   if (h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9) throw new Error(`Hook too long: ${JSON.stringify(h)}`);
+  // still wrong after the retry: a plain safe hook rather than a failed render
+  if (hookProblems(h, timing.count, lang).length) {
+    console.warn(`hooks: problems after retry (${hookProblems(h, timing.count, lang).join("; ")}), using the safe hook`);
+    const es = lang === "es";
+    h.card1 = es ? "¿Puedes aprobar este *examen del DMV*?" : "Can you pass this *driving test*?";
+    h.vo_line = `${h.card1.replace(/\*/g, "")} ${h.card2} ${es ? "Vamos." : "Let's go."}`;
+    if (timing.count === 1) h.outro_vo = OUTRO_SINGLE[lang];
+    else if (hookProblems(h, timing.count, lang).length) h.outro_vo = es ? "¿Cuál fue tu puntaje? El examen completo de tu estado es gratis en the driving school punto app." : "How did you score? The full test for your state is free at the driving school dot app.";
+  }
   return h;
 }

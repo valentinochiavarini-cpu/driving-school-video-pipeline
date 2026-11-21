@@ -17,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { captionProblems } from "./post";
+import { hookProblems } from "./text";
 import { EXCLUDED_CATEGORIES, FORMATS } from "./config";
 import { keyOrPlaceholder, OUT } from "./env";
 import { fetchAllQuestions } from "./supabase";
@@ -37,7 +38,7 @@ const YEAR = /\b(19|20)\d{2}\b/;
 const visible = (s: string) => s.replace(/\*/g, "");
 
 /** Pure text checks on the hook, caption and hashtags (also used before rendering). */
-export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags"> & { lang?: string }): QaCheck[] {
+export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags"> & { lang?: string; question_ids?: unknown }): QaCheck[] {
   const h = (v.hook ?? {}) as Record<string, string>;
   const card1 = h.card1 ?? "";
   const spans = card1.match(/\*[^*]+\*/g) ?? [];
@@ -48,6 +49,8 @@ export function textChecks(v: Pick<VideoRow, "hook" | "caption" | "hashtags"> & 
   return [
     { name: "text:cover-highlight", ok: spans.length === 1 && !stray, detail: spans.length === 1 && !stray ? "" : `card 1 needs exactly one *highlight* and no other asterisks: "${card1}"` },
     { name: "text:cover-words", ok: /driving test|dmv/i.test(visible(card1)) && visible(card1).split(/\s+/).length <= 8, detail: `card 1 must say driving test or DMV in at most 8 words: "${visible(card1)}"` },
+    (() => { const n = Array.isArray(v.question_ids) ? v.question_ids.length : 0; const p = n ? hookProblems(h as any, n, v.lang === "es" ? "es" : "en") : [];
+      return { name: "text:cover-claims", ok: p.length === 0, detail: p.join("; ") }; })(),
     { name: "text:no-asterisks", ok: ![v.caption ?? "", ...others, ...tags].some((s) => s.includes("*")), detail: "asterisks in caption, card 2, voice lines or hashtags" },
     { name: "text:no-year", ok: ![card1, v.caption ?? "", ...others, ...tags].some((s) => YEAR.test(s)), detail: "a year appears in visible or posted text" },
     { name: "text:caption", ok: (v.caption ?? "").trim().length >= 10, detail: "caption missing or too short" },

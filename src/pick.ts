@@ -4,8 +4,22 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CACHE, writeJson } from "./env";
-import { EXCLUDED_CATEGORIES, FORMATS } from "./config";
+import { EXCLUDED_CATEGORIES, EXCLUDED_QUESTIONS, EXCLUDED_TOPIC_WORDS, FORMATS, type FormatDef } from "./config";
 import type { Lang, Question } from "./types";
+
+/** Review 2026-11-21: questions a video must never use. Excluded category or topic word, listed broken questions, and
+ *  answers that are bare letters (they point at lettered pictures and read "B: A" on screen). */
+export function usable(q: Question): boolean {
+  if (EXCLUDED_CATEGORIES.includes(q.category)) return false;
+  if (EXCLUDED_QUESTIONS.some((p) => q.id.startsWith(p))) return false;
+  if (EXCLUDED_TOPIC_WORDS.test([q.question_text, ...Object.values(q.answers)].join(" "))) return false;
+  if (Object.values(q.answers).some((a) => /^\s*[A-D]\s*$/.test(a ?? ""))) return false;
+  return true;
+}
+/** Right-of-way scenes (cars at an intersection) also sit in the signs category; a sign format (signs7, signs7q) must
+ *  show a sign, so those are left to the right-of-way formats (1db5c811 went out in a road-signs video). */
+const isDiagram = (q: Question) => /\b(cars?|vehicles?|drivers?) [A-C]\b|\b(two|three) (cars|vehicles)\b|which (car|vehicle)|right-of-way|statements? (is|are) correct/i.test(q.question_text);
+const signFormat = (fmt: FormatDef) => !!fmt.label.match(/sign/i);
 
 const LEDGER = path.join(CACHE, "used.json");
 const shuffle = <T>(a: T[]) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -32,9 +46,9 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   const fmt = FORMATS[fmtId]; if (!fmt) throw new Error(`Unknown format ${fmtId}`);
   const ledger: Record<string, string[]> = fs.existsSync(LEDGER) ? JSON.parse(fs.readFileSync(LEDGER, "utf8")) : {};
   const key = `${fmtId}:${lang}`; const used = new Set([...(ledger[key] ?? []), ...remoteUsed]);
-  const base = all.filter((q) => !used.has(q.id) && !EXCLUDED_CATEGORIES.includes(q.category));
+  const base = all.filter((q) => !used.has(q.id) && usable(q));
   let general = base.filter((q) => q.state === null);
-  if (fmt.imageOnly) general = general.filter((q) => q.image_url);
+  if (fmt.imageOnly) general = general.filter((q) => q.image_url && (!signFormat(fmt) || !isDiagram(q)));
   if (fmt.pickSign) general = general.filter(pickable);
   if (fmt.categories) general = general.filter((q) => fmt.categories!.includes(q.category));
   const size = fmt.size === "state" ? stateCount ?? 30 : fmt.size;
@@ -62,8 +76,8 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   // render (an empty slot), top up with questions used before, preferring ones not used by this format recently
   if (picked.length < size) {
     const own = new Set(ledger[key] ?? []);
-    let reuse = all.filter((q) => used.has(q.id) && !picked.some((p) => p.id === q.id) && !EXCLUDED_CATEGORIES.includes(q.category) && q.state === null);
-    if (fmt.imageOnly) reuse = reuse.filter((q) => q.image_url);
+    let reuse = all.filter((q) => used.has(q.id) && !picked.some((p) => p.id === q.id) && usable(q) && q.state === null);
+    if (fmt.imageOnly) reuse = reuse.filter((q) => q.image_url && (!signFormat(fmt) || !isDiagram(q)));
     if (fmt.pickSign) reuse = reuse.filter(pickable);
     if (fmt.categories) reuse = reuse.filter((q) => fmt.categories!.includes(q.category));
     shuffle(reuse).sort((a, b) => Number(own.has(a.id)) - Number(own.has(b.id)));

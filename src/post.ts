@@ -40,10 +40,18 @@ export function cleanLine(line: string): string {
 /** Caption line that points at the bio link, where the books sell (decision 2026-11-18). */
 export const BIO_CTA: Record<Lang, string> = { en: `Take the full test for your state free: ${BRAND.url}`, es: `Haz el examen completo de tu estado gratis: ${BRAND.url}` };
 
+/** A sentence that asks the viewer how they scored (the code adds exactly one such ask). */
+const SCORE_Q = /\b(score|perfect|how many|how did you do|get \d+\s*\/|puntaje|puntuaci[oó]n|perfect[oa]|cu[aá]ntas)\b/i;
+
+/** Claims about what other people do: we have no data, so they never go out (review 2026-11-21). */
+const CLAIM = /\b(most|many) (people|drivers)\b|\b(everyone|nobody)\b|la mayor[ií]a/i;
+
 export function buildCaption(line: string, count: number, lang: Lang): string {
   const l = cleanLine(line.split(BRAND.url).join(" ").replace(/(Take the full test for your state free|Haz el examen completo de tu estado gratis):?/gi, ""))
     .replace(/[^.!?]*link in (the )?bio[^.!?]*[.!?]?/gi, "").replace(/[^.!?¡¿]*link en la bio[^.!?]*[.!?]?/gi, "").trim();
-  return `${l ? l + " " : ""}${scoreAsk(count, lang)} ${BIO_CTA[lang]}`.trim();
+  // the model line must not ask for a score too ("Can you get a perfect score this time? Can you get 3/3?")
+  const kept = (l.match(/[^.!?]+[.!?]*/g) ?? []).filter((x) => !SCORE_Q.test(x) && !CLAIM.test(x)).join(" ").replace(/\s+/g, " ").trim();
+  return `${kept ? kept + " " : ""}${scoreAsk(count, lang)} ${BIO_CTA[lang]}`.trim();
 }
 
 /** 5 lowercase single-word tags in the post's language, the required ones first, no duplicates. */
@@ -59,6 +67,9 @@ export function captionProblems(caption: string, tags: string[], lang: Lang): st
   if (/#\d/.test(caption)) p.push("series number in caption");
   const fractions = caption.match(/\d+\s*\/\s*\d+/g) ?? [];
   if (new Set(fractions).size < fractions.length) p.push("score repeated in caption");
+  const asks = (caption.match(/[^.!?]+[?]/g) ?? []).filter((x) => SCORE_Q.test(x));
+  if (asks.length > 1) p.push("two score questions in caption");
+  if (CLAIM.test(caption)) p.push("caption claims what other people do");
   const foreign = tags.map((t) => String(t).replace(/^#+/, "")).filter((t) => FOREIGN[lang].test(t));
   if (foreign.length) p.push(`hashtags in the other language: ${foreign.join(" ")}`);
   return p;

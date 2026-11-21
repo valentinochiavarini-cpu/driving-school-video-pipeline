@@ -35,9 +35,10 @@ export const QuestionScene: React.FC<{ seg: QuestionSegment; lang: Lang; banner?
   const revealFrame = frame - seg.questionFrames - seg.dimFrames;
 
   // countdown ring: continuous
-  const remaining = Math.max(0, seg.countdownSeconds - frame / fps);
+  const ringTotal = seg.ringSeconds ?? seg.countdownSeconds;
+  const remaining = Math.max(0, Math.min(ringTotal, seg.countdownSeconds - frame / fps));
   const revealRemaining = Math.max(0, (seg.revealFrames - revealFrame) / fps);
-  const progress = reveal ? Math.min(1, revealFrame / seg.revealFrames) : remaining / seg.countdownSeconds;
+  const progress = reveal ? Math.min(1, revealFrame / seg.revealFrames) : remaining / ringTotal;
   const num = reveal ? Math.ceil(revealRemaining) : Math.ceil(remaining);
   const urgent = !reveal && remaining > 0 && remaining <= 3;
   const pulse = urgent ? 0.6 + 0.4 * Math.abs(Math.cos((frame / fps) * Math.PI)) : 1;

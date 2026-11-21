@@ -9,7 +9,7 @@ import type { VideoRow } from "./ledger";
 import { pickSet, pickable, buildPicks } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices } from "./voice";
-import { buildPlan, countdownSeconds, ctaIndex, CTA_LINE } from "./plan";
+import { buildPlan, ctaIndex, CTA_LINE, setCountdown } from "./plan";
 import { renderPlan } from "./render";
 import { execFileSync } from "node:child_process";
 import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from "./ledger";
@@ -69,7 +69,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     aq.push(dry ? dryClip(s.question_vo) : await tts(s.question_vo, lang));
     ar.push(dry ? dryClip(s.reveal_vo) : await tts(s.reveal_vo, lang));
   }
-  const secs = Math.round(aq.reduce((a, c, i) => a + countdownSeconds(fmt, display[i], c), 0) / aq.length);
+  const secs = setCountdown(fmt, display, aq);
   const timing = { count: qs.length, seconds_per_question: secs };
   const stats: Record<string, { posts: number; views: number }> = {};
   for (const v of ledgerRows) { const a = (v.hook as { style?: string } | null)?.style; if (!a) continue; stats[a] ??= { posts: 0, views: 0 }; stats[a].posts++; stats[a].views += Number((v.metrics as { views?: number } | null)?.views ?? 0); }
@@ -82,7 +82,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const themeCount: Record<string, number> = Object.fromEntries(THEMES.map((x) => [x, 0]));
   for (const v of ledgerRows) { const th = (v.metrics as { theme?: string } | null)?.theme; if (th && th in themeCount) themeCount[th]++; }
   const theme = process.env.THEME || [...THEMES].sort((a, b) => themeCount[a] - themeCount[b] || Math.random() - 0.5)[0];
-  const plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar } });
+  const plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar }, countdown: secs });
   writeJson(path.join(work, "plan.json"), plan);
   writeJson(path.join(work, "post.json"), { caption: h.caption, hashtags: h.hashtags, hook: h, questions: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
   console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions, theme ${theme}, angle ${h.style ?? "-"}`);
@@ -131,8 +131,9 @@ async function replan(planPath: string) {
   const old = JSON.parse(fs.readFileSync(planPath, "utf8")) as import("./types").Plan;
   const h = { ...old.hook, caption: old.meta.caption, hashtags: old.meta.hashtags, vo_line: old.hook.vo.text, outro_vo: old.outro.vo.text };
   const plan = buildPlan({ id: old.id, format: old.format, lang: old.lang, questions: old.questions.map((s) => s.q), hook: h,
-    audio: { hook: old.hook.vo, outro: old.outro.vo, q: old.questions.map((s) => s.vo), r: old.questions.map((s) => s.revealVo) } });
-  const secs = Math.round(plan.questions.reduce((a, s) => a + s.countdownSeconds, 0) / plan.questions.length);
+    audio: { hook: old.hook.vo, outro: old.outro.vo, q: old.questions.map((s) => s.vo), r: old.questions.map((s) => s.revealVo) },
+    countdown: setCountdown(old.format, old.questions.map((s) => s.q), old.questions.map((s) => s.vo)) });
+  const secs = Math.max(...plan.questions.map((s) => s.ringSeconds ?? s.countdownSeconds));
   plan.hook.card2 = plan.hook.card2.replace(/\b\d+ seconds/, `${secs} seconds`);
   const dir = path.dirname(planPath); const n = fs.readdirSync(dir).filter((f) => /^video.*\.mp4$/.test(f)).length + 1;
   writeJson(path.join(dir, `plan_v${n}.json`), plan);

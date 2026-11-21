@@ -10,7 +10,15 @@ export type PlanInput = {
   questions: DisplayQuestion[];
   hook: Hook;
   audio: { hook: Clip; outro: Clip; q: Clip[]; r: Clip[] };
+  /** one countdown for every question (fix 2026-11-21): card 2 promises "N seconds each", so the ring must show N on
+   *  every question. A question whose voice needs longer still gets longer. */
+  countdown?: number;
 };
+
+/** The single countdown a set uses: the longest any of its questions needs. */
+export function setCountdown(fmtId: string, qs: Pick<DisplayQuestion, "question_text" | "answers" | "image">[], voices: Clip[]): number {
+  return Math.max(...qs.map((q, i) => countdownSeconds(fmtId, q, voices[i])));
+}
 
 /** Seconds a viewer needs to read the question and the four answers (plus a beat to think). */
 export function readingSeconds(q: Pick<DisplayQuestion, "question_text" | "answers" | "image">): number {
@@ -70,7 +78,9 @@ export function buildPlan(inp: PlanInput): Plan {
     const visual = !!q0.image && Object.values(q0.answers).every((a) => a.length <= 22);
     const q = { ...q0, explanation: fitExplanation(q0.explanation ?? "", revealVo.text, visual ? EXPLANATION_MAX_CHARS_VISUAL : EXPLANATION_MAX_CHARS) };
     // question 1 under the banner gets the banner time on top, so the viewer still has the full reading time
-    const secs = countdownSeconds(inp.format, q, vo) + (idx === 0 && questionFirst ? Math.ceil(VIDEO.bannerSeconds) : 0);
+    // question 1 under the banner: the ring holds full while the banner shows, then counts the same N seconds as the rest
+    const ring = Math.max(countdownSeconds(inp.format, q, vo), inp.countdown ?? 0);
+    const secs = ring + (idx === 0 && questionFirst ? Math.ceil(VIDEO.bannerSeconds) : 0);
     const questionAt = t, questionFrames = secs * fps;
     cues.push({ kind: "whoosh", at: questionAt });
     for (let s = Math.min(3, secs - 1); s >= 1; s--) cues.push({ kind: "tick", at: questionAt + (secs - s) * fps });
@@ -79,7 +89,7 @@ export function buildPlan(inp: PlanInput): Plan {
     const revealFrames = Math.max(f(2), f(revealVo.speechEnd + VIDEO.revealTailSeconds));
     cues.push({ kind: "ding", at: revealAt });
     t = revealAt + revealFrames;
-    return { idx, n: questions.length, q, countdownSeconds: secs, cta: idx === ctaIndex(questions.length), questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
+    return { idx, n: questions.length, q, countdownSeconds: secs, ringSeconds: ring, cta: idx === ctaIndex(questions.length), questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
   });
 
   // outro: false (loop formats) ends on the last reveal; the CTA lives mid-video and in the caption
