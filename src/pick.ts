@@ -92,6 +92,19 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   return ordered.map((q) => localized(q, lang));
 }
 
+/** One replacement for a question the pre-render check rejected (2026-11-21): same format filters, not in `exclude`,
+ *  same category when possible. Does not write the pick ledger (the video ledger records what was finally used). */
+export function pickReplacement(all: Question[], fmtId: string, lang: Lang, like: Question, exclude: string[]): Question | null {
+  const fmt = FORMATS[fmtId]; const ex = new Set(exclude);
+  let pool = all.filter((q) => !ex.has(q.id) && usable(q) && q.state === null);
+  if (fmt.imageOnly) pool = pool.filter((q) => q.image_url && (!signFormat(fmt) || !isDiagram(q)));
+  if (fmt.categories) pool = pool.filter((q) => fmt.categories!.includes(q.category));
+  if (like.image_url) { const withImg = pool.filter((q) => q.image_url); if (withImg.length) pool = withImg; }
+  const same = pool.filter((q) => q.category === like.category);
+  const pick = shuffle(same.length ? same : pool)[0];
+  return pick ? localized(pick, lang) : null;
+}
+
 /* ---------- pick-the-sign (decision 2026-11-18) ---------- */
 
 /** Sign questions that can become "Which sign means X?": one sign picture, a meaning question, a short correct answer. */

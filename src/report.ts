@@ -57,6 +57,15 @@ export async function report(weekly: boolean): Promise<string> {
   const cost = (chars / 1000) * COSTS.elevenlabsPer1kChars + made7.length * COSTS.openaiPerVideo + (COSTS.postizPerMonth * 7) / 30;
   out.push(`COSTS (7d est.)  ${made7.length} videos, ${chars.toLocaleString()} voice chars -> voice $${((chars / 1000) * COSTS.elevenlabsPer1kChars).toFixed(2)}, text $${(made7.length * COSTS.openaiPerVideo).toFixed(2)}, Postiz $${((COSTS.postizPerMonth * 7) / 30).toFixed(2)}, total about $${cost.toFixed(2)}`);
 
+  // voice credits (from the newest video that recorded them) and renders per posted video (2026-11-21)
+  const q = [...all].filter((v) => num(m(v).voice_left_pct) !== null).sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))[0];
+  if (q) {
+    const left = num(m(q).voice_left_pct)!;
+    out.push(`VOICE CREDITS  ${left}% left (${num(m(q).voice_used)?.toLocaleString()} of ${num(m(q).voice_limit)?.toLocaleString()} used), resets ${String(m(q).voice_resets ?? "?").slice(0, 10)}${left < 20 ? "  WARNING: below 20%" : ""}`);
+  }
+  const shipped7 = made7.filter((v) => ["posted", "scheduled", "approved"].includes(v.status)).length;
+  if (made7.length) out.push(`RENDERS PER POST (7d)  ${(made7.length / Math.max(1, shipped7)).toFixed(2)} (${made7.length} made, ${shipped7} posted or queued)${made7.length / Math.max(1, shipped7) > 1.5 ? "  WARNING: above 1.5, QA is holding too much" : ""}`);
+
   if (weekly) {
     const posted30 = all.filter((v) => v.status === "posted" && v.posted_at && new Date(v.posted_at).getTime() > since30);
     const withViews = posted30.filter((v) => num(m(v).views) !== null);

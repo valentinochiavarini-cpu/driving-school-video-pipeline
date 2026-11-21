@@ -24,6 +24,7 @@ src/render.ts     Remotion bundle + renderMedia
 src/ledger.ts     video ledger via the Lovable `ingest` function (header x-ingest-token); off without INGEST_TOKEN
 src/publish.ts    Postiz: schedule approved videos (next free daily slot, TikTok settings from POSTING), sync states back
 src/still.ts      QA stills
+src/preflight.ts  pre-render checks on still frames (questions before voice, cover before the full render)
 src/qa.ts         the publishing QA checklist (file, audio, frames, vision check of cover and layout, text, content)
 src/gate.ts       qa step with one automatic fix (text, cover re-render), auto-approve, retract (docs/QA-CHECKLIST.md)
 src/nightly.ts    the nightly run: two formats by weekday (NIGHTLY_ROTATION in config) -> make x2 -> qa -> auto-approve -> publish approved
@@ -118,6 +119,13 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Nightly 2026-11-21 held 6 of 9 videos, fixes: the outro CTA pill was wider than the box and cut off (now two lines,
   Cards.tsx); the vision QA treated capitals on the cover and live-caption fragments in the footer as errors (prompt now
   says they are fine); too few hashtags (cleanHashtags pads to 5). config EXTRA_RENDERS adds one-off renders to a dated run.
+- Pre-render checks (decision 2026-11-21, src/preflight.ts): before any voice is bought, a draft plan (estimated voice
+  timing) renders a still of every question and reveal; the vision model flags broken screens and those questions are
+  swapped (pick.ts pickReplacement, 2 rounds; sets of 7 or fewer, not pick6). Before the full render, cover, a question
+  and the outro of the real plan are checked; a rejected cover gets one new hook. PREFLIGHT=0 turns both off. A failed
+  vision call never blocks a render. Re-rendering a held video inside the same run was rejected: same code, same video.
+- Voice credits (2026-11-21): make records the ElevenLabs quota on each row (metrics.voice_left_pct); the report shows
+  it and RENDERS PER POST (7d); the daily watchdog task alerts under 20% credits or above 1.5 renders per post.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

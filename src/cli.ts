@@ -6,11 +6,12 @@ import { ROOT, OUT, PUBLIC, writeJson } from "./env";
 import { FORMATS } from "./config";
 import { fetchAllQuestions, cacheImage } from "./supabase";
 import type { VideoRow } from "./ledger";
-import { pickSet, pickable, buildPicks } from "./pick";
+import { pickSet, pickable, buildPicks, pickReplacement } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
-import { tts, dryClip, audition, listVoices } from "./voice";
+import { tts, dryClip, audition, listVoices, voiceQuota } from "./voice";
 import { buildPlan, ctaIndex, CTA_LINE, setCountdown } from "./plan";
 import { renderPlan } from "./render";
+import { preflightCover, preflightQuestions } from "./preflight";
 import { execFileSync } from "node:child_process";
 import { ledgerEnabled, upsertVideo, updateVideo, listVideos, uploadFile } from "./ledger";
 import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publish";
@@ -26,7 +27,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const id = `${fmt}_${lang}_${Date.now()}`;
   const work = path.join(OUT, id); fs.mkdirSync(work, { recursive: true });
 
-  let qs: Question[]; let ledgerRows: VideoRow[] = []; let bank: Question[] = [];
+  let qs: Question[]; let ledgerRows: VideoRow[] = []; let bank: Question[] = []; let usedRemote: string[] = [];
   if (dry) {
     qs = JSON.parse(fs.readFileSync(path.join(ROOT, "docs/sample_set.json"), "utf8"));
     const sample = path.join(PUBLIC, "cache/images/sample_sign.png");
@@ -40,6 +41,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     }
     bank = await fetchAllQuestions();
     qs = pickSet(bank, fmt, lang, state, undefined, remoteUsed);
+    usedRemote = remoteUsed;
   }
 
   // pick-the-sign: each target becomes "Which sign means X?" with its sign and two other signs as picture answers.
@@ -57,12 +59,34 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   // link-in-bio call to action on one reveal in the middle (decision 2026-11-18: the bio link is where the books sell)
   const ci = ctaIndex(qs.length);
   if (ci >= 0) speak[ci] = { ...speak[ci], reveal_vo: `${speak[ci].reveal_vo} ${CTA_LINE[lang]}` };
-  const display: DisplayQuestion[] = await Promise.all(qs.map(async (q, i) => ({
+  const toDisplay = async (q: Question, i: number): Promise<DisplayQuestion> => ({
     id: q.id, question_text: q.question_text, answers: pickImages ? Object.fromEntries(Object.keys(pickImages[i]).map((L) => [L, ""])) : speak[i].answers_display,
     correct_answer: q.correct_answer, explanation: q.explanation ?? "",
     image: q.image_url ? (dry ? "cache/images/sample_sign.png" : await cacheImage(q.image_url, q.id)) : null,
     ...(pickImages ? { answerImages: pickImages[i] } : {}),
-  })));
+  });
+  const display: DisplayQuestion[] = await Promise.all(qs.map((q, i) => toDisplay(q, i)));
+
+  // Pre-render check (2026-11-21): stills of every question and reveal from a draft plan (estimated voice timing),
+  // looked at before any voice is bought or the video is rendered. A question whose screen breaks is swapped for
+  // another one of the same kind; up to 2 rounds. Skipped for dry runs, pick-the-sign and sets over 7 questions.
+  if (!dry && !pickImages && qs.length <= 7 && process.env.PREFLIGHT !== "0") {
+    const rejected: string[] = [];
+    for (let round = 1; round <= 2; round++) {
+      const bad = await preflightQuestions(id, fmt, lang, display, speak, path.join(work, `preflight${round}`));
+      if (!bad.length) break;
+      for (const i of bad) {
+        rejected.push(qs[i].id);
+        const r = pickReplacement(bank, fmt, lang, qs[i], [...usedRemote, ...qs.map((q) => q.id), ...rejected]);
+        if (!r) { console.log(`preflight: no replacement for question ${i + 1}`); continue; }
+        console.log(`preflight: question ${i + 1} (${qs[i].id.slice(0, 8)}) replaced by ${r.id.slice(0, 8)}`);
+        qs[i] = r;
+        speak[i] = await speakable(r, lang);
+        if (i === ci) speak[i] = { ...speak[i], reveal_vo: `${speak[i].reveal_vo} ${CTA_LINE[lang]}` };
+        display[i] = await toDisplay(r, i);
+      }
+    }
+  }
 
   const aq = [], ar = [];
   for (const s of speak) {
@@ -74,15 +98,28 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const stats: Record<string, { posts: number; views: number }> = {};
   for (const v of ledgerRows) { const a = (v.hook as { style?: string } | null)?.style; if (!a) continue; stats[a] ??= { posts: 0, views: 0 }; stats[a].posts++; stats[a].views += Number((v.metrics as { views?: number } | null)?.views ?? 0); }
   const seriesNumber = ledgerRows.filter((v) => v.format === fmt && v.lang === lang).length + 1;
-  const h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, chooseAngle(stats), seriesNumber);
+  const angle = chooseAngle(stats);
+  let h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, angle, seriesNumber);
   // question-first formats show the hook as a banner and never play the hook voice line
-  const ah = FORMATS[fmt].opening === "question" || dry ? dryClip(h.vo_line) : await tts(h.vo_line, lang);
-  const ao = FORMATS[fmt].outro === false ? dryClip("") : dry ? dryClip(h.outro_vo) : await tts(h.outro_vo, lang);
+  const hookVoice = async (hk: typeof h) => FORMATS[fmt].opening === "question" || dry ? dryClip(hk.vo_line) : await tts(hk.vo_line, lang);
+  const outroVoice = async (hk: typeof h) => FORMATS[fmt].outro === false ? dryClip("") : dry ? dryClip(hk.outro_vo) : await tts(hk.outro_vo, lang);
+  let ah = await hookVoice(h);
+  let ao = await outroVoice(h);
 
   const themeCount: Record<string, number> = Object.fromEntries(THEMES.map((x) => [x, 0]));
   for (const v of ledgerRows) { const th = (v.metrics as { theme?: string } | null)?.theme; if (th && th in themeCount) themeCount[th]++; }
   const theme = process.env.THEME || [...THEMES].sort((a, b) => themeCount[a] - themeCount[b] || Math.random() - 0.5)[0];
-  const plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar }, countdown: secs });
+  let plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar }, countdown: secs });
+  // pre-render check of the cover (2026-11-21): a rejected cover gets one new hook before the full render
+  if (!dry && process.env.PREFLIGHT !== "0") {
+    const bad = await preflightCover(plan, path.join(work, "preflight_cover"));
+    if (bad.includes("cover")) {
+      h = await hooks(qs, fmt, lang, timing, state, angle, seriesNumber);
+      ah = await hookVoice(h); ao = await outroVoice(h);
+      plan = buildPlan({ id, format: fmt, lang, theme, questions: display, hook: h, audio: { hook: ah, outro: ao, q: aq, r: ar }, countdown: secs });
+      console.log(`preflight: new hook "${h.card1}"`);
+    }
+  }
   writeJson(path.join(work, "plan.json"), plan);
   writeJson(path.join(work, "post.json"), { caption: h.caption, hashtags: h.hashtags, hook: h, questions: plan.meta.questionIds, seconds: plan.meta.totalSeconds });
   console.log(`plan ${id}: ${plan.meta.totalSeconds}s, ${plan.durationInFrames} frames, ${qs.length} questions, theme ${theme}, angle ${h.style ?? "-"}`);
@@ -94,8 +131,10 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   console.log(`OK ${path.relative(ROOT, video)}  ${plan.meta.totalSeconds}s`);
   if (ledgerEnabled() && !dry) {
     const chars = [ah, ao, ...aq, ...ar].reduce((a, c) => a + c.text.length, 0);
+    const quota = await voiceQuota();
     await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
-      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme } });
+      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme,
+        ...(quota ? { voice_used: quota.used, voice_limit: quota.limit, voice_left_pct: quota.leftPct, voice_resets: quota.resetsAt } : {}) } });
     const videoUrl = await uploadFile(id, "video", video);
     await uploadFile(id, "thumb", thumb);
     await updateVideo(id, { status: "ready" });

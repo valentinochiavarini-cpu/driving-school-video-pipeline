@@ -69,13 +69,36 @@ function frame(file: string, at: number, out: string) {
   execFileSync("ffmpeg", ["-nostdin", "-loglevel", "error", "-y", "-ss", String(at), "-i", file, "-frames:v", "1", "-vf", "scale=540:-1", out]);
   return out;
 }
+const NOT_PROBLEMS = `Not problems (fix 2026-11-21, these held good videos): the headline shown in capitals ("WHO HAS PRIORITY" for "Who has priority") is an exact match; the yellow words in the footer under the quiz are live captions of the voice, a few words at a time, so a sentence fragment there ("THIS LANE IS NOW") is expected and is not cut off; in question-first videos the cover is the first question screen with the headline as a banner on top.
+Ignore animation in progress (slight tilt or scale) and do not judge design taste.`;
+
+/** Pre-render check (2026-11-21): labelled stills of a draft plan, before the voice and the full render are paid for.
+ *  Returns the labels of frames with a real layout problem. */
+export async function visionFrames(items: { label: string; path: string }[], card1 = ""): Promise<{ bad: string[]; issues: string[] }> {
+  const content = [
+    { type: "text", text: `Still frames of a vertical driving-test quiz video, one per label, in this order: ${items.map((i) => i.label).join(", ")}.
+${card1 ? `The frame labelled "cover" must show this headline (case-insensitive, one part highlighted in yellow): "${visible(card1)}". Compare the words only.\n` : ""}On every frame: is any text cut off at an edge or by its box, overlapping other text, unreadable or broken; is any image broken or missing; does anything look like a rendering error?
+The footer caption may be empty or show placeholder words in these stills.
+${NOT_PROBLEMS}
+Return JSON {"bad": [labels of frames with a real problem], "issues": ["<label>: short description"]}.` },
+    ...items.map((i) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${fs.readFileSync(i.path).toString("base64")}` } })),
+  ];
+  const r = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST", headers: { Authorization: `Bearer ${keyOrPlaceholder("OPENAI_API_KEY")}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ model: QA.visionModel, response_format: { type: "json_object" }, messages: [{ role: "user", content }] }),
+  });
+  if (!r.ok) throw new Error(`vision ${r.status}: ${(await r.text()).slice(0, 200)}`);
+  const j = JSON.parse(((await r.json()) as any).choices[0].message.content);
+  const labels = new Set(items.map((i) => i.label));
+  return { bad: (Array.isArray(j.bad) ? j.bad : []).map(String).filter((l: string) => labels.has(l)), issues: (j.issues ?? []).map(String) };
+}
+
 async function vision(images: string[], card1: string): Promise<{ cover_ok: boolean; layout_ok: boolean; issues: string[] }> {
   const content = [
     { type: "text", text: `Frames from a vertical driving-test quiz video, in order: 1) the cover (frame 0), 2) a question screen, 3) the outro.
 The cover headline must read exactly (case-insensitive, one part highlighted in yellow): "${visible(card1)}". It may be a full card or a banner above the first question; line breaks, wrapping across lines and uppercase styling are fine: compare the words only.
 Check: is the cover headline exactly that, fully visible, with no asterisks, markup or garbled characters? On every frame: is any text cut off at an edge, overlapping other text, unreadable or broken; is any image broken or missing; does anything look like a rendering error?
-Not problems (fix 2026-11-21, these held good videos): the headline shown in capitals ("WHO HAS PRIORITY" for "Who has priority") is an exact match; the yellow words in the footer under the quiz are live captions of the voice, a few words at a time, so a sentence fragment there ("THIS LANE IS NOW") is expected and is not cut off; in question-first videos the cover is the first question screen with the headline as a banner on top.
-Ignore animation in progress (slight tilt or scale) and do not judge design taste.
+${NOT_PROBLEMS}
 Return JSON {"cover_ok": boolean, "layout_ok": boolean, "issues": [short strings]}.` },
     ...images.map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${fs.readFileSync(p).toString("base64")}` } })),
   ];

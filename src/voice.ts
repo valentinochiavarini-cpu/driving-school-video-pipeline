@@ -58,6 +58,20 @@ export async function tts(text: string, lang: Lang, voiceId?: string, outFile?: 
 }
 
 
+/** Credits left on the ElevenLabs plan (2026-11-21: a run with an empty quota posts nothing, as on 2026-11-17).
+ *  null when the account endpoint cannot be read; never throws. */
+export async function voiceQuota(): Promise<{ used: number; limit: number; leftPct: number; resetsAt: string | null } | null> {
+  try {
+    const r = await fetch(`${API}/user/subscription`, { headers: hdr() });
+    if (!r.ok) return null;
+    const j = (await r.json()) as { character_count?: number; character_limit?: number; next_character_count_reset_unix?: number };
+    const used = Number(j.character_count ?? 0), limit = Number(j.character_limit ?? 0);
+    if (!limit) return null;
+    return { used, limit, leftPct: Math.round(((limit - used) / limit) * 100),
+      resetsAt: j.next_character_count_reset_unix ? new Date(j.next_character_count_reset_unix * 1000).toISOString() : null };
+  } catch { return null; }
+}
+
 export async function listVoices() {
   const r = await fetch(`${API}/voices`, { headers: hdr() });
   if (!r.ok) throw new Error(`ElevenLabs ${r.status}: ${await r.text()}`);
