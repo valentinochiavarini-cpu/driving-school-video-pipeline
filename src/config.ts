@@ -136,6 +136,11 @@ export const EXCLUDED_CATEGORIES = ["Alcohol & Drugs", "Speed Limits & Laws", "L
 /** Bank questions never used in videos: add an id prefix here when a broken question is found, fix it in the bank,
  *  then remove it. Empty since 2026-11-21: c4669e7e (two correct answers), e727ce0d (four-second rule, now "at least
  *  three seconds"), f7cdc8c1 (letter answers, now "Sign A".."Sign D") and two typos were fixed in the bank. */
+/** One-off extra renders for a given nightly run (ET date of the run, YYYY-MM-DD), on top of the weekday rotation. Use it to
+ *  replace a retired buffer video; old entries do nothing. 2026-11-21: pass5q_en_1795058829391 retired (voiced before the
+ *  spoken-question guard, card 2 timing from before the uniform countdown). */
+export const EXTRA_RENDERS: { on: string; format: string }[] = [{ on: "2026-11-21", format: "pass5q" }];
+
 export const EXCLUDED_QUESTIONS: string[] = [];
 /** Topics excluded by keyword as well as by category: an alcohol question sat in "Safe Driving" (659b6650). */
 export const EXCLUDED_TOPIC_WORDS = /\b(alcohol|drunk|drinking|drugs?|intoxicat|dui|dwi|blood alcohol|bac)\b/i;

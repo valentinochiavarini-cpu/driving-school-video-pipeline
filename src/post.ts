@@ -58,7 +58,9 @@ export function buildCaption(line: string, count: number, lang: Lang): string {
 export function cleanHashtags(tags: string[], lang: Lang): string[] {
   const norm = tags.map((t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/^#+/, "").replace(/[^A-Za-z0-9_]/g, "").toLowerCase()).filter(Boolean);
   const kept = norm.filter((t) => !FOREIGN[lang].test(t));
-  return [...new Set([...REQUIRED[lang], ...kept])].slice(0, 5);
+  // the model sometimes returns too few usable tags (signs7q 2026-11-21 held with only the two required ones): pad
+  const pad = lang === "es" ? ["manejo", "licencia", "examen"] : ["roadrules", "drivingquiz", "permittest"];
+  return [...new Set([...REQUIRED[lang], ...kept, ...pad])].slice(0, 5);
 }
 
 /** Problems a posted caption must not have (used by the QA gate). Empty array = clean. */

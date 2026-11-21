@@ -1,11 +1,14 @@
 /** One nightly run: render the weekday's formats (two videos), schedule approved videos, sync states and metrics,
  *  then print the daily report (weekly on Sunday). Deterministic so a scheduled session only runs `npm run nightly`. */
 import { spawnSync } from "node:child_process";
-import { NIGHTLY_ROTATION, POSTING } from "./config";
+import { EXTRA_RENDERS, NIGHTLY_ROTATION, POSTING } from "./config";
 
 const weekday = new Intl.DateTimeFormat("en-US", { timeZone: POSTING.timezone, weekday: "short" }).format(new Date());
 const formats = process.env.NIGHTLY_FORMAT ? process.env.NIGHTLY_FORMAT.split(",") : NIGHTLY_ROTATION[weekday] ?? ["pass5"];
 const lang = process.env.NIGHTLY_LANG || "en";
+// one-off replacements (config EXTRA_RENDERS), rendered only by the run whose ET date matches
+const today = new Intl.DateTimeFormat("en-CA", { timeZone: POSTING.timezone }).format(new Date());
+if (!process.env.NIGHTLY_FORMAT) for (const x of EXTRA_RENDERS) if (x.on === today) formats.push(x.format);
 
 function step(name: string, args: string[]): boolean {
   console.log(`\n=== ${name}: tsx src/cli.ts ${args.join(" ")}`);

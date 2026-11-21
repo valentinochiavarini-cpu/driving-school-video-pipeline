@@ -77,7 +77,9 @@
 .card h1 { font-size: 2.1rem; line-height: 1.1; font-weight: 900; text-transform: uppercase; }
 .card h1 em { font-style: normal; color: hsl(var(--highlight)); display: inline-block; margin: 0 .08em; }
 .card h2 { margin-top: 1.1rem; font-size: 1.1rem; font-weight: 500; opacity: .85; }
-.card .pill { margin-top: 1.6rem; background: hsl(var(--highlight)); color: hsl(var(--highlight-foreground)); font-weight: 800; padding: .6rem 1rem; border-radius: .5rem; font-size: .95rem; white-space: nowrap; }
+.card .pill { margin-top: 1.6rem; background: hsl(var(--highlight)); color: hsl(var(--highlight-foreground)); font-weight: 800; padding: .5rem 1rem; border-radius: .5rem; font-size: .95rem; line-height: 1.25; white-space: nowrap; max-width: calc(100% - 1rem); box-sizing: border-box; }
+.card .pill small { display: block; font-size: .8em; }
+/* fix 2026-11-21: on one line the CTA "FREE STATE TEST: THEDRIVINGSCHOOL.APP" was wider than the 360 px box and was cut off; it now sits on two lines */
 .card .scores { display: flex; gap: .4rem; margin-top: 1.2rem; }
 .card .scores span { width: 2.6rem; padding: .5rem 0; border: 2px solid hsl(var(--highlight)); border-radius: .4rem; font-weight: 700; font-size: .85rem; display: inline-block; }
 .card .scores span.wide { width: auto; padding: .5rem .6rem; white-space: nowrap; }

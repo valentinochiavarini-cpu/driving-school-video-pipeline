@@ -74,6 +74,7 @@ async function vision(images: string[], card1: string): Promise<{ cover_ok: bool
     { type: "text", text: `Frames from a vertical driving-test quiz video, in order: 1) the cover (frame 0), 2) a question screen, 3) the outro.
 The cover headline must read exactly (case-insensitive, one part highlighted in yellow): "${visible(card1)}". It may be a full card or a banner above the first question; line breaks, wrapping across lines and uppercase styling are fine: compare the words only.
 Check: is the cover headline exactly that, fully visible, with no asterisks, markup or garbled characters? On every frame: is any text cut off at an edge, overlapping other text, unreadable or broken; is any image broken or missing; does anything look like a rendering error?
+Not problems (fix 2026-11-21, these held good videos): the headline shown in capitals ("WHO HAS PRIORITY" for "Who has priority") is an exact match; the yellow words in the footer under the quiz are live captions of the voice, a few words at a time, so a sentence fragment there ("THIS LANE IS NOW") is expected and is not cut off; in question-first videos the cover is the first question screen with the headline as a banner on top.
 Ignore animation in progress (slight tilt or scale) and do not judge design taste.
 Return JSON {"cover_ok": boolean, "layout_ok": boolean, "issues": [short strings]}.` },
     ...images.map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${fs.readFileSync(p).toString("base64")}` } })),

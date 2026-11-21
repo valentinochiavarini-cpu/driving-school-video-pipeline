@@ -115,6 +115,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   (post.ts buildCaption drops score and claim sentences from the model line). (3) Questions never used: EXCLUDED_QUESTIONS,
   alcohol/drug words in any category, bare-letter answers, right-of-way scenes in sign formats (pick.ts usable).
   (4) publish re-runs the text checks on approved videos before scheduling and rebuilds a failing caption.
+- Nightly 2026-11-21 held 6 of 9 videos, fixes: the outro CTA pill was wider than the box and cut off (now two lines,
+  Cards.tsx); the vision QA treated capitals on the cover and live-caption fragments in the footer as errors (prompt now
+  says they are fine); too few hashtags (cleanHashtags pads to 5). config EXTRA_RENDERS adds one-off renders to a dated run.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

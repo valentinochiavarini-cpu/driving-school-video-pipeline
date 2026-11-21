@@ -64,7 +64,8 @@ export const Outro: React.FC<{ plan: Plan }> = ({ plan }) => {
           return <span key={i} className={n > 7 ? "wide" : ""} style={{ transform: `scale(${s})`, opacity: s }}>{label}</span>;
         })}
       </div>}
-      <div className="pill" style={{ transform: `scale(${pulse})` }}>{es ? BRAND.ctaEs : plan.brand.cta} →</div>
+      {(() => { const [lead, url] = (es ? BRAND.ctaEs : plan.brand.cta).split(/:\s*/);
+        return <div className="pill" style={{ transform: `scale(${pulse})` }}>{url ? <><small>{lead}</small>{url} →</> : <>{lead} →</>}</div>; })()}
     </div>
   );
 };
