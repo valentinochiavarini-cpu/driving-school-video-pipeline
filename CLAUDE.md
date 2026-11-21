@@ -104,6 +104,9 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - pick6 and link-in-bio CTA (decision 2026-11-18): pick-the-sign (FormatDef.pickSign, src/pick.ts buildPicks, picture
   answers in QuestionScene), outro: false loops (pick6, quick3), a spoken mid-video CTA plus header pill (plan.ts CTA_LINE,
   ctaIndex) and a caption CTA (post.ts BIO_CTA). The bio link is the goal metric (docs/TESTS.md).
+- Spoken question guard (fix 2026-11-21): a debate1 voice read "This sign indicates that car A must yield to car B" on a
+  diagram, giving the answer away. src/text.ts questionVoProblems rejects a rewrite that drops the question's facts, adds
+  claims, says "sign" on a non-sign question or turns it into a statement; one retry, then the bank wording is read as is.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 

@@ -24,20 +24,67 @@ export async function chatJson<T>(system: string, user: string, temperature: num
 const SPEAK_SYSTEM = `You prepare DMV multiple-choice questions for a spoken short-form quiz video.
 Return JSON: {"question_vo": str, "reveal_vo": str, "answers_display": {"A": str, "B": str, "C": str, "D": str}}
 Rules:
-- question_vo: the question as a natural spoken sentence. Max 22 words. Expand abbreviations, remove trailing colons and parenthetical lists. If the question refers to an image say "this sign".
-  Do NOT read the answer options; the viewer sees them on screen.
+- question_vo: the question as a natural spoken sentence. Max 22 words. Expand abbreviations, remove trailing colons and parenthetical lists.
+  Keep every fact of the question (who, where, what) and keep its wording as close to the original as you can.
+  NEVER state, hint at or imply the correct answer or the explanation: the viewer must still have to answer.
+  Only when "image_kind" is "sign" may you call the picture "this sign"; for a "diagram" or "photo" say "this picture" or
+  nothing at all. Do NOT read the answer options; the viewer sees them on screen.
 - reveal_vo: "The answer is <letter>." then ONE short phrase (max 10 words) with the key reason, taken from the explanation. Spanish input -> Spanish output ("La respuesta es la B.").
 - answers_display: the four answers for the screen. Keep them identical unless they contain symbols or shorthand that a viewer would stumble on ('e.g.', '=', '/', '&'), then rewrite to plain words, max 12 words each, same meaning.
 - Never change which answer is correct. No em dashes.`;
 
+const SIGN_CATS = /sign|signal|marking/i;
+const STOP = new Set("the a an is are be to of in on at for and or this that these those what which who whom when where why how you your do does did if it its with from by as must should can will would may".split(" "));
+const words = (s: string) => s.toLowerCase().replace(/[^a-z0-9áéíóúñü\s-]/g, " ").split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w));
+
+/** Guard (fix 2026-11-21): the spoken question once read "This sign indicates that car A must yield to car B. Who must
+ *  yield?" on a right-of-way diagram, giving the answer away and calling a diagram a sign. The rewrite must keep the
+ *  question's facts, add no new claims and only say "sign" for sign questions. Returns the problems, empty if fine. */
+export function questionVoProblems(q: Pick<Question, "question_text" | "question_text_es" | "category" | "image_url">, vo: string, lang: Lang = "en"): string[] {
+  const p: string[] = [];
+  const text = sourceText(q, lang);
+  if (!text) return p; // Spanish without a Spanish source: nothing reliable to compare against
+  const src = new Set(words(text)), out = words(vo);
+  const allowed = new Set(["sign", "picture", "image", "shown", "show", "shows", "means", "mean", "following", "number", "percent", "feet", "miles", "hour", "per"]);
+  const added = [...new Set(out.filter((w) => !src.has(w) && !allowed.has(w) && !/^\d/.test(w)))];
+  if (added.length > 2) p.push(`adds words not in the question: ${added.join(", ")}`);
+  const kept = [...src].filter((w) => out.includes(w)).length;
+  if (src.size >= 4 && kept / src.size < 0.6) p.push(`drops the question's facts (kept ${kept} of ${src.size} key words)`);
+  if (/\bsigns?\b|\bse[nñ]al/i.test(vo) && !/\bsigns?\b|\bse[nñ]al/i.test(text) && !SIGN_CATS.test(q.category)) p.push("calls the picture a sign on a non-sign question");
+  if (/\b(indicates?|means?) that\b/i.test(vo) && !/\b(indicates?|means?) that\b/i.test(text)) p.push("turns the question into a statement");
+  if (/\b(indica|significa) que\b/i.test(vo) && !/\b(indica|significa) que\b/i.test(text)) p.push("turns the question into a statement");
+  return p;
+}
+
+/** The wording the spoken question is checked against: Spanish source for Spanish videos (pick6 already carries it). */
+function sourceText(q: Pick<Question, "question_text" | "question_text_es">, lang: Lang): string | null {
+  if (lang !== "es") return q.question_text;
+  if (/^\s*¿/.test(q.question_text)) return q.question_text;
+  return q.question_text_es ?? null;
+}
+
+/** Plain fallback: the bank's own wording, cleaned for the ear. */
+const plainQuestion = (t: string) => t.replace(/\s*\([^)]*\)/g, "").replace(/[:\s]+$/, "").replace(/\s+/g, " ").trim();
+
 export async function speakable(q: Question, lang: Lang): Promise<Speak> {
   const c = jsonCache<Speak>(`speak_${q.id}_${lang}`);
-  if (c.data) return c.data;
-  const user = JSON.stringify({
+  if (c.data && questionVoProblems(q, c.data.question_vo, lang).length === 0) return c.data;
+  const imageKind = !q.image_url ? "none" : SIGN_CATS.test(q.category) ? "sign" : /generated|diagram/i.test(q.image_url) ? "diagram" : "photo";
+  const base = {
     question_text: q.question_text, answers: q.answers, correct_answer: q.correct_answer,
-    explanation: q.explanation ?? "", has_image: !!q.image_url, language: lang,
-  });
-  const data = await chatJson<Speak>(SPEAK_SYSTEM, user, OPENAI.temperatureSpeakable);
+    explanation: q.explanation ?? "", category: q.category, image_kind: imageKind, language: lang,
+  };
+  let data = await chatJson<Speak>(SPEAK_SYSTEM, JSON.stringify(base), OPENAI.temperatureSpeakable);
+  let problems = questionVoProblems(q, data.question_vo, lang);
+  if (problems.length) {
+    const retry = await chatJson<Speak>(SPEAK_SYSTEM, JSON.stringify({ ...base, previous_attempt_problems: problems }), 0);
+    data = { ...retry, reveal_vo: retry.reveal_vo || data.reveal_vo };
+    problems = questionVoProblems(q, data.question_vo, lang);
+    if (problems.length) {
+      console.warn(`speakable ${q.id}: rewrite rejected (${problems.join("; ")}), using the bank wording`);
+      data.question_vo = plainQuestion(sourceText(q, lang) ?? q.question_text);
+    }
+  }
   for (const k of ["A", "B", "C", "D"]) data.answers_display[k] ??= q.answers[k];
   if (!/^(The answer is|La respuesta es)/.test(data.reveal_vo)) throw new Error(`Bad reveal_vo: ${data.reveal_vo}`);
   writeJson(c.path, data);
