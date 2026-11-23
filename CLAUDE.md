@@ -89,7 +89,7 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   held after the text repair is retired (status skipped, reason on the row) and remade as a fresh video of the same format,
   up to 2 rounds within 40 minutes of the nightly run (`cli held`, `cli skip`, loop in src/nightly.ts). Holds cost render
   time, not posting slots.
-- Every approved video goes to TikTok and Instagram Reels in one Postiz request (POSTING.platforms). The Postiz key
+- Every approved video goes to TikTok and Instagram Reels in one Postiz request (POSTING.platforms), only to the pinned Driving School channel ids in POSTING.channels (decision 2026-11-23: the Postiz workspace also holds BookVyral's TikTok, Instagram and Facebook; a missing id skips that platform, never falls back to another account). The Postiz key
   lives in Lovable as the secret POSTIZ_API_KEY; the pipeline reaches Postiz through the ingest function's `postiz`
   action (POSTIZ_API_KEY=via-ingest in .env), because the session proxy cannot send a bare Authorization header.
 - Three posts a day (decision 2026-11-18, was two from 2026-11-10): 11:00, 15:00 and 19:00 ET weekdays, 11:00, 14:00 and

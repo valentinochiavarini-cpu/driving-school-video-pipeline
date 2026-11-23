@@ -191,8 +191,13 @@ export const POSTING = {
   reuseAfterDays: 45,
   minLeadMinutes: 90,  // never schedule closer than this to now
   horizonDays: 30,
-  /** channels that receive every approved video (Postiz identifiers matched by prefix) */
+  /** channels that receive every approved video */
   platforms: ["tiktok", "instagram"] as const,
+  /** decision 2026-11-23: the Postiz workspace also holds BookVyral's TikTok, Instagram and Facebook, so posts go ONLY to
+   *  these exact Driving School channel ids (never "the first channel of that platform"). A missing or disabled id
+   *  skips that platform (TikTok missing stops the publish) instead of falling back to another account. */
+  channels: { tiktok: "cmwawn5vt0gfwn306g5mcc9k8", instagram: "cmwaw7tse0h9lpq07kif8fgdc" } as Record<string, string>,
+  channelName: "The Driving School",
   /** Instagram: a single video with post_type "post" publishes as a Reel */
   instagram: { post_type: "post", is_trial_reel: false, collaborators: [] as { label: string }[] },
   /** TikTok settings sent with every post */

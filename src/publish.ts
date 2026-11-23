@@ -33,7 +33,7 @@ async function integrations(): Promise<Integration[]> {
 export async function tiktokIntegration(): Promise<Integration> {
   if (process.env.POSTIZ_INTEGRATION_ID) return { id: process.env.POSTIZ_INTEGRATION_ID, name: "env", identifier: "tiktok" };
   const arr = await integrations();
-  const tt = arr.find((i) => /^tiktok/.test(i.identifier));
+  const tt = arr.find((i) => i.id === POSTING.channels.tiktok);
   if (!tt) throw new Error(`No TikTok channel connected in Postiz (channels: ${arr.map((i) => i.identifier).join(", ") || "none"})`);
   return tt;
 }
@@ -42,8 +42,14 @@ async function channelPosts(content: string, title: string, media: { id: string;
   const arr = await integrations();
   const out: unknown[] = []; const used: { platform: string; id: string }[] = [];
   for (const platform of platforms) {
-    const ch = platform === "tiktok" && process.env.POSTIZ_INTEGRATION_ID ? { id: process.env.POSTIZ_INTEGRATION_ID, identifier: "tiktok" } : arr.find((i) => i.identifier.startsWith(platform));
-    if (!ch) { if (platform === "tiktok") throw new Error("No TikTok channel connected in Postiz"); console.warn(`publish: no ${platform} channel connected, skipping`); continue; }
+    // exact Driving School channel ids only (POSTING.channels); never another account on the same platform
+    const want = platform === "tiktok" && process.env.POSTIZ_INTEGRATION_ID ? process.env.POSTIZ_INTEGRATION_ID : POSTING.channels[platform];
+    const ch = want ? arr.find((i) => i.id === want) : undefined;
+    if (!ch) {
+      const msg = `publish: ${POSTING.channelName} ${platform} channel ${want ?? "(none configured)"} is not connected or is disabled in Postiz (connected: ${arr.map((i) => `${i.identifier}:${i.name ?? i.id}`).join(", ")})`;
+      if (platform === "tiktok") throw new Error(msg);
+      console.warn(`${msg}; skipping ${platform}`); continue;
+    }
     const settings = platform === "tiktok" ? { __type: "tiktok", title, ...POSTING.tiktok } : { __type: ch.identifier.startsWith("instagram-standalone") ? "instagram-standalone" : "instagram", ...POSTING.instagram };
     out.push({ integration: { id: ch.id }, value: [{ content, image: [{ id: media.id, path: media.path }] }], settings });
     used.push({ platform, id: ch.id });
@@ -157,7 +163,9 @@ async function findPostIds(when: Date, content: string): Promise<string[]> {
   const res = await api<PostizPost[] | { posts: PostizPost[] }>(`/posts?startDate=${encodeURIComponent(s)}&endDate=${encodeURIComponent(e)}`);
   const posts = Array.isArray(res) ? res : res.posts ?? [];
   const head = content.slice(0, 40);
-  return posts.filter((p) => (p.content ?? "").startsWith(head)).map((p) => p.id);
+  const ours = new Set(Object.values(POSTING.channels));
+  const channelOf = (p: PostizPost & { integrationId?: string }) => p.integrationId ?? p.integration?.id;
+  return posts.filter((p) => (p.content ?? "").startsWith(head) && (!channelOf(p) || ours.has(channelOf(p)!))).map((p) => p.id);
 }
 
 /** All post ids in a create response, whatever its shape (object, array, or {posts: [...]}) */
