@@ -5,11 +5,15 @@ import { renderMedia, renderStill, selectComposition } from "@remotion/renderer"
 import { ROOT, PUBLIC } from "./env";
 import type { Plan } from "./types";
 
-let serveUrl: string | null = null;
+/** A fresh bundle for every render. The bundle copies public/ at bundle time, so a bundle made for the pre-render stills
+ *  (before any voice is bought) has none of the voice mp3s or replacement images written after it. Reusing it made
+ *  every full render after a preflight 404 on its audio and crash (fix 2026-11-24: signs7q, pass5q and debate1 left
+ *  no video on 2026-11-21 and 2026-11-22). A bundle costs about 20 s; correctness wins. */
+const freshBundle = () => bundle({ entryPoint: path.join(ROOT, "remotion/index.ts"), publicDir: PUBLIC, onProgress: () => {} });
 
-/** Single frames of a plan (pre-render check, 2026-11-21): same bundle as the full render, a fraction of the time. */
+/** Single frames of a plan (pre-render check, 2026-11-21): same composition as the full render, a fraction of the time. */
 export async function renderStills(plan: Plan, frames: number[], dir: string, scale = 0.5): Promise<string[]> {
-  serveUrl ??= await bundle({ entryPoint: path.join(ROOT, "remotion/index.ts"), publicDir: PUBLIC, onProgress: () => {} });
+  const serveUrl = await freshBundle();
   const browserExecutable = process.env.REMOTION_BROWSER_EXECUTABLE || null;
   const inputProps = { plan };
   const composition = await selectComposition({ serveUrl, id: "Quiz", inputProps, browserExecutable });
@@ -24,7 +28,7 @@ export async function renderStills(plan: Plan, frames: number[], dir: string, sc
 }
 
 export async function renderPlan(plan: Plan, outFile: string) {
-  serveUrl ??= await bundle({ entryPoint: path.join(ROOT, "remotion/index.ts"), publicDir: PUBLIC, onProgress: () => {} });
+  const serveUrl = await freshBundle();
   const browserExecutable = process.env.REMOTION_BROWSER_EXECUTABLE || null;
   const inputProps = { plan };
   const composition = await selectComposition({ serveUrl, id: "Quiz", inputProps, browserExecutable });

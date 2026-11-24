@@ -206,6 +206,11 @@ try {
     const rows = (await listVideos("ready", 100)).filter((v) => !qaPassed(v) && Date.now() - new Date(v.created_at ?? 0).getTime() < 36 * 3600e3);
     console.log(`HELD_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format, lang: v.lang, error: v.error })))}`);
   }
+  else if (cmd === "make-failed") { // nightly: a make that crashed leaves a ledger row so the report and watchdog see it
+    const [, f, l, ...msg] = positionals; const id = `${f}_${l}_${Date.now()}_failed`;
+    await upsertVideo({ id, format: f, lang: l, status: "skipped", approved: false, error: `make failed: ${msg.join(" ")}`.slice(0, 500) });
+    console.log(`logged ${id}`);
+  }
   else if (cmd === "skip") { await updateVideo(positionals[1], { status: "skipped", approved: false, error: positionals.slice(2).join(" ") || "skipped" }); console.log(`skipped ${positionals[1]}`); }
   else if (cmd === "voices") for (const v of await listVoices()) console.log(v.voice_id, v.name, JSON.stringify(v.labels));
   else throw new Error(`Unknown command ${cmd}`);

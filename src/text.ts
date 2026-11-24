@@ -78,15 +78,22 @@ export async function speakable(q: Question, lang: Lang): Promise<Speak> {
   let problems = questionVoProblems(q, data.question_vo, lang);
   if (problems.length) {
     const retry = await chatJson<Speak>(SPEAK_SYSTEM, JSON.stringify({ ...base, previous_attempt_problems: problems }), 0);
-    data = { ...retry, reveal_vo: retry.reveal_vo || data.reveal_vo };
+    // the retry often returns only the corrected question_vo: keep the first reply's other fields (an answers_display
+    // missing here crashed the whole video, fix 2026-11-24)
+    data = { ...data, ...retry, reveal_vo: retry.reveal_vo || data.reveal_vo, answers_display: { ...(data.answers_display ?? {}), ...(retry.answers_display ?? {}) } };
     problems = questionVoProblems(q, data.question_vo, lang);
     if (problems.length) {
       console.warn(`speakable ${q.id}: rewrite rejected (${problems.join("; ")}), using the bank wording`);
       data.question_vo = plainQuestion(sourceText(q, lang) ?? q.question_text);
     }
   }
+  data.answers_display ??= {} as Speak["answers_display"];
   for (const k of ["A", "B", "C", "D"]) data.answers_display[k] ??= q.answers[k];
-  if (!/^(The answer is|La respuesta es)/.test(data.reveal_vo)) throw new Error(`Bad reveal_vo: ${data.reveal_vo}`);
+  // a malformed reveal used to throw and cost the whole video; the plain reveal is always correct (fix 2026-11-24)
+  if (!/^(The answer is|La respuesta es)/.test(data.reveal_vo ?? "")) {
+    console.warn(`speakable ${q.id}: bad reveal_vo "${data.reveal_vo}", using the plain reveal`);
+    data.reveal_vo = lang === "es" ? `La respuesta es la ${q.correct_answer}.` : `The answer is ${q.correct_answer}.`;
+  }
   writeJson(c.path, data);
   return data;
 }
@@ -163,10 +170,16 @@ export async function hooks(questions: Question[], fmtId: string, lang: Lang, ti
   if (timing.count === 1) h.card2 = h.card2.replace(/\b(1|one) questions\b/i, (m) => m.replace(/questions/i, "question")).replace(/\b1 preguntas\b/i, "1 pregunta");
   h.caption = buildCaption(h.caption, timing.count, lang);
   h.hashtags = cleanHashtags(h.hashtags ?? [], lang);
-  if (h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9) throw new Error(`Hook too long: ${JSON.stringify(h)}`);
+  // a hook too long for the card used to throw and cost the whole video (fix 2026-11-24): use the safe hook instead
+  const tooLong = h.card1.split(/\s+/).length > 8 || h.card2.split(/\s+/).length > 9;
+  if (tooLong) {
+    console.warn(`hooks: too long (${JSON.stringify({ card1: h.card1, card2: h.card2 })}), using the safe hook`);
+    const n = timing.count, s = timing.seconds_per_question;
+    h.card2 = lang === "es" ? `${n} ${n === 1 ? "pregunta" : "preguntas"}. ${s} segundos.` : `${n} ${n === 1 ? "question" : "questions"}. ${s} seconds${n === 1 ? "" : " each"}.`;
+  }
   // still wrong after the retry: a plain safe hook rather than a failed render
-  if (hookProblems(h, timing.count, lang).length) {
-    console.warn(`hooks: problems after retry (${hookProblems(h, timing.count, lang).join("; ")}), using the safe hook`);
+  if (tooLong || hookProblems(h, timing.count, lang).length) {
+    if (!tooLong) console.warn(`hooks: problems after retry (${hookProblems(h, timing.count, lang).join("; ")}), using the safe hook`);
     const es = lang === "es";
     h.card1 = es ? "¿Puedes aprobar este *examen del DMV*?" : "Can you pass this *driving test*?";
     h.vo_line = `${h.card1.replace(/\*/g, "")} ${h.card2} ${es ? "Vamos." : "Let's go."}`;

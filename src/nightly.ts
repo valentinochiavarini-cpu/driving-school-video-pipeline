@@ -17,8 +17,35 @@ function step(name: string, args: string[]): boolean {
   return r.status === 0;
 }
 
+/** make, with its output echoed and the last error line kept (2026-11-24: failed makes left no trace in the ledger). */
+function makeStep(name: string, fmt: string): { ok: boolean; err: string } {
+  console.log(`\n=== ${name}: tsx src/cli.ts make --format ${fmt} --lang ${lang} --count 1`);
+  const r = spawnSync("npx", ["tsx", "src/cli.ts", "make", "--format", fmt, "--lang", lang, "--count", "1"],
+    { encoding: "utf8", maxBuffer: 64 * 1024 * 1024, env: { ...process.env, NODE_USE_ENV_PROXY: "1" } });
+  process.stdout.write(r.stdout ?? ""); process.stderr.write(r.stderr ?? "");
+  const lines = `${r.stderr ?? ""}`.split("\n").map((l) => l.trim()).filter((l) => l && !/UNDICI|trace-warnings|memory|Memory|lower amount/.test(l));
+  if (r.status !== 0) console.error(`=== ${name} FAILED (exit ${r.status})`);
+  return { ok: r.status === 0, err: (lines.at(-1) ?? `exit ${r.status}`).slice(0, 300) };
+}
+
+// A slot needs a video (decision 2026-11-24, after two nights with empty slots): a failed make is retried once, then
+// replaced by its control format; every failure is written to the ledger (status skipped, "make failed: ...") so the
+// report and the watchdog see it.
+const FALLBACK: Record<string, string> = { signs7q: "signs7", pass5q: "pass5", debate1: "row5", quick3: "pass5", pick6: "signs7", signs7: "pass5", row5: "pass5", tricky5: "pass5", classic30: "pass5" };
 const results: Record<string, boolean> = {};
-for (const f of formats) results[`render:${f}`] = step(`render ${f}`, ["make", "--format", f, "--lang", lang, "--count", "1"]);
+const makeFailures: string[] = [];
+for (const f of formats) {
+  let r = makeStep(`render ${f}`, f);
+  if (!r.ok) { makeFailures.push(`${f}: ${r.err}`); step(`log failure ${f}`, ["make-failed", f, lang, r.err]); r = makeStep(`render ${f} (retry)`, f); }
+  if (!r.ok) {
+    makeFailures.push(`${f} retry: ${r.err}`); step(`log failure ${f} retry`, ["make-failed", f, lang, r.err]);
+    const fb = FALLBACK[f] ?? "pass5";
+    r = makeStep(`render ${fb} (fallback for ${f})`, fb);
+    if (!r.ok) { makeFailures.push(`${fb} fallback: ${r.err}`); step(`log failure ${fb}`, ["make-failed", fb, lang, r.err]); }
+  }
+  results[`render:${f}`] = r.ok;
+}
+if (makeFailures.length) console.log(`MAKE FAILURES ${makeFailures.join(" | ")}`);
 results.qa = step("qa", ["qa"]);
 results.approve = step("auto-approve", ["auto-approve"]);
 
@@ -35,7 +62,9 @@ for (let round = 1; round <= 2; round++) {
   if (!held.length) break;
   for (const h of held) {
     step(`retire ${h.id}`, ["skip", h.id, `replaced by a remake (round ${round}): ${(h.error ?? "").slice(0, 300)}`]);
-    const ok = step(`remake ${h.format}`, ["make", "--format", h.format, "--lang", h.lang || lang, "--count", "1"]);
+    const m = makeStep(`remake ${h.format}`, h.format);
+    if (!m.ok) step(`log failure remake ${h.format}`, ["make-failed", h.format, h.lang || lang, m.err]);
+    const ok = m.ok;
     remade.push(`${h.format}:${ok ? "made" : "failed"}`);
   }
   step(`qa round ${round}`, ["qa"]);
@@ -45,5 +74,5 @@ if (remade.length) console.log(`REMAKES ${remade.join(" ")}`);
 results.publish = step("publish", ["publish", "--count", String(POSTING.perDay)]);
 results.sync = step("sync", ["sync"]);
 results.report = step("report", ["report", ...(weekday === "Sun" ? ["weekly"] : [])]);
-console.log(`\nNIGHTLY SUMMARY ${new Date().toISOString()} weekday=${weekday} formats=${formats.join("+")} remakes=${remade.length} ${JSON.stringify(results)}`);
+console.log(`\nNIGHTLY SUMMARY ${new Date().toISOString()} weekday=${weekday} formats=${formats.join("+")} remakes=${remade.length} make_failures=${makeFailures.length} ${JSON.stringify(results)}`);
 process.exit(Object.values(results).every(Boolean) ? 0 : 1);

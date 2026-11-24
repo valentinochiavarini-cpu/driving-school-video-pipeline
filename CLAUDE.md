@@ -130,6 +130,12 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   swapped (pick.ts pickReplacement, 2 rounds; sets of 7 or fewer, not pick6). Before the full render, cover, a question
   and the outro of the real plan are checked; a rejected cover gets one new hook. PREFLIGHT=0 turns both off. A failed
   vision call never blocks a render. Re-rendering a held video inside the same run was rejected: same code, same video.
+- Empty slots fix (2026-11-24): on 2026-11-21 and 2026-11-22 every format that runs the pre-render check (signs7q, pass5q,
+  debate1) crashed in make and left no row: the stills bundle was reused for the full render, but a Remotion bundle copies
+  public/ when it is made, so the voice mp3s bought after it 404ed. render.ts now bundles fresh for every render. Text jobs
+  never kill a video any more (retry without answers_display, malformed reveal_vo, hook too long all fall back). nightly.ts
+  retries a failed make once, then renders the format's control (FALLBACK), and logs each failure as a skipped row with
+  error "make failed: ..." so the report and the watchdog see it (`cli make-failed`).
 - Voice credits (2026-11-21): make records the ElevenLabs quota on each row (metrics.voice_left_pct); the report shows
   it and RENDERS PER POST (7d); the daily watchdog task alerts under 20% credits or above 1.5 renders per post.
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
