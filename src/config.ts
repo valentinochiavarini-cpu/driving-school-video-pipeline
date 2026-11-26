@@ -62,6 +62,9 @@ export const NIGHTLY_ROTATION: Record<string, string[]> = {
  *  that is still empty. */
 export const BATCH = {
   covers: { Sun: ["Mon", "Tue", "Wed", "Thu"], Wed: ["Fri", "Sat", "Sun"] } as Record<string, string[]>,
+  /** one-off batches by ET run date (YYYY-MM-DD). 2026-11-26: switch-over, the Thursday run makes Fri to Sun (its first
+   *  videos fill Thursday's two open slots); old entries do nothing. */
+  oneOff: { "2026-11-26": ["Fri", "Sat", "Sun"] } as Record<string, string[]>,
   buffer: 2, bufferFormats: ["pick6", "pass5q"],
   /** minutes the remake loop may use after the first QA pass */
   remakeBudgetMinutes: 60,
