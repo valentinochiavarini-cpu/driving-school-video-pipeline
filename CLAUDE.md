@@ -148,7 +148,10 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   mixOrder: easy first, hard mid and last, hard targets get hard distractors), stored as metrics.hard_signs;
   (5) batch production twice a week (src/batch.ts, config BATCH: Sunday makes Mon to Thu, Wednesday makes Fri to Sun,
   plus a buffer of 2 approved unscheduled videos) and a daily run without rendering (src/daily.ts: sync, fill empty
-  slots of the next 36 h from the buffer, report). `npm run batch`, `npm run daily`, `cli buffer`, `publish --within-hours`.
+  slots of the next 36 h from the buffer, review, report). `npm run batch`, `npm run daily`, `cli buffer`, `publish --within-hours`.
+  (6) every posted video is reviewed once after it posts (src/review.ts, `cli review`): frames every 2 s (6 s for long
+  tests) plus a voice transcript against the bank's answers; result on metrics.review, critical issues alert the watchdog.
+  One production scheduled task runs daily at 3:17 ET: batch on Sun and Wed (one day per command, 2 h limit), else daily.
 
 ## Nightly run (decision 2026-11-10, replaced by batch + daily on 2026-11-26)
 

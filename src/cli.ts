@@ -1,4 +1,4 @@
-/** CLI: buffer | dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
+/** CLI: review [--days 8] [--force] | buffer | dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -18,6 +18,7 @@ import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publ
 import { qaPassed } from "./qa";
 import { qaStep, autoApprove, retract } from "./gate";
 import { report } from "./report";
+import { reviewPosted } from "./review";
 import { chooseAngle } from "./text";
 import { POSTING, THEMES, isQuestionFirst } from "./config";
 import type { DisplayQuestion, Lang, Question } from "./types";
@@ -184,7 +185,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false }, "within-hours": { type: "string" } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false }, "within-hours": { type: "string" }, days: { type: "string" } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -203,6 +204,7 @@ try {
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);
+  else if (cmd === "review") await reviewPosted(parseInt(String(values.days ?? "8"), 10) || 8, values.force === true);
   else if (cmd === "buffer") { // batch: approved videos not yet scheduled (the spare stock that fills an empty slot)
     const rows = (await listVideos("approved", 100)).filter((v) => v.video_url && qaPassed(v) && !v.scheduled_at);
     console.log(`BUFFER_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format })))}`);
