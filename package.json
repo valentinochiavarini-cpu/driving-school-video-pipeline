@@ -18,7 +18,9 @@
     "nightly": "tsx src/nightly.ts",
     "report": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts report",
     "metrics": "NODE_USE_ENV_PROXY=1 tsx src/cli.ts metrics",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "batch": "tsx src/batch.ts",
+    "daily": "tsx src/daily.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.542",

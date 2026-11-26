@@ -141,7 +141,16 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
 - Visual themes rotate per video (THEMES: light, dark, ink; least used first) so posts never share one fixed look:
   TikTok treats templated sameness as repetitive content (docs/research-tiktok-rules-2026.md).
 
-## Nightly run (decision 2026-11-10)
+- Read 2026-11-25 and owner decisions 2026-11-26: (1) no title cards on any format (config isQuestionFirst: opening
+  defaults to "question"); (2) rotation: pick6 every day, pass5q/signs7q alternate, quick3, row5, classic30 twice a week,
+  tricky5 and debate1 paused; (3) classic30 repeats the CTA on questions 2, 10 and 20 (plan.ts ctaIndexes): viewers watch
+  about 51 s; (4) sign formats mix about a third hard signs (config SIGN_MIX, EASY_SIGN_MEANINGS; pick.ts isHardSign,
+  mixOrder: easy first, hard mid and last, hard targets get hard distractors), stored as metrics.hard_signs;
+  (5) batch production twice a week (src/batch.ts, config BATCH: Sunday makes Mon to Thu, Wednesday makes Fri to Sun,
+  plus a buffer of 2 approved unscheduled videos) and a daily run without rendering (src/daily.ts: sync, fill empty
+  slots of the next 36 h from the buffer, report). `npm run batch`, `npm run daily`, `cli buffer`, `publish --within-hours`.
+
+## Nightly run (decision 2026-11-10, replaced by batch + daily on 2026-11-26)
 
 Runs as a scheduled task in the owner's Claude Code cloud environment (Default), which holds the OpenAI, ElevenLabs
 and ingest credentials as network secrets. A fresh session clones this repo, runs `npm ci` and `npm run nightly`,

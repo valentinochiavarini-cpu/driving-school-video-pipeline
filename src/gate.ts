@@ -10,7 +10,7 @@ import { buildCaption, cleanHashtags } from "./post";
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { FORMATS, POSTING } from "./config";
+import { FORMATS, POSTING, isQuestionFirst } from "./config";
 import { ROOT, OUT } from "./env";
 import { listVideos, updateVideo, upsertVideo, uploadFile, ingestCall, type VideoRow } from "./ledger";
 import { qaVideo, qaPassed, qaSummary, textChecks, QA, type QaResult } from "./qa";
@@ -76,7 +76,7 @@ export async function qaOne(v: VideoRow, opts: { fix: boolean }): Promise<boolea
       const coverChanged = !!patch.hook && (patch.hook as any).card1 !== (v.hook as any)?.card1;
       if (coverChanged || q.fixable.includes("cover")) {
         if (textChecks(row).some((c) => !c.ok && c.name.startsWith("text:cover"))) throw new Error("card 1 still fails the text checks; needs a new hook");
-        if (FORMATS[row.format]?.opening === "question") throw new Error("question-first cover is the banner on question 1; recover.ts cannot splice it, re-render with replan");
+        if (isQuestionFirst(row.format)) throw new Error("question-first cover is the banner on question 1; recover.ts cannot splice it, re-render with replan");
         const file = rerenderCover(row);
         const video_url = await uploadFile(v.id, "video", file);
         const thumb = path.join(OUT, "qa", v.id, "cover.jpg");

@@ -1,5 +1,6 @@
-/** One nightly run: render the weekday's formats (two videos), schedule approved videos, sync states and metrics,
- *  then print the daily report (weekly on Sunday). Deterministic so a scheduled session only runs `npm run nightly`. */
+/** One production run: render the formats, QA, remake held videos, schedule approved videos, sync states and metrics,
+ *  then print the report. `npm run nightly` makes the weekday's formats; src/batch.ts (decision 2026-11-26) calls it
+ *  with NIGHTLY_FORMAT (several days of formats), PUBLISH_COUNT, REMAKE_BUDGET_MIN and REPORT_WEEKLY. */
 import { spawnSync } from "node:child_process";
 import { EXTRA_RENDERS, NIGHTLY_ROTATION, POSTING } from "./config";
 
@@ -55,7 +56,7 @@ results.approve = step("auto-approve", ["auto-approve"]);
 const started = Date.now();
 const remade: string[] = [];
 for (let round = 1; round <= 2; round++) {
-  if (Date.now() - started > 40 * 60e3) { console.log("remake: time budget used, leaving the rest held"); break; }
+  if (Date.now() - started > (Number(process.env.REMAKE_BUDGET_MIN) || 40) * 60e3) { console.log("remake: time budget used, leaving the rest held"); break; }
   const out = spawnSync("npx", ["tsx", "src/cli.ts", "held"], { encoding: "utf8", env: { ...process.env, NODE_USE_ENV_PROXY: "1" } });
   const line = (out.stdout ?? "").split("\n").find((l) => l.startsWith("HELD_JSON "));
   const held: { id: string; format: string; lang: string; error: string | null }[] = line ? JSON.parse(line.slice(10)) : [];
@@ -71,8 +72,8 @@ for (let round = 1; round <= 2; round++) {
   step(`auto-approve round ${round}`, ["auto-approve"]);
 }
 if (remade.length) console.log(`REMAKES ${remade.join(" ")}`);
-results.publish = step("publish", ["publish", "--count", String(POSTING.perDay)]);
+results.publish = step("publish", ["publish", "--count", process.env.PUBLISH_COUNT || String(POSTING.perDay)]);
 results.sync = step("sync", ["sync"]);
-results.report = step("report", ["report", ...(weekday === "Sun" ? ["weekly"] : [])]);
+results.report = step("report", ["report", ...(process.env.REPORT_WEEKLY === "1" || (!process.env.REPORT_WEEKLY && weekday === "Sun") ? ["weekly"] : [])]);
 console.log(`\nNIGHTLY SUMMARY ${new Date().toISOString()} weekday=${weekday} formats=${formats.join("+")} remakes=${remade.length} make_failures=${makeFailures.length} ${JSON.stringify(results)}`);
 process.exit(Object.values(results).every(Boolean) ? 0 : 1);

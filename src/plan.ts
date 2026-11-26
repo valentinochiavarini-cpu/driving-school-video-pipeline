@@ -1,5 +1,5 @@
 /** Pure timeline builder (no Node imports): frames for every scene plus audio cues. */
-import { BRAND, FORMATS, READING, SFX, VIDEO } from "./config";
+import { BRAND, FORMATS, READING, SFX, VIDEO, isQuestionFirst } from "./config";
 import type { Clip, Cue, DisplayQuestion, Hook, Lang, Plan, QuestionSegment } from "./types";
 
 const fps = VIDEO.fps;
@@ -44,6 +44,9 @@ export const CTA_LINE: Record<Lang, string> = {
 export const CTA_PILL: Record<Lang, string> = { en: `FULL TEST FOR YOUR STATE: ${BRAND.url.toUpperCase()}`, es: `EXAMEN DE TU ESTADO: ${BRAND.url.toUpperCase()}` };
 /** Which question's reveal carries the CTA: after about a third of the set; none for a single question. */
 export function ctaIndex(n: number): number { return n < 3 ? -1 : Math.max(0, Math.floor(n / 3) - 1 + (n >= 5 ? 1 : 0)); }
+/** Every reveal that carries the CTA. Long tests (20+ questions) repeat it (decision 2026-11-26): classic30 viewers watch
+ *  about 51 s of 9 min, so the first CTA comes on question 2 (about 30 s in), then after questions 10 and 20. */
+export function ctaIndexes(n: number): number[] { return n >= 20 ? [1, 9, 19] : ctaIndex(n) >= 0 ? [ctaIndex(n)] : []; }
 
 /** Explanation shown on the reveal screen (decision 2026-11-18): never a sentence cut off with an ellipsis.
  *  Full text if it fits, else its first sentence, else the reveal voice phrase (one complete phrase, max 10 words). */
@@ -66,7 +69,7 @@ export function buildPlan(inp: PlanInput): Plan {
   const cues: Cue[] = [];
   let t = 0;
   // question-first opening (test 2026-11-18): no title cards, the hook rides on question 1 as a banner
-  const questionFirst = FORMATS[inp.format].opening === "question";
+  const questionFirst = isQuestionFirst(inp.format);
   const hook1Frames = questionFirst ? 0 : f(VIDEO.hook1Seconds);
   const hook2Frames = questionFirst ? 0 : Math.max(f(VIDEO.hook2Seconds), f(audio.hook.duration - VIDEO.hook1Seconds + 0.3));
   const bannerFrames = questionFirst ? f(VIDEO.bannerSeconds) : 0;
@@ -89,7 +92,7 @@ export function buildPlan(inp: PlanInput): Plan {
     const revealFrames = Math.max(f(2), f(revealVo.speechEnd + VIDEO.revealTailSeconds));
     cues.push({ kind: "ding", at: revealAt });
     t = revealAt + revealFrames;
-    return { idx, n: questions.length, q, countdownSeconds: secs, ringSeconds: ring, cta: idx === ctaIndex(questions.length), questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
+    return { idx, n: questions.length, q, countdownSeconds: secs, ringSeconds: ring, cta: ctaIndexes(questions.length).includes(idx), questionAt, questionFrames, dimAt, dimFrames, revealAt, revealFrames, vo, revealVo };
   });
 
   // outro: false (loop formats) ends on the last reveal; the CTA lives mid-video and in the caption

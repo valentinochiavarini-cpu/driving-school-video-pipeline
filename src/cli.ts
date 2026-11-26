@@ -1,4 +1,4 @@
-/** CLI: dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
+/** CLI: buffer | dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -6,10 +6,10 @@ import { ROOT, OUT, PUBLIC, writeJson } from "./env";
 import { FORMATS } from "./config";
 import { fetchAllQuestions, cacheImage } from "./supabase";
 import type { VideoRow } from "./ledger";
-import { pickSet, pickable, buildPicks, pickReplacement } from "./pick";
+import { pickSet, pickable, buildPicks, pickReplacement, isHardSign, isSignMixFormat } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices, voiceQuota } from "./voice";
-import { buildPlan, ctaIndex, CTA_LINE, setCountdown } from "./plan";
+import { buildPlan, ctaIndexes, CTA_LINE, setCountdown } from "./plan";
 import { renderPlan } from "./render";
 import { preflightCover, preflightQuestions } from "./preflight";
 import { execFileSync } from "node:child_process";
@@ -19,7 +19,7 @@ import { qaPassed } from "./qa";
 import { qaStep, autoApprove, retract } from "./gate";
 import { report } from "./report";
 import { chooseAngle } from "./text";
-import { POSTING, THEMES } from "./config";
+import { POSTING, THEMES, isQuestionFirst } from "./config";
 import type { DisplayQuestion, Lang, Question } from "./types";
 
 async function make(fmt: string, lang: Lang, state: string | undefined, dry: boolean) {
@@ -41,6 +41,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     }
     bank = await fetchAllQuestions();
     qs = pickSet(bank, fmt, lang, state, undefined, remoteUsed);
+    if (isSignMixFormat(fmt)) console.log(`pick: ${qs.filter(isHardSign).length}/${qs.length} hard signs`);
     usedRemote = remoteUsed;
   }
 
@@ -57,8 +58,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const speakId = (q: Question, i: number) => pickImages ? { ...q, id: `pick_${q.id.slice(0, 8)}_${Object.values(pickImages[i]).map((p) => path.basename(p).slice(0, 8)).join("-")}_${q.correct_answer}` } : q;
   const speak = await Promise.all(qs.map((q, i) => (dry ? speakableDry(q) : speakable(speakId(q, i), lang))));
   // link-in-bio call to action on one reveal in the middle (decision 2026-11-18: the bio link is where the books sell)
-  const ci = ctaIndex(qs.length);
-  if (ci >= 0) speak[ci] = { ...speak[ci], reveal_vo: `${speak[ci].reveal_vo} ${CTA_LINE[lang]}` };
+  for (const ci of ctaIndexes(qs.length)) speak[ci] = { ...speak[ci], reveal_vo: `${speak[ci].reveal_vo} ${CTA_LINE[lang]}` };
   const toDisplay = async (q: Question, i: number): Promise<DisplayQuestion> => ({
     id: q.id, question_text: q.question_text, answers: pickImages ? Object.fromEntries(Object.keys(pickImages[i]).map((L) => [L, ""])) : speak[i].answers_display,
     correct_answer: q.correct_answer, explanation: q.explanation ?? "",
@@ -82,7 +82,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
         console.log(`preflight: question ${i + 1} (${qs[i].id.slice(0, 8)}) replaced by ${r.id.slice(0, 8)}`);
         qs[i] = r;
         speak[i] = await speakable(r, lang);
-        if (i === ci) speak[i] = { ...speak[i], reveal_vo: `${speak[i].reveal_vo} ${CTA_LINE[lang]}` };
+        if (ctaIndexes(qs.length).includes(i)) speak[i] = { ...speak[i], reveal_vo: `${speak[i].reveal_vo} ${CTA_LINE[lang]}` };
         display[i] = await toDisplay(r, i);
       }
     }
@@ -101,7 +101,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   const angle = chooseAngle(stats);
   let h = dry ? hooksDry(timing) : await hooks(qs, fmt, lang, timing, state, angle, seriesNumber);
   // question-first formats show the hook as a banner and never play the hook voice line
-  const hookVoice = async (hk: typeof h) => FORMATS[fmt].opening === "question" || dry ? dryClip(hk.vo_line) : await tts(hk.vo_line, lang);
+  const hookVoice = async (hk: typeof h) => isQuestionFirst(fmt) || dry ? dryClip(hk.vo_line) : await tts(hk.vo_line, lang);
   const outroVoice = async (hk: typeof h) => FORMATS[fmt].outro === false ? dryClip("") : dry ? dryClip(hk.outro_vo) : await tts(hk.outro_vo, lang);
   let ah = await hookVoice(h);
   let ao = await outroVoice(h);
@@ -131,9 +131,10 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   console.log(`OK ${path.relative(ROOT, video)}  ${plan.meta.totalSeconds}s`);
   if (ledgerEnabled() && !dry) {
     const chars = [ah, ao, ...aq, ...ar].reduce((a, c) => a + c.text.length, 0);
+    const hardSigns = isSignMixFormat(fmt) ? qs.filter(isHardSign).length : null;
     const quota = await voiceQuota();
     await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
-      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme,
+      question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme, hard_signs: hardSigns,
         ...(quota ? { voice_used: quota.used, voice_limit: quota.limit, voice_left_pct: quota.leftPct, voice_resets: quota.resetsAt } : {}) } });
     const videoUrl = await uploadFile(id, "video", video);
     await uploadFile(id, "thumb", thumb);
@@ -183,7 +184,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false }, "within-hours": { type: "string" } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -198,10 +199,14 @@ try {
   else if (cmd === "retract") await retract(positionals[1], positionals.slice(2).join(" ") || "manual");
   else if (cmd === "report") console.log(await report(positionals[1] === "weekly" || values.weekly === true));
   else if (cmd === "metrics") await setMetrics(positionals[1], positionals.slice(2));
-  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { firstNow: values.now === true, at: values.at ? String(values.at).split(",").map((t) => { const d = new Date(t); if (isNaN(+d) || +d < Date.now() + 30 * 60e3) throw new Error(`--at ${t}: not a time at least 30 min ahead`); return d; }) : undefined }); }
+  else if (cmd === "publish") { if (!postizEnabled()) console.log("publish: POSTIZ_API_KEY not set, skipping"); else await publishApproved(parseInt(values.count!, 10) || 3, { withinHours: values["within-hours"] ? parseFloat(String(values["within-hours"])) : undefined, firstNow: values.now === true, at: values.at ? String(values.at).split(",").map((t) => { const d = new Date(t); if (isNaN(+d) || +d < Date.now() + 30 * 60e3) throw new Error(`--at ${t}: not a time at least 30 min ahead`); return d; }) : undefined }); }
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);
+  else if (cmd === "buffer") { // batch: approved videos not yet scheduled (the spare stock that fills an empty slot)
+    const rows = (await listVideos("approved", 100)).filter((v) => v.video_url && qaPassed(v) && !v.scheduled_at);
+    console.log(`BUFFER_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format })))}`);
+  }
   else if (cmd === "held") { // ready videos from the last 36 h whose current file has no passing QA (used by the nightly remake loop)
     const rows = (await listVideos("ready", 100)).filter((v) => !qaPassed(v) && Date.now() - new Date(v.created_at ?? 0).getTime() < 36 * 3600e3);
     console.log(`HELD_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format, lang: v.lang, error: v.error })))}`);

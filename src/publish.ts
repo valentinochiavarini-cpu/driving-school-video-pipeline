@@ -118,7 +118,9 @@ async function recheckText(v: VideoRow): Promise<VideoRow | null> {
   return v;
 }
 
-export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?: Date[] } = {}): Promise<void> {
+/** opts.withinHours: only fill slots that start within this many hours (the daily run, decision 2026-11-26: the buffer
+ *  plugs a gap in the next day and a half, it is not spent on days the next batch will make). */
+export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?: Date[]; withinHours?: number } = {}): Promise<void> {
   const approvedAll = (await listVideos("approved", 50)).filter((v) => v.video_url);
   const approved: VideoRow[] = [];
   for (const v0 of approvedAll.filter(qaPassed)) { const v = await recheckText(v0); if (v) approved.push(v); }
@@ -130,9 +132,14 @@ export async function publishApproved(limit = 3, opts: { firstNow?: boolean; at?
     .map((v) => v.scheduled_at).filter(Boolean).map((s) => new Date(s!));
   const slots = opts.at?.length ? [...opts.at, ...nextSlots([...taken, ...opts.at], Math.max(0, queue.length - opts.at.length))] : nextSlots(taken, queue.length);
   if (opts.firstNow) slots.unshift(new Date(Date.now() + 3 * 60e3));
+  if (opts.withinHours) {
+    const until = Date.now() + opts.withinHours * 3600e3;
+    for (let i = slots.length - 1; i >= 0; i--) if (slots[i].getTime() > until) slots.splice(i, 1);
+    if (!slots.length) { console.log(`publish: every slot in the next ${opts.withinHours} h is filled, buffer kept`); return; }
+  }
   for (let i = 0; i < queue.length; i++) {
     const v = queue[i]; const when = slots[i];
-    if (!when) { console.log(`publish: no free slot for ${v.id} within ${POSTING.horizonDays} days`); break; }
+    if (!when) { console.log(`publish: no free slot for ${v.id} within ${opts.withinHours ? `${opts.withinHours} h` : `${POSTING.horizonDays} days`}`); break; }
     try {
       const media = await api<{ id: string; path: string }>("/upload-from-url", {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: v.video_url }),

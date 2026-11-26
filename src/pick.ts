@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { CACHE, writeJson } from "./env";
-import { EXCLUDED_CATEGORIES, EXCLUDED_QUESTIONS, EXCLUDED_TOPIC_WORDS, FORMATS, type FormatDef } from "./config";
+import { EASY_SIGN_MEANINGS, EXCLUDED_CATEGORIES, EXCLUDED_QUESTIONS, EXCLUDED_TOPIC_WORDS, FORMATS, SIGN_MIX, type FormatDef } from "./config";
 import type { Lang, Question } from "./types";
 
 /** Review 2026-11-21: questions a video must never use. Excluded category or topic word, listed broken questions, and
@@ -20,6 +20,22 @@ export function usable(q: Question): boolean {
  *  show a sign, so those are left to the right-of-way formats (1db5c811 went out in a road-signs video). */
 const isDiagram = (q: Question) => /\b(cars?|vehicles?|drivers?) [A-C]\b|\b(two|three) (cars|vehicles)\b|which (car|vehicle)|right-of-way|statements? (is|are) correct/i.test(q.question_text);
 const signFormat = (fmt: FormatDef) => !!fmt.label.match(/sign/i);
+
+/** Sign formats get the difficulty mix (config SIGN_MIX). A sign is hard unless its meaning is common knowledge. */
+export const isSignMixFormat = (fmtId: string) => { const f = FORMATS[fmtId]; return !!f && !!f.imageOnly && signFormat(f) && !f.buckets; };
+export function isHardSign(q: Question): boolean {
+  const meaning = `${q.answers?.[q.correct_answer] ?? ""} ${q.explanation ?? ""}`.split(/[.!?]/)[0];
+  return !EASY_SIGN_MEANINGS.test(meaning);
+}
+/** Easy signs first (question 1 is the scroll-stop), hard ones in the middle and last (the payoff before the loop). */
+function mixOrder(qs: Question[]): Question[] {
+  const easy = qs.filter((q) => !isHardSign(q)), hard = qs.filter(isHardSign);
+  if (!hard.length || !easy.length) return qs;
+  const out = [...easy]; const n = qs.length;
+  const spots = hard.length === 1 ? [n - 1] : [Math.floor(n / 2), n - 1, ...Array.from({ length: hard.length - 2 }, (_, i) => Math.floor(n / 2) - 1 - i)];
+  hard.forEach((h, i) => out.splice(Math.min(Math.max(1, spots[i] ?? n - 1), out.length), 0, h));
+  return out;
+}
 
 const LEDGER = path.join(CACHE, "used.json");
 const shuffle = <T>(a: T[]) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -53,6 +69,13 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   if (fmt.categories) general = general.filter((q) => fmt.categories!.includes(q.category));
   const size = fmt.size === "state" ? stateCount ?? 30 : fmt.size;
   shuffle(general);
+  // difficulty mix (decision 2026-11-26): about a third hard signs, the rest easy, when the pool allows
+  if (isSignMixFormat(fmtId) && typeof size === "number") {
+    const want = Math.max(1, Math.round(size * SIGN_MIX.hardShare));
+    const hard = general.filter(isHardSign), easy = general.filter((q) => !isHardSign(q));
+    const nh = Math.min(want, hard.length), ne = Math.min(size - nh, easy.length);
+    general = [...hard.slice(0, nh), ...easy.slice(0, ne), ...hard.slice(nh), ...easy.slice(ne)];
+  }
   const picked: Question[] = [];
   if (fmt.withState && state) {
     const local = shuffle(base.filter((q) => q.state === state));
@@ -86,7 +109,7 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   }
   if (picked.length < size)
     throw new Error(`Not enough unused questions for ${fmtId} (${picked.length}/${size}). Reset cache/used.json or widen the filter.`);
-  const ordered = order(picked);
+  const ordered = isSignMixFormat(fmtId) ? mixOrder(shuffle([...picked])) : order(picked);
   ledger[key] = [...(ledger[key] ?? []), ...ordered.map((q) => q.id)];
   writeJson(LEDGER, ledger);
   return ordered.map((q) => localized(q, lang));
@@ -122,6 +145,8 @@ export function buildPicks(targets: Question[], pool: Question[]): Pick[] {
   return targets.map((t) => {
     const meaning = t.answers[t.correct_answer];
     const others = shuffle(pool.filter((q) => q.id !== t.id && q.image_url !== t.image_url && norm(q.answers[q.correct_answer]) !== norm(meaning)));
+    // a hard target gets unfamiliar distractors too (decision 2026-11-26), so it cannot be solved by elimination
+    if (isHardSign(t)) others.sort((a, b) => Number(isHardSign(b)) - Number(isHardSign(a)));
     const opts = [t, others[0], others[1]];
     if (opts.some((o) => !o)) throw new Error("pick: not enough distractor signs");
     const order = shuffle([0, 1, 2]);

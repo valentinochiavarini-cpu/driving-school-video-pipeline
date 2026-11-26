@@ -46,12 +46,27 @@ export type Theme = (typeof THEMES)[number];
 /** Nightly rotation: two formats per weekday (decision 2026-11-10: two posts a day). */
 export const NIGHTLY_ROTATION: Record<string, string[]> = {
   // dataset 2026-10 (docs/research-viral-dataset.md): 30 to 90 s quizzes and 5 min+ full tests win; 90 s to 5 min loses
-  // test weeks from 2026-11-18 (docs/TESTS.md): one control and one test a day, each test twice a week
-  // 2026-11-18 (later): pick6 added from the competitor review (docs/TESTS.md); debate1 once a week
-  // three a day from 2026-11-18: one control and two tests (pick6 4, signs7q 4, pass5q 3, quick3 3, debate1 2 a week)
-  Mon: ["pass5", "pick6", "signs7q"], Tue: ["row5", "quick3", "pass5q"], Wed: ["tricky5", "pass5q", "pick6"],
-  Thu: ["signs7", "debate1", "quick3"], Fri: ["pass5q", "quick3", "signs7q"], Sat: ["classic30", "signs7q", "pick6"],
-  Sun: ["signs7q", "pick6", "debate1"],
+  // decision 2026-11-26 after the 2026-11-25 read (docs/TESTS.md): pick6 won (Instagram skip 44% vs 71%, TikTok 3 s
+  // retention 42% vs 30%), so it takes the first slot every day; pass5q and signs7q need 3+ posts each before the
+  // 2026-11-30 read; quick3 leans win; classic30 builds followers and saves (TikTok only); tricky5 and debate1 paused.
+  // No title cards on any format, so the plain controls (pass5, signs7) are no longer scheduled.
+  Mon: ["pick6", "pass5q", "quick3"], Tue: ["pick6", "signs7q", "row5"], Wed: ["pick6", "pass5q", "quick3"],
+  Thu: ["pick6", "signs7q", "row5"], Fri: ["pick6", "pass5q", "quick3"], Sat: ["pick6", "signs7q", "classic30"],
+  Sun: ["pick6", "pass5q", "classic30"],
+};
+
+/** Batch production (decision 2026-11-26): videos are made twice a week for several days ahead instead of the night
+ *  before, so a QA hold or a crash has days of slack. Key = ET weekday the batch runs, value = the posting days it makes
+ *  (rotation above). Sunday makes Mon to Thu (12, no 9 min renders), Wednesday makes Fri to Sun (9, both classic30).
+ *  BATCH.buffer extra approved videos are kept unscheduled; the daily run drops them into any slot of the next 36 h
+ *  that is still empty. */
+export const BATCH = {
+  covers: { Sun: ["Mon", "Tue", "Wed", "Thu"], Wed: ["Fri", "Sat", "Sun"] } as Record<string, string[]>,
+  buffer: 2, bufferFormats: ["pick6", "pass5q"],
+  /** minutes the remake loop may use after the first QA pass */
+  remakeBudgetMinutes: 60,
+  /** the daily run fills empty slots only this far ahead, so the buffer is not spent on days a batch will make */
+  dailyFillHours: 36,
 };
 
 /** Cost assumptions for the report (USD). ElevenLabs Turbo pay-as-you-go per 1k characters; OpenAI gpt-4o-mini
@@ -78,8 +93,9 @@ export type FormatDef = {
   think: number;
   /** cap on the reading-time part of the countdown (the voice end still wins); keeps short formats under ~75 s */
   maxCountdown?: number;
-  /** "cards" (default): hook card 1 + card 2 before question 1. "question": question 1 from frame 0 with the hook as a
-   *  banner over it (test 2026-11-18: 74 to 89 percent of Instagram viewers skipped during the two title cards) */
+  /** "question" (default since 2026-11-26): question 1 from frame 0 with the hook as a banner over it. "cards": the old
+   *  hook card 1 + card 2 before question 1. Test read 2026-11-25: title cards lost 10 to 25 points of 3 s retention, so
+   *  the owner decided no title cards on any format. Keep "cards" only for an explicit re-test. */
   opening?: "cards" | "question";
   /** channels this format posts to (default POSTING.platforms). Instagram does not recommend reels over 3 minutes. */
   platforms?: readonly ("tiktok" | "instagram")[];
@@ -106,6 +122,15 @@ export const CLASSIC_BUCKETS = [
   { cats: ["Sharing the Road"], n: 4 },
   { cats: ["Passing Rules", "Turning & Lane Changes", "Lane Usage & Highway Driving", "Parking Rules", "Emergencies & Breakdowns", "Vehicle Equipment & Safety", "Vehicle Control & Maneuvers"], n: 4 },
 ];
+
+/** Every format opens on question 1 unless it explicitly asks for title cards (decision 2026-11-26). */
+export const isQuestionFirst = (fmtId: string) => FORMATS[fmtId]?.opening !== "cards";
+
+/** Sign difficulty mix (decision 2026-11-26: the owner finds the sign questions too easy). A sign is "easy" when its
+ *  meaning is one every driver knows; everything else counts as hard. Sign formats take this share of hard signs, placed
+ *  mid-video and last, so question 1 stays an instant answer for the scroll-stop. Stored as metrics.hard_signs. */
+export const SIGN_MIX = { hardShare: 1 / 3 };
+export const EASY_SIGN_MEANINGS = /\b(stop|yield|do not enter|wrong way|one[- ]way|speed limit|no (u|left|right)[- ]?turns?|no parking|railroad crossing|school (zone|crossing)|pedestrian crossing|two[- ]way traffic|keep right|signal ahead|stop ahead|deer|slippery when wet|hospital|bike|bicycle)\b/i;
 
 export const FORMATS: Record<string, FormatDef> = {
   // short (decision 2026-11-18: 30 to 90 s wins, 90 s to 5 min loses; aim for <= 75 s, so the countdown is capped)
