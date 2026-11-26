@@ -7,6 +7,7 @@ import { BATCH, NIGHTLY_ROTATION, POSTING } from "./config";
 
 const weekday = new Intl.DateTimeFormat("en-US", { timeZone: POSTING.timezone, weekday: "short" }).format(new Date());
 const days = process.env.BATCH_DAYS ? process.env.BATCH_DAYS.split(",").map((d) => d.trim()) : BATCH.covers[weekday] ?? [];
+if (!days.length && process.env.BATCH_PRINT === "1") { console.log("BATCH_DAYS none"); process.exit(0); }
 if (!days.length) { console.log(`BATCH SUMMARY nothing to make: ${weekday} is not a batch day (BATCH.covers) and BATCH_DAYS is not set`); process.exit(0); }
 // BATCH_PRINT=1: print the days this run makes and stop (the scheduled task runs them one day per command, each well
 // inside the 2 h command limit: a 9 min classic30 takes about 25 minutes to render)
