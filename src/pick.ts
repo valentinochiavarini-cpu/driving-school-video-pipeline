@@ -73,7 +73,21 @@ export function pickSet(all: Question[], fmtId: string, lang: Lang, state?: stri
   if (isSignMixFormat(fmtId) && typeof size === "number") {
     const want = Math.max(1, Math.round(size * SIGN_MIX.hardShare));
     const hard = general.filter(isHardSign), easy = general.filter((q) => !isHardSign(q));
-    const nh = Math.min(want, hard.length), ne = Math.min(size - nh, easy.length);
+    const nh = Math.min(want, hard.length);
+    // 2026-11-26: at 1 to 2 sign videos a day the unused easy signs run out first (first batch: 5 of 6 hard); top up
+    // the easy part with easy signs used before, least used by this format first, so the mix holds
+    if (easy.length < size - nh) {
+      const own = new Set(ledger[key] ?? []);
+      let pool = all.filter((q) => used.has(q.id) && usable(q) && q.state === null && q.image_url && !isDiagram(q) && !isHardSign(q));
+      if (fmt.pickSign) pool = pool.filter(pickable);
+      if (fmt.categories) pool = pool.filter((q) => fmt.categories!.includes(q.category));
+      const count = (id: string) => (ledger[key] ?? []).filter((x) => x === id).length;
+      shuffle(pool).sort((a, b) => Number(own.has(a.id)) - Number(own.has(b.id)) || count(a.id) - count(b.id));
+      const add = pool.slice(0, size - nh - easy.length);
+      if (add.length) console.warn(`pick: ${fmtId} reuses ${add.length} easy sign(s) to keep the difficulty mix`);
+      easy.push(...add);
+    }
+    const ne = Math.min(size - nh, easy.length);
     general = [...hard.slice(0, nh), ...easy.slice(0, ne), ...hard.slice(nh), ...easy.slice(ne)];
   }
   const picked: Question[] = [];

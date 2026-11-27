@@ -152,6 +152,14 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   (6) every posted video is reviewed once after it posts (src/review.ts, `cli review`): frames every 2 s (6 s for long
   tests) plus a voice transcript against the bank's answers; result on metrics.review, critical issues alert the watchdog.
   One production scheduled task runs daily at 3:17 ET: batch on Sun and Wed (one day per command, 2 h limit), else daily.
+- First review pass 2026-11-26 found posted videos whose spoken letter differed from the highlighted answer ("The answer
+  is C" over A, "C and the B"): the model wrote the reveal letter. Fixes: text.ts fixReveal rebuilds every reveal from the
+  bank letter (cached rewrites too) and drops a reason phrase that names a letter or was written for another letter;
+  make stores metrics.letters and metrics.reveals (the script); review.ts trusts the script over speech recognition and
+  no longer flags the capitalised or spoken site name; `review --upcoming` checks approved and scheduled videos of the
+  next 48 h before they post and retracts one only when a second review confirms a critical issue (daily.ts runs it
+  before the buffer fill). pick.ts tops up easy signs from used ones when the unused easy pool runs dry (first batch
+  had 4 to 5 hard of 6).
 
 ## Nightly run (decision 2026-11-10, replaced by batch + daily on 2026-11-26)
 

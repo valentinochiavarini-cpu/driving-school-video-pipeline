@@ -1,4 +1,4 @@
-/** CLI: review [--days 8] [--force] | buffer | dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
+/** CLI: review [--upcoming] [--days 8] [--force] | buffer | dry | make [--format pass5] [--lang en] [--count 1] [--state Texas] | replan out/<id>/plan.json | qa [id ...] [--no-fix] | approve <id> [--force] | auto-approve | retract <id> [reason] | list [status] | publish [--count 3] [--at ISO,ISO] | sync | slots | report [weekly] | metrics <id> views=.. likes=.. | audition "text" | voices */
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -18,7 +18,7 @@ import { postizEnabled, publishApproved, syncScheduled, nextSlots } from "./publ
 import { qaPassed } from "./qa";
 import { qaStep, autoApprove, retract } from "./gate";
 import { report } from "./report";
-import { reviewPosted } from "./review";
+import { reviewPosted, reviewUpcoming } from "./review";
 import { chooseAngle } from "./text";
 import { POSTING, THEMES, isQuestionFirst } from "./config";
 import type { DisplayQuestion, Lang, Question } from "./types";
@@ -136,6 +136,8 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
     const quota = await voiceQuota();
     await upsertVideo({ id, format: fmt, lang, status: "draft", approved: false, caption: h.caption, hashtags: h.hashtags, hook: h,
       question_ids: plan.meta.questionIds, seconds: plan.meta.totalSeconds, metrics: { chars, angle: h.style ?? null, theme, hard_signs: hardSigns,
+        // the script as rendered (review 2026-11-26): the post-publish review checks the video against these
+        letters: display.map((d) => d.correct_answer), reveals: speak.map((s) => s.reveal_vo),
         ...(quota ? { voice_used: quota.used, voice_limit: quota.limit, voice_left_pct: quota.leftPct, voice_resets: quota.resetsAt } : {}) } });
     const videoUrl = await uploadFile(id, "video", video);
     await uploadFile(id, "thumb", thumb);
@@ -185,7 +187,7 @@ async function replan(planPath: string) {
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
-  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false }, "within-hours": { type: "string" }, days: { type: "string" } },
+  options: { format: { type: "string", default: "pass5" }, lang: { type: "string", default: "en" }, count: { type: "string", default: "1" }, state: { type: "string" }, weekly: { type: "boolean", default: false }, now: { type: "boolean", default: false }, at: { type: "string" }, force: { type: "boolean", default: false }, "no-fix": { type: "boolean", default: false }, "within-hours": { type: "string" }, days: { type: "string" }, upcoming: { type: "boolean", default: false } },
 });
 const cmd = positionals[0] ?? "dry";
 const lang = values.lang as Lang;
@@ -204,7 +206,7 @@ try {
   else if (cmd === "sync") { if (!postizEnabled()) console.log("sync: POSTIZ_API_KEY not set, skipping"); else await syncScheduled(); }
   else if (cmd === "slots") for (const s of nextSlots([], parseInt(values.count!, 10) || 7)) console.log(s.toISOString(), new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" }).format(s));
   else if (cmd === "list") await list(positionals[1]);
-  else if (cmd === "review") await reviewPosted(parseInt(String(values.days ?? "8"), 10) || 8, values.force === true);
+  else if (cmd === "review") { if (values.upcoming === true) await reviewUpcoming(); else await reviewPosted(parseInt(String(values.days ?? "8"), 10) || 8, values.force === true); }
   else if (cmd === "buffer") { // batch: approved videos not yet scheduled (the spare stock that fills an empty slot)
     const rows = (await listVideos("approved", 100)).filter((v) => v.video_url && qaPassed(v) && !v.scheduled_at);
     console.log(`BUFFER_JSON ${JSON.stringify(rows.map((v) => ({ id: v.id, format: v.format })))}`);

@@ -11,6 +11,7 @@ import { keyOrPlaceholder, OUT } from "./env";
 import { listVideos, updateVideo, type VideoRow } from "./ledger";
 import { fetchAllQuestions } from "./supabase";
 import { QA } from "./qa";
+import { retract } from "./gate";
 import type { Question } from "./types";
 
 type Issue = { severity: "critical" | "minor"; at: string; what: string };
@@ -35,12 +36,14 @@ async function transcribe(file: string, dir: string): Promise<string> {
 
 function questionLines(v: VideoRow, bank: Map<string, Question>): string {
   const ids = (v.question_ids ?? []) as string[]; const pick = !!FORMATS[v.format]?.pickSign;
+  const m = (v.metrics as { letters?: string[]; reveals?: string[] } | null) ?? {};
   return ids.map((id, i) => {
     const q = bank.get(id);
     if (!q) return `${i + 1}. (question ${id.slice(0, 8)} not in the bank)`;
     const right = q.answers[q.correct_answer];
-    if (pick) return `${i + 1}. "Which sign means "${right}"?" Three sign pictures as answers; the correct one is the sign that means "${right}".`;
-    return `${i + 1}. ${q.question_text} | ${Object.entries(q.answers).map(([L, a]) => `${L}) ${a}`).join(" | ")} | correct in the bank: ${q.correct_answer}) ${right}`;
+    const script = m.reveals?.[i] ? ` | scripted reveal voice: "${m.reveals[i]}"` : "";
+    if (pick) return `${i + 1}. "Which sign means "${right}"?" Three sign pictures as answers; the correct one is the sign that means "${right}"${m.letters?.[i] ? `, shown as letter ${m.letters[i]}` : " (its letter is random)"}${script}.`;
+    return `${i + 1}. ${q.question_text} | ${Object.entries(q.answers).map(([L, a]) => `${L}) ${a}`).join(" | ")} | correct in the bank: ${q.correct_answer}) ${right}${script}`;
   }).join("\n");
 }
 
@@ -58,6 +61,7 @@ export async function reviewVideo(v: VideoRow, bank: Map<string, Question>): Pro
   const content = [
     { type: "text", text: `You review a vertical driving-test quiz video that is ALREADY POSTED on TikTok and Instagram (brand "${BRAND.name}", site ${BRAND.url}).
 Format: ${v.format} (${FORMATS[v.format]?.label ?? ""}), ${dur.toFixed(0)} s. Each image is a contact sheet of ${PER_SHEET} frames, left to right then top to bottom, one frame every ${every} s; sheet k (from 1) frame i (from 1) is at about ${every} * ((k - 1) * ${PER_SHEET} + i - 1) s.
+Not problems: the site shown in capitals (THEDRIVINGSCHOOL.APP) or spoken as "the driving school dot app" is correct; answer texts shown shorter than the bank wording are fine when the meaning is the same; the transcript comes from speech recognition and often mishears single letters (E, I, see, be for C or B, "Course A" for "of course, A"): when the scripted reveal voice is given, trust the script for what was said; only report a spoken letter as wrong when it differs from the highlighted answer in the script or, with no script, when the spoken reason itself contradicts the highlighted answer.
 On a question screen the four answers show (pictures in a "Which sign means" question) with a countdown ring; then the screen dims and the reveal highlights the correct answer and shows an explanation. The yellow words in the footer are live captions of the voice, a few words at a time: fragments there are expected. Capital letters in headlines are styling. Ignore animation in progress and design taste.
 Questions, in order, with the bank's correct answer:
 ${questionLines(v, bank)}
@@ -80,6 +84,34 @@ Return JSON {"issues": [{"severity": "critical" | "minor", "at": "<about N s or 
   const issues: Issue[] = (Array.isArray(j.issues) ? j.issues : []).map((i: any) => ({ severity: i.severity === "critical" ? "critical" : "minor", at: String(i.at ?? ""), what: String(i.what ?? "").slice(0, 300) }));
   const critical = issues.filter((i) => i.severity === "critical").length;
   return { at: new Date().toISOString(), ok: critical === 0, critical, issues, frames: sheets.length * PER_SHEET };
+}
+
+/** Pre-post check (decision 2026-11-26): approved and scheduled videos of the next 48 h are reviewed before they post.
+ *  A critical issue that a second review confirms takes the video back (retract: its Postiz posts are cancelled), and
+ *  the daily run then fills the slot from the buffer. One review is kept on the row (metrics.review with pre: true). */
+export async function reviewUpcoming(hours = 48): Promise<void> {
+  const until = Date.now() + hours * 3600e3;
+  const rows = [...(await listVideos("scheduled", 100)), ...(await listVideos("approved", 100))]
+    .filter((v) => v.video_url && (!v.scheduled_at || new Date(v.scheduled_at).getTime() < until) && !(v.metrics as { review?: Review } | null)?.review);
+  if (!rows.length) { console.log("review upcoming: nothing new"); console.log("UPCOMING_JSON []"); return; }
+  const bank = new Map((await fetchAllQuestions()).map((q) => [q.id, q]));
+  const out: { id: string; format: string; retracted: boolean; issues: Issue[] }[] = [];
+  for (const v of rows) {
+    try {
+      let rv = await reviewVideo(v, bank);
+      let pulled = false;
+      if (!rv.ok) {
+        const second = await reviewVideo(v, bank); // the vision check is the flaky part: both looks must agree
+        if (!second.ok) { pulled = true; await retract(v.id, `pre-post review: ${rv.issues.filter((i) => i.severity === "critical").map((i) => `${i.at}: ${i.what}`).join("; ").slice(0, 400)}`); }
+        else rv = { ...second, issues: [...second.issues, ...rv.issues.filter((i) => i.severity === "critical").map((i) => ({ ...i, severity: "minor" as const, what: `not confirmed by a 2nd look: ${i.what}` }))] };
+      }
+      const fresh = (await listVideos(null, 300)).find((x) => x.id === v.id) ?? v;
+      await updateVideo(v.id, { metrics: { ...((fresh.metrics as object) ?? {}), review: { ...rv, pre: true } } });
+      out.push({ id: v.id, format: v.format, retracted: pulled, issues: rv.issues });
+      console.log(`review upcoming ${v.id}: ${pulled ? "RETRACTED" : "ok"}${rv.issues.length ? `: ${rv.issues.map((i) => `[${i.severity} ${i.at}] ${i.what}`).join("; ")}` : ""}`);
+    } catch (e) { console.log(`review upcoming ${v.id}: could not review: ${(e as Error).message.slice(0, 200)}`); }
+  }
+  console.log(`UPCOMING_JSON ${JSON.stringify(out)}`);
 }
 
 /** Review posted videos from the last `days` that have no review yet (or all of them with force). */

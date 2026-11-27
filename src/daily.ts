@@ -11,6 +11,8 @@ function step(name: string, args: string[]): boolean {
 }
 const results: Record<string, boolean> = {};
 results.sync = step("sync", ["sync"]);
+// pre-post review first, so a video it pulls is replaced from the buffer by the fill step right after (2026-11-26)
+results.upcoming = step("review upcoming videos", ["review", "--upcoming"]);
 results.fill = step("fill empty slots from buffer", ["publish", "--count", String(POSTING.perDay * 2), "--within-hours", String(BATCH.dailyFillHours)]);
 results.sync2 = step("sync", ["sync"]);
 results.buffer = step("buffer", ["buffer"]);

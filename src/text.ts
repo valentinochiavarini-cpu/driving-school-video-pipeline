@@ -66,9 +66,24 @@ function sourceText(q: Pick<Question, "question_text" | "question_text_es">, lan
 /** Plain fallback: the bank's own wording, cleaned for the ear. */
 const plainQuestion = (t: string) => t.replace(/\s*\([^)]*\)/g, "").replace(/[:\s]+$/, "").replace(/\s+/g, " ").trim();
 
+/** The spoken answer letter always comes from the bank, never from the model (review 2026-11-26: posted videos said
+ *  "The answer is C" over a highlighted A, and "C and the B"). Rebuilds the reveal from the bank letter; the reason
+ *  phrase is kept only if it names no answer letter and does not open with one. Applied to cached rewrites too. */
+export function fixReveal(data: Speak, q: Pick<Question, "correct_answer">, lang: Lang): Speak {
+  const L = q.correct_answer;
+  const lead = lang === "es" ? `La respuesta es la ${L}.` : `The answer is ${L}.`;
+  const said = /^\s*(?:The answer is|La respuesta es)(?:\s+la)?\s+([A-E])\b/i.exec(data.reveal_vo ?? "")?.[1]?.toUpperCase();
+  const rest = (data.reveal_vo ?? "").replace(/^\s*(The answer is|La respuesta es)(\s+la)?\s+[^.!?]*[.!?]?\s*/i, "").trim();
+  const namesLetter = /\b(answer|option|letter|respuesta|opci[oó]n)\s+[A-E]\b|\b[A-E]\s+(and|or|y|o)\s+(the\s+|la\s+)?[A-E]\b|^[A-E]\b|\b(the|la)\s+[A-E]\b/i.test(rest);
+  const otherLetter = /(^|[^A-Za-z])[B-E](?=[^A-Za-z]|$)/.test(rest);
+  // a model that picked another letter wrote its reason for that letter too: keep only the bank letter
+  const keep = rest && !namesLetter && !otherLetter && (!said || said === L);
+  return { ...data, reveal_vo: keep ? `${lead} ${rest}` : lead };
+}
+
 export async function speakable(q: Question, lang: Lang): Promise<Speak> {
   const c = jsonCache<Speak>(`speak_${q.id}_${lang}`);
-  if (c.data && questionVoProblems(q, c.data.question_vo, lang).length === 0) return c.data;
+  if (c.data && questionVoProblems(q, c.data.question_vo, lang).length === 0) return fixReveal(c.data, q, lang);
   const imageKind = !q.image_url ? "none" : SIGN_CATS.test(q.category) ? "sign" : /generated|diagram/i.test(q.image_url) ? "diagram" : "photo";
   const base = {
     question_text: q.question_text, answers: q.answers, correct_answer: q.correct_answer,
@@ -94,6 +109,7 @@ export async function speakable(q: Question, lang: Lang): Promise<Speak> {
     console.warn(`speakable ${q.id}: bad reveal_vo "${data.reveal_vo}", using the plain reveal`);
     data.reveal_vo = lang === "es" ? `La respuesta es la ${q.correct_answer}.` : `The answer is ${q.correct_answer}.`;
   }
+  data = fixReveal(data, q, lang);
   writeJson(c.path, data);
   return data;
 }
