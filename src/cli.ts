@@ -6,7 +6,7 @@ import { ROOT, OUT, PUBLIC, writeJson } from "./env";
 import { FORMATS } from "./config";
 import { fetchAllQuestions, cacheImage } from "./supabase";
 import type { VideoRow } from "./ledger";
-import { pickSet, pickable, buildPicks, pickReplacement, isHardSign, isSignMixFormat } from "./pick";
+import { pickSet, pickable, usable, buildPicks, pickReplacement, isHardSign, isSignMixFormat } from "./pick";
 import { speakable, speakableDry, hooks, hooksDry } from "./text";
 import { tts, dryClip, audition, listVoices, voiceQuota } from "./voice";
 import { buildPlan, ctaIndexes, CTA_LINE, setCountdown } from "./plan";
@@ -51,7 +51,7 @@ async function make(fmt: string, lang: Lang, state: string | undefined, dry: boo
   let pickImages: Record<string, string>[] | null = null;
   if (FORMATS[fmt].pickSign && !dry) {
     const es = lang === "es";
-    const picks = buildPicks(qs, bank.filter(pickable).map((q) => ({ ...q, ...(es && q.answers_es ? { answers: q.answers_es } : {}) })));
+    const picks = buildPicks(qs, bank.filter((q) => pickable(q) && usable(q)).map((q) => ({ ...q, ...(es && q.answers_es ? { answers: q.answers_es } : {}) })));
     pickImages = await Promise.all(picks.map(async (p) => Object.fromEntries(await Promise.all(Object.entries(p.options).map(async ([L, o]) => [L, await cacheImage(o.image_url!, o.id)] as const)))));
     qs = picks.map((p) => ({ ...p.target, question_text: es ? `¿Qué señal significa "${p.meaning}"?` : `Which sign means "${p.meaning}"?`,
       answers: Object.fromEntries(Object.entries(p.options).map(([L, o]) => [L, o.answers[o.correct_answer]])), correct_answer: p.correct, image_url: null }));
