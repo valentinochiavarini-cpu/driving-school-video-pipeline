@@ -160,6 +160,11 @@ ding on reveal. No fixed length target: the video takes the time the voice takes
   next 48 h before they post and retracts one only when a second review confirms a critical issue (daily.ts runs it
   before the buffer fill). pick.ts tops up easy signs from used ones when the unused easy pool runs dry (first batch
   had 4 to 5 hard of 6).
+- Bank check 2026-11-27: all 213 picture questions were looked at by hand (contact sheet of image + correct answer); the
+  pictures the first review called wrong were right (W1-8 chevron, W1-15 270-degree loop, a three-vehicle diagram). The
+  review prompt now trusts the bank's pictures and diagrams unless printed words contradict the answer. Instagram
+  captions say "link in bio (thedrivingschool.app)" (publish.ts channelPosts): its bio link is clickable, captions are
+  not. Story link stickers cannot be published through the Instagram API.
 
 ## Nightly run (decision 2026-11-10, replaced by batch + daily on 2026-11-26)
 

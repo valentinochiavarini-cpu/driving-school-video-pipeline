@@ -2,7 +2,7 @@
  *  publish: approved -> scheduled (one per day at the configured local hour, next free slot)
  *  sync:    scheduled -> posted | failed, from Postiz post state. A failed video is retried once on the next free slot.
  *  Needs POSTIZ_API_KEY. POSTIZ_INTEGRATION_ID is optional (defaults to the first TikTok channel). */
-import { FORMATS, POSTING } from "./config";
+import { BRAND, FORMATS, POSTING } from "./config";
 import { listVideos, updateVideo, ingestCall, type VideoRow } from "./ledger";
 import { qaPassed, textChecks } from "./qa";
 import { buildCaption } from "./post";
@@ -51,7 +51,9 @@ async function channelPosts(content: string, title: string, media: { id: string;
       console.warn(`${msg}; skipping ${platform}`); continue;
     }
     const settings = platform === "tiktok" ? { __type: "tiktok", title, ...POSTING.tiktok } : { __type: ch.identifier.startsWith("instagram-standalone") ? "instagram-standalone" : "instagram", ...POSTING.instagram };
-    out.push({ integration: { id: ch.id }, value: [{ content, image: [{ id: media.id, path: media.path }] }], settings });
+    // Instagram's bio link is clickable and caption links are not (decision 2026-11-27): point Instagram viewers to the bio
+    const text = platform === "instagram" ? content.replace(/(free|gratis): (thedrivingschool\.app)/i, (_m, w) => `${w}: ${/gratis/i.test(w) ? "link en la bio" : "link in bio"} (${BRAND.url})`) : content;
+    out.push({ integration: { id: ch.id }, value: [{ content: text, image: [{ id: media.id, path: media.path }] }], settings });
     used.push({ platform, id: ch.id });
   }
   return { posts: out, used };

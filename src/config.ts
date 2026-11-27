@@ -169,10 +169,10 @@ export const EXCLUDED_CATEGORIES = ["Alcohol & Drugs", "Speed Limits & Laws", "L
  *  spoken-question guard, card 2 timing from before the uniform countdown). */
 export const EXTRA_RENDERS: { on: string; format: string }[] = [{ on: "2026-11-21", format: "pass5q" }];
 
-/** 2026-11-26 post-publish review: picture does not match the bank. 248e374a "Road curves left" shows a chevron
- *  alignment sign; e105c6fc "270-degree turn ahead" shows a U-turn sign; 80af1bc0 says three vehicles, the diagram shows
- *  two cars and a pedestrian. Fix them in the bank (owner review), then remove the ids here. */
-export const EXCLUDED_QUESTIONS: string[] = ["248e374a", "e105c6fc", "80af1bc0"];
+/** 2026-11-27: the three ids blocked after the first review (248e374a, e105c6fc, 62d116b7) were checked by hand against
+ *  their pictures and are correct (chevron = curve left, 270-degree loop sign, three vehicles plus a pedestrian): the
+ *  review's vision model misread them. Empty again. */
+export const EXCLUDED_QUESTIONS: string[] = [];
 /** Topics excluded by keyword as well as by category: an alcohol question sat in "Safe Driving" (659b6650). */
 export const EXCLUDED_TOPIC_WORDS = /\b(alcohol|drunk|drinking|drugs?|intoxicat|dui|dwi|blood alcohol|bac)\b/i;
 
